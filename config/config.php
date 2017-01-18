@@ -99,68 +99,105 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
       }
 
       // First try old config table : for update process management from < 0.80 to >= 0.80
-      $config_object->forceTable('glpi_config');
-
-      if ($config_object->getFromDB(1)) {
-         $current_config = $config_object->fields;
-      } else {
-         $config_object->forceTable('glpi_configs');
-         if ($config_object->getFromDB(1)) {
-            if (isset($config_object->fields['context'])) {
-               $current_config = Config::getConfigurationValues('core');
-            } else {
-               $current_config = $config_object->fields;
-            }
-            $config_ok = true;
-         }
-      }
+      $current_config = readOldGlpiConfig();
 
    } else { // Normal load process : use normal config table. If problem try old one
+      $current_config = readGlpiConfig();
+   }
+
+   if (count($current_config) > 0) {
+      applyGlpiConfig($current_config);
+   } else {
+      echo "Error accessing config table";
+      exit();
+   }
+
+   setDebugMode();
+
+   if (isset($_SESSION["glpiroot"]) && $CFG_GLPI["root_doc"]!=$_SESSION["glpiroot"]) {
+      Html::redirect($_SESSION["glpiroot"]);
+   }
+
+   // Override cfg_features by session value
+   applyGlpiConfigToSession();
+
+   // Check maintenance mode
+   checkMaaintenanceMode();
+
+   // Check version
+   checkGlpiVersion();
+}
+
+function readOldGlpiConfig() {
+   $config_object  = new Config();
+   $config_object->forceTable('glpi_config');
+
+   if ($config_object->getFromDB(1)) {
+      $current_config = $config_object->fields;
+   } else {
+      $config_object->forceTable('glpi_configs');
       if ($config_object->getFromDB(1)) {
          if (isset($config_object->fields['context'])) {
             $current_config = Config::getConfigurationValues('core');
          } else {
             $current_config = $config_object->fields;
          }
+      }
+   }
+
+   return $current_config;
+}
+
+function readGlpiConfig() {
+   $config_object  = new Config();
+
+   if ($config_object->getFromDB(1)) {
+      if (isset($config_object->fields['context'])) {
+         $current_config = Config::getConfigurationValues('core');
       } else {
-         // Manage glpi_config table before 0.80
-         $config_object->forceTable('glpi_config');
-         if ($config_object->getFromDB(1)) {
-            $current_config = $config_object->fields;
-         }
+         $current_config = $config_object->fields;
       }
-   }
-
-   if (count($current_config) > 0) {
-      $CFG_GLPI = array_merge($CFG_GLPI,$current_config);
-
-      if (isset($CFG_GLPI['priority_matrix'])) {
-         $CFG_GLPI['priority_matrix'] = importArrayFromDB($CFG_GLPI['priority_matrix'],
-                                                          true);
-      }
-      if (isset($CFG_GLPI['lock_item_list'])) {
-          $CFG_GLPI['lock_item_list'] = importArrayFromDB($CFG_GLPI['lock_item_list']);
-      }
-      if (isset($CFG_GLPI['lock_lockprofile_id'])
-          && $CFG_GLPI["lock_use_lock_item"]
-          && ($CFG_GLPI["lock_lockprofile_id"] > 0)
-          && !isset($CFG_GLPI['lock_lockprofile']) ) {
-
-            $prof = new Profile();
-            $prof->getFromDB($CFG_GLPI["lock_lockprofile_id"]);
-            $prof->cleanProfile();
-            $CFG_GLPI['lock_lockprofile'] = $prof->fields;
-      }
-
-      // Path for icon of document type (web mode only)
-      if (isset($CFG_GLPI["root_doc"])) {
-         $CFG_GLPI["typedoc_icon_dir"] = $CFG_GLPI["root_doc"]."/pics/icones";
-      }
-
    } else {
-      echo "Error accessing config table";
-      exit();
+      // Manage glpi_config table before 0.80
+      $config_object->forceTable('glpi_config');
+      if ($config_object->getFromDB(1)) {
+         $current_config = $config_object->fields;
+      }
    }
+    return $current_config;
+}
+
+function applyGlpiConfig($current_config) {
+   global $CFG_GLPI;
+
+   $CFG_GLPI = array_merge($CFG_GLPI,$current_config);
+
+   if (isset($CFG_GLPI['priority_matrix'])) {
+      $CFG_GLPI['priority_matrix'] = importArrayFromDB($CFG_GLPI['priority_matrix'],
+            true);
+   }
+   if (isset($CFG_GLPI['lock_item_list'])) {
+      $CFG_GLPI['lock_item_list'] = importArrayFromDB($CFG_GLPI['lock_item_list']);
+   }
+   if (isset($CFG_GLPI['lock_lockprofile_id'])
+         && $CFG_GLPI["lock_use_lock_item"]
+         && ($CFG_GLPI["lock_lockprofile_id"] > 0)
+         && !isset($CFG_GLPI['lock_lockprofile']) ) {
+
+         $prof = new Profile();
+         $prof->getFromDB($CFG_GLPI["lock_lockprofile_id"]);
+         $prof->cleanProfile();
+         $CFG_GLPI['lock_lockprofile'] = $prof->fields;
+   }
+
+   // Path for icon of document type (web mode only)
+   if (isset($CFG_GLPI["root_doc"])) {
+      $CFG_GLPI["typedoc_icon_dir"] = $CFG_GLPI["root_doc"]."/pics/icones";
+   }
+}
+
+function setDebugMode() {
+   global $CFG_GLPI;
 
    if (isCommandLine()
        && isset($_SERVER['argv'])) {
@@ -173,19 +210,21 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
       }
    }
    Toolbox::setDebugMode();
+}
 
-   if (isset($_SESSION["glpiroot"]) && $CFG_GLPI["root_doc"]!=$_SESSION["glpiroot"]) {
-      Html::redirect($_SESSION["glpiroot"]);
-   }
+function applyGlpiConfigToSession() {
+   global $CFG_GLPI;
 
-   // Override cfg_features by session value
    foreach ($CFG_GLPI['user_pref_field'] as $field) {
       if (!isset($_SESSION["glpi$field"]) && isset($CFG_GLPI[$field])) {
          $_SESSION["glpi$field"] = $CFG_GLPI[$field];
       }
    }
+}
 
-   // Check maintenance mode
+function checkMaaintenanceMode() {
+   global $CFG_GLPI;
+
    if (isset($CFG_GLPI["maintenance_mode"]) && $CFG_GLPI["maintenance_mode"])  {
       if (isset($_GET['skipMaintenance']) && $_GET['skipMaintenance']) {
          $_SESSION["glpiskipMaintenance"] = 1;
@@ -213,7 +252,11 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
          exit();
       }
    }
-   // Check version
+}
+
+function checkGlpiVersion() {
+   global $CFG_GLPI;
+
    if ((!isset($CFG_GLPI["version"]) || (trim($CFG_GLPI["version"]) != GLPI_VERSION))
        && !isset($_GET["donotcheckversion"])) {
 
