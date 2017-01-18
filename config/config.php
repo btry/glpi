@@ -47,28 +47,15 @@ Session::start();
 
 Config::detectRootDoc();
 
+loadGlpiConfig((isset($USEDBREPLICATE) ? $USEDBREPLICATE : 0),
+      (isset($DBCONNECTION_REQUIRED) ? $DBCONNECTION_REQUIRED : 0),
+      (isset($TRY_OLD_CONFIG_FIRST) ? 1 : 0));
 
-if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
-   Session::loadLanguage();
-   // no translation
-   if (!isCommandLine()) {
-      Html::nullHeader("DB Error",$CFG_GLPI["root_doc"]);
-      echo "<div class='center'>";
-      echo "<p>Error: GLPI seems to not be configured properly.</p>";
-      echo "<p>config_db.php file is missing.</p>";
-      echo "<p>Please restart the install process.</p>";
-      echo "<p><a class='red' href='".$CFG_GLPI['root_doc']."'>Click here to proceed</a></p>";
-      echo "</div>";
-      Html::nullFooter();
+function loadGlpiConfig($USEDBREPLICATE, $DBCONNECTION_REQUIRED, $TRY_OLD_CONFIG_FIRST) {
+   global $CFG_GLPI;
 
-   } else {
-      echo "Error: GLPI seems to not be configured properly.\n";
-      echo "config_db.php file is missing.\n";
-      echo "Please connect to GLPI web interface to complete the install process.\n";
-   }
-   die();
+   checkDBConfig();
 
-} else {
    include_once(GLPI_CONFIG_DIR . "/config_db.php");
 
    //Database connection
@@ -87,11 +74,10 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
       $_SESSION['glpi_use_mode'] = Session::NORMAL_MODE;
    }
 
-   $config_object  = new Config();
    $current_config = array();
 
    if (!isset($_GET['donotcheckversion'])  // use normal config table on restore process
-       && (isset($TRY_OLD_CONFIG_FIRST) // index case
+       && ($TRY_OLD_CONFIG_FIRST == 1 // index case
            || (isset($_SESSION['TRY_OLD_CONFIG_FIRST']) && $_SESSION['TRY_OLD_CONFIG_FIRST']))) { // backup case
 
       if (isset($_SESSION['TRY_OLD_CONFIG_FIRST'])) {
@@ -126,6 +112,31 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
 
    // Check version
    checkGlpiVersion();
+}
+
+function checkDBConfig() {
+   global $CFG_GLPI;
+
+   if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
+      Session::loadLanguage();
+      // no translation
+      if (!isCommandLine()) {
+         Html::nullHeader("DB Error",$CFG_GLPI["root_doc"]);
+         echo "<div class='center'>";
+         echo "<p>Error: GLPI seems to not be configured properly.</p>";
+         echo "<p>config_db.php file is missing.</p>";
+         echo "<p>Please restart the install process.</p>";
+         echo "<p><a class='red' href='".$CFG_GLPI['root_doc']."'>Click here to proceed</a></p>";
+         echo "</div>";
+         Html::nullFooter();
+
+      } else {
+         echo "Error: GLPI seems to not be configured properly.\n";
+         echo "config_db.php file is missing.\n";
+         echo "Please connect to GLPI web interface to complete the install process.\n";
+      }
+      die();
+   }
 }
 
 function readOldGlpiConfig() {
