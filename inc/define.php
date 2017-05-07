@@ -283,7 +283,8 @@ $CFG_GLPI['device_types']                 = array('DeviceMotherboard', 'DeviceFi
                                                   'DeviceMemory', 'DeviceHardDrive', 'DeviceNetworkCard',
                                                   'DeviceDrive', 'DeviceBattery', 'DeviceGraphicCard',
                                                   'DeviceSoundCard', 'DeviceControl', 'DevicePci',
-                                                  'DeviceCase', 'DevicePowerSupply', 'DeviceGeneric');
+                                                  'DeviceCase', 'DevicePowerSupply', 'DeviceGeneric',
+                                                  'DeviceSimcard');
 
 $CFG_GLPI["itemdevices_types"]            = array('Computer', 'NetworkEquipment', 'Peripheral',
                                                   'Phone', 'Printer');
@@ -301,6 +302,8 @@ $CFG_GLPI['itemdeviceharddrive_types']    = array('Computer', 'Peripheral');
 $CFG_GLPI['itemdevicebattery_types']      = array('Computer', 'Peripheral', 'Phone', 'Printer');
 
 $CFG_GLPI['itemdevicefirmware_types']     = array('Computer', 'Peripheral', 'Phone', 'NetworkEquipment', 'Printer');
+
+$CFG_GLPI['itemdevicesimcard_types']      = array('Computer', 'Peripheral', 'Phone', 'NetworkEquipment', 'Printer');
 
 $CFG_GLPI['itemdevicegeneric_types']      = array('*');
 
