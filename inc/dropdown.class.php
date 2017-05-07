@@ -915,6 +915,13 @@ class Dropdown {
                                               Session::getPluralNumber())
              ),
 
+               _n('Simcard', 'Simcards', Session::getPluralNumber()) => array(
+                     'PhoneOperator'   => _n('Provider', 'Providers', Session::getPluralNumber()),
+                     'SimcardSize'     => _n('Simcard size', 'Simcard sizes', Session::getPluralNumber()),
+                     'SimcardType'     => _n('Simcard type', 'Simcard types', Session::getPluralNumber()),
+                     'SimcardVoltage'  => _n('Simcard voltage', 'Simcard voltages', Session::getPluralNumber()),
+             ),
+
              __('Management') => array(
                  'DocumentCategory' => _n('Document heading',
                                           'Document headings',
