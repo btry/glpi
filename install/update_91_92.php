@@ -897,8 +897,8 @@ Regards,',
       $DB->queryOrDie($query, "9.2 add table glpi_simcardsizes");
    }
 
-   if (!TableExists('glpi_simcardtypes')) {
-      $query = "CREATE TABLE IF NOT EXISTS `glpi_simcardtypes` (
+   if (!TableExists('glpi_devicesimcardtypes')) {
+      $query = "CREATE TABLE IF NOT EXISTS `glpi_devicesimcardtypes` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `name` varchar(255) NOT NULL DEFAULT '',
                   `comment` text COLLATE utf8_unicode_ci,
@@ -909,7 +909,7 @@ Regards,',
                   KEY `date_mod` (`date_mod`),
                   KEY `date_creation` (`date_creation`)
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-      $DB->queryOrDie($query, "9.2 add table glpi_simcardtypes");
+      $DB->queryOrDie($query, "9.2 add table glpi_devicesimcardtypes");
    }
 
    if (!TableExists('glpi_simcardvoltages')) {
@@ -930,11 +930,13 @@ Regards,',
       $DB->queryOrDie("INSERT INTO `glpi_simcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);");
    }
 
-   if (!TableExists('glpi_simcards')) {
-      $query = "CREATE TABLE IF NOT EXISTS `glpi_simcards` (
+   if (!TableExists('glpi_devicesimcards')) {
+      $query = "CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
                `id` int(11) NOT NULL AUTO_INCREMENT,
+               `designation` varchar(255) NOT NULL DEFAULT '',
+               `comment` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
                `entities_id` int(11) NOT NULL DEFAULT '0',
-               `name` varchar(255) NOT NULL DEFAULT '',
+               `is_recursive` tinyint(1) NOT NULL DEFAULT '0',
                `phonenumber` varchar(255) NOT NULL DEFAULT '',
                `serial` varchar(255) NOT NULL DEFAULT '',
                `pin` varchar(255) NOT NULL DEFAULT '',
@@ -952,22 +954,25 @@ Regards,',
                `manufacturers_id` int(11) NOT NULL DEFAULT '0',
                `simcardsizes_id` int(11) NOT NULL DEFAULT '0',
                `simcardvoltages_id` int(11) NOT NULL DEFAULT '0',
-               `simcardtypes_id` int(11) NOT NULL DEFAULT '0',
-               `comment` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+               `devicesimcardtypes_id` int(11) NOT NULL DEFAULT '0',
                `date_mod` datetime DEFAULT NULL,
+               `date_creation` datetime DEFAULT NULL,
                `is_template` tinyint(1) NOT NULL DEFAULT '0',
                `is_global` tinyint(1) NOT NULL DEFAULT '0',
                `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
                `template_name` varchar(255) COLLATE utf8_unicode_ci NULL,
                `ticket_tco` decimal(20,4) DEFAULT '0.0000',
                PRIMARY KEY (`id`),
-               KEY `name` (`name`),
+               KEY `designation` (`designation`),
                KEY `entities_id` (`entities_id`),
+               KEY `is_recursive` (`is_recursive`),
                KEY `states_id` (`states_id`),
                KEY `phoneoperators_id` (`phoneoperators_id`),
                KEY `simcardsizes_id` (`simcardsizes_id`),
-               KEY `simcardtypes_id` (`simcardtypes_id`),
                KEY `simcardvoltages_id` (`simcardvoltages_id`),
+               KEY `devicesimcardtypes_id` (`devicesimcardtypes_id`),
+               KEY `date_mod` (`date_mod`),
+               KEY `date_creation` (`date_creation`),
                KEY `manufacturers_id` (`manufacturers_id`),
                KEY `pin` (`pin`),
                KEY `pin2` (`pin2`),
@@ -981,11 +986,11 @@ Regards,',
                KEY `is_deleted` (`is_deleted`),
                KEY `is_global` (`is_global`)
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-      $DB->queryOrDie($query, "9.2 add table glpi_simcards");
+      $DB->queryOrDie($query, "9.2 add table glpi_devicesimcards");
    }
 
-   if (!TableExists('glpi_simcards_items')) {
-      $query = "CREATE TABLE IF NOT EXISTS `glpi_simcards_items` (
+   if (!TableExists('glpi_items_devicesimcards')) {
+      $query = "CREATE TABLE IF NOT EXISTS `glpi_items_devicesimcards` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `items_id` int(11) NOT NULL DEFAULT '0' COMMENT 'RELATION to various table, according to itemtype (id)',
                   `simcards_id` int(11) NOT NULL DEFAULT '0',
@@ -994,7 +999,7 @@ Regards,',
                   KEY `simcards_id` (`simcards_id`),
                   KEY `item` (`itemtype`,`items_id`)
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-      $DB->queryOrDie($query, "9.2 add table glpi_simcards_items");
+      $DB->queryOrDie($query, "9.2 add table glpi_items_devicesimcards");
    }
 
    // ************ Keep it at the end **************

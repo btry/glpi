@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access this file directly");
 }
 
-class SimcardType extends CommonDropdown {
+class DeviceSimcardType extends CommonDeviceType {
 
    static function getTypeName($nb = 0) {
       global $LANG;

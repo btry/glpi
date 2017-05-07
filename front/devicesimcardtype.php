@@ -1,6 +1,6 @@
 <?php
 /*
- * @version $Id: simcardvoltage.form.php 36 2012-08-31 13:59:28Z walid $
+ * @version $Id: simcardvoltage.php 36 2012-08-31 13:59:28Z walid $
  LICENSE
 
   This file is part of the simcard plugin.
@@ -30,5 +30,5 @@
 
 include ('../inc/includes.php');
 
-$dropdown = new SimcardType();
-include (GLPI_ROOT . "/front/dropdown.common.form.php");
+$dropdown = new DeviceSimcardType();
+include (GLPI_ROOT . "/front/dropdown.common.php");

@@ -41,4 +41,31 @@ if (!defined('GLPI_ROOT')) {
 /// Class DeviceSimcard
 class DeviceSimcard extends CommonDevice {
    static protected $forward_entity_to = array('Item_DeviceSimcard', 'Infocom');
+
+   static function getTypeName($nb=0) {
+      return _n('Simcard', 'Simcards', $nb);
+   }
+
+   function getAdditionalFields() {
+
+      return array_merge(parent::getAdditionalFields(),
+                         array(array('name'  => 'locations_id',
+                                     'label' => __('Location'),
+                                     'type'  => 'dropdownValue'),
+                               array('name'  => 'phoneoperators_id',
+                                     'label' => __('Phone operator'),
+                                     'type'  => 'dropdownValue'),
+                               array('name'  => 'simcardsizes_id',
+                                     'label' => __('Simcard size'),
+                                     'type'  => 'dropdownValue'),
+                               array('name'  => 'simcardvoltages_id',
+                                     'label' => __('Simcard voltage'),
+                                     'type'  => 'dropdownValue'),
+                               array('name'  => 'simcardtypes_id',
+                                     'label' => __('Simcard type'),
+                                     'type'  => 'dropdownValue')
+                         ));
+   }
+
+
 }

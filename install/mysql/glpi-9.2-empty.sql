@@ -8515,8 +8515,8 @@ CREATE TABLE IF NOT EXISTS `glpi_simcardsizes` (
   KEY `date_creation` (`date_creation`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `glpi_simcardtypes`;
-CREATE TABLE IF NOT EXISTS `glpi_simcardtypes` (
+DROP TABLE IF EXISTS `glpi_devicesimcardtypes`;
+CREATE TABLE IF NOT EXISTS `glpi_devicesimcardtypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `comment` text COLLATE utf8_unicode_ci,
@@ -8547,8 +8547,10 @@ INSERT INTO `glpi_simcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);
 DROP TABLE IF EXISTS `glpi_devicesimcards`;
 CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `designation` varchar(255) NOT NULL DEFAULT '',
+  `comment` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
   `entities_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `is_recursive` tinyint(1) NOT NULL DEFAULT '0',
   `phonenumber` varchar(255) NOT NULL DEFAULT '',
   `serial` varchar(255) NOT NULL DEFAULT '',
   `pin` varchar(255) NOT NULL DEFAULT '',
@@ -8566,22 +8568,25 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   `manufacturers_id` int(11) NOT NULL DEFAULT '0',
   `simcardsizes_id` int(11) NOT NULL DEFAULT '0',
   `simcardvoltages_id` int(11) NOT NULL DEFAULT '0',
-  `simcardtypes_id` int(11) NOT NULL DEFAULT '0',
-  `comment` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `devicesimcardtypes_id` int(11) NOT NULL DEFAULT '0',
   `date_mod` datetime DEFAULT NULL,
+  `date_creation` datetime DEFAULT NULL,
   `is_template` tinyint(1) NOT NULL DEFAULT '0',
   `is_global` tinyint(1) NOT NULL DEFAULT '0',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `template_name` varchar(255) COLLATE utf8_unicode_ci NULL,
   `ticket_tco` decimal(20,4) DEFAULT '0.0000',
   PRIMARY KEY (`id`),
-  KEY `name` (`name`),
+  KEY `designation` (`designation`),
   KEY `entities_id` (`entities_id`),
+  KEY `is_recursive` (`is_recursive`),
   KEY `states_id` (`states_id`),
   KEY `phoneoperators_id` (`phoneoperators_id`),
   KEY `simcardsizes_id` (`simcardsizes_id`),
-  KEY `simcardtypes_id` (`simcardtypes_id`),
   KEY `simcardvoltages_id` (`simcardvoltages_id`),
+  KEY `devicesimcardtypes_id` (`devicesimcardtypes_id`),
+  KEY `date_mod` (`date_mod`),
+  KEY `date_creation` (`date_creation`),
   KEY `manufacturers_id` (`manufacturers_id`),
   KEY `pin` (`pin`),
   KEY `pin2` (`pin2`),

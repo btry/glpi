@@ -212,7 +212,7 @@ $CFG_GLPI["itemdevices"]                  = array('Item_DevicePowerSupply', 'Ite
                                                   'Item_DeviceSoundCard', 'Item_DeviceControl',
                                                   'Item_DeviceHardDrive', 'Item_DeviceDrive', 'Item_DeviceMemory',
                                                   'Item_DeviceProcessor', 'Item_DeviceGeneric',
-                                                  'Item_DeviceBattery', 'Item_DeviceFirmware');
+                                                  'Item_DeviceBattery', 'Item_DeviceFirmware', 'Item_DeviceSimcard');
 
 $CFG_GLPI["contract_types"]               = array_merge(array('Computer', 'Monitor', 'NetworkEquipment',
                                                   'Peripheral', 'Phone', 'Printer', 'Project',
