@@ -61,10 +61,48 @@ class DeviceSimcard extends CommonDevice {
                                array('name'  => 'simcardvoltages_id',
                                      'label' => __('Simcard voltage'),
                                      'type'  => 'dropdownValue'),
-                               array('name'  => 'simcardtypes_id',
+                               array('name'  => 'devicesimcardtypes_id',
                                      'label' => __('Simcard type'),
                                      'type'  => 'dropdownValue')
                          ));
+   }
+
+   function getSearchOptionsNew() {
+      $tab = parent::getSearchOptionsNew();
+
+      $tab[] = [
+            'id'                 => '12',
+            'table'              => 'glpi_phoneoperators_id',
+            'field'              => 'name',
+            'name'               => __('Phone operator'),
+            'datatype'           => 'dropdown'
+      ];
+
+      $tab[] = [
+            'id'                 => '13',
+            'table'              => 'glpi_devicesimcardsizes',
+            'field'              => 'name',
+            'name'               => __('Simcard size'),
+            'datatype'           => 'dropdown'
+      ];
+
+      $tab[] = [
+            'id'                 => '14',
+            'table'              => 'glpi_devicesimcardvoltages',
+            'field'              => 'name',
+            'name'               => __('Simcard voltage'),
+            'datatype'           => 'dropdown'
+      ];
+
+      $tab[] = [
+            'id'                 => '15',
+            'table'              => 'glpi_devicesimcardtypes',
+            'field'              => 'name',
+            'name'               => __('Simcard type'),
+            'datatype'           => 'dropdown'
+      ];
+
+      return $tab;
    }
 
 
