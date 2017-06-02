@@ -8605,9 +8605,9 @@ DROP TABLE IF EXISTS `glpi_items_devicesimcards`;
 CREATE TABLE IF NOT EXISTS `glpi_items_devicesimcards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `items_id` int(11) NOT NULL DEFAULT '0' COMMENT 'RELATION to various table, according to itemtype (id)',
-  `simcards_id` int(11) NOT NULL DEFAULT '0',
   `itemtype` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `devicesimcards_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `simcards_id` (`simcards_id`),
+  KEY `devicesimcards_id` (`devicesimcards_id`),
   KEY `item` (`itemtype`,`items_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
