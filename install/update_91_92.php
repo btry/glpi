@@ -302,7 +302,8 @@ function update91to92() {
       'glpi_devicesoundcardmodels',
       'glpi_devicegenericmodels',
       'glpi_devicebatterymodels',
-      'glpi_devicefirmwaremodels'
+      'glpi_devicefirmwaremodels',
+      'glpi_devicesimcardmodels'
    ];
 
    foreach ($tables as $table) {
@@ -787,7 +788,7 @@ Regards,',
                                  true);
    }
 
-   /************** Simcards **************/
+   /************** Simcard component **************/
    if (!TableExists('glpi_phoneoperators')) {
       $query = "CREATE TABLE IF NOT EXISTS `glpi_phoneoperators` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -815,7 +816,7 @@ Regards,',
                   KEY `date_mod` (`date_mod`),
                   KEY `date_creation` (`date_creation`)
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-      $DB->queryOrDie($query, "9.2 add table glpi_simcardsizes");
+      $DB->queryOrDie($query, "9.2 add table glpi_devicesimcardsizes");
    }
 
    if (!TableExists('glpi_devicesimcardtypes')) {
@@ -845,7 +846,7 @@ Regards,',
                   KEY `date_mod` (`date_mod`),
                   KEY `date_creation` (`date_creation`)
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-      $DB->queryOrDie($query, "9.2 add table glpi_simcardvoltages");
+      $DB->queryOrDie($query, "9.2 add table glpi_devicesimcardvoltages");
 
       $DB->queryOrDie("INSERT INTO `glpi_simcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);");
       $DB->queryOrDie("INSERT INTO `glpi_simcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);");
@@ -859,18 +860,10 @@ Regards,',
                `entities_id` int(11) NOT NULL DEFAULT '0',
                `is_recursive` tinyint(1) NOT NULL DEFAULT '0',
                `phonenumber` varchar(255) NOT NULL DEFAULT '',
-               `serial` varchar(255) NOT NULL DEFAULT '',
                `pin` varchar(255) NOT NULL DEFAULT '',
                `pin2` varchar(255) NOT NULL DEFAULT '',
                `puk` varchar(255) NOT NULL DEFAULT '',
                `puk2` varchar(255) NOT NULL DEFAULT '',
-               `otherserial` varchar(255) NOT NULL DEFAULT '',
-               `states_id` int(11) NOT NULL DEFAULT '0',
-               `locations_id` int(11) NOT NULL DEFAULT '0',
-               `users_id` int(11) NOT NULL DEFAULT '0',
-               `users_id_tech` int(11) NOT NULL DEFAULT '0',
-               `groups_id` int(11) NOT NULL DEFAULT '0',
-               `groups_id_tech` int(11) NOT NULL DEFAULT '0',
                `phoneoperators_id` int(11) NOT NULL DEFAULT '0',
                `manufacturers_id` int(11) NOT NULL DEFAULT '0',
                `devicesimcardsizes_id` int(11) NOT NULL DEFAULT '0',
@@ -879,6 +872,7 @@ Regards,',
                `date_mod` datetime DEFAULT NULL,
                `date_creation` datetime DEFAULT NULL,
                `ticket_tco` decimal(20,4) DEFAULT '0.0000',
+               `devicesimcardmodels_id` int(11) NOT NULL DEFAULT '0',
                PRIMARY KEY (`id`),
                KEY `designation` (`designation`),
                KEY `entities_id` (`entities_id`),
@@ -894,11 +888,7 @@ Regards,',
                KEY `pin` (`pin`),
                KEY `pin2` (`pin2`),
                KEY `puk` (`puk`),
-               KEY `puk2` (`puk2`),
-               KEY `serial` (`serial`),
-               KEY `users_id` (`users_id`),
-               KEY `users_id_tech` (`users_id_tech`),
-               KEY `groups_id` (`groups_id`)
+               KEY `puk2` (`puk2`)
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
       $DB->queryOrDie($query, "9.2 add table glpi_devicesimcards");
    }
@@ -909,9 +899,15 @@ Regards,',
                   `items_id` int(11) NOT NULL DEFAULT '0' COMMENT 'RELATION to various table, according to itemtype (id)',
                   `devicesimcards_id` int(11) NOT NULL DEFAULT '0',
                   `itemtype` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+                  `serial` varchar(255) NULL DEFAULT NULL,
+                  `otherserial` varchar(255) NULL DEFAULT NULL,
+                  `states_id` int(11) NOT NULL DEFAULT '0',
+                  `locations_id` int(11) NOT NULL DEFAULT '0',
                   PRIMARY KEY (`id`),
                   KEY `devicesimcards_id` (`devicesimcards_id`),
-                  KEY `item` (`itemtype`,`items_id`)
+                  KEY `item` (`itemtype`,`items_id`),
+                  KEY `serial` (`serial`),
+                  KEY `otherserial` (`otherserial`)
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
       $DB->queryOrDie($query, "9.2 add table glpi_items_devicesimcards");
    }
