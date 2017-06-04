@@ -8574,7 +8574,6 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   `devicesimcardtypes_id` int(11) NOT NULL DEFAULT '0',
   `date_mod` datetime DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
-  `ticket_tco` decimal(20,4) DEFAULT '0.0000',
   `devicesimcardmodels_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `designation` (`designation`),
