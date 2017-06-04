@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access this file directly");
 }
 
-class SimcardVoltage extends CommonDropdown {
+class DeviceSimcardVoltage extends CommonDropdown {
 
    static function getTypeName($nb = 0) {
       global $LANG;

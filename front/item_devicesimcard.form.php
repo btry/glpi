@@ -30,17 +30,7 @@
  * ---------------------------------------------------------------------
  */
 
-/**
- * @since version 9.2
- */
+include ('../inc/includes.php');
 
-if (!defined('GLPI_ROOT')) {
-   die("Sorry. You can't access this file directly");
-}
-
-class SimcardSize extends CommonDropdown {
-
-   static function getTypeName($nb=0) {
-      return _n('Simcard size', 'Simcard sizes', $nb);
-   }
-}
+$item_device = new Item_DeviceSimcard();
+include (GLPI_ROOT . "/front/item_device.common.form.php");
