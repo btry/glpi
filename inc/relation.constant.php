@@ -345,6 +345,7 @@ $RELATION = array("glpi_authldaps"
                                  'glpi_devicefiremwares'    => 'manufacturers_id',
                                  'glpi_devicebatteries'     => 'manufacturers_id',
                                  'glpi_devicegenerics'      => 'manufacturers_id',
+                                 'glpi_devicesimcards'      => 'manufacturers_id',
                                  'glpi_monitors'            => 'manufacturers_id',
                                  'glpi_networkequipments'   => 'manufacturers_id',
                                  'glpi_peripherals'         => 'manufacturers_id',
@@ -412,6 +413,9 @@ $RELATION = array("glpi_authldaps"
 
                   "glpi_phonemodels"
                         => array('glpi_phones' => 'phonemodels_id'),
+
+                  "glpi_phoneoperators"
+                        => array('glpi_devicesimcards' => 'phoneoperators_id'),
 
                   "glpi_phonepowersupplies"
                         => array('glpi_phones' => 'phonepowersupplies_id'),
