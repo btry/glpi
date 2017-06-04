@@ -81,7 +81,13 @@ function update91to92() {
       'glpi_items_devicefirmwares',
       'glpi_devicefirmwaretypes',
       'glpi_savedsearches_alerts',
-      'glpi_notifications_notificationtemplates'
+      'glpi_notifications_notificationtemplates',
+      'glpi_phoneoperators',
+      'glpi_devicesimcardsizes',
+      'glpi_devicesimcardtypes',
+      'glpi_devicesimcardvoltages',
+      'glpi_devicesimcards',
+      'glpi_items_devicesimcards'
    );
 
    $has_backups = $migration->backupTables($newtables);
@@ -605,7 +611,7 @@ function update91to92() {
          'name'                     => $notif_options['label'],
          'itemtype'                 => 'Ticket',
          'event'                    => $event,
-         'mode'                     => Notification_NotificationTemplate::MODE_MAIL,
+         'mode'                     => 'mail',
          'notificationtemplates_id' => 0,
          'is_recursive'             => 1,
          'is_active'                => 0,
@@ -676,36 +682,6 @@ function update91to92() {
       $DB->queryOrDie($query, "9.2 add table glpi_savedsearches_alerts");
    }
 
-   if (!countElementsInTable('glpi_rules',
-                             ['sub_type' => 'RuleSoftwareCategory',
-                              'uuid' => '500717c8-2bd6e957-53a12b5fd38869.86003425'])) {
-      $rule = new Rule();
-      $rules_id = $rule->add(['name'        => 'Import category from inventory tool',
-                              'is_active'   => 0,
-                              'uuid'        => '500717c8-2bd6e957-53a12b5fd38869.86003425',
-                              'entities_id' => 0,
-                              'sub_type'    => 'RuleSoftwareCategory',
-                              'match'       => Rule::AND_MATCHING,
-                              'condition'   => 0,
-                              'description' => ''
-                             ]);
-      if ($rules_id) {
-         $criteria = new RuleCriteria();
-         $criteria->add(['rules_id'  => $rules_id,
-                         'criteria'  => 'name',
-                         'condition' => '0',
-                         'pattern'   => '*'
-                        ]);
-
-         $action = new RuleAction();
-         $action->add(['rules_id'    => $rules_id,
-                       'action_type' => 'assign',
-                       'field'       => '_import_category',
-                       'value'       => '1'
-                      ]);
-      }
-   }
-
    //TRANS: %s is the table or item to migrate
    $migration->displayMessage(sprintf(__('Data migration - %s'), 'glpi_displaypreferences'));
 
@@ -756,7 +732,7 @@ function update91to92() {
 
    if (!countElementsInTable('glpi_notifications',
                              "`itemtype`='SavedSearch_Alert'")) {
-      $query = "INSERT INTO `glpi_notifications` VALUES (null,'Saved searches','0','SavedSearch_Alert','alert','" . Notification_NotificationTemplate::MODE_MAIL . "','24','','1','1','2016-02-08 16:57:46',NULL);";
+      $query = "INSERT INTO `glpi_notifications` VALUES (null,'Saved searches','0','SavedSearch_Alert','alert','mail','24','','1','1','2016-02-08 16:57:46',NULL);";
       $DB->queryOrDie($query, "9.2 Add saved search alerts notification");
       $notid = $DB->insert_id();
 
@@ -803,65 +779,10 @@ Regards,',
                                  true);
    }
 
-   if (TableExists('glpi_queuedmails')) {
-      $migration->renameTable("glpi_queuedmails", "glpi_queuednotifications");
-      $migration->addPostQuery("UPDATE glpi_crontasks SET itemtype='QueuedNotification' WHERE itemtype='QueuedMail'");
-      $migration->addPostQuery("UPDATE glpi_crontasks SET name='queuednotification' WHERE name='queuedmail'");
-      $migration->addPostQuery("UPDATE glpi_crontasks SET name='queuednotificationclean' WHERE name='queuedmailclean'");
-      $migration->addPostQuery("UPDATE glpi_profilerights SET name='queuednotification' WHERE name='queuedmail'");
-   }
-
-   if (isset($current_config['use_mailing']) && !isset($current_config['use_notifications'])) {
-      /** Notifications modes */
-      Config::setConfigurationValues(
-         'core', [
-            'use_notifications'        => $current_config['use_mailing'],
-            'notifications_mailing'    => $current_config['use_mailing'],
-            'notifications_ajax'       => 0,
-            'notifications_ajax_check_interval' => '5',
-            'notifications_ajax_sound' => null,
-            'notifications_ajax_icon_url' => '/pics/glpi.png'
-         ]
-      );
-   }
-
-   if (!TableExists('glpi_notifications_notificationtemplates')) {
-      $query = "CREATE TABLE `glpi_notifications_notificationtemplates` (
-                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                  `notifications_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-                  `mode` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-                  `notificationtemplates_id` int(11) NOT NULL DEFAULT '0',
-                  PRIMARY KEY (`id`),
-                  UNIQUE KEY `unicity` (`notifications_id`, `mode`, `notificationtemplates_id`),
-                  KEY `notifications_id` (`notifications_id`),
-                  KEY `notificationtemplates_id` (`notificationtemplates_id`),
-                  KEY `mode` (`mode`) COMMENT 'See Notification_NotificationTemplate::MODE_* constants'
-                  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
-      $DB->queryOrDie($query, "9.2 add table glpi_notifications_notificationtemplates");
-      $migration->migrationOneTable('glpi_notifications_notificationtemplates');
-      $query = "INSERT INTO glpi_notifications_notificationtemplates (notifications_id, mode, notificationtemplates_id) SELECT id, mode, notificationtemplates_id FROM glpi_notifications";
-      $DB->queryOrDie($query, "9.2 migrate notifications templates");
-   }
-
-   //migrate any existing mode before removing the field
-   $migration->dropField('glpi_notifications', 'mode');
-   $migration->dropField('glpi_notifications', 'notificationtemplates_id');
-
-   $migration->addField('glpi_queuednotifications', 'mode', 'varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT \'See Notification_NotificationTemplate::MODE_* constants\'');
-   $migration->addKey('glpi_queuednotifications', 'mode');
-   $migration->addPostQuery(
-      'UPDATE glpi_queuednotifications SET mode=\'' . Notification_NotificationTemplate::MODE_MAIL . '\'',
-      '9.2 set default mode in queue'
-   );
-   $migration->addPostQuery(
-      'UPDATE glpi_notifications_notificationtemplates SET mode=\'' . Notification_NotificationTemplate::MODE_MAIL . '\' WHERE mode=\'mail\'',
-      '9.2 set default mode in notifications templates'
-   );
-
    // Create a dedicated token for api
    if (!FieldExists('glpi_users', 'api_token')) {
-      $migration->addField('glpi_users', 'api_token', 'string', ['after' => 'personal_token_date']);
-      $migration->addField('glpi_users', 'api_token_date', 'datetime', ['after' => 'api_token']);
+      $migration->addField('glpi_users', 'api_token', 'string');
+      $migration->addField('glpi_users', 'api_token_date', 'datetime');
       $migration->displayWarning("Api users tokens has been reset, if you use REST/XMLRPC api with personal token for authentication, please reset your user's token.",
                                  true);
    }
