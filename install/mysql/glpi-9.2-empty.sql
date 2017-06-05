@@ -8503,7 +8503,7 @@ CREATE TABLE IF NOT EXISTS `glpi_phoneoperators` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS `glpi_devicesimcardmodels`;
-CREATE TABLE `glpi_devicefirmwaremodels` (
+CREATE TABLE `glpi_devicesimcardmodels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `comment` text COLLATE utf8_unicode_ci,
@@ -8552,8 +8552,8 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcardvoltages` (
   KEY `date_creation` (`date_creation`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `glpi_simcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);
-INSERT INTO `glpi_simcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);
 
 DROP TABLE IF EXISTS `glpi_devicesimcards`;
 CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
