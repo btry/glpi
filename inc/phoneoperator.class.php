@@ -41,6 +41,6 @@ if (!defined('GLPI_ROOT')) {
 class PhoneOperator extends CommonDropdown {
 
    static function getTypeName($nb=0) {
-      return _n('Provider', 'Providers', $nb);
+      return _n('Phone operator', 'Phone operators', $nb);
    }
 }
