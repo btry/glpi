@@ -8513,19 +8513,6 @@ CREATE TABLE `glpi_devicesimcardmodels` (
   KEY `product_number` (`product_number`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `glpi_devicesimcardsizes`;
-CREATE TABLE IF NOT EXISTS `glpi_devicesimcardsizes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `comment` text COLLATE utf8_unicode_ci,
-  `date_mod` datetime DEFAULT NULL,
-  `date_creation` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`),
-  KEY `date_mod` (`date_mod`),
-  KEY `date_creation` (`date_creation`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 DROP TABLE IF EXISTS `glpi_devicesimcardtypes`;
 CREATE TABLE IF NOT EXISTS `glpi_devicesimcardtypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -8539,21 +8526,10 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcardtypes` (
   KEY `date_creation` (`date_creation`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `glpi_devicesimcardvoltages`;
-CREATE TABLE IF NOT EXISTS `glpi_devicesimcardvoltages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `comment` text COLLATE utf8_unicode_ci,
-  `date_mod` datetime DEFAULT NULL,
-  `date_creation` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`),
-  KEY `date_mod` (`date_mod`),
-  KEY `date_creation` (`date_creation`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO `glpi_devicesimcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);
-INSERT INTO `glpi_devicesimcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardtypes` VALUES ('1','Full SIM',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardtypes` VALUES ('2','Mini SIM',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardtypes` VALUES ('3','micro SIM',NULL,NULL,NULL);
+INSERT INTO `glpi_devicesimcardtypes` VALUES ('4','Nano SIM',NULL,NULL,NULL);
 
 DROP TABLE IF EXISTS `glpi_devicesimcards`;
 CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
@@ -8569,8 +8545,7 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   `puk2` varchar(255) NOT NULL DEFAULT '',
   `phoneoperators_id` int(11) NOT NULL DEFAULT '0',
   `manufacturers_id` int(11) NOT NULL DEFAULT '0',
-  `devicesimcardsizes_id` int(11) NOT NULL DEFAULT '0',
-  `devicesimcardvoltages_id` int(11) NOT NULL DEFAULT '0',
+  `voltage` int(11) NULL DEFAUT NULL,
   `devicesimcardtypes_id` int(11) NOT NULL DEFAULT '0',
   `date_mod` datetime DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
@@ -8580,8 +8555,6 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   KEY `entities_id` (`entities_id`),
   KEY `is_recursive` (`is_recursive`),
   KEY `phoneoperators_id` (`phoneoperators_id`),
-  KEY `devicesimcardsizes_id` (`devicesimcardsizes_id`),
-  KEY `devicesimcardvoltages_id` (`devicesimcardvoltages_id`),
   KEY `devicesimcardtypes_id` (`devicesimcardtypes_id`),
   KEY `date_mod` (`date_mod`),
   KEY `date_creation` (`date_creation`),

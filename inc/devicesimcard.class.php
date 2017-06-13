@@ -48,20 +48,27 @@ class DeviceSimcard extends CommonDevice {
 
    function getAdditionalFields() {
 
-      return array_merge(parent::getAdditionalFields(),
-                         array(array('name'  => 'phoneoperators_id',
-                                     'label' => __('Phone operator'),
-                                     'type'  => 'dropdownValue'),
-                               array('name'  => 'devicesimcardsizes_id',
-                                     'label' => __('Simcard size'),
-                                     'type'  => 'dropdownValue'),
-                               array('name'  => 'devicesimcardvoltages_id',
-                                     'label' => __('Simcard voltage'),
-                                     'type'  => 'dropdownValue'),
-                               array('name'  => 'devicesimcardtypes_id',
-                                     'label' => __('Simcard type'),
-                                     'type'  => 'dropdownValue')
-                         ));
+      return array_merge(
+         parent::getAdditionalFields(),
+         [
+            [
+               'name'  => 'devicesimcardtypes_id',
+               'label' => __('Type'),
+               'type'  => 'dropdownValue'
+            ],
+            [
+               'name'  => 'phoneoperators_id',
+               'label' => __('Phone operator'),
+               'type'  => 'dropdownValue'
+            ],
+            [
+               'name'  => 'voltage',
+               'label' => __('Voltage'),
+               'type'  => 'string',
+               'unit'  => 'mV'
+            ]
+         ]
+      );
    }
 
    function getSearchOptionsNew() {
@@ -69,38 +76,29 @@ class DeviceSimcard extends CommonDevice {
 
       $tab[] = [
             'id'                 => '12',
+            'table'              => 'glpi_devicesimcardvoltages',
+            'field'              => 'name',
+            'name'               => __('Voltage'),
+            'datatype'           => 'string'
+      ];
+
+      $tab[] = [
+            'id'                 => '13',
+            'table'              => 'glpi_devicesimcardtypes',
+            'field'              => 'name',
+            'name'               => __('Type'),
+            'datatype'           => 'dropdown'
+      ];
+
+      $tab[] = [
+            'id'                 => '14',
             'table'              => 'glpi_phoneoperators_id',
             'field'              => 'name',
             'name'               => __('Phone operator'),
             'datatype'           => 'dropdown'
       ];
 
-      $tab[] = [
-            'id'                 => '13',
-            'table'              => 'glpi_devicesimcardsizes',
-            'field'              => 'name',
-            'name'               => __('Simcard size'),
-            'datatype'           => 'dropdown'
-      ];
-
-      $tab[] = [
-            'id'                 => '14',
-            'table'              => 'glpi_devicesimcardvoltages',
-            'field'              => 'name',
-            'name'               => __('Simcard voltage'),
-            'datatype'           => 'dropdown'
-      ];
-
-      $tab[] = [
-            'id'                 => '15',
-            'table'              => 'glpi_devicesimcardtypes',
-            'field'              => 'name',
-            'name'               => __('Simcard type'),
-            'datatype'           => 'dropdown'
-      ];
-
       return $tab;
    }
-
 
 }

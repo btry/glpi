@@ -919,8 +919,6 @@ class Dropdown {
 
                _n('Simcard', 'Simcards', Session::getPluralNumber()) => array(
                      'PhoneOperator'        => _n('Phone operator', 'Phone operators', Session::getPluralNumber()),
-                     'DeviceSimcardSize'    => _n('Simcard size', 'Simcard sizes', Session::getPluralNumber()),
-                     'DeviceSimcardVoltage' => _n('Simcard voltage', 'Simcard voltages', Session::getPluralNumber()),
              ),
 
              __('Management') => array(
