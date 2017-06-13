@@ -8545,7 +8545,7 @@ CREATE TABLE IF NOT EXISTS `glpi_devicesimcards` (
   `puk2` varchar(255) NOT NULL DEFAULT '',
   `phoneoperators_id` int(11) NOT NULL DEFAULT '0',
   `manufacturers_id` int(11) NOT NULL DEFAULT '0',
-  `voltage` int(11) NULL DEFAUT NULL,
+  `voltage` int(11) DEFAUT NULL,
   `devicesimcardtypes_id` int(11) NOT NULL DEFAULT '0',
   `date_mod` datetime DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
