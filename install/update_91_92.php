@@ -848,8 +848,8 @@ Regards,',
                 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
       $DB->queryOrDie($query, "9.2 add table glpi_devicesimcardvoltages");
 
-      $DB->queryOrDie("INSERT INTO `glpi_simcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);");
-      $DB->queryOrDie("INSERT INTO `glpi_simcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);");
+      $DB->queryOrDie("INSERT INTO `glpi_devicesimcardvoltages` VALUES ('1','3V',NULL,NULL,NULL);");
+      $DB->queryOrDie("INSERT INTO `glpi_devicesimcardvoltages` VALUES ('2','5V',NULL,NULL,NULL);");
    }
 
    if (!TableExists('glpi_devicesimcards')) {
@@ -876,7 +876,6 @@ Regards,',
                KEY `designation` (`designation`),
                KEY `entities_id` (`entities_id`),
                KEY `is_recursive` (`is_recursive`),
-               KEY `states_id` (`states_id`),
                KEY `phoneoperators_id` (`phoneoperators_id`),
                KEY `devicesimcardsizes_id` (`devicesimcardsizes_id`),
                KEY `devicesimcardvoltages_id` (`devicesimcardvoltages_id`),
