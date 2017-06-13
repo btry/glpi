@@ -64,7 +64,7 @@ class DeviceSimcard extends CommonDevice {
             [
                'name'  => 'voltage',
                'label' => __('Voltage'),
-               'type'  => 'string',
+               'type'  => 'text',
                'unit'  => 'mV'
             ]
          ]
