@@ -37,5 +37,5 @@
 
 include ('../inc/includes.php');
 
-$dropdown = new SimcardSize();
+$dropdown = new DeviceSimcardSize();
 include (GLPI_ROOT . "/front/dropdown.common.form.php");

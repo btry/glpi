@@ -36,5 +36,5 @@
 
 include ('../inc/includes.php');
 
-$dropdown = new SimcardVoltage();
+$dropdown = new DeviceSimcardVoltage();
 include (GLPI_ROOT . "/front/dropdown.common.php");
