@@ -679,9 +679,24 @@ function getAncestorsOf($table, $items_id) {
    $id_found      = [];
    $parentIDfield = getForeignKeyFieldForTable($table);
    $use_cache     = $DB->fieldExists($table, "ancestors_cache");
+   $use_intervals = false && $DB->fieldExists($table, "left_border") && $DB->fieldExists($table, "right_border");
 
    if (!is_array($items_id)) {
       $items_id = (array)$items_id;
+   }
+
+   if ($use_intervals) {
+      $IDs = implode("', '", $items_id);
+      $query = "SELECT DISTINCT `id` FROM `$table`
+               WHERE `left_border` < (SELECT `left_border` FROM `$table` WHERE `id` IN ('$IDs'))
+                     AND `right_border` > (SELECT `right_border` FROM `$table` WHERE `id` IN ('$IDs'))
+               ORDER BY `left_border` ASC";
+      if ($result = $DB->query($query)) {
+         while ($row = $DB->fetch_assoc($result)) {
+            $id_found[$row['id']] = $row['id'];
+         }
+      }
+      return $id_found;
    }
 
    if ($use_cache) {
@@ -771,7 +786,23 @@ function getSonsOf($table, $IDf) {
 
    $parentIDfield = getForeignKeyFieldForTable($table);
    $use_cache     = $DB->fieldExists($table, "sons_cache");
+   $use_intervals = $DB->fieldExists($table, "left_border") && $DB->fieldExists($table, "right_border");
 
+   if ($use_intervals) {
+      $id_found = [];
+      $query = "SELECT `id` FROM `$table`
+               WHERE `left_border` >= (SELECT `left_border` FROM `$table` WHERE `id`='$IDf')
+                     AND `right_border` <= (SELECT `right_border` FROM `$table` WHERE `id`='$IDf')
+               ORDER BY `left_border` ASC";
+      if ($result = $DB->query($query)) {
+         while ($row = $DB->fetch_assoc($result)) {
+            $id_found[$row['id']] = $row['id'];
+         }
+      }
+      return $id_found;
+   }
+
+   $id_found = [];
    if ($use_cache
        && ($IDf > 0)) {
 

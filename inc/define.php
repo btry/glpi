@@ -39,7 +39,7 @@ if (file_exists(GLPI_CONFIG_DIR . '/local_define.php')) {
 }
 
 // Current version of GLPI
-define('GLPI_VERSION', '9.2-dev');
+define('GLPI_VERSION', '9.3-dev');
 if (substr(GLPI_VERSION, -4) === '-dev') {
    //for dev version
    define('GLPI_PREVER', str_replace('-dev', '', GLPI_VERSION));
@@ -49,7 +49,7 @@ if (substr(GLPI_VERSION, -4) === '-dev') {
    );
 } else {
    //for stable version
-   define("GLPI_SCHEMA_VERSION", '9.2');
+   define("GLPI_SCHEMA_VERSION", '9.3');
 }
 define('GLPI_MIN_PHP', '5.6.0');
 define('GLPI_YEAR', '2017');
