@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * KnowbaseItemTranslation Class
  *
  * @since 0.85
-**/
+ */
 class KnowbaseItemTranslation extends CommonDBChild {
 
    static public $itemtype = 'KnowbaseItem';
@@ -77,7 +77,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (!$withtemplate) {
@@ -108,7 +108,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param $item            CommonGLPI object
     * @param $tabnum          (default 1)
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType() == __CLASS__) {
@@ -137,7 +137,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param $options      array of options
     *
     * @return nothing (display item : question and answer)
-   **/
+    */
    function showFull($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -177,7 +177,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param $item a KnowbaseItem item
     *
     * @return true;
-   **/
+    */
    static function showTranslations(KnowbaseItem $item) {
       global $DB, $CFG_GLPI;
 
@@ -323,7 +323,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param $field      field to return (default 'name')
     *
     * @return the field translated if a translation is available, or the original field if not
-   **/
+    */
    static function getTranslatedValue(KnowbaseItem $item, $field = "name") {
       global $DB;
 
@@ -344,7 +344,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * Is kb item translation functionnality active
     *
     * @return true if active, false if not
-   **/
+    */
    static function isKbTranslationActive() {
       global $CFG_GLPI;
 
@@ -360,7 +360,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param item the item to check
     *
     * @return true if item can be translated, false otherwise
-   **/
+    */
    static function canBeTranslated(CommonGLPI $item) {
 
       return (self::isKbTranslationActive()
@@ -374,7 +374,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param item
     *
     * @return the number of translations for this item
-   **/
+    */
    static function getNumberOfTranslationsForItem($item) {
 
       return countElementsInTable(getTableForItemType(__CLASS__),
@@ -388,7 +388,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
     * @param item
     *
     * @return array of already translated languages
-   **/
+    */
    static function getAlreadyTranslatedForItem($item) {
       global $DB;
 

@@ -48,7 +48,7 @@ class Contract_Supplier extends CommonDBRelation {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -59,7 +59,7 @@ class Contract_Supplier extends CommonDBRelation {
 
    /**
     * @param $item   string   Supplier object
-   **/
+    */
    static function countForSupplier(Supplier $item) {
 
       $restrict = "`glpi_contracts_suppliers`.`suppliers_id` = '".$item->getField('id') ."'
@@ -73,7 +73,7 @@ class Contract_Supplier extends CommonDBRelation {
 
    /**
     * @param $item   string   Contract object
-   **/
+    */
    static function countForContract(Contract $item) {
 
       $restrict = "`glpi_contracts_suppliers`.`contracts_id` = '".$item->getField('id') ."'
@@ -137,7 +137,7 @@ class Contract_Supplier extends CommonDBRelation {
     * @param $supplier   Supplier object
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForSupplier(Supplier $supplier) {
       global $DB, $CFG_GLPI;
 
@@ -276,7 +276,7 @@ class Contract_Supplier extends CommonDBRelation {
     * @param $contract Contract object
     *
     * @return Nothing (HTML display)
-    **/
+    */
    static function showForContract(Contract $contract) {
       global $DB, $CFG_GLPI;
 

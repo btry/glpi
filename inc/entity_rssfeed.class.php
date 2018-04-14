@@ -54,7 +54,7 @@ class Entity_RSSFeed extends CommonDBRelation {
     * @param $rssfeeds_id ID of the rssfeed
     *
     * @return array of entities linked to a rssfeed
-   **/
+    */
    static function getEntities($rssfeeds_id) {
       global $DB;
 

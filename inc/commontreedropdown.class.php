@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * CommonTreeDropdown Class
  *
  * Hierarchical and cross entities
-**/
+ */
 abstract class CommonTreeDropdown extends CommonDropdown {
 
    public $can_be_translated = false;
@@ -46,7 +46,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
 
    /**
     * Return Additional Fileds for this type
-   **/
+    */
    function getAdditionalFields() {
 
       return [['name'  => $this->getForeignKeyField(),
@@ -103,7 +103,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     *
     * @param $parentCompleteName string parent complete name (need to be stripslashes / comes from DB)
     * @param $thisName           string item name (need to be addslashes : comes from input)
-   **/
+    */
    static function getCompleteNameFromParents($parentCompleteName, $thisName) {
       return addslashes($parentCompleteName). " > ".$thisName;
    }
@@ -111,7 +111,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
 
    /**
     * @param $input
-   **/
+    */
    function adaptTreeFieldsFromUpdateOrAdd($input) {
 
       $parent = clone $this;
@@ -205,7 +205,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @param $ID
     * @param $updateName
     * @param $changeParent
-   **/
+    */
    function regenerateTreeUnderID($ID, $updateName, $changeParent) {
       global $DB, $GLPI_CACHE;
 
@@ -347,7 +347,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @param $ID
     *
     * @deprecated 9.2 @see CommonTreeDropdown::cleanParentsSons()
-   **/
+    */
    function recursiveCleanSonsAboveID($ID) {
       global $DB;
 
@@ -460,7 +460,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * Get the this for all the current item and all its parent
     *
     * @return string
-   **/
+    */
    function getTreeLink() {
 
       $link = '';
@@ -480,7 +480,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * Print the HTML array children of a TreeDropdown
     *
     * @return Nothing (display)
-    **/
+    */
    function showChildren() {
       global $DB, $CFG_GLPI;
 
@@ -591,7 +591,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -610,7 +610,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -633,7 +633,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -684,7 +684,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * Get search function for the class
     *
     * @return array of search option
-   **/
+    */
    function rawSearchOptions() {
       $tab = [];
 
@@ -791,7 +791,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
    /**
     * Report if a dropdown have Child
     * Used to (dis)allow delete action
-   **/
+    */
    function haveChildren() {
 
       $fk = $this->getForeignKeyField();
@@ -807,7 +807,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @param $value string
     *
     * @return string
-   **/
+    */
    static function cleanTreeText($value) {
 
       $tmp = explode('>', $value);
@@ -829,7 +829,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @param &$input array of value to import (name, ...)
     *
     * @return the ID of the new (or -1 if not found)
-   **/
+    */
    function findID(array &$input) {
       global $DB;
 
@@ -883,7 +883,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
     * @param $input array of value to import (name or completename, ...)
     *
     * @return the ID of the new or existing dropdown (0 on failure)
-   **/
+    */
    function import(array $input) {
 
       if (isset($input['name'])) {

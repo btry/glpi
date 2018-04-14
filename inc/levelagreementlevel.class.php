@@ -40,14 +40,14 @@ if (!defined('GLPI_ROOT')) {
  * Abstract class for common code in SlaLevel & OlaLevel
  *
  * @since  9.2.1
-**/
+ */
 abstract class LevelAgreementLevel extends RuleTicket {
 
    static $rightname            = 'slm';
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       // Override in order not to use glpi_rules table.
    }
@@ -55,7 +55,7 @@ abstract class LevelAgreementLevel extends RuleTicket {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getConditionsArray() {
       // Override ruleticket one
       return [];
@@ -64,7 +64,7 @@ abstract class LevelAgreementLevel extends RuleTicket {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -208,7 +208,7 @@ abstract class LevelAgreementLevel extends RuleTicket {
     * @since 0.84
     *
     * @see RuleTicket::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       $actions = parent::getActions();
@@ -298,7 +298,7 @@ abstract class LevelAgreementLevel extends RuleTicket {
     *       - used : already used values
     *
     * @return nothing
-   **/
+    */
    static function dropdownExecutionTime($name, $options = []) {
       $p['value']    = '';
       $p['max_time'] = 4*DAY_TIMESTAMP;
@@ -327,7 +327,7 @@ abstract class LevelAgreementLevel extends RuleTicket {
     * @param $olas_id   integer  id of the OLA
     *
     * @return array of already used execution times
-   **/
+    */
    static function getAlreadyUsedExecutionTime($las_id) {
       global $DB;
 

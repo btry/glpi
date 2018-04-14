@@ -49,7 +49,7 @@ class SlaLevelCriteria extends RuleCriteria {
 
    /**
    * Constructor
-   **/
+    */
    function __construct() {
       // Override in order not to use glpi_rules table.
    }

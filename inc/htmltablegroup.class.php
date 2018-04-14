@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.84
-**/
+ */
 class HTMLTableGroup extends HTMLTableBase {
 
    private $name;
@@ -51,7 +51,7 @@ class HTMLTableGroup extends HTMLTableBase {
     * @param $table     HTMLTableMain object
     * @param $name
     * @param $content
-   **/
+    */
    function __construct(HTMLTableMain $table, $name, $content) {
 
       parent::__construct(false);
@@ -73,7 +73,7 @@ class HTMLTableGroup extends HTMLTableBase {
 
    /**
     * @param $header    HTMLTableHeader object
-   **/
+    */
    function haveHeader(HTMLTableHeader $header) {
 
       $header_name    = '';
@@ -183,7 +183,7 @@ class HTMLTableGroup extends HTMLTableBase {
     *     'display_header_on_foot_for_each_group'  repeat group header on foot of group
     *
     * @return nothing (display only)
-   **/
+    */
    function displayGroup($totalNumberOfColumn, array $params) {
 
       $p['display_header_for_each_group']         = true;

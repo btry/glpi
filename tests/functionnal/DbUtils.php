@@ -72,7 +72,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableKey
-   **/
+    */
    public function testGetForeignKeyFieldForTable($table, $key) {
       $this
          ->if($this->newTestedInstance)
@@ -86,7 +86,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableForeignKey
-   **/
+    */
    public function testIsForeignKeyFieldBase($table, $key) {
       $this
          ->if($this->newTestedInstance)
@@ -116,7 +116,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableForeignKey
-   **/
+    */
    public function testGetTableNameForForeignKeyField($table, $key) {
       $this
          ->if($this->newTestedInstance)
@@ -143,7 +143,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableType
-   **/
+    */
    public function testGetTableForItemType($table, $type, $classexists) {
       $this
          ->if($this->newTestedInstance)
@@ -156,7 +156,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableType
-   **/
+    */
    public function testGetItemTypeForTable($table, $type, $classexists) {
       if ($classexists) {
          $this
@@ -180,7 +180,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataTableType
-   **/
+    */
    public function testGetItemForItemtype($table, $itemtype, $classexists) {
       if ($classexists) {
          $this
@@ -243,7 +243,7 @@ class DbUtils extends DbTestCase {
 
    /**
     * @dataProvider dataPlural
-   **/
+    */
    public function testGetSingular($singular, $plural) {
       $this
          ->if($this->newTestedInstance)

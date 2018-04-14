@@ -46,7 +46,7 @@ if (!defined('GLPI_ROOT')) {
  * @author Olivier Moron
  * @since 9.1
  *
-**/
+ */
 class ObjectLock extends CommonDBTM {
 
    private $itemtype     = "";
@@ -69,7 +69,7 @@ class ObjectLock extends CommonDBTM {
     *
     * @param $locitemtype       (default ObjectLoc
     * @param $locitemid         (default 0)
-   **/
+    */
    function __construct($locitemtype = 'ObjectLock', $locitemid = 0) {
 
       $this->itemtype     = $locitemtype;
@@ -81,7 +81,7 @@ class ObjectLock extends CommonDBTM {
    /**
     * Summary of getEntityID
     * @return 0
-   **/
+    */
    function getEntityID() {
       return 0;
    }
@@ -91,7 +91,7 @@ class ObjectLock extends CommonDBTM {
     * Summary of getLockableObjects
     *
     * @return an array of lockable objects 'itemtype' => 'plural itemtype'
-   **/
+    */
    static function getLockableObjects() {
       global $CFG_GLPI;
 
@@ -109,7 +109,7 @@ class ObjectLock extends CommonDBTM {
     * Manages autolock mode
     *
     * @return bool: true if read-only profile lock has been set
-   **/
+    */
    private function autoLockMode() {
       global $CFG_GLPI, $_SESSION, $_REQUEST;
 
@@ -135,7 +135,7 @@ class ObjectLock extends CommonDBTM {
    /**
     * Summary of setLockedByYouMessage
     * Shows 'Locked by You!' message and proposes to unlock it
-   **/
+    */
    private function setLockedByYouMessage() {
       global $CFG_GLPI;
 
@@ -183,7 +183,7 @@ class ObjectLock extends CommonDBTM {
    /**
     * Summary of setLockedByMessage
     * Shows 'Locked by ' message and proposes to request unlock from locker
-   **/
+    */
    private function setLockedByMessage() {
       global $CFG_GLPI;
 
@@ -270,7 +270,7 @@ class ObjectLock extends CommonDBTM {
     * Summary of setReadOnlyMessage
     * Shows 'Read-only!' message and propose to request a lock on the item
     * This function is used by autoLockMode function
-   **/
+    */
    private function setReadOnlyMessage() {
 
       echo Html::scriptBlock("
@@ -295,7 +295,7 @@ class ObjectLock extends CommonDBTM {
     * If lock can't be set (i.e.: someone has already locked it), LockedBy message is shown accordingly,
     * and read-only profile is set
     * @return bool: true if locked
-   **/
+    */
    private function lockObject() {
       global $CFG_GLPI;
 
@@ -347,7 +347,7 @@ class ObjectLock extends CommonDBTM {
     * Summary of getLockedObjectInfo
     *
     * @return bool: true if object is locked, and $this is filled with record from DB
-   **/
+    */
    private function getLockedObjectInfo() {
       global $CFG_GLPI;
 
@@ -371,7 +371,7 @@ class ObjectLock extends CommonDBTM {
     * @param $items_id
     *
     * @return bool|ObjectLock: returns ObjectLock if locked, else false
-   **/
+    */
    static function isLocked($itemtype, $items_id) {
 
       $ol = new self($itemtype, $items_id);
@@ -384,7 +384,7 @@ class ObjectLock extends CommonDBTM {
     * Switches current profile with read-only profile
     * Registers a shutdown function to be sure that even in case of die() calls,
     * the switch back will be done: to ensure correct reset of normal profile
-   **/
+    */
    static function setReadOnlyProfile() {
       global $CFG_GLPI, $_SESSION;
 
@@ -420,7 +420,7 @@ class ObjectLock extends CommonDBTM {
    /**
     * Summary of revertProfile
     * Will revert normal user profile
-   **/
+    */
    static function revertProfile() {
       global $_SESSION;
 
@@ -436,7 +436,7 @@ class ObjectLock extends CommonDBTM {
     *
     * @param  $itemtype
     * @param  $options
-   **/
+    */
    static function manageObjectLock($itemtype, &$options) {
       global $CFG_GLPI;
 
@@ -467,7 +467,7 @@ class ObjectLock extends CommonDBTM {
     *
     * @param  $msg      : message to be shown
     * @param  $title    : if $title is '' then title bar it is not shown (default '')
-   **/
+    */
    private function displayLockMessage($msg, $title = '') {
 
       $hideTitle = '';
@@ -511,7 +511,7 @@ class ObjectLock extends CommonDBTM {
 
    /**
     * @see CommonDBTM::processMassiveActionsForOneItemtype
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
       foreach ($ids as $items_id) {
@@ -575,7 +575,7 @@ class ObjectLock extends CommonDBTM {
     * @param  $interface   (default 'central')
     *
     * @return array: empty array if itemtype is not lockable; else returns UNLOCK right
-   **/
+    */
    static function getRightsToAdd($itemtype, $interface = 'central') {
       global $CFG_GLPI;
 
@@ -596,7 +596,7 @@ class ObjectLock extends CommonDBTM {
     * @param $name : task's name
     *
     * @return array of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -617,7 +617,7 @@ class ObjectLock extends CommonDBTM {
     *    >0 : done
     *    <0 : to be run again (not finished)
     *     0 : nothing to do
-   **/
+    */
    static function cronUnlockObject($task) {
       global $DB;
 

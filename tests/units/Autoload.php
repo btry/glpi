@@ -52,7 +52,7 @@ class Autoload extends DbTestCase {
 
    /**
     * @dataProvider dataItemType
-    **/
+    */
    public function testIsPluginItemType($type, $plug, $class) {
       $res = isPluginItemType($type);
       if ($plug) {

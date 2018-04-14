@@ -46,7 +46,7 @@ class Problem_Ticket extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -62,7 +62,7 @@ class Problem_Ticket extends CommonDBRelation{
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (static::canView()) {
@@ -104,7 +104,7 @@ class Problem_Ticket extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function post_addItem() {
       global $CFG_GLPI;
 
@@ -124,7 +124,7 @@ class Problem_Ticket extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function post_deleteFromDB() {
       global $CFG_GLPI;
 
@@ -146,7 +146,7 @@ class Problem_Ticket extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -178,7 +178,7 @@ class Problem_Ticket extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -259,7 +259,7 @@ class Problem_Ticket extends CommonDBRelation{
     * Show tickets for a problem
     *
     * @param $problem Problem object
-   **/
+    */
    static function showForProblem(Problem $problem) {
       global $DB, $CFG_GLPI;
 
@@ -371,7 +371,7 @@ class Problem_Ticket extends CommonDBRelation{
     * Show problems for a ticket
     *
     * @param $ticket Ticket object
-   **/
+    */
    static function showForTicket(Ticket $ticket) {
       global $DB, $CFG_GLPI;
 

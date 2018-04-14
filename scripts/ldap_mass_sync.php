@@ -120,7 +120,7 @@ if (($DB->numrows($result) == 0)
  * Function to import or synchronise all the users from an ldap directory
  *
  * @param $options   array
-**/
+ */
 function import(array $options) {
    global $CFG_GLPI;
 

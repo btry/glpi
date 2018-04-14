@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Change_Item Class
  *
  * Relation between Changes and Items
-**/
+ */
 class Change_Item extends CommonDBRelation{
 
 
@@ -96,7 +96,7 @@ class Change_Item extends CommonDBRelation{
     * @param $change Change object
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForChange(Change $change) {
       global $DB, $CFG_GLPI;
 

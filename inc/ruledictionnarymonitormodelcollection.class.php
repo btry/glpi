@@ -36,7 +36,7 @@ class RuleDictionnaryMonitorModelCollection extends RuleDictionnaryDropdownColle
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of computer models');
    }

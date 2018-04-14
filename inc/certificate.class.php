@@ -319,7 +319,7 @@ class Certificate extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (isset($input["id"]) && ($input["id"] > 0)) {
@@ -649,7 +649,7 @@ class Certificate extends CommonDBTM {
     * @param $all boolean, all type, or only allowed ones
     *
     * @return array of types
-    **/
+    */
    static function getTypes($all = false) {
       global $CFG_GLPI;
 
@@ -672,7 +672,7 @@ class Certificate extends CommonDBTM {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
       return ['description' => __('Send alarms on expired certificate')];
    }
@@ -683,7 +683,7 @@ class Certificate extends CommonDBTM {
     * @param $task to log, if NULL display (default NULL)
     *
     * @return 0 : nothing to do 1 : done with success
-   **/
+    */
    static function cronCertificate($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -763,7 +763,7 @@ class Certificate extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
       NotificationEvent::debugEvent($this);
    }

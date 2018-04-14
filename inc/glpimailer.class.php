@@ -41,13 +41,13 @@ if (!defined('GLPI_ROOT')) {
 /** GLPIPhpMailer class
  *
  * @since 0.85
-**/
+ */
 class GLPIMailer extends PHPMailer {
 
    /**
     * Constructor
     *
-   **/
+    */
    function __construct() {
       global $CFG_GLPI;
 

@@ -36,7 +36,7 @@ var timeoutglobalvar;
  *
  * @param objet
  * @param statut
-**/
+ */
 function setdisplay(objet, statut) {
 
    var e = objet;
@@ -49,7 +49,7 @@ function setdisplay(objet, statut) {
 
 /**
  * @param id
-**/
+ */
 function cleandisplay(id) {
 
    var e = document.getElementById(id);
@@ -61,7 +61,7 @@ function cleandisplay(id) {
 
 /**
  * @param id
-**/
+ */
 function cleanhide(id) {
 
    var e = document.getElementById(id);
@@ -75,7 +75,7 @@ function cleanhide(id) {
  * masquer le menu actif par timeout
  *
  * @param idMenu
-**/
+ */
 function afterView(idMenu) {
 
    setdisplay(idMenu,'none');
@@ -85,7 +85,7 @@ function afterView(idMenu) {
 /**
  * @param id
  * @param idMenu
-**/
+ */
 function menuAff(id, idMenu) {
 
    var m      = document.getElementById(idMenu);
@@ -120,7 +120,7 @@ function menuAff(id, idMenu) {
 /**
  * @param Type
  * @param Id
-**/
+ */
 function fillidfield(Type, Id) {
    window.opener.document.forms.helpdeskform.elements.items_id.value = Id;
    window.opener.document.forms.helpdeskform.elements.itemtype.value = Type;
@@ -132,7 +132,7 @@ function fillidfield(Type, Id) {
  * the given element is usaly a table or a div containing the table or tables
  *
  * @param    container_id    DOM element
-**/
+ */
 function markCheckboxes(container_id) {
 
    var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
@@ -153,7 +153,7 @@ function markCheckboxes(container_id) {
  * the given element is usaly a table or a div containing the table or tables
  *
  * @param    container_id    DOM element
-**/
+ */
 function unMarkCheckboxes(container_id) {
 
    var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
@@ -174,7 +174,7 @@ function unMarkCheckboxes(container_id) {
  *
  * @param    select_object     DOM select object
  * @param    other_option_name the name of both the option and the text input field
-**/
+ */
 function displayOtherSelectOptions(select_object, other_option_name) {
    if (select_object.options[select_object.selectedIndex].value == other_option_name) {
       document.getElementById(other_option_name).style.display = "inline";
@@ -194,7 +194,7 @@ function displayOtherSelectOptions(select_object, other_option_name) {
  *
  * @param    reference_id    DOM element
  * @param    container_id    DOM element
-**/
+ */
 function checkAsCheckboxes(reference_id, container_id) {
    $('#' + container_id + ' input[type="checkbox"]:enabled')
       .prop('checked', $('#' + reference_id).is(':checked'));
@@ -253,7 +253,7 @@ $.fn.shiftSelectable = function() {
  * @param img_name         name attribut of the img item
  * @param img_src_close    url of the close img
  * @param img_src_open     url of the open img
-**/
+ */
 function showHideDiv(id, img_name, img_src_close, img_src_open) {
    var _elt = $('#' + id);
 
@@ -297,7 +297,7 @@ function showHideDiv(id, img_name, img_src_close, img_src_open) {
  * @param img_name
  * @param img_src_yes
  * @param img_src_no
-**/
+ */
 function toogle(id, img_name, img_src_yes, img_src_no) {
 
    if (document.getElementById) { // DOM3 = IE5, NS6
@@ -363,7 +363,7 @@ function toggleTableDisplay(tbl, img_name, img_src_close, img_src_open) {
  *
  * @param target
  * @param fields
-**/
+ */
 function submitGetLink(target, fields) {
 
    var myForm    = document.createElement("form");
@@ -385,7 +385,7 @@ function submitGetLink(target, fields) {
  * @since 0.85
  *
  * @param id
-**/
+ */
 function selectAll(id) {
    var element =$('#'+id);var selected = [];
    element.find('option').each(function(i,e){
@@ -399,7 +399,7 @@ function selectAll(id) {
  * @since 0.85
  *
  * @param id
-**/
+ */
 function deselectAll(id) {
    $('#'+id).val('').trigger('change');
 }
@@ -413,7 +413,7 @@ function deselectAll(id) {
  * @param criterion jquery criterion
  * @param reference the new reference object, boolean, id ... (default toggle)
  *
-**/
+ */
 function massiveUpdateCheckbox(criterion, reference) {
    var value = null;
    if (typeof(reference) == 'boolean') {

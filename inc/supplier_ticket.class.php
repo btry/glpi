@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Class Supplier_Ticket
  *
  * @since 0.84
-**/
+ */
 class Supplier_Ticket extends CommonITILActor {
 
    // From CommonDBRelation
@@ -53,7 +53,7 @@ class Supplier_Ticket extends CommonITILActor {
     * @param $email
     *
     * @since 0.85
-   **/
+    */
    function isSupplierEmail($items_id, $email) {
       global $DB;
 

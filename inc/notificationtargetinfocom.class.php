@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetInfocom Class
-**/
+ */
 class NotificationTargetInfocom extends NotificationTarget {
 
 

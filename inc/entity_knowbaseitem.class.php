@@ -54,7 +54,7 @@ class Entity_KnowbaseItem extends CommonDBRelation {
     * @param $knowbaseitems_id ID of the knowbaseitem
     *
     * @return array of entities linked to a knowbaseitem
-   **/
+    */
    static function getEntities($knowbaseitems_id) {
       global $DB;
 

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Notification Class
-**/
+ */
 class Notification extends CommonDBTM {
 
    // MAILING TYPE
@@ -146,7 +146,7 @@ class Notification extends CommonDBTM {
     *  @see CommonGLPI::getMenuContent()
     *
     *  @since 0.85
-   **/
+    */
    static function getMenuContent() {
       global $CFG_GLPI;
 
@@ -253,7 +253,7 @@ class Notification extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -277,7 +277,7 @@ class Notification extends CommonDBTM {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -424,7 +424,7 @@ class Notification extends CommonDBTM {
     * Is the current user have right to update the current notification ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if ((($this->fields['itemtype'] == 'Crontask')
@@ -457,7 +457,7 @@ class Notification extends CommonDBTM {
     * @param array $options Options
     *
     * @return void
-   **/
+    */
    static function send($options) {
       $classname = Notification_NotificationTemplate::getModeClass($options['mode']);
       $notif = new $classname();
@@ -469,7 +469,7 @@ class Notification extends CommonDBTM {
     * Get the mailing signature for the entity
     *
     * @param $entity
-   **/
+    */
    static function getMailingSignature($entity) {
       global $DB, $CFG_GLPI;
 
@@ -488,7 +488,7 @@ class Notification extends CommonDBTM {
     * @param int    $entity   Restrict to entity
     *
     * @return ResultSet
-   **/
+    */
    static function getNotificationsByEventAndType($event, $itemtype, $entity) {
       global $DB, $CFG_GLPI;
 
@@ -533,7 +533,7 @@ class Notification extends CommonDBTM {
    /**
     * @since 0.90.4
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (isset($input["itemtype"]) && empty($input["itemtype"])) {
@@ -549,7 +549,7 @@ class Notification extends CommonDBTM {
    /**
     * @since 0.90.4
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (isset($input["itemtype"]) && empty($input["itemtype"])) {

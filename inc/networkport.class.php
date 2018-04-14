@@ -45,7 +45,7 @@ if (!defined('GLPI_ROOT')) {
  * load its instantiation from the instantiation database to display the elements.
  * Moreover, in NetworkPort form, if there is no more than one NetworkName attached to the current
  * port, then, the fields of NetworkName are display. Thus, NetworkPort UI remain similar to 0.83
-**/
+ */
 class NetworkPort extends CommonDBChild {
 
    // From CommonDBChild
@@ -72,7 +72,7 @@ class NetworkPort extends CommonDBChild {
     * @since 0.84
     *
     * @see CommonDBTM::getPreAdditionalInfosForName
-   **/
+    */
    function getPreAdditionalInfosForName() {
 
       if ($item = $this->getItem()) {
@@ -88,7 +88,7 @@ class NetworkPort extends CommonDBChild {
     * @since 0.84
     *
     * @return array of available type of network ports
-   **/
+    */
    static function getNetworkPortInstantiations() {
       global $CFG_GLPI;
 
@@ -120,7 +120,7 @@ class NetworkPort extends CommonDBChild {
     * @since 0.84
     *
     * @return the instantiation object or false if the type of instantiation is not known
-   **/
+    */
    function getInstantiation() {
 
       if (isset($this->fields['instantiation_type'])
@@ -150,7 +150,7 @@ class NetworkPort extends CommonDBChild {
     *
     * @return false on error, true if the previous instantiation is not available (ie.: invalid
     *         instantiation type) or the object of the previous instantiation.
-   **/
+    */
    function switchInstantiationType($new_instantiation_type) {
 
       // First, check if the new instantiation is a valid one ...
@@ -250,7 +250,7 @@ class NetworkPort extends CommonDBChild {
     * @param $input
     *
     * @see updateDependencies for the update
-   **/
+    */
    function splitInputForElements($input) {
 
       if (isset($this->input_for_instantiation)
@@ -300,7 +300,7 @@ class NetworkPort extends CommonDBChild {
     * @param $history   (default 1)
     *
     * @see splitInputForElements() for preparing the input
-   **/
+    */
    function updateDependencies($history = true) {
 
       $instantiation = $this->getInstantiation();
@@ -422,7 +422,7 @@ class NetworkPort extends CommonDBChild {
     * @param $ID networking port ID
     *
     * @return ID of the NetworkPort found, false if not found
-   **/
+    */
    function getContact($ID) {
 
       $wire = new NetworkPort_NetworkPort();
@@ -453,7 +453,7 @@ class NetworkPort extends CommonDBChild {
     * @param $ID ID of the port
     *
     * @return true on success
-   **/
+    */
    function resetConnections($ID) {
    }
 
@@ -464,7 +464,7 @@ class NetworkPort extends CommonDBChild {
     * @since 0.84
     *
     * @return all the options
-   **/
+    */
    static function getAvailableDisplayOptions() {
 
       $options[__('Global displays')]
@@ -499,7 +499,7 @@ class NetworkPort extends CommonDBChild {
     *
     * @param $item                     CommonDBTM object
     * @param $withtemplate   integer   withtemplate param (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -909,7 +909,7 @@ class NetworkPort extends CommonDBChild {
 
    /**
     * @param $itemtype
-   **/
+    */
    static function rawSearchOptionsToAdd($itemtype = null) {
       $tab = [];
 
@@ -978,7 +978,7 @@ class NetworkPort extends CommonDBChild {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = $checkitem->canUpdate();
@@ -1091,7 +1091,7 @@ class NetworkPort extends CommonDBChild {
     * @param $itemtype     the type of the item that was clone
     * @param $old_items_id the id of the item that was clone
     * @param $new_items_id the id of the item after beeing cloned
-   **/
+    */
    static function cloneItem($itemtype, $old_items_id, $new_items_id) {
       global $DB;
 
@@ -1178,7 +1178,7 @@ class NetworkPort extends CommonDBChild {
 
    /**
     * @param CommonDBTM $item
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       return countElementsInTable('glpi_networkports',
@@ -1203,7 +1203,7 @@ class NetworkPort extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBConnexity::getConnexityMassiveActionsSpecificities()
-   **/
+    */
    static function getConnexityMassiveActionsSpecificities() {
 
       $specificities                           = parent::getConnexityMassiveActionsSpecificities();

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * TicketCost Class
  *
  * @since 0.84
-**/
+ */
 class TicketCost extends CommonITILCost {
 
    // From CommonDBChild

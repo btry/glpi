@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Item_Problem Class
  *
  *  Relation between Problems and Items
-**/
+ */
 class Item_Problem extends CommonDBRelation{
 
 
@@ -54,7 +54,7 @@ class Item_Problem extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -65,7 +65,7 @@ class Item_Problem extends CommonDBRelation{
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       // Avoid duplicate entry
@@ -80,7 +80,7 @@ class Item_Problem extends CommonDBRelation{
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       $restrict = "`glpi_items_problems`.`problems_id` = `glpi_problems`.`id`
@@ -100,7 +100,7 @@ class Item_Problem extends CommonDBRelation{
     * @param $problem Problem object
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForProblem(Problem $problem) {
       global $DB, $CFG_GLPI;
 

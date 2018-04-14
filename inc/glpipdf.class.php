@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  *  GLPIPDF class extends TCPDF
  *
  *  @since 0.85
-**/
+ */
 class GLPIPDF extends TCPDF {
    private $total_count;
 
@@ -46,7 +46,7 @@ class GLPIPDF extends TCPDF {
     * Page header
     *
     * @see TCPDF::Header()
-   **/
+    */
    public function Header() {
       // Title
       $this->Cell(0, 15, $this->title, 0, false, 'C', 0, '', 0, false, 'M', 'M');
@@ -57,7 +57,7 @@ class GLPIPDF extends TCPDF {
     * Page footer
     *
     * @see TCPDF::Footer()
-   **/
+    */
    public function Footer() {
 
       // Position at 15 mm from bottom
@@ -77,7 +77,7 @@ class GLPIPDF extends TCPDF {
     * Get the list of available fonts
     *
     * @return Array of "filename" => "font name"
-   **/
+    */
    public static function getFontList() {
 
       $list = [];

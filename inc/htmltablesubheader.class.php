@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.84
-**/
+ */
 class HTMLTableSubHeader extends HTMLTableHeader {
 
    // The headers of each column
@@ -49,7 +49,7 @@ class HTMLTableSubHeader extends HTMLTableHeader {
     * @param $name
     * @param $content   see HTMLTableEntity#__construct()
     * @param $father    HTMLTableHeader object (default NULL)
-   **/
+    */
    function __construct(HTMLTableSuperHeader $header, $name, $content,
                         HTMLTableHeader $father = null) {
 
@@ -88,7 +88,7 @@ class HTMLTableSubHeader extends HTMLTableHeader {
 
    /**
     * @param $numberOfSubHeaders
-   **/
+    */
    function updateColSpan($numberOfSubHeaders) {
       $this->setColSpan($this->header->getColSpan() / $numberOfSubHeaders);
    }

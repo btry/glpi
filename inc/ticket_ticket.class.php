@@ -57,7 +57,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -78,7 +78,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -121,7 +121,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @param $ID ID of the ticket id
     *
     * @return array of linked tickets  array(id=>linktype)
-   **/
+    */
    static function getLinkedTicketsTo ($ID) {
       global $DB;
 
@@ -159,7 +159,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @param $ID ID of the ticket id
     *
     * @return nothing display
-   **/
+    */
    static function displayLinkedTicketsTo ($ID) {
       global $DB, $CFG_GLPI;
 
@@ -201,7 +201,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @param integer $value  default value (default self::LINK_TO)
     *
     * @return void
-   **/
+    */
    static function dropdownLinks($myname, $value = self::LINK_TO) {
 
       $tmp[self::LINK_TO]        = __('Linked to');
@@ -219,7 +219,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @param boolean $inverted Whether to invert label
     *
     * @return string
-   **/
+    */
    static function getLinkName($value, $inverted = false) {
       $tmp = [];
 
@@ -369,7 +369,7 @@ class Ticket_Ticket extends CommonDBRelation {
     * @param Solution $solution Ticket's solution
     *
     * @return nothing do the change
-   **/
+    */
    static function manageLinkedTicketsOnSolved($ID, $solution) {
       $ticket = new Ticket();
 

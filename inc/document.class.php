@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Document class
-**/
+ */
 class Document extends CommonDBTM {
 
    // From CommonDBTM
@@ -64,7 +64,7 @@ class Document extends CommonDBTM {
     * @param $item  an object or a string
     *
     * @return true if $object is an object that can have InfoCom
-   **/
+    */
    static function canApplyOn($item) {
       global $CFG_GLPI;
 
@@ -93,7 +93,7 @@ class Document extends CommonDBTM {
     * @since 0.85
     *
     * @return array of the itemtypes
-   **/
+    */
    static function getItemtypesThatCanHave() {
       global $CFG_GLPI;
 
@@ -107,7 +107,7 @@ class Document extends CommonDBTM {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'd';
    }
@@ -187,7 +187,7 @@ class Document extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
       global $CFG_GLPI, $DB;
 
@@ -314,7 +314,7 @@ class Document extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       // security (don't accept filename from $_POST)
@@ -345,7 +345,7 @@ class Document extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -444,7 +444,7 @@ class Document extends CommonDBTM {
 
    /**
     * Get max upload size from php config
-   **/
+    */
    static function getMaxUploadSize() {
 
       $max_size  = Toolbox::return_bytes_from_ini_vars(ini_get("upload_max_filesize"));
@@ -458,7 +458,7 @@ class Document extends CommonDBTM {
     * Send a document to navigator
     *
     * @param string $context Context to resize image, if any
-   **/
+    */
    function send($context = null) {
       $file = GLPI_DOC_DIR."/".$this->fields['filepath'];
       if ($context !== null) {
@@ -474,7 +474,7 @@ class Document extends CommonDBTM {
     * @param $params    additonal parameters to be added to the link (default '')
     * @param $len       maximum length of displayed string (default 20)
     *
-   **/
+    */
    function getDownloadLink($params = '', $len = 20) {
       global $DB,$CFG_GLPI;
 
@@ -537,7 +537,7 @@ class Document extends CommonDBTM {
     * @param $path      of the searched file
     *
     * @return boolean
-   **/
+    */
    function getFromDBbyContent($entity, $path) {
 
       if (empty($path)) {
@@ -562,7 +562,7 @@ class Document extends CommonDBTM {
     * @param $options array of options (only 'tickets_id' used)
     *
     * @return boolean
-   **/
+    */
    function canViewFile($options) {
       global $DB, $CFG_GLPI;
 
@@ -795,7 +795,7 @@ class Document extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -964,7 +964,7 @@ class Document extends CommonDBTM {
     * @param $dest   destination file path
     *
     * @return boolean : success
-   **/
+    */
    static function renameForce($srce, $dest) {
 
       // File already present
@@ -985,7 +985,7 @@ class Document extends CommonDBTM {
     * @param $filename        filename to move
     *
     * @return boolean for success / $input array is updated
-   **/
+    */
    static function moveUploadedDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
@@ -1073,7 +1073,7 @@ class Document extends CommonDBTM {
     * @param $filename        filename to move
     *
     * @return boolean for success / $input array is updated
-   **/
+    */
    static function moveDocument(array &$input, $filename) {
       global $CFG_GLPI;
 
@@ -1161,7 +1161,7 @@ class Document extends CommonDBTM {
     * @param $FILEDESC        FILE descriptor
     *
     * @return true on success
-   **/
+    */
    static function uploadDocument(array &$input, $FILEDESC) {
 
       if (!count($FILEDESC)
@@ -1238,7 +1238,7 @@ class Document extends CommonDBTM {
     * @param $sha1sum   SHA1 of the file
     *
     * @return nothing
-   **/
+    */
    static function getUploadFileValidLocationName($dir, $sha1sum) {
       global $CFG_GLPI;
 
@@ -1282,7 +1282,7 @@ class Document extends CommonDBTM {
     * Show dropdown of uploaded files
     *
     * @param $myname dropdown name
-   **/
+    */
    static function showUploadedFilesDropdown($myname) {
       global $CFG_GLPI;
 
@@ -1317,7 +1317,7 @@ class Document extends CommonDBTM {
     * Is this file a valid file ? check based on file extension
     *
     * @param $filename filename to clean
-   **/
+    */
    static function isValidDoc($filename) {
       global $DB;
 
@@ -1362,7 +1362,7 @@ class Document extends CommonDBTM {
     * @param $options array of possible options
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdown($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -1431,7 +1431,7 @@ class Document extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::getMassiveActionsForItemtype()
-   **/
+    */
    static function getMassiveActionsForItemtype(array &$actions, $itemtype, $is_deleted = 0,
                                                 CommonDBTM $checkitem = null) {
       global $CFG_GLPI;
@@ -1458,7 +1458,7 @@ class Document extends CommonDBTM {
     * @param $string
     *
     * @return string
-   **/
+    */
    static function getImageTag($string) {
       return self::$tag_prefix.$string.self::$tag_prefix;
    }

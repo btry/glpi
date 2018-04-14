@@ -67,7 +67,7 @@ class User extends CommonDBTM {
     * @see CommonGLPI::getMenuShorcut()
     *
     *  @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'u';
    }
@@ -76,7 +76,7 @@ class User extends CommonDBTM {
     * @see CommonGLPI::getAdditionalMenuOptions()
     *
     *  @since 0.85
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (Session::haveRight('user', self::IMPORTEXTAUTHUSERS)) {
@@ -155,7 +155,7 @@ class User extends CommonDBTM {
 
    /**
     * Compute preferences for the current user mixing config and user data
-   **/
+    */
    function computePreferences() {
       global $CFG_GLPI;
 
@@ -180,7 +180,7 @@ class User extends CommonDBTM {
     * @param $is_recursive : load recursive entity
     *
     * @since 0.83.7
-   **/
+    */
    function loadMinimalSession($entities_id, $is_recursive) {
       global $CFG_GLPI;
 
@@ -414,7 +414,7 @@ class User extends CommonDBTM {
     * @param $name login of the user
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbyName($name) {
       return $this->getFromDBByCrit(['name' => $name]);
    }
@@ -434,7 +434,7 @@ class User extends CommonDBTM {
     * @param $name login of the user
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbySyncField($value) {
       return $this->getFromDBByCrit(['sync_field' => $value]);
    }
@@ -447,7 +447,7 @@ class User extends CommonDBTM {
     * @param $user_dn dn of the user
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbyDn($user_dn) {
       return $this->getFromDBByCrit(['user_dn' => $user_dn]);
    }
@@ -462,7 +462,7 @@ class User extends CommonDBTM {
     * @param array  $condition add condition
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbyEmail($email, $condition = []) {
       global $DB;
 
@@ -519,7 +519,7 @@ class User extends CommonDBTM {
     * Get the default email of the user
     *
     * @return default user email
-   **/
+    */
    function getDefaultEmail() {
 
       if (!isset($this->fields['id'])) {
@@ -534,7 +534,7 @@ class User extends CommonDBTM {
     * Get all emails of the user
     *
     * @return array of emails
-   **/
+    */
    function getAllEmails() {
 
       if (!isset($this->fields['id'])) {
@@ -550,7 +550,7 @@ class User extends CommonDBTM {
     * @param $email
     *
     * @return boolean is an email of the user
-   **/
+    */
    function isEmail($email) {
 
       if (!isset($this->fields['id'])) {
@@ -567,7 +567,7 @@ class User extends CommonDBTM {
     * @param string $field the field storing the token
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbyToken($token, $field = 'personal_token') {
       if (!in_array($field, ['personal_token', 'api_token'])) {
          Toolbox::logWarning('User::getFromDBbyToken() can only be called with $field parameter with theses values: \'personal_token\', \'api_token\'');
@@ -970,7 +970,7 @@ class User extends CommonDBTM {
     * Apply rules to determine dynamic rights of the user
     *
     * @return boolean : true if we play the Rule Engine
-   **/
+    */
    function applyRightRules() {
       global $DB;
 
@@ -1105,7 +1105,7 @@ class User extends CommonDBTM {
 
    /**
     * Synchronise LDAP group of the user
-   **/
+    */
    function syncLdapGroups() {
       global $DB;
 
@@ -1168,7 +1168,7 @@ class User extends CommonDBTM {
     * ??@since 0.85
     *
     * @return string : the filename to be stored in user picture field
-   **/
+    */
    function syncLdapPhoto() {
 
       if (isset($this->fields["authtype"])
@@ -1241,7 +1241,7 @@ class User extends CommonDBTM {
     * Synchronise Dynamics emails of the user
     *
     * Use _emails (set from getFromLDAP), not _usermails set from UI
-   **/
+    */
    function syncDynamicEmails() {
       global $DB;
 
@@ -1300,7 +1300,7 @@ class User extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getRawName()
-   **/
+    */
    function getRawName() {
       global $CFG_GLPI;
 
@@ -1333,7 +1333,7 @@ class User extends CommonDBTM {
     * @param $login              User login
     *
     * @return String : basedn of the user / false if not found
-   **/
+    */
    private function getFromLDAPGroupVirtual($ldap_connection, $ldap_method, $userdn, $login) {
       global $DB;
 
@@ -1418,7 +1418,7 @@ class User extends CommonDBTM {
     * @param $login              User login
     *
     * @return nothing : false if not applicable
-   **/
+    */
    private function getFromLDAPGroupDiscret($ldap_connection, $ldap_method, $userdn, $login) {
       global $DB;
 
@@ -1470,7 +1470,7 @@ class User extends CommonDBTM {
     * @param $import          boolean  true for import, false for update (true by default)
     *
     * @return boolean : true if found / false if not
-   **/
+    */
    function getFromLDAP($ldap_connection, $ldap_method, $userdn, $login, $import = true) {
       global $DB, $CFG_GLPI;
 
@@ -1681,7 +1681,7 @@ class User extends CommonDBTM {
     * @param $login_field           string   user login field
     *
     * @return String : basedn of the user / false if not founded
-   **/
+    */
    function ldap_get_user_groups($ds, $ldap_base_dn, $user_dn, $group_condition,
                                  $group_member_field, $use_dn, $login_field) {
 
@@ -1728,7 +1728,7 @@ class User extends CommonDBTM {
     *
     * @param $mail_method  mail method description array
     * @param $name         login of the user
-   **/
+    */
    function getFromIMAP($mail_method, $name) {
       global $DB;
 
@@ -1781,7 +1781,7 @@ class User extends CommonDBTM {
     * Function that try to load from the SSO server the user information...
     *
     * @since 0.84
-   **/
+    */
    function getFromSSO() {
       global $DB, $CFG_GLPI;
 
@@ -1875,7 +1875,7 @@ class User extends CommonDBTM {
    /**
     * Blank passwords field of a user in the DB
     * needed for external auth users
-   **/
+    */
    function blankPassword() {
       global $DB;
 
@@ -1895,7 +1895,7 @@ class User extends CommonDBTM {
     * Print a good title for user pages
     *
     * @return nothing (display)
-   **/
+    */
    function title() {
       global $CFG_GLPI;
 
@@ -1929,7 +1929,7 @@ class User extends CommonDBTM {
     * @param $ID  integer : Id of the user
     *
     * @return boolean : true if currrent user have the same right or more right
-   **/
+    */
    function currentUserHaveMoreRightThan($ID) {
 
       $user_prof = Profile_User::getUserProfiles($ID);
@@ -1946,7 +1946,7 @@ class User extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean : user found
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -2249,7 +2249,7 @@ class User extends CommonDBTM {
     * @param $userid Interger ID of the user
     *
     * @since 0.84
-   **/
+    */
    static function showPersonalInformation($userid) {
       global $CFG_GLPI;
 
@@ -2318,7 +2318,7 @@ class User extends CommonDBTM {
     * @param $ID     integer  Id of the user
     *
     * @return boolean : user found
-   **/
+    */
    function showMyForm($target, $ID) {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
@@ -2559,7 +2559,7 @@ class User extends CommonDBTM {
 
    /**
     * Get all the authentication method parameters for the current user
-   **/
+    */
    function getAuthMethodsByID() {
       return Auth::getMethodsByID($this->fields["authtype"], $this->fields["auths_id"]);
    }
@@ -2641,7 +2641,7 @@ class User extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -2672,7 +2672,7 @@ class User extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -2696,7 +2696,7 @@ class User extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -3150,7 +3150,7 @@ class User extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -3180,7 +3180,7 @@ class User extends CommonDBTM {
     * @param $name               (default '')
     * @param $values             (defaut '')
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -3205,7 +3205,7 @@ class User extends CommonDBTM {
     * @param $entities_id ID of the entity to restrict (default '')
     *
     * @return array of groups id
-   **/
+    */
    static function getDelegateGroupsForUser($entities_id = '') {
       global $DB;
 
@@ -3240,7 +3240,7 @@ class User extends CommonDBTM {
     * @param $limit                    limit LIMIT value (default -1 no limit)
     *
     * @return mysql result set.
-   **/
+    */
    static function getSqlSearchResult ($count = true, $right = "all", $entity_restrict = -1, $value = 0,
                                        $used = [], $search = '', $start = 0, $limit = -1) {
       global $DB, $CFG_GLPI;
@@ -3544,7 +3544,7 @@ class User extends CommonDBTM {
     *                        the dropdown (default /ajax/getDropdownUsers.php)
     *
     * @return rand value if displayed / string if not
-   **/
+    */
    static function dropdown($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -3682,7 +3682,7 @@ class User extends CommonDBTM {
 
    /**
     * Simple add user form for external auth
-   **/
+    */
    static function showAddExtAuthForm() {
 
       if (!Session::haveRight("user", self::IMPORTEXTAUTHUSERS)) {
@@ -3722,7 +3722,7 @@ class User extends CommonDBTM {
     * @param $server          (default -1)
     *
     * @return boolean
-   **/
+    */
    static function changeAuthMethod($IDs = [], $authtype = 1, $server = -1) {
       global $DB;
 
@@ -3762,7 +3762,7 @@ class User extends CommonDBTM {
 
    /**
     * Generate vcard for the current user
-   **/
+    */
    function generateVcard() {
 
       // prepare properties for the Vcard
@@ -3800,7 +3800,7 @@ class User extends CommonDBTM {
     * Show items of the current user
     *
     * @param $tech
-   **/
+    */
    function showItems($tech) {
       global $DB, $CFG_GLPI;
 
@@ -4008,7 +4008,7 @@ class User extends CommonDBTM {
 
    /**
     * @param $email  (default '')
-   **/
+    */
    static function getOrImportByEmail($email = '') {
       global $DB, $CFG_GLPI;
 
@@ -4048,7 +4048,7 @@ class User extends CommonDBTM {
 
    /**
     * @param $users_id
-   **/
+    */
    static function manageDeletedUserInLdap($users_id) {
       global $CFG_GLPI;
 
@@ -4113,7 +4113,7 @@ class User extends CommonDBTM {
 
    /**
     * @param $login
-   **/
+    */
    static function getIdByName($login) {
       return self::getIdByField('name', $login);
    }
@@ -4124,7 +4124,7 @@ class User extends CommonDBTM {
     *
     * @param $field
     * @param $login
-   **/
+    */
    static function getIdByField($field, $login) {
       global $DB;
 
@@ -4144,7 +4144,7 @@ class User extends CommonDBTM {
     * Show form for password recovery
     *
     * @param $token
-   **/
+    */
    static function showPasswordForgetChangeForm($token) {
       global $CFG_GLPI, $DB;
 
@@ -4206,7 +4206,7 @@ class User extends CommonDBTM {
 
    /**
     * Show form for password recovery
-   **/
+    */
    static function showPasswordForgetRequestForm() {
       global $CFG_GLPI;
 
@@ -4237,7 +4237,7 @@ class User extends CommonDBTM {
     * @throws ForgetPasswordException when requirements are not met
     *
     * @return boolean true if success
-   **/
+    */
    public function updateForgottenPassword($input) {
       $condition = [
          'glpi_users.is_active'  => 1,
@@ -4290,7 +4290,7 @@ class User extends CommonDBTM {
 
    /**
     * @param array $input
-    **/
+    */
    public function showUpdateForgottenPassword($input) {
       global $CFG_GLPI;
 
@@ -4323,7 +4323,7 @@ class User extends CommonDBTM {
     * @param $email email of the user
     *
     * @return nothing : send email or display error message
-   **/
+    */
    public function showForgetPassword($email) {
       global $CFG_GLPI;
 
@@ -4395,7 +4395,7 @@ class User extends CommonDBTM {
 
    /**
     * Display information from LDAP server for user
-   **/
+    */
    private function showLdapDebug() {
 
       if ($this->fields['authtype'] != Auth::LDAP) {
@@ -4439,7 +4439,7 @@ class User extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       NotificationEvent::debugEvent($this);
@@ -4451,7 +4451,7 @@ class User extends CommonDBTM {
     * Get fields to display in the unicity error message
     *
     * @return an array which contains field => label
-   **/
+    */
    function getUnicityFieldsToDisplayInErrorMessage() {
 
       return ['id'          => __('ID'),
@@ -4471,7 +4471,7 @@ class User extends CommonDBTM {
    * @param string $field the field storing the token
    *
    * @return string token
-   **/
+    */
    static function getUniqueToken($field = 'personal_token') {
       global $DB;
 
@@ -4496,7 +4496,7 @@ class User extends CommonDBTM {
    * @deprecated 9.2 @see User::getUniqueToken()
    *
    * @return string personal token
-   **/
+    */
    static function getUniquePersonalToken() {
       Toolbox::deprecated('getUniquePersonalToken() method is deprecated');
       return self::getUniqueToken('personal_token');
@@ -4510,7 +4510,7 @@ class User extends CommonDBTM {
     * @param string $field the field storing the token
     *
     * @return string token
-   **/
+    */
    static function getToken($ID, $field = 'personal_token') {
       global $DB;
 
@@ -4537,7 +4537,7 @@ class User extends CommonDBTM {
    * @deprecated 9.2 @see User::getToken()
     *
     * @return string personal token
-   **/
+    */
    static function getPersonalToken($ID) {
       Toolbox::deprecated('getPersonalToken() method is deprecated');
       return self::getToken($ID, 'personal_token');
@@ -4547,7 +4547,7 @@ class User extends CommonDBTM {
     * Check if default passwords always used
     *
     * @return array of login using default passwords
-   **/
+    */
    static function checkDefaultPasswords() {
       global $DB;
 
@@ -4580,7 +4580,7 @@ class User extends CommonDBTM {
     * @param $picture picture field
     *
     * @return string URL to show picture
-   **/
+    */
    static function getURLForPicture($picture) {
       global $CFG_GLPI;
 
@@ -4599,7 +4599,7 @@ class User extends CommonDBTM {
     * @param $picture picture field
     *
     * @return string URL to show picture
-   **/
+    */
    static function getThumbnailURLForPicture($picture) {
       global $CFG_GLPI;
 
@@ -4624,7 +4624,7 @@ class User extends CommonDBTM {
     * @param $picture picture field
     *
     * @return nothing
-   **/
+    */
    static function dropPictureFiles($picture) {
 
       if (!empty($picture)) {
@@ -4647,7 +4647,7 @@ class User extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -4674,7 +4674,7 @@ class User extends CommonDBTM {
     * @param $map array of fields
     *
     * @return Array of Ldap field names
-   **/
+    */
    private static function getLdapFieldNames(Array $map) {
 
       $ret =  [];
@@ -4702,7 +4702,7 @@ class User extends CommonDBTM {
     * @param $map String with field format
     * @param $res LDAP result
     *
-   **/
+    */
    private static function getLdapFieldValue($map, array $res) {
 
       $map = Toolbox::unclean_cross_side_scripting_deep($map);
@@ -4721,7 +4721,7 @@ class User extends CommonDBTM {
     * @param array   $options Options
     *
     * @return void|string
-   **/
+    */
    function showSwitchLangForm($display = true, $options = []) {
       global $CFG_GLPI;
 

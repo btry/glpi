@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * DCRoom Class
-**/
+ */
 class DCRoom extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -336,7 +336,7 @@ class DCRoom extends CommonDBTM {
     * @param Datacenter $datacenter Datacenter object
     *
     * @return void
-   **/
+    */
    static function showForDatacenter(Datacenter $datacenter) {
       global $DB, $CFG_GLPI;
 

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Control class
  *
  * @since 0.85
-**/
+ */
 class Control extends CommonGLPI {
 
 
@@ -54,7 +54,7 @@ class Control extends CommonGLPI {
 
    /**
     * @see CommonGLPI::getAdditionalMenuOptions()
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (static::canView()) {

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Profile class
  *
  * @since 0.85
-**/
+ */
 class ProfileRight extends CommonDBChild {
 
    // From CommonDBChild:
@@ -72,7 +72,7 @@ class ProfileRight extends CommonDBChild {
    /**
     * @param $profiles_id
     * @param $rights         array
-   **/
+    */
    static function getProfileRights($profiles_id, array $rights = []) {
       global $DB;
 
@@ -96,7 +96,7 @@ class ProfileRight extends CommonDBChild {
     * @param $rights   array
     *
     * @return boolean
-   **/
+    */
    static function addProfileRights(array $rights) {
       global $DB;
 
@@ -130,7 +130,7 @@ class ProfileRight extends CommonDBChild {
     * @param $rights   array
     *
     * @return boolean
-   **/
+    */
    static function deleteProfileRights(array $rights) {
       global $DB;
 
@@ -156,7 +156,7 @@ class ProfileRight extends CommonDBChild {
     * @param $condition
     *
     * @return boolean
-   **/
+    */
    static function updateProfileRightAsOtherRight($right, $value, $condition) {
       global $DB;
 
@@ -190,7 +190,7 @@ class ProfileRight extends CommonDBChild {
     * @param $condition              (default '')
     *
     * @return boolean
-   **/
+    */
    static function updateProfileRightsAsOtherRights($newright, $initialright, $condition = '') {
       global $DB;
 
@@ -224,7 +224,7 @@ class ProfileRight extends CommonDBChild {
 
    /**
     * @param $profiles_id
-   **/
+    */
    static function fillProfileRights($profiles_id) {
       global $DB;
 
@@ -282,7 +282,7 @@ class ProfileRight extends CommonDBChild {
     * To avoid log out and login when rights change (very useful in debug mode)
     *
     * @see CommonDBChild::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       // update current profile
@@ -303,7 +303,7 @@ class ProfileRight extends CommonDBChild {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       $itemtype = $options['searchopt']['rightclass'];
@@ -332,7 +332,7 @@ class ProfileRight extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBTM::getLogTypeID()
-   **/
+    */
    function getLogTypeID() {
       return ['Profile', $this->fields['profiles_id']];
    }

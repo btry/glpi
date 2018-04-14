@@ -102,7 +102,7 @@ class Contract extends CommonDBTM {
     * @param string $itemtype      itemtype of the item
     * @param integer $oldid        ID of the item to clone
     * @param integer $newid        ID of the item cloned
-    **/
+    */
    static function cloneItem ($itemtype, $oldid, $newid) {
       global $DB;
 
@@ -137,7 +137,7 @@ class Contract extends CommonDBTM {
 
    /**
     * @since 0.84
-   **/
+    */
    function post_addItem() {
       global $DB;
 
@@ -187,7 +187,7 @@ class Contract extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     *@return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -574,7 +574,7 @@ class Contract extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-    **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -601,7 +601,7 @@ class Contract extends CommonDBTM {
     * @param $name            (default '')
     * @param $values          (default '')
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -628,7 +628,7 @@ class Contract extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -1013,7 +1013,7 @@ class Contract extends CommonDBTM {
     * HTML array
     *
     * @return Nothing (display)
-    **/
+    */
    static function showCentral() {
       global $DB,$CFG_GLPI;
 
@@ -1154,7 +1154,7 @@ class Contract extends CommonDBTM {
     * Get the entreprise name  for the contract
     *
     *@return string of names (HTML)
-   **/
+    */
    function getSuppliersNames() {
       global $DB;
 
@@ -1181,7 +1181,7 @@ class Contract extends CommonDBTM {
     * Cron action on contracts : alert depending of the config : on notice and expire
     *
     * @param $task for log, if NULL display (default NULL)
-   **/
+    */
    static function cronContract($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -1409,7 +1409,7 @@ class Contract extends CommonDBTM {
     *    - expired       : boolean / display expired contract (default false)
     *
     * @return Nothing (display)
-   **/
+    */
    static function dropdown($options = []) {
       global $DB;
 
@@ -1511,7 +1511,7 @@ class Contract extends CommonDBTM {
     * @param $display   boolean  get or display string ? (true by default)
     *
     * @return Nothing (display)
-   **/
+    */
    static function dropdownContractRenewal($name, $value = 0, $display = true) {
 
       $tmp[0] = __('Never');
@@ -1528,7 +1528,7 @@ class Contract extends CommonDBTM {
     * @param $value integer   HTML select selected value
     *
     * @return string
-   **/
+    */
    static function getContractRenewalName($value) {
 
       switch ($value) {
@@ -1553,7 +1553,7 @@ class Contract extends CommonDBTM {
     * @param $value the name of the renewal
     *
     * @return the ID of the renewal
-   **/
+    */
    static function getContractRenewalIDByName($value) {
 
       if (stristr($value, __('Tacit'))) {
@@ -1568,7 +1568,7 @@ class Contract extends CommonDBTM {
 
    /**
     * @param $options array
-   **/
+    */
    static function dropdownAlert(array $options) {
 
       $p['name']           = 'alert';
@@ -1601,7 +1601,7 @@ class Contract extends CommonDBTM {
     * @param $val if not set, ask for all values, else for 1 value (default NULL)
     *
     * @return array or string
-   **/
+    */
    static function getAlertName($val = null) {
 
       $tmp[0]                                                  = Dropdown::EMPTY_VALUE;
@@ -1630,7 +1630,7 @@ class Contract extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       $options['entities_id'] = $this->getEntityID();
@@ -1654,7 +1654,7 @@ class Contract extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::getMassiveActionsForItemtype()
-   **/
+    */
    static function getMassiveActionsForItemtype(array &$actions, $itemtype, $is_deleted = 0,
                                                 CommonDBTM $checkitem = null) {
       global $CFG_GLPI;

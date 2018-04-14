@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Template for task
  * @since 9.2
-**/
+ */
 class ProjectTaskTemplate extends CommonDropdown {
 
    // From CommonDBTM

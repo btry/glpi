@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetChange Class
  *
  * @since 0.85
-**/
+ */
 class NotificationTargetChange extends NotificationTargetCommonITILObject {
 
    public $private_profiles = [];
@@ -49,7 +49,7 @@ class NotificationTargetChange extends NotificationTargetCommonITILObject {
 
    /**
     * Get events related to tickets
-   **/
+    */
    function getEvents() {
 
       $events = ['new'               => __('New change'),

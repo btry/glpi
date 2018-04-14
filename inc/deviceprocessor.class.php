@@ -120,7 +120,7 @@ class DeviceProcessor extends CommonDevice {
     * @param $input
     *
     * @return number
-   **/
+    */
    function prepareInputForAddOrUpdate($input) {
 
       foreach (['frequence', 'frequency_default', 'nbcores_default',
@@ -141,7 +141,7 @@ class DeviceProcessor extends CommonDevice {
    /**
     * @since 0.85
     * @see CommonDropdown::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
       return self::prepareInputForAddOrUpdate($input);
    }
@@ -151,7 +151,7 @@ class DeviceProcessor extends CommonDevice {
     * @since 0.84
     *
     * @see CommonDevice::getHTMLTableHeader()
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -174,7 +174,7 @@ class DeviceProcessor extends CommonDevice {
     * @since 0.84
     *
     * @see CommonDevice::getHTMLTableCellForItem()
-   **/
+    */
    function getHTMLTableCellForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                     HTMLTableCell $father = null, array $options = []) {
 
@@ -198,7 +198,7 @@ class DeviceProcessor extends CommonDevice {
     * @see CommonDevice::getImportCriteria()
     *
     * @since 0.84
-   **/
+    */
    function getImportCriteria() {
 
       return ['designation'          => 'equal',

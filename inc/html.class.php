@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Html Class
  * Inpired from Html/FormHelper for several functions
-**/
+ */
 class Html {
 
 
@@ -50,7 +50,7 @@ class Html {
     *          1 : neutralize tag anb content,
     *          2 : remove tag and neutralize content
     * @return clean value
-   **/
+    */
    static function clean($value, $striptags = true, $keep_bad = 2) {
       $value = Html::entity_decode_deep($value);
 
@@ -99,7 +99,7 @@ class Html {
     * @param $value string or array
     *
     * @return array of value (same struct as input)
-   **/
+    */
    static function entity_decode_deep($value) {
 
       return (is_array($value) ? array_map([__CLASS__, 'entity_decode_deep'], $value)
@@ -113,7 +113,7 @@ class Html {
     * @param $value string or array
     *
     * @return array of value (same struct as input)
-   **/
+    */
    static function entities_deep($value) {
 
       return (is_array($value) ? array_map([__CLASS__, 'entities_deep'], $value)
@@ -128,7 +128,7 @@ class Html {
     * @param $format           (default null)
     *
     * @return $time or $date
-   **/
+    */
    static function convDate($time, $format = null) {
 
       if (is_null($time) || $time == 'NULL' || trim($time) == '') {
@@ -177,7 +177,7 @@ class Html {
     *  @param $format               (default null)
     *
     * @return $time or $date
-   **/
+    */
    static function convDateTime($time, $format = null) {
 
       if (is_null($time) || ($time == 'NULL')) {
@@ -194,7 +194,7 @@ class Html {
     * @param $string string: input text
     *
     * @return clean string
-   **/
+    */
    static function cleanInputText($string) {
       return preg_replace( '/\'/', '&apos;', preg_replace('/\"/', '&quot;', $string));
    }
@@ -206,7 +206,7 @@ class Html {
     * @param $url string URL
     *
     * @return clean URL
-   **/
+    */
    static function cleanParametersURL($url) {
 
       $url = preg_replace("/(\/[0-9a-zA-Z\.\-\_]+\.php).*/", "$1", $url);
@@ -220,7 +220,7 @@ class Html {
     * @param $value string or array
     *
     * @return array of value (same struct as input)
-   **/
+    */
    static function nl2br_deep($value) {
 
       return (is_array($value) ? array_map([__CLASS__, 'nl2br_deep'], $value)
@@ -235,7 +235,7 @@ class Html {
     * @param $length   integer  resume length (default 255)
     *
     * @return cut string
-   **/
+    */
    static function resume_text($string, $length = 255) {
 
       if (Toolbox::strlen($string) > $length) {
@@ -253,7 +253,7 @@ class Html {
     * @param $length   integer  resume length (default 255)
     *
     * @return cut string
-    **/
+    */
    static function resume_name($string, $length = 255) {
 
       if (strlen($string) > $length) {
@@ -270,7 +270,7 @@ class Html {
     * @param $value string: string value
     *
     * @return clean value
-   **/
+    */
    static function cleanPostForTextArea($value) {
 
       if (is_array($value)) {
@@ -299,7 +299,7 @@ class Html {
     * @param $forcedecimal integer  Force decimal number (do not use default value) (default -1)
     *
     * @return formatted number
-   **/
+    */
    static function formatNumber($number, $edit = false, $forcedecimal = -1) {
       global $CFG_GLPI;
 
@@ -350,7 +350,7 @@ class Html {
     * @param $use_days     boolean  use days for display ? (true by default)
     *
     * @return string
-   **/
+    */
    static function timestampToString($time, $display_sec = true, $use_days = true) {
 
       $sign = '';
@@ -423,7 +423,7 @@ class Html {
     * @param $value string value
     *
     * @return clean value
-   **/
+    */
    static function weblink_extract($value) {
 
       $value = preg_replace('/<a\s+href\="([^"]+)"[^>]*>[^<]*<\/a>/i', "$1", $value);
@@ -435,7 +435,7 @@ class Html {
     * Redirection to $_SERVER['HTTP_REFERER'] page
     *
     * @return nothing
-   **/
+    */
    static function back() {
       self::redirect(self::getBackUrl());
    }
@@ -448,7 +448,7 @@ class Html {
     * @param $http_response_code string: Forces the HTTP response code to the specified value
     *
     * @return nothing
-   **/
+    */
    static function redirect($dest, $http_response_code = 302) {
 
       $toadd = '';
@@ -483,7 +483,7 @@ class Html {
     * @since 0.85
     *
     * @return nothing
-   **/
+    */
    static function redirectToLogin($params = '') {
       global $CFG_GLPI;
 
@@ -503,7 +503,7 @@ class Html {
     * Display common message for item not found
     *
     * @return Nothing
-   **/
+    */
    static function displayNotFoundError() {
       global $CFG_GLPI, $HEADER_LOADED;
 
@@ -530,7 +530,7 @@ class Html {
     * Display common message for privileges errors
     *
     * @return Nothing (die)
-   **/
+    */
    static function displayRightError() {
       self::displayErrorAndDie(__("You don't have permission to perform this action."));
    }
@@ -538,7 +538,7 @@ class Html {
 
    /**
     * Display a div containing messages set in session in the previous page
-   **/
+    */
    static function displayMessageAfterRedirect() {
 
       // Affichage du message apres redirection
@@ -661,7 +661,7 @@ class Html {
     * @param $ref_btts        Extra items to display array(link=>text...) (default '')
     *
     * @return nothing
-   **/
+    */
    static function displayTitle($ref_pic_link = "", $ref_pic_text = "", $ref_title = "", $ref_btts = "") {
 
       $ref_pic_text = htmlentities($ref_pic_text, ENT_QUOTES, 'UTF-8');
@@ -691,7 +691,7 @@ class Html {
    * @since 0.83.1
    *
    * @param $request SQL request
-   **/
+    */
    static function cleanSQLDisplay($request) {
 
       $request = str_replace("<", "&lt;", $request);
@@ -714,7 +714,7 @@ class Html {
     * @param boolean $ajax         If we're called from ajax (false by default)
     *
     * @return void
-   **/
+    */
    static function displayDebugInfos($with_session = true, $ajax = false) {
       global $CFG_GLPI, $DEBUG_SQL, $SQL_TOTAL_REQUEST, $SQL_TOTAL_TIMER, $DEBUG_AUTOLOAD;
 
@@ -820,7 +820,7 @@ class Html {
 
    /**
     * Display a Link to the last page using http_referer if available else use history.back
-   **/
+    */
    static function displayBackLink() {
       $url_referer = self::getBackUrl();
       if ($url_referer !== false) {
@@ -868,7 +868,7 @@ class Html {
     * @param $minimal            set to true do not display app menu (false by default)
     *
     * @return nothing as function kill script
-   **/
+    */
    static function displayErrorAndDie ($message, $minimal = false) {
       global $CFG_GLPI, $HEADER_LOADED;
 
@@ -899,7 +899,7 @@ class Html {
     *                                     (default '')
     *
     * @return nothing
-   **/
+    */
    static function addConfirmationOnAction($string, $additionalactions = '') {
 
       return "onclick=\"".Html::getConfirmationOnActionScript($string, $additionalactions)."\"";
@@ -916,7 +916,7 @@ class Html {
     *                                     (default '')
     *
     * @return confirmation script
-   **/
+    */
    static function getConfirmationOnActionScript($string, $additionalactions = '') {
 
       if (!is_array($string)) {
@@ -962,7 +962,7 @@ class Html {
     *
     *
     * @return nothing (display)
-    **/
+    */
    static function progressBar($id, array $options = []) {
 
       $params            = [];
@@ -1008,7 +1008,7 @@ class Html {
     * @param $msg initial message (under the bar) (default '&nbsp;')
     *
     * @return nothing
-    **/
+    */
    static function createProgressBar($msg = "&nbsp;") {
 
       $options = ['create' => true];
@@ -1025,7 +1025,7 @@ class Html {
     * @param $msg message under the bar (default '&nbsp;')
     *
     * @return nothing
-   **/
+    */
    static function changeProgressBarMessage($msg = "&nbsp;") {
 
       self::progressBar('doaction_progress', ['message' => $msg]);
@@ -1041,7 +1041,7 @@ class Html {
     * @param $msg   message inside the bar (default is %) (default '')
     *
     * @return nothing
-   **/
+    */
    static function changeProgressBarPosition($crt, $tot, $msg = "") {
 
       $options = [];
@@ -1074,7 +1074,7 @@ class Html {
     *            - forcepadding : boolean force str_pad to force refresh (default true)
     *
     * @return nothing
-   **/
+    */
    static function displayProgressBar($width, $percent, $options = []) {
       global $CFG_GLPI;
 
@@ -1127,7 +1127,7 @@ class Html {
     * @param $option    option corresponding to the page displayed (default '')
     *
     * @return nothing
-   **/
+    */
    static function includeHeader($title = '', $sector = 'none', $item = 'none', $option = '') {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
@@ -1318,7 +1318,7 @@ class Html {
     * @since 0.90
     *
     * @return string
-   **/
+    */
    static function getMenuInfos() {
 
       $menu['assets']['title']       = __('Assets');
@@ -1456,7 +1456,7 @@ class Html {
     * @param $sector    sector in which the page displayed is (default 'none')
     * @param $item      item corresponding to the page displayed (default 'none')
     * @param $option    option corresponding to the page displayed (default '')
-   **/
+    */
    static function header($title, $url = '', $sector = "none", $item = "none", $option = "") {
       global $CFG_GLPI, $PLUGIN_HOOKS, $HEADER_LOADED, $DB;
 
@@ -1538,7 +1538,7 @@ class Html {
     * Print footer for every page
     *
     * @param $keepDB booleen, closeDBConnections if false (false by default)
-   **/
+    */
    static function footer($keepDB = false) {
       global $CFG_GLPI, $FOOTER_LOADED, $TIMER_DEBUG;
 
@@ -1604,7 +1604,7 @@ class Html {
 
    /**
     * Display Ajax Footer for debug
-   **/
+    */
    static function ajaxFooter() {
 
       if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) { // mode debug
@@ -1630,7 +1630,7 @@ class Html {
     *
     * @param $title        title of the page
     * @param $links array  of links to display
-   **/
+    */
    static function simpleHeader($title, $links = []) {
       global $CFG_GLPI, $HEADER_LOADED;
 
@@ -1694,7 +1694,7 @@ class Html {
     *
     * @param $title  title of the page
     * @param $url    not used anymore (default '')
-   **/
+    */
    static function helpHeader($title, $url = '') {
       global $CFG_GLPI, $HEADER_LOADED, $PLUGIN_HOOKS;
 
@@ -1745,7 +1745,7 @@ class Html {
 
    /**
     * Print footer for help page
-   **/
+    */
    static function helpFooter() {
       global $CFG_GLPI, $FOOTER_LOADED;
 
@@ -1784,7 +1784,7 @@ class Html {
     *
     * @param $title  title of the page
     * @param $url    not used anymore (default '')
-   **/
+    */
    static function nullHeader($title, $url = '') {
       global $CFG_GLPI, $HEADER_LOADED;
 
@@ -1820,7 +1820,7 @@ class Html {
 
    /**
     * Print footer for null page
-   **/
+    */
    static function nullFooter() {
       global $CFG_GLPI, $FOOTER_LOADED;
 
@@ -1847,7 +1847,7 @@ class Html {
     * @param $title   title of the page
     * @param $url     not used anymore (default '')
     * @param $iframed indicate if page loaded in iframe - css target (default false)
-   **/
+    */
    static function popHeader($title, $url = '', $iframed = false) {
       global $CFG_GLPI, $PLUGIN_HOOKS, $HEADER_LOADED;
 
@@ -1865,7 +1865,7 @@ class Html {
 
    /**
     * Print footer for a modal window
-   **/
+    */
    static function popFooter() {
       global $FOOTER_LOADED;
 
@@ -1969,7 +1969,7 @@ class Html {
     * Flushes the system write buffers of PHP and whatever backend PHP is using (CGI, a web server, etc).
     * This attempts to push current output all the way to the browser with a few caveats.
     * @see https://www.sitepoint.com/php-streaming-output-buffering-explained/
-   **/
+    */
    static function glpi_flush() {
 
       if (function_exists("ob_flush")
@@ -1983,7 +1983,7 @@ class Html {
 
    /**
     * Set page not to use the cache
-   **/
+    */
    static function header_nocache() {
 
       header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
@@ -2001,7 +2001,7 @@ class Html {
     * @param $onright            display on right of the list (false by default)
     *
     * @deprecated 0.84
-   **/
+    */
    static function openArrowMassives($formname, $fixed = false, $ontop = false, $onright = false) {
       global $CFG_GLPI;
 
@@ -2045,7 +2045,7 @@ class Html {
     * @param $confirm array of confirmation string (optional)
     *
     * @deprecated 0.84
-   **/
+    */
    static function closeArrowMassives($actions, $confirm = []) {
 
       Toolbox::deprecated('closeArrowMassives() method is deprecated');
@@ -2076,7 +2076,7 @@ class Html {
     * @param $rand          string rand value to use (default is auto generated) (default ''))
     *
     * @return nothing / display item
-   **/
+    */
    static function checkAllAsCheckbox($container_id, $rand = '') {
       echo Html::getCheckAllAsCheckbox($container_id, $rand);
    }
@@ -2091,7 +2091,7 @@ class Html {
     * @param $rand          string rand value to use (default is auto generated)(default '')
     *
     * @return Get checkbox string
-   **/
+    */
    static function getCheckAllAsCheckbox($container_id, $rand = '') {
 
       if (empty($rand)) {
@@ -2129,7 +2129,7 @@ class Html {
     *
     * @return the javascript code for jquery criterion or empty string if it is not a
     *         massive update checkbox
-   **/
+    */
    static function getCriterionForMassiveCheckboxes(array $options) {
 
       $params                    = [];
@@ -2186,7 +2186,7 @@ class Html {
     *                - criterion     the criterion for massive checkbox
     *
     * @return the HTML code for the checkbox
-   **/
+    */
    static function getCheckbox(array $options) {
       global $CFG_GLPI;
 
@@ -2275,7 +2275,7 @@ class Html {
     * @param $options   array
     *
     * @return nothing (display only)
-   **/
+    */
    static function showCheckbox(array $options = []) {
       echo self::getCheckbox($options);
    }
@@ -2291,7 +2291,7 @@ class Html {
     * @param $options      array
     *
     * @return get checkbox
-   **/
+    */
    static function getMassiveActionCheckBox($itemtype, $id, array $options = []) {
 
       $options['checked']       = (isset($_SESSION['glpimassiveactionselected'][$itemtype][$id]));
@@ -2315,7 +2315,7 @@ class Html {
     * @param $options      array
     *
     * @return show checkbox
-   **/
+    */
    static function showMassiveActionCheckBox($itemtype, $id, array $options = []) {
       echo Html::getMassiveActionCheckBox($itemtype, $id, $options);
    }
@@ -2329,7 +2329,7 @@ class Html {
     * @param $name given name/id to the form   (default '')
     *
     * @return nothing / display item
-   **/
+    */
    static function openMassiveActionsForm($name = '') {
       echo Html::getOpenMassiveActionsForm($name);
    }
@@ -2343,7 +2343,7 @@ class Html {
     * @param $name given name/id to the form   (default '')
     *
     * @return open form string
-   **/
+    */
    static function getOpenMassiveActionsForm($name = '') {
       global $CFG_GLPI;
 
@@ -2389,7 +2389,7 @@ class Html {
     *    - display          : display or return the generated html (default true)
     *
     * @return bool|string     the html if display parameter is false, or true
-   **/
+    */
    static function showMassiveActions($options = []) {
       global $CFG_GLPI;
 
@@ -2557,7 +2557,7 @@ class Html {
     *      - yearrange  : set a year range to show in drop-down (default '')
     *
     * @return rand value used if displayes else string
-   **/
+    */
    static function showDateField($name, $options = []) {
       global $CFG_GLPI;
 
@@ -2660,7 +2660,7 @@ class Html {
     *   - value      : default value to display (default '')
     *   - display    : boolean display or get string (default true)
     *   - rand       : specific random value (default generated one)
-   **/
+    */
    static function showColorField($name, $options = []) {
       $p['value']      = '';
       $p['rand']       = mt_rand();
@@ -2709,7 +2709,7 @@ class Html {
     *   - required   : required field (will add required attribute)
     *
     * @return rand value used if displayes else string
-   **/
+    */
    static function showDateTimeField($name, $options = []) {
       global $CFG_GLPI;
 
@@ -2864,7 +2864,7 @@ class Html {
     *      - with_days display specific days selection TODAY, BEGINMONTH, LASTMONDAY... ? (default true)
     *
     * @return rand value of dropdown
-   **/
+    */
    static function showGenericDateTimeSearch($element, $value = '', $options = []) {
       global $CFG_GLPI;
 
@@ -2950,7 +2950,7 @@ class Html {
     *
     * @return array of posible values
     * @see showGenericDateTimeSearch
-   **/
+    */
    static function getGenericDateTimeSearchItems($options) {
 
       $params['with_time']          = false;
@@ -3057,7 +3057,7 @@ class Html {
     *
     * @return computed date / datetime value
     * @see showGenericDateTimeSearch
-   **/
+    */
    static function computeGenericDateTimeSearch($val, $force_day = false, $specifictime = '') {
 
       if (empty($specifictime)) {
@@ -3172,7 +3172,7 @@ class Html {
     *
     * @return array of posible values
     * @see showGenericDateTimeSearch
-   **/
+    */
    static function showDatesTimelineGraph($options = []) {
       $default_options = [
          'title'   => '',
@@ -3230,7 +3230,7 @@ class Html {
     * @param $target target of the form
     *
     * @return nothing
-   **/
+    */
    static function showProfileSelecter($target) {
       global $CFG_GLPI;
 
@@ -3282,7 +3282,7 @@ class Html {
     *   - autoclose : boolean / autoclose the item : default true (false permit to scroll)
     *
     * @return nothing (print out an HTML div)
-   **/
+    */
    static function showToolTip($content, $options = []) {
       global $CFG_GLPI;
 
@@ -3400,7 +3400,7 @@ class Html {
     *    - attrs   : array of attributes to add (['name' => 'value']
     *
     * @return void|string
-   **/
+    */
    static function autocompletionTextField(CommonDBTM $item, $field, $options = []) {
       global $CFG_GLPI;
 
@@ -3486,7 +3486,7 @@ class Html {
     * @param $readonly   boolean editor will be readonly or not
     *
     * @return nothing
-   **/
+    */
    static function initEditorSystem($name, $rand = '', $display = true, $readonly = false) {
       global $CFG_GLPI;
 
@@ -3585,7 +3585,7 @@ class Html {
     * @param $content : content to convert in html
     *
     * @return $content
-   **/
+    */
    static function setSimpleTextContent($content) {
 
       $content = Html::entity_decode_deep($content);
@@ -3610,7 +3610,7 @@ class Html {
     * @param boolean $readonly true will set editor in readonly mode
     *
     * @return $content
-   **/
+    */
    static function setRichTextContent($name, $content, $rand, $readonly = false) {
 
       // Init html editor
@@ -3637,7 +3637,7 @@ class Html {
     * @param $display            display if true, return the pager if false
     *
     * @return void|string
-   **/
+    */
    static function printAjaxPager($title, $start, $numrows, $additional_info = '', $display = true) {
       global $CFG_GLPI;
 
@@ -3730,7 +3730,7 @@ class Html {
     * @param $jsexpand     Expand using JS ? (default  false)
     *
     * @return nothing
-   **/
+    */
    static function printCleanArray($tab, $pad = 0, $jsexpand = false) {
 
       if (count($tab)) {
@@ -3796,7 +3796,7 @@ class Html {
     *
     * @return nothing (print a pager)
     *
-   **/
+    */
    static function printPager($start, $numrows, $target, $parameters, $item_type_output = 0,
                               $item_type_output_param = 0, $additional_info = '') {
       global $CFG_GLPI;
@@ -3929,7 +3929,7 @@ class Html {
     * ajax Pager will be displayed if empty
     *
     * @return void|string
-   **/
+    */
    static function printPagerForm($action = "", $display = true) {
 
       $out = '';
@@ -3963,7 +3963,7 @@ class Html {
     * @since 0.83.1
     *
     * @return String
-    **/
+    */
    static function makeTitle ($string, $num, $tot) {
 
       if (($num > 0) && ($num < $tot)) {
@@ -3993,7 +3993,7 @@ class Html {
     * @param $confirm  String   optional confirm message      (default '')
     *
     * @since 0.84
-   **/
+    */
    static function getSimpleForm($action, $btname, $btlabel, Array $fields = [], $btimage = '',
                                  $btoption = '', $confirm = '') {
 
@@ -4067,7 +4067,7 @@ class Html {
     * @param $confirm  String   optional confirm message (default '')
     *
     * @since 0.83.3
-   **/
+    */
    static function showSimpleForm($action, $btname, $btlabel, Array $fields = [], $btimage = '',
                                   $btoption = '', $confirm = '') {
 
@@ -4083,7 +4083,7 @@ class Html {
     * @since 0.83.
     *
     * @return String
-   **/
+    */
    static function closeForm ($display = true) {
       global $CFG_GLPI;
 
@@ -4126,7 +4126,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsHide($id) {
       return self::jsGetElementbyID($id).".hide();\n";
    }
@@ -4140,7 +4140,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsShow($id) {
       return self::jsGetElementbyID($id).".show();\n";
    }
@@ -4154,7 +4154,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsEnable($id) {
       return self::jsGetElementbyID($id).".removeAttr('disabled');\n";
    }
@@ -4168,7 +4168,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsDisable($id) {
       return self::jsGetElementbyID($id).".attr('disabled', 'disabled');\n";
    }
@@ -4182,7 +4182,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function cleanId($id) {
       return str_replace(['[',']'], '_', $id);
    }
@@ -4196,7 +4196,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsGetElementbyID($id) {
       return "$('#$id')";
    }
@@ -4211,7 +4211,7 @@ class Html {
     * @since 0.85.
     *
     * @return string
-   **/
+    */
    static function jsSetDropdownValue($id, $value) {
       return self::jsGetElementbyID($id).".val('$value').trigger('change');";
    }
@@ -4224,7 +4224,7 @@ class Html {
     * @since 0.85.
     *
     * @return string
-   **/
+    */
    static function jsGetDropdownValue($id) {
       return self::jsGetElementbyID($id).".val()";
    }
@@ -4239,7 +4239,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsAdaptDropdown($id, $params = []) {
       global $CFG_GLPI;
 
@@ -4285,7 +4285,7 @@ class Html {
     * @since 0.85.
     *
     * @return String
-   **/
+    */
    static function jsAjaxDropdown($name, $field_id, $url, $params = []) {
       global $CFG_GLPI;
 
@@ -4393,7 +4393,7 @@ class Html {
     *        - `url` If provided an image link will be generated and the link will point at
     *               `$options['url']`.
     * @return string completed img tag
-   **/
+    */
    static function image($path, $options = []) {
 
       if (!isset($options['title'])) {
@@ -4439,7 +4439,7 @@ class Html {
     *     - `confirm` JavaScript confirmation message.
     *     - `confirmaction` optional action to do on confirmation
     * @return string an `a` element.
-   **/
+    */
    static function link($text, $url, $options = []) {
 
       if (isset($options['confirm'])) {
@@ -4478,7 +4478,7 @@ class Html {
     * @param $options    Array   of HTML attributes.
     *
     * @return string A generated hidden input
-   **/
+    */
    static function hidden($fieldName, $options = []) {
 
       if ((isset($options['value'])) && (is_array($options['value']))) {
@@ -4504,7 +4504,7 @@ class Html {
     * @param $options    Array   of HTML attributes.
     *
     * @return string A generated hidden input
-   **/
+    */
    static function input($fieldName, $options = []) {
       $type = 'text';
       if (isset($options['type'])) {
@@ -4564,7 +4564,7 @@ class Html {
     *     - `confirmaction` optional action to do on confirmation
     *
     * @return string A HTML submit button
-   **/
+    */
    static function submit($caption, $options = []) {
 
       $image = false;
@@ -4613,7 +4613,7 @@ class Html {
     * @param $options Array of options.
     *
     * @return string Composed attributes.
-   **/
+    */
    static function parseAttributes($options = []) {
 
       if (!is_string($options)) {
@@ -4639,7 +4639,7 @@ class Html {
     * @param $value     The value of the attribute to create.
     *
     * @return string The composed attribute.
-   **/
+    */
    static function formatAttribute($key, $value) {
 
       if (is_array($value)) {
@@ -4658,7 +4658,7 @@ class Html {
     * @param $script The script to wrap
     *
     * @return string
-   **/
+    */
    static function scriptBlock($script) {
 
       $script = "\n" . '//<![CDATA[' . "\n\n" . $script . "\n\n" . '//]]>' . "\n";
@@ -4673,7 +4673,7 @@ class Html {
     * and create a scriptBlock from it.
     *
     * @since 0.85
-   **/
+    */
    static function scriptStart() {
       ob_start();
       return null;
@@ -4687,7 +4687,7 @@ class Html {
     * @since 0.85
     *
     * @return mixed depending on the settings of scriptStart() either a script tag or null
-   **/
+    */
    static function scriptEnd() {
 
       $buffer = ob_get_clean();
@@ -4707,7 +4707,7 @@ class Html {
     * @param boolean $minify  Try to load minified file (defaults to true)
     *
     * @return String of script tags
-   **/
+    */
    static function script($url, $options = [], $minify = true) {
       $version = GLPI_VERSION;
       if (isset($options['version'])) {
@@ -4740,7 +4740,7 @@ class Html {
     * @param boolean $minify  Try to load minified file (defaults to true)
     *
     * @return string CSS link tag
-   **/
+    */
    static function css($url, $options = [], $minify = true) {
 
       if (!isset($options['media']) || $options['media'] == '') {
@@ -4847,7 +4847,7 @@ class Html {
     *    - display             boolean  display or return the generated html (default true)
     *
     * @return void|string   the html if display parameter is false
-   **/
+    */
    static function file($options = []) {
       global $CFG_GLPI;
 
@@ -5045,7 +5045,7 @@ class Html {
     * @since 0.85
     *
     * @return string
-   **/
+    */
    static function generateImageName() {
       return 'pastedImage'.str_replace('-', '', Html::convDateTime(date('Y-m-d', time())));
    }
@@ -5070,7 +5070,7 @@ class Html {
     *       'rand'          random number to use for ids
     *
     * @return random value used to generate the ids
-   **/
+    */
    static function showCheckboxMatrix(array $columns, array $rows, array $options = []) {
 
       $param['title']                = '';
@@ -5278,7 +5278,7 @@ class Html {
     * This function provides a mecanism to send html form by ajax
     *
     * @since 9.1
-   **/
+    */
    static function ajaxForm($selector, $success = "console.log(html);") {
       echo Html::scriptBlock("
       $(function() {
@@ -5316,7 +5316,7 @@ class Html {
     * by a jquery-ui dialog equivalent (but prettier).
     *
     * @since 9.1
-   **/
+    */
    static function redefineAlert() {
 
       echo self::scriptBlock("
@@ -5362,7 +5362,7 @@ class Html {
     *                                    (default null)
     * @param $noCallback     string      function that will be called when 'No' is pressed
     *                                    (default null)
-   **/
+    */
    static function jsConfirmCallback($msg, $title, $yesCallback = null, $noCallback = null) {
 
       return "
@@ -5475,7 +5475,7 @@ class Html {
     * @param $title        string   title for dialog box
     * @param $okCallback   string   function that will be called when 'Ok' is pressed
     *                               (default null)
-   **/
+    */
    static function jsAlertCallback($msg, $title, $okCallback = null) {
       return "
          // Dialog and its properties.
@@ -5508,7 +5508,7 @@ class Html {
     * @param string $more_link append to the link (ex &test=true)
     *
     * @return nothing
-   **/
+    */
    public static function convertTagFromRichTextToImageTag($tag, $width, $height, $addLink = true, $more_link = "") {
       global $CFG_GLPI;
 

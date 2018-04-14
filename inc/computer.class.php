@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Computer class
-**/
+ */
 class Computer extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -59,7 +59,7 @@ class Computer extends CommonDBTM {
     * Name of the type
     *
     * @param $nb  integer  number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Computer', 'Computers', $nb);
    }
@@ -69,7 +69,7 @@ class Computer extends CommonDBTM {
     * @see CommonDBTM::useDeletedToLockIfDynamic()
     *
     * @since 0.84
-   **/
+    */
    function useDeletedToLockIfDynamic() {
       return false;
    }
@@ -79,7 +79,7 @@ class Computer extends CommonDBTM {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'o';
    }
@@ -87,7 +87,7 @@ class Computer extends CommonDBTM {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -134,7 +134,7 @@ class Computer extends CommonDBTM {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
       global $DB, $CFG_GLPI;
 
@@ -245,7 +245,7 @@ class Computer extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (isset($input["id"]) && ($input["id"] > 0)) {
@@ -347,7 +347,7 @@ class Computer extends CommonDBTM {
     *     - withtemplate template or basic computer
     *
     *@return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI, $DB;
 
@@ -546,7 +546,7 @@ class Computer extends CommonDBTM {
     *
     * @return an array of linked items  like array('Computer' => array(1,2), 'Printer' => array(5,6))
     * @since 0.84.4
-   **/
+    */
    function getLinkedItems() {
       global $DB;
 
@@ -566,7 +566,7 @@ class Computer extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-    **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();

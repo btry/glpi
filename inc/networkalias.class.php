@@ -70,7 +70,7 @@ class NetworkAlias extends FQDNLabel {
     * @param $ID ID of the NetworkName
     *
     * @return its internet name, or empty string if invalid NetworkName
-   **/
+    */
    static function getInternetNameFromID($ID) {
 
       $networkAlias = new self();
@@ -92,7 +92,7 @@ class NetworkAlias extends FQDNLabel {
     *     - withtemplate template or basic computer
     *
     * @return Nothing (display)
-   **/
+    */
    function showForm ($ID, $options = []) {
 
       // Show only simple form to add / edit
@@ -153,7 +153,7 @@ class NetworkAlias extends FQDNLabel {
     * @param $super                 HTMLTableSuperHeader object (default NULL)
     * @param $father                HTMLTableHeader object (default NULL)
     * @param $options      array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -183,7 +183,7 @@ class NetworkAlias extends FQDNLabel {
     * @param $item               CommonDBTM object (default NULL)
     * @param $father             HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
       global $DB, $CFG_GLPI;
@@ -242,7 +242,7 @@ class NetworkAlias extends FQDNLabel {
     *
     * @param $item                     NetworkName object
     * @param $withtemplate   integer   withtemplate param (default 0)
-   **/
+    */
    static function showForNetworkName(NetworkName $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -363,7 +363,7 @@ class NetworkAlias extends FQDNLabel {
     *
     * @param $item                     the FQDN owning the aliases
     * @param $withtemplate  integer    withtemplate param
-   **/
+    */
    static function showForFQDN(CommonGLPI $item, $withtemplate) {
       global $DB;
 

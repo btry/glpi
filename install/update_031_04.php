@@ -35,7 +35,7 @@
  *
  *
  * @returns boolean true if its ok, elsewhere false.
-**/
+ */
 function superAdminExists() {
    global $DB;
 

@@ -44,7 +44,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Event Class
-**/
+ */
 class Event extends CommonDBTM {
 
    static $rightname = 'logs';
@@ -94,7 +94,7 @@ class Event extends CommonDBTM {
     * @param $level
     * @param $service
     * @param $event
-   **/
+    */
    static function log($items_id, $type, $level, $service, $event) {
       global $DB;
 
@@ -115,7 +115,7 @@ class Event extends CommonDBTM {
     * @param $day integer
     *
     * @return integer number of events deleted
-   **/
+    */
    static function cleanOld($day) {
       global $DB;
 
@@ -132,7 +132,7 @@ class Event extends CommonDBTM {
 
    /**
     * Return arrays for function showEvent et lastEvent
-   **/
+    */
    static function logArray() {
 
       static $logItemtype = [];
@@ -171,7 +171,7 @@ class Event extends CommonDBTM {
    /**
     * @param $type
     * @param $items_id
-   **/
+    */
    static function displayItemLogID($type, $items_id) {
       global $CFG_GLPI;
 
@@ -224,7 +224,7 @@ class Event extends CommonDBTM {
     * Print a great tab to present lasts events occured on glpi
     *
     * @param $user   string  name user to search on message (default '')
-    **/
+    */
    static function showForUser($user = "") {
       global $DB, $CFG_GLPI;
 
@@ -313,7 +313,7 @@ class Event extends CommonDBTM {
     * @param $order     order by clause occurences (eg: ) (default 'DESC')
     * @param $sort      order by clause occurences (eg: date) (defaut 'date')
     * @param $start     (default 0)
-   **/
+    */
    static function showList($target, $order = 'DESC', $sort = 'date', $start = 0) {
       global $DB, $CFG_GLPI;
 
@@ -410,7 +410,7 @@ class Event extends CommonDBTM {
    /** Display how many logins since
     *
     * @return  nothing
-   **/
+    */
    static function getCountLogin() {
       global $DB;
 

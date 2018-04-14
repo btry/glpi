@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Group_User Class
  *
  *  Relation between Group and User
-**/
+ */
 class Group_User extends CommonDBRelation{
 
    // From CommonDBRelation
@@ -51,7 +51,7 @@ class Group_User extends CommonDBRelation{
    /**
     * @param $users_id
     * @param $condition    (default '')
-   **/
+    */
    static function getUserGroups($users_id, $condition = '') {
       global $DB;
 
@@ -82,7 +82,7 @@ class Group_User extends CommonDBRelation{
     *
     * @param $groups_id
     * @param $condition    (default '')
-   **/
+    */
    static function getGroupUsers($groups_id, $condition = '') {
       global $DB;
 
@@ -111,7 +111,7 @@ class Group_User extends CommonDBRelation{
    /**  Show groups of a user
     *
     * @param $user   User object
-   **/
+    */
    static function showForUser(User $user) {
       global $CFG_GLPI;
 
@@ -274,7 +274,7 @@ class Group_User extends CommonDBRelation{
     * @param $used_ids        Array    of already add users
     * @param $entityrestrict  Array    of entities
     * @param $crit            String   for criteria (for default dropdown)
-   **/
+    */
    private static function showAddUserForm(Group $group, $used_ids, $entityrestrict, $crit) {
       global $CFG_GLPI, $DB;
 
@@ -324,7 +324,7 @@ class Group_User extends CommonDBRelation{
     * @param $tree      Boolean  true to include member of sub-group (default 0)
     *
     * @return String tab of entity for restriction
-   **/
+    */
    static function getDataForGroup(Group $group, &$members, &$ids, $crit = '', $tree = 0) {
       global $DB;
 
@@ -391,7 +391,7 @@ class Group_User extends CommonDBRelation{
     * @since 0.83
     *
     * @param $group  Group object: the group
-   **/
+    */
    static function showForGroup(Group $group) {
       global $DB, $CFG_GLPI;
 
@@ -550,7 +550,7 @@ class Group_User extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 
@@ -576,7 +576,7 @@ class Group_User extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationInputForProcessingOfMassiveActions()
-   **/
+    */
    static function getRelationInputForProcessingOfMassiveActions($action, CommonDBTM $item,
                                                                  array $ids, array $input) {
       switch ($action) {
@@ -595,7 +595,7 @@ class Group_User extends CommonDBRelation{
     * Get search function for the class
     *
     * @return array of search option
-   **/
+    */
    function rawSearchOptions() {
       $tab = [];
 
@@ -664,7 +664,7 @@ class Group_User extends CommonDBRelation{
    /**
     * @param $user_ID
     * @param $only_dynamic (false by default
-   **/
+    */
    static function deleteGroups($user_ID, $only_dynamic = false) {
       global $DB;
 

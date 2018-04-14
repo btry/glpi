@@ -64,7 +64,7 @@ if ($max_time == 0) {
 /**
  * Genere un fichier backup.xml a partir de base dbhost connecte avec l'utilisateur dbuser
  * et le mot de passe dbpassword sur le serveur dbdefault
-**/
+ */
 function xmlbackup() {
    global $CFG_GLPI, $DB;
 
@@ -120,7 +120,7 @@ function xmlbackup() {
 ////////////////////////// DUMP SQL FUNCTIONS
 /**
  * Init time to computer time spend
-**/
+ */
 function init_time() {
    global $TPSDEB, $TPSCOUR;
 
@@ -132,7 +132,7 @@ function init_time() {
 
 /**
  * Get current time
-**/
+ */
 function current_time() {
    global $TPSDEB, $TPSCOUR;
 
@@ -150,7 +150,7 @@ function current_time() {
  * @param $table  table  name
  * @param $from   begin from
  * @param $limit  limit to
-**/
+ */
 function get_content($DB, $table, $from, $limit) {
 
    $content = "";
@@ -186,7 +186,7 @@ function get_content($DB, $table, $from, $limit) {
  *
  * @param $DB     DB object
  * @param $table  table name
-**/
+ */
 function get_def($DB, $table) {
 
    $def  = "### Dump table $table\n\n";
@@ -208,7 +208,7 @@ function get_def($DB, $table) {
  * @param $DB        DB object
  * @param $dumpFile  dump file
  * @param $duree     max delay before refresh
-**/
+ */
 function restoreMySqlDump($DB, $dumpFile, $duree) {
    global $DB, $TPSCOUR, $offset, $cpt;
 
@@ -327,7 +327,7 @@ function restoreMySqlDump($DB, $dumpFile, $duree) {
  * @param $dumpFile  dump file
  * @param $duree     max delay before refresh
  * @param $rowlimit  rowlimit to backup in one time
-**/
+ */
 function backupMySql($DB, $dumpFile, $duree, $rowlimit) {
    global $TPSCOUR, $offsettable, $offsetrow, $cpt;
 

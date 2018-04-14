@@ -38,13 +38,13 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetTicket Class
  *
  * @since 0.85
-**/
+ */
 class NotificationTargetProject extends NotificationTarget {
 
 
    /**
     * Get events related to tickets
-   **/
+    */
    function getEvents() {
 
       $events = ['new'               => __('New project'),
@@ -74,7 +74,7 @@ class NotificationTargetProject extends NotificationTarget {
 
    /**
     * @see NotificationTarget::addSpecificTargets()
-   **/
+    */
    function addSpecificTargets($data, $options) {
 
       //Look for all targets whose type is Notification::ITEM_USER
@@ -138,7 +138,7 @@ class NotificationTargetProject extends NotificationTarget {
 
    /**
     * Add team users to the notified user list
-   **/
+    */
    function getTeamUsers() {
       global $DB;
 
@@ -160,7 +160,7 @@ class NotificationTargetProject extends NotificationTarget {
     * Add team groups to the notified user list
     *
     * @param $manager      0 all users, 1 only supervisors, 2 all users without supervisors
-   **/
+    */
    function getTeamGroups($manager) {
       global $DB;
 
@@ -176,7 +176,7 @@ class NotificationTargetProject extends NotificationTarget {
 
    /**
     * Add team contacts to the notified user list
-   **/
+    */
    function getTeamContacts() {
       global $DB, $CFG_GLPI;
 
@@ -198,7 +198,7 @@ class NotificationTargetProject extends NotificationTarget {
 
    /**
     * Add team suppliers to the notified user list
-   **/
+    */
    function getTeamSuppliers() {
       global $DB, $CFG_GLPI;
 

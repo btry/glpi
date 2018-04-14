@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * @since 0.85
  *
  *  Relation between Changes and Groups
-**/
+ */
 class Change_Group extends CommonITILActor {
 
    // From CommonDBRelation

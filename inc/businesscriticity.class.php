@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * DocumentType Class
-**/
+ */
 class BusinessCriticity  extends CommonTreeDropdown {
 
    public $can_be_translated = true;

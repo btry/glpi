@@ -56,7 +56,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * according to $this->input
     *
     * @return the id of the current object ancestor
-   **/
+    */
    function getNewAncestor() {
       return 0; // By default, we rattach to the root element
    }
@@ -67,7 +67,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * current item according to $this->fields.
     *
     * @return array of IDs of the potential sons
-   **/
+    */
    function getPotentialSons() {
       return []; // By default, we don't have any son
    }
@@ -79,7 +79,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * @param $input datas used to add the item
     *
     * @return the modified $input array
-   **/
+    */
    function prepareInputForAdd($input) {
 
       $input[$this->getForeignKeyField()] = $this->getNewAncestor();
@@ -94,7 +94,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * @param $input datas used to add the item
     *
     * @return the modified $input array
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       $input[$this->getForeignKeyField()] = $this->getNewAncestor();
@@ -107,7 +107,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * Used to update tree by redefining other items ForeignKeyField
     *
     * @return nothing
-   **/
+    */
    function post_addItem() {
 
       $this->alterElementInsideTree("add");
@@ -121,7 +121,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * @param $history   (default 1)
     *
     * @return nothing
-   **/
+    */
    function post_updateItem($history = 1) {
 
       $this->alterElementInsideTree("update");
@@ -133,7 +133,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
     * Used to update tree by redefining other items ForeignKeyField
     *
     * @return nothing
-   **/
+    */
    function pre_deleteItem() {
 
       $this->alterElementInsideTree("delete");
@@ -144,7 +144,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
    /**
     * The haveChildren=false must be define to be sure that CommonDropdown allows the deletion of a
     * node of the tree
-   **/
+    */
    function haveChildren() {
       return false;
    }
@@ -178,7 +178,7 @@ class CommonImplicitTreeDropdown extends CommonTreeDropdown {
        *            item.
        * $potentialSons list ALL potential childrens (sons as well as grandsons). That is use to
        *                update them. (See getPotentialSons())
-      **/
+       */
 
       if ($step != "add") { // Because there is no old sons of new node
          // First, get all my current direct sons (old ones) that are not new potential sons

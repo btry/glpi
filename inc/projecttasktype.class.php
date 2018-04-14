@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * ProjectTaskType Class
  *
  * @since 0.85
-**/
+ */
 class ProjectTaskType extends CommonDropdown {
 
 

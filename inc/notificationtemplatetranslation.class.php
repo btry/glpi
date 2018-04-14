@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTemplateTranslation Class
-**/
+ */
 class NotificationTemplateTranslation extends CommonDBChild {
 
    // From CommonDBChild
@@ -53,7 +53,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -64,7 +64,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
    /**
     * @see CommonDBTM::getRawName()
-   **/
+    */
    function getRawName() {
       global $CFG_GLPI;
 
@@ -167,7 +167,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
    /**
     * @param $template        NotificationTemplate object
     * @param $options   array
-   **/
+    */
    function showSummary(NotificationTemplate $template, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -321,7 +321,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
    /**
     * @param $language_id
-   **/
+    */
    static function getAllUsedLanguages($language_id) {
 
       $used_languages = getAllDatasFromTable('glpi_notificationtemplatetranslations',
@@ -338,7 +338,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
    /**
     * @param $itemtype
-   **/
+    */
    static function showAvailableTags($itemtype) {
 
       $target = NotificationTarget::getInstanceByType($itemtype);
@@ -432,7 +432,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
     * NotificationTemplateTranslation => translation preview
     *
     * @since 0.84
-   **/
+    */
    function showDebug() {
 
       $template = new NotificationTemplate();

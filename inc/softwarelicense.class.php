@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SoftwareLicense Class
-**/
+ */
 class SoftwareLicense extends CommonTreeDropdown {
 
    /// TODO move to CommonDBChild ?
@@ -69,7 +69,7 @@ class SoftwareLicense extends CommonTreeDropdown {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       $input = parent::prepareInputForAdd($input);
@@ -97,7 +97,7 @@ class SoftwareLicense extends CommonTreeDropdown {
    /**
     * @since 0.85
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       $input = parent::prepareInputForUpdate($input);
@@ -120,7 +120,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @since 0.85
     *
     * @return validity indicator
-   **/
+    */
    static function computeValidityIndicator($ID, $number = -1) {
 
       if (($number >= 0)
@@ -139,7 +139,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @since 0.85
     *
     * @return nothing
-   **/
+    */
    static function updateValidityIndicator($ID) {
 
       $lic = new self();
@@ -155,7 +155,7 @@ class SoftwareLicense extends CommonTreeDropdown {
 
    /**
     * @since 0.84
-   **/
+    */
    function cleanDBonPurge() {
 
       $csl = new Computer_SoftwareLicense();
@@ -184,7 +184,7 @@ class SoftwareLicense extends CommonTreeDropdown {
    /**
     * @since 0.85
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       if (in_array("is_valid", $this->updates)) {
@@ -196,7 +196,7 @@ class SoftwareLicense extends CommonTreeDropdown {
    /**
     * @since 0.85
     * @see CommonDBTM::post_deleteFromDB()
-   **/
+    */
    function post_deleteFromDB() {
       Software::updateValidityIndicator($this->fields["softwares_id"]);
    }
@@ -206,7 +206,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @since 0.84
     *
     * @see CommonDBTM::getPreAdditionalInfosForName
-   **/
+    */
    function getPreAdditionalInfosForName() {
 
       $soft = new Software();
@@ -245,7 +245,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     *     - softwares_id ID of the software for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -450,7 +450,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * Is the license may be recursive
     *
     * @return boolean
-   **/
+    */
    function maybeRecursive () {
 
       $soft = new Software();
@@ -471,7 +471,7 @@ class SoftwareLicense extends CommonTreeDropdown {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -813,7 +813,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
       return ['description' => __('Send alarms on expired licenses')];
    }
@@ -825,7 +825,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @param $task to log, if NULL display (default NULL)
     *
     * @return 0 : nothing to do 1 : done with success
-   **/
+    */
    static function cronSoftware($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -944,7 +944,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @param $softwares_id software ID
     *
     * @return number of licenses
-   **/
+    */
    static function countForSoftware($softwares_id) {
       global $DB;
 
@@ -978,7 +978,7 @@ class SoftwareLicense extends CommonTreeDropdown {
     * @param $software Software object
     *
     * @return nothing
-   **/
+    */
    static function showForSoftware(Software $software) {
       global $DB, $CFG_GLPI;
 
@@ -1187,7 +1187,7 @@ class SoftwareLicense extends CommonTreeDropdown {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       $license = ['softname' => '',

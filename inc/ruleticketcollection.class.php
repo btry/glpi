@@ -44,7 +44,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @param $entity (default 0)
-   **/
+    */
    function __construct($entity = 0) {
       $this->entity = $entity;
    }
@@ -52,7 +52,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @since 0.84
-    **/
+    */
    static function canView() {
       return Session::haveRightsOr(self::$rightname, [READ, RuleTicket::PARENT]);
    }
@@ -70,7 +70,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::preProcessPreviewResults()
-   **/
+    */
    function preProcessPreviewResults($output) {
 
       $output = parent::preProcessPreviewResults($output);
@@ -80,7 +80,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::showInheritedTab()
-   **/
+    */
    function showInheritedTab() {
       return (Session::haveRight(self::$rightname, RuleTicket::PARENT) && ($this->entity));
    }
@@ -88,7 +88,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::showChildrensTab()
-   **/
+    */
    function showChildrensTab() {
 
       return (Session::haveRight(self::$rightname, READ)
@@ -98,7 +98,7 @@ class RuleTicketCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::prepareInputDataForProcess()
-   **/
+    */
    function prepareInputDataForProcess($input, $params) {
 
       // Pass x-priority header if exists

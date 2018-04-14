@@ -83,7 +83,7 @@ class NetworkPortAlias extends NetworkPortInstantiation {
 
    /**
     * @see NetworkPortInstantiation::getInstantiationHTMLTableHeaders
-   **/
+    */
    function getInstantiationHTMLTableHeaders(HTMLTableGroup $group, HTMLTableSuperHeader $super,
                                              HTMLTableSuperHeader $internet_super = null,
                                              HTMLTableHeader $father = null,
@@ -98,7 +98,7 @@ class NetworkPortAlias extends NetworkPortInstantiation {
 
    /**
     * @see NetworkPortInstantiation::getInstantiationHTMLTable()
-   **/
+    */
    function getInstantiationHTMLTable(NetworkPort $netport, HTMLTableRow $row,
                                       HTMLTableCell $father = null, array $options = []) {
 

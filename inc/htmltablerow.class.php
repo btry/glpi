@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.84
-**/
+ */
 class HTMLTableRow extends HTMLTableEntity {
 
    private $group;
@@ -49,7 +49,7 @@ class HTMLTableRow extends HTMLTableEntity {
 
    /**
     * @param $group
-   **/
+    */
    function __construct($group) {
       $this->group = $group;
    }
@@ -78,7 +78,7 @@ class HTMLTableRow extends HTMLTableEntity {
    /**
     * @param $lineIndex
     * @param $attributs
-   **/
+    */
    function addAttributForLine($lineIndex, $attributs) {
       $this->linesWithAttributs[$lineIndex] = $attributs;
    }
@@ -89,7 +89,7 @@ class HTMLTableRow extends HTMLTableEntity {
     * @param $content
     * @param $father    HTMLTableCell object (default NULL)
     * @param $item      CommonDBTM object: The item associated with the current cell (default NULL)
-   **/
+    */
    function addCell(HTMLTableHeader $header, $content, HTMLTableCell $father = null,
                     CommonDBTM $item = null) {
 
@@ -160,7 +160,7 @@ class HTMLTableRow extends HTMLTableEntity {
 
    /**
     * @param $headers
-   **/
+    */
    function displayRow($headers) {
 
       echo "\t<tbody";

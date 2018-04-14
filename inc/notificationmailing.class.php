@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  NotificationMailing class implements the NotificationInterface
-**/
+ */
 class NotificationMailing implements NotificationInterface {
 
    /**
@@ -46,7 +46,7 @@ class NotificationMailing implements NotificationInterface {
     * @param array $options Optionnal special options (may be needed)
     *
     * @return boolean
-   **/
+    */
    static function check($value, $options = []) {
       return self::isUserAddressValid($value, $options);
    }
@@ -59,7 +59,7 @@ class NotificationMailing implements NotificationInterface {
     *     - checkdns :check dns entry
     *
     * @return boolean
-   **/
+    */
    static function isUserAddressValid($address, $options = ['checkdns'=>false]) {
       //drop sanitize...
       $address = Toolbox::stripslashes_deep($address);

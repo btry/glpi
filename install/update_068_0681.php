@@ -33,7 +33,7 @@
 /**
  * DB class to connect to a OCS server
  *
-**/
+ */
 class DBocs extends DBmysql {
 
    function DBocs() {

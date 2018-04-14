@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  *
  * @since 0.84
  *
-**/
+ */
 class Problem_Supplier extends CommonITILActor {
 
    // From CommonDBRelation

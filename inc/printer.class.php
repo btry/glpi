@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Printer Class
-**/
+ */
 class Printer  extends CommonDBTM {
 
    // From CommonDBTM
@@ -55,7 +55,7 @@ class Printer  extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Printer', 'Printers', $nb);
    }
@@ -65,7 +65,7 @@ class Printer  extends CommonDBTM {
     * @see CommonDBTM::useDeletedToLockIfDynamic()
     *
     * @since 0.84
-   **/
+    */
    function useDeletedToLockIfDynamic() {
       return false;
    }
@@ -104,7 +104,7 @@ class Printer  extends CommonDBTM {
     * Overloaded from CommonDBTM
     *
     * @return booleen
-   **/
+    */
    function canUnrecurs() {
       global $DB, $CFG_GLPI;
 
@@ -264,7 +264,7 @@ class Printer  extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
      *@return boolean item found
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -460,7 +460,7 @@ class Printer  extends CommonDBTM {
     *
     * @return an array of linked items  like array('Computer' => array(1,2), 'Printer' => array(5,6))
     * @since 0.84.4
-   **/
+    */
    function getLinkedItems() {
       global $DB;
 
@@ -478,7 +478,7 @@ class Printer  extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $actions = parent::getSpecificMassiveActions($checkitem);
@@ -819,7 +819,7 @@ class Printer  extends CommonDBTM {
     * @param $manufacturer  the software's manufacturer (need to be addslashes)
     * @param $entity        the entity in which the software must be added
     * @param $comment       comment (default '')
-   **/
+    */
    function addOrRestoreFromTrash($name, $manufacturer, $entity, $comment = '') {
       global $DB;
 
@@ -862,7 +862,7 @@ class Printer  extends CommonDBTM {
     * @param $comment      (default '')
     *
     * @return the printer's ID
-   **/
+    */
    function addPrinter($name, $manufacturer, $entity, $comment = '') {
       global $DB, $CFG_GLPI;
 
@@ -899,7 +899,7 @@ class Printer  extends CommonDBTM {
     * @param $ID  the ID of the software to put in dustbin
     *
     * @return boolean (success)
-   **/
+    */
    function removeFromTrash($ID) {
       return $this->restore(["id" => $ID]);
    }

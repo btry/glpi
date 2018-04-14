@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTemplate Class
-**/
+ */
 class NotificationTemplate extends CommonDBTM {
 
    // From CommonDBTM
@@ -64,7 +64,7 @@ class NotificationTemplate extends CommonDBTM {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canPurge() {
       return static::canUpdate();
    }
@@ -83,7 +83,7 @@ class NotificationTemplate extends CommonDBTM {
 
    /**
     * Reset already computed templates
-   **/
+    */
    function resetComputedTemplates() {
       $this->templates_by_languages = [];
    }
@@ -181,7 +181,7 @@ class NotificationTemplate extends CommonDBTM {
     * @param $name      the dropdown name
     * @param $itemtype  display templates for this itemtype only
     * @param $value     the dropdown's default value (0 by default)
-   **/
+    */
    static function dropdownTemplates($name, $itemtype, $value = 0) {
       global $DB;
 
@@ -194,7 +194,7 @@ class NotificationTemplate extends CommonDBTM {
 
    /**
     * @param $options
-   **/
+    */
    function getAdditionnalProcessOption($options) {
 
       //Additionnal option can be given for template processing
@@ -214,7 +214,7 @@ class NotificationTemplate extends CommonDBTM {
     * @param $options      array
     *
     * @return id of the template in templates_by_languages / false if computation failed
-   **/
+    */
    function getTemplateByLanguage(NotificationTarget $target, $user_infos = [],
                                   $event = '', $options = []) {
 
@@ -339,7 +339,7 @@ class NotificationTemplate extends CommonDBTM {
    /**
     * @param $string
     * @param $data
-   **/
+    */
    static function process($string, $data) {
 
       $offset = $new_offset = 0;
@@ -417,7 +417,7 @@ class NotificationTemplate extends CommonDBTM {
    /**
     * @param $string
     * @param $data
-   **/
+    */
    static function processIf($string, $data) {
 
       if (preg_match_all("/##IF([a-z\.]*)[=]?(.*?)##/i", $string, $out)) {
@@ -472,7 +472,7 @@ class NotificationTemplate extends CommonDBTM {
 
    /**
     * @param $signature
-   **/
+    */
    function setSignature($signature) {
       $this->signature = $signature;
    }
@@ -480,7 +480,7 @@ class NotificationTemplate extends CommonDBTM {
 
    /**
     * @param $language
-   **/
+    */
    function getByLanguage($language) {
       global $DB;
 
@@ -509,7 +509,7 @@ class NotificationTemplate extends CommonDBTM {
     * @param array              $options    Options
     *
     * @return array
-   **/
+    */
    function getDataToSend(NotificationTarget $target, $tid, $to, array $user_infos, array $options) {
 
       $language   = $user_infos['language'];

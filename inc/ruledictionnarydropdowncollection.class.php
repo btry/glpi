@@ -47,7 +47,7 @@ class RuleDictionnaryDropdownCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::replayRulesOnExistingDB()
-   **/
+    */
    function replayRulesOnExistingDB($offset = 0, $maxtime = 0, $items = [], $params = []) {
       global $DB;
 
@@ -127,7 +127,7 @@ class RuleDictionnaryDropdownCollection extends RuleCollection {
     * @param $maxtime   maximum time of process (reload at the end) (default 0)
     *
     * @return -1 on completion else current offset
-   **/
+    */
    function replayRulesOnExistingDBForModel($offset = 0, $maxtime = 0) {
       global $DB;
 

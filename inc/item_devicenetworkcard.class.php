@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Relation between item and devices
-**/
+ */
 class Item_DeviceNetworkCard extends Item_Devices {
 
    static public $itemtype_2 = 'DeviceNetworkCard';
@@ -51,7 +51,7 @@ class Item_DeviceNetworkCard extends Item_Devices {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getSpecificities($specif = '') {
 
       return ['mac'    => ['long name'  => __('MAC address'),

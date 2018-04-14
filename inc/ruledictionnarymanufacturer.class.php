@@ -34,7 +34,7 @@ class RuleDictionnaryManufacturer extends RuleDictionnaryDropdown {
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryManufacturer');
    }
@@ -42,7 +42,7 @@ class RuleDictionnaryManufacturer extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -61,7 +61,7 @@ class RuleDictionnaryManufacturer extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

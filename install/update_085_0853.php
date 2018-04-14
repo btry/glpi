@@ -34,7 +34,7 @@
  * Update from 0.85 to 0.85.3
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function update085to0853() {
    global $DB, $migration;
 

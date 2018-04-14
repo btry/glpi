@@ -43,7 +43,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Config class
-**/
+ */
 class Config extends CommonDBTM {
 
    const DELETE_ALL = -1;
@@ -70,7 +70,7 @@ class Config extends CommonDBTM {
     *  @see CommonGLPI::getMenuContent()
     *
     *   @since 0.85
-   **/
+    */
    static function getMenuContent() {
       global $CFG_GLPI;
 
@@ -123,7 +123,7 @@ class Config extends CommonDBTM {
     * @param $input array of datas used to update the item
     *
     * @return the modified $input array
-   **/
+    */
    function prepareInputForUpdate($input) {
       global $CFG_GLPI;
       // Update only an item
@@ -270,7 +270,7 @@ class Config extends CommonDBTM {
     * Print the config form for display
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormDisplay() {
       global $CFG_GLPI;
 
@@ -464,7 +464,7 @@ class Config extends CommonDBTM {
     * Print the config form for restrictions
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormInventory() {
       global $DB, $CFG_GLPI;
 
@@ -612,7 +612,7 @@ class Config extends CommonDBTM {
     * Print the config form for restrictions
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormAuthentication() {
       global $DB, $CFG_GLPI;
 
@@ -656,7 +656,7 @@ class Config extends CommonDBTM {
     * Print the config form for slave DB
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormDBSlave() {
       global $DB, $CFG_GLPI, $DBslave;
 
@@ -726,7 +726,7 @@ class Config extends CommonDBTM {
     *
     * @since 9.1
     * @return Nothing (display)
-   **/
+    */
    function showFormAPI() {
       global $CFG_GLPI;
 
@@ -808,7 +808,7 @@ class Config extends CommonDBTM {
     * Print the config form for connections
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormHelpdesk() {
       global $DB, $CFG_GLPI;
 
@@ -979,7 +979,7 @@ class Config extends CommonDBTM {
     * (CFG_GLPI for global config / glpi_users fields for user prefs)
     *
     * @return Nothing (display)
-   **/
+    */
    function showFormUserPrefs($data = []) {
       global $DB, $CFG_GLPI;
 
@@ -1406,7 +1406,7 @@ class Config extends CommonDBTM {
     * @param $field string id of the field containing password to check (default 'password')
     *
     * @since 0.84
-   **/
+    */
    static function displayPasswordSecurityChecks($field = 'password') {
       global $CFG_GLPI;
 
@@ -1494,7 +1494,7 @@ class Config extends CommonDBTM {
     * @throws PasswordTooWeak when $display is false and the password does not matches the requirements
     *
     * @return boolean is password valid?
-   **/
+    */
    static function validatePassword($password, $display = true) {
       global $CFG_GLPI;
 
@@ -1564,7 +1564,7 @@ class Config extends CommonDBTM {
     * - user data cache (apcu / apcu-bc)
     *
     * @since 9.1
-   **/
+    */
    function showPerformanceInformations() {
       global $GLPI_CACHE;
 
@@ -1700,7 +1700,7 @@ class Config extends CommonDBTM {
 
    /**
     * Display a HTML report about systeme information / configuration
-   **/
+    */
    function showSystemInformations() {
       global $DB, $CFG_GLPI;
 
@@ -1919,7 +1919,7 @@ class Config extends CommonDBTM {
     * @since 0.90
     *
     * @return string
-   **/
+    */
    static function getSQLMode() {
       global $DB;
 
@@ -1960,7 +1960,7 @@ class Config extends CommonDBTM {
     * show Libraries information in system information
     *
     * @since 0.84
-   **/
+    */
    static function showLibrariesInformation() {
 
       // No gettext
@@ -2018,7 +2018,7 @@ class Config extends CommonDBTM {
     * @param $name   select name
     * @param $value  default value
     * @param $rand   rand
-   **/
+    */
    static function dropdownGlobalManagement($name, $value, $rand = null) {
 
       $choices[0] = __('Yes - Restrict to unit management for manual add');
@@ -2035,7 +2035,7 @@ class Config extends CommonDBTM {
     * @param $lang : the value coming from LDAP
     *
     * @return the locale's php page in GLPI or '' is no language associated with the value
-   **/
+    */
    static function getLanguage($lang) {
       global $CFG_GLPI;
 
@@ -2099,7 +2099,7 @@ class Config extends CommonDBTM {
 
    /**
     * Display debug information for dbslave
-   **/
+    */
    function showDebug() {
 
       $options['diff'] = 0;
@@ -2110,7 +2110,7 @@ class Config extends CommonDBTM {
 
    /**
     * Display field unicity criterias form
-   **/
+    */
    function showFormFieldUnicity() {
       global $CFG_GLPI;
 
@@ -2121,7 +2121,7 @@ class Config extends CommonDBTM {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       switch ($item->getType()) {
@@ -2161,7 +2161,7 @@ class Config extends CommonDBTM {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       global $CFG_GLPI;
 
@@ -2230,7 +2230,7 @@ class Config extends CommonDBTM {
     * @param boolean    $fordebug display for debug (no html required) (false by default)
     *
     * @return integer 2: missing extension,  1: missing optionnal extension, 0: OK,
-    **/
+    */
    static function displayCheckExtensions($fordebug = false) {
       global $CFG_GLPI;
 
@@ -2287,7 +2287,7 @@ class Config extends CommonDBTM {
     *                'missing'   => [ext => message],
     *                'may'       => [ext => message]
     *               ]
-   **/
+    */
    static function checkExtensions($list = null) {
       if ($list === null) {
          $extensions_to_check = [
@@ -2439,7 +2439,7 @@ class Config extends CommonDBTM {
     * @param boolean $fordebug display for debug (no html, no gettext required) (false by default)
     *
     * @return 2 : creation error 1 : delete error 0: OK
-   **/
+    */
    static function checkWriteAccessToDirs($fordebug = false) {
       global $CFG_GLPI;
 
@@ -2596,7 +2596,7 @@ class Config extends CommonDBTM {
     * @since 0.85
     *
     * @return DB version
-   **/
+    */
    static function getCurrentDBVersion() {
       global $DB;
 
@@ -2630,7 +2630,7 @@ class Config extends CommonDBTM {
     * @param $names    array    of config names to get
     *
     * @return array of config values
-   **/
+    */
    static function getConfigurationValues($context, array $names = []) {
       global $DB;
 
@@ -2663,7 +2663,7 @@ class Config extends CommonDBTM {
     * @param $values   array  of config names to set
     *
     * @return void
-   **/
+    */
    static function setConfigurationValues($context, array $values = []) {
 
       $config = new self();
@@ -2697,7 +2697,7 @@ class Config extends CommonDBTM {
     * @param $values  array   of config names to delete
     *
     * @return void
-   **/
+    */
    static function deleteConfigurationValues($context, array $values = []) {
 
       $config = new self();
@@ -2716,7 +2716,7 @@ class Config extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

@@ -61,7 +61,7 @@ class Transfer extends CommonDBTM {
     * @see CommonGLPI::defineTabs()
     *
     * @since 0.85
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -115,7 +115,7 @@ class Transfer extends CommonDBTM {
     *@param $items      items to transfer
     *@param $to         entity destination ID
     *@param $options    options used to transfer
-   **/
+    */
    function moveItems($items, $to, $options) {
       global $CFG_GLPI;
 
@@ -241,7 +241,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $itemtype  of the item
     * @param $ID        of the item
-   **/
+    */
    function addToBeTransfer($itemtype, $ID) {
 
       if (!isset($this->needtobe_transfer[$itemtype])) {
@@ -262,7 +262,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $itemtype  of the item
     * @param $ID        of the item
-   **/
+    */
    function addNotToBeTransfer($itemtype, $ID) {
 
       if (!isset($this->noneedtobe_transfer[$itemtype])) {
@@ -280,7 +280,7 @@ class Transfer extends CommonDBTM {
     * simulate the transfer to know which items need to be transfer
     *
     * @param $items Array of the items to transfer
-   **/
+    */
    function simulateTransfer($items) {
       global $DB, $CFG_GLPI;
 
@@ -1013,7 +1013,7 @@ class Transfer extends CommonDBTM {
     * @param $array array of ID
     *
     * @return string of the IN condition
-   **/
+    */
    function createSearchConditionUsingArray($array) {
 
       if (is_array($array) && count($array)) {
@@ -1033,7 +1033,7 @@ class Transfer extends CommonDBTM {
     * Transfer item to a new Item if $ID==$newID : only update entities_id field :
     *                                $ID!=$new ID -> copy datas (like template system)
     * @return nothing (diplays)
-   **/
+    */
    function transferItem($itemtype, $ID, $newID) {
       global $CFG_GLPI, $DB;
 
@@ -1162,7 +1162,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  item type
     * @param $ID        item original ID
     * @param $newID     item new ID
-   **/
+    */
    function addToAlreadyTransfer($itemtype, $ID, $newID) {
 
       if (!isset($this->already_transfer[$itemtype])) {
@@ -1178,7 +1178,7 @@ class Transfer extends CommonDBTM {
     * @param $locID location ID
     *
     * @return new location ID
-   **/
+    */
    function transferDropdownLocation($locID) {
       global $DB;
 
@@ -1214,7 +1214,7 @@ class Transfer extends CommonDBTM {
     * @param $netpoints_id netpoint ID
     *
     * @return new netpoint ID
-   **/
+    */
    function transferDropdownNetpoint($netpoints_id) {
       global $DB;
 
@@ -1265,7 +1265,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $ID     original ID of the printer
     * @param $newID  new ID of the printer
-   **/
+    */
    function transferPrinterCartridges($ID, $newID) {
       global $DB;
 
@@ -1399,7 +1399,7 @@ class Transfer extends CommonDBTM {
     * @param $ID of the software
     *
     * @return $ID of the new software (could be the same)
-   **/
+    */
    function copySingleSoftware($ID) {
       global $DB;
 
@@ -1455,7 +1455,7 @@ class Transfer extends CommonDBTM {
     * @param $ID of the version
     *
     * @return $ID of the new version (could be the same)
-   **/
+    */
    function copySingleVersion($ID) {
       global $DB;
 
@@ -1504,7 +1504,7 @@ class Transfer extends CommonDBTM {
     * Transfer disks of a computer
     *
     * @param $ID ID of the computer
-   **/
+    */
    function transferComputerDisks($ID) {
 
       if (!$this->options['keep_disk']) {
@@ -1518,7 +1518,7 @@ class Transfer extends CommonDBTM {
     * Transfer softwares of a computer
     *
     * @param $ID           ID of the computer
-   **/
+    */
    function transferComputerSoftwares($ID) {
       global $DB;
 
@@ -1573,7 +1573,7 @@ class Transfer extends CommonDBTM {
     * Transfer affected licenses to a computer
     *
     * @param $ID ID of the License
-   **/
+    */
    function transferAffectedLicense($ID) {
       global $DB;
 
@@ -1650,7 +1650,7 @@ class Transfer extends CommonDBTM {
     * Transfer License and Version of a Software
     *
     * @param $ID ID of the Software
-   **/
+    */
    function transferSoftwareLicensesAndVersions($ID) {
       global $DB;
 
@@ -1721,7 +1721,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  original type of transfered item
     * @param $ID        original ID of the contract
     * @param $newID     new ID of the contract
-   **/
+    */
    function transferContracts($itemtype, $ID, $newID) {
       global $DB;
 
@@ -1897,7 +1897,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  original type of transfered item
     * @param $ID        original ID of the document
     * @param $newID     new ID of the document
-   **/
+    */
    function transferDocuments($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2076,7 +2076,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype        original type of transfered item
     * @param $ID              ID of the item
     * @param $link_type       type of the linked items to transfer
-   **/
+    */
    function transferDirectConnection($itemtype, $ID, $link_type) {
       global $DB;
 
@@ -2277,7 +2277,7 @@ class Transfer extends CommonDBTM {
     * @param $ID              ID of the item
     *
     * @since 0.84.4
-    **/
+    */
    function manageConnectionComputer($itemtype, $ID) {
       global $DB;
 
@@ -2315,7 +2315,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $itemtype  item type
     * @param $ID        ID of the item
-   **/
+    */
    function deleteDirectConnection($itemtype, $ID) {
       global $DB;
 
@@ -2334,7 +2334,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  type of transfered item
     * @param $ID        original ID of the ticket
     * @param $newID     new ID of the ticket
-   **/
+    */
    function transferTickets($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2406,7 +2406,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  itemtype : Problem / Ticket
     * @param $ID        original ticket ID
     * @param $newID     new ticket ID
-   **/
+    */
    function transferLinkedSuppliers($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2487,7 +2487,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  itemtype : Problem / Ticket
     * @param $ID        original ticket ID
     * @param $newID     new ticket ID
-   **/
+    */
    function transferTaskCategory($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2551,7 +2551,7 @@ class Transfer extends CommonDBTM {
     * @param $data ticket data fields
     *
     * @since 0.85 (before transferTicketAdditionalInformations)
-   **/
+    */
    function transferHelpdeskAdditionalInformations($data) {
 
       $input               = [];
@@ -2588,7 +2588,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  original type of transfered item
     * @param $ID        original ID of the history
     * @param $newID     new ID of the history
-   **/
+    */
    function transferHistory($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2646,7 +2646,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $ID     original ID of the cartridge type
     * @param $newID  new ID of the cartridge type
-   **/
+    */
    function transferCompatiblePrinters($ID, $newID) {
       global $DB;
 
@@ -2677,7 +2677,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  type of the item to transfer
     * @param $ID        original ID of the item
     * @param $newID     new ID of the item
-   **/
+    */
    function transferInfocoms($itemtype, $ID, $newID) {
       global $DB;
 
@@ -2735,7 +2735,7 @@ class Transfer extends CommonDBTM {
     * Transfer an enterprise
     *
     * @param $ID ID of the enterprise
-   **/
+    */
    function transferSingleSupplier($ID) {
       global $DB, $CFG_GLPI;
 
@@ -2828,7 +2828,7 @@ class Transfer extends CommonDBTM {
     *
     * @param $ID     original ID of the enterprise
     * @param $newID  new ID of the enterprise
-   **/
+    */
    function transferSupplierContacts($ID, $newID) {
       global $DB;
 
@@ -2984,7 +2984,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype  original type of transfered item
     * @param $ID        original ID of the item
     * @param $newID     new ID of the item
-   **/
+    */
    function transferReservations($itemtype, $ID, $newID) {
       global $DB;
 
@@ -3024,7 +3024,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype        original type of transfered item
     * @param $ID              ID of the item
     * @param $newID           new ID of the item
-   **/
+    */
    function transferDevices($itemtype, $ID, $newID) {
       global $DB, $CFG_GLPI;
 
@@ -3174,7 +3174,7 @@ class Transfer extends CommonDBTM {
     * @param $itemtype     original type of transfered item
     * @param $ID           original ID of the item
     * @param $newID        new ID of the item
-   **/
+    */
    function transferNetworkLink($itemtype, $ID, $newID) {
       global $DB;
       /// TODO manage with new network system
@@ -3270,7 +3270,7 @@ class Transfer extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 

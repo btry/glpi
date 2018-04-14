@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * DocumentType Class
-**/
+ */
 class DocumentType  extends CommonDropdown {
 
    static $rightname      = 'typedoc';
@@ -69,7 +69,7 @@ class DocumentType  extends CommonDropdown {
     * Get search function for the class
     *
     * @return array of search option
-   **/
+    */
    function rawSearchOptions() {
       $tab = parent::rawSearchOptions();
 
@@ -112,7 +112,7 @@ class DocumentType  extends CommonDropdown {
 
    /**
     * @since 0.84
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
       global $CFG_GLPI;
 
@@ -138,7 +138,7 @@ class DocumentType  extends CommonDropdown {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -159,7 +159,7 @@ class DocumentType  extends CommonDropdown {
     *
     * @param array $options list of options with theses possible keys:
     *                        - bool 'display', echo the generated html or return it
-   **/
+    */
    static function showAvailableTypesLink($options = []) {
       global $CFG_GLPI;
 

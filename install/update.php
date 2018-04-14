@@ -61,7 +61,7 @@ if (isset($_POST['update_end'])) {
 /**
  * To be conserved to migrations before 0.80
  * since 0.80, migration is a new class
-**/
+ */
 function displayMigrationMessage ($id, $msg = "") {
    static $created = 0;
    static $deb;
@@ -95,7 +95,7 @@ function displayMigrationMessage ($id, $msg = "") {
  * @param $name string name of the imported dropdown
  *
  * @return integer (ID of the existing/new dropdown)
-**/
+ */
 function update_importDropdown ($table, $name) {
    global $DB;
 

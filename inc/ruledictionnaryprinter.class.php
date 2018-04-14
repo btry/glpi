@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
 *   - description
 *   - criterias
 *   - actions
-**/
+ */
 class RuleDictionnaryPrinter extends Rule {
 
    // From Rule
@@ -55,14 +55,14 @@ class RuleDictionnaryPrinter extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       return 4;
    }
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -89,7 +89,7 @@ class RuleDictionnaryPrinter extends Rule {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                               = [];

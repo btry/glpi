@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
 *   - description
 *   - criterias
 *   - actions
-**/
+ */
 class RuleDictionnarySoftware extends Rule {
 
    public $additional_fields_for_dictionnary = ['manufacturer'];
@@ -51,7 +51,7 @@ class RuleDictionnarySoftware extends Rule {
 
    /**
     * @see Rule::getTitle()
-   **/
+    */
    function getTitle() {
       //TRANS: plural for software
       return __('Dictionnary of software');
@@ -60,14 +60,14 @@ class RuleDictionnarySoftware extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       return 4;
    }
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -98,7 +98,7 @@ class RuleDictionnarySoftware extends Rule {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                                  = [];
@@ -136,7 +136,7 @@ class RuleDictionnarySoftware extends Rule {
 
    /**
     * @see Rule::addSpecificParamsForPreview()
-   **/
+    */
    function addSpecificParamsForPreview($params) {
 
       if (isset($_POST["version"])) {
@@ -148,7 +148,7 @@ class RuleDictionnarySoftware extends Rule {
 
    /**
     * @see Rule::showSpecificCriteriasForPreview()
-   **/
+    */
    function showSpecificCriteriasForPreview($fields) {
 
       if (isset($this->fields['id'])) {

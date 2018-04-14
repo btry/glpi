@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * CronTaskLog class
-**/
+ */
 class CronTaskLog extends CommonDBTM{
 
    // Class constant
@@ -52,7 +52,7 @@ class CronTaskLog extends CommonDBTM{
     * @param $days   integer  number of day to keep
     *
     * @return integer number of events deleted
-   **/
+    */
    static function cleanOld($id, $days) {
       global $DB;
 

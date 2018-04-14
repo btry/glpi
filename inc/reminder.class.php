@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Reminder Class
-**/
+ */
 class Reminder extends CommonDBVisible {
 
    // From CommonDBTM
@@ -103,7 +103,7 @@ class Reminder extends CommonDBVisible {
     * @since 0.85
     *
     * @see CommonDBTM::canPurgeItem()
-   **/
+    */
    function canPurgeItem() {
 
       return ($this->fields['users_id'] == Session::getLoginUserID()
@@ -115,7 +115,7 @@ class Reminder extends CommonDBVisible {
    /**
     * @since 0.85
     * for personnal reminder
-   **/
+    */
    static function canUpdate() {
       return (Session::getCurrentInterface() != 'helpdesk');
    }
@@ -124,7 +124,7 @@ class Reminder extends CommonDBVisible {
    /**
     * @since 0.85
     * for personnal reminder
-   **/
+    */
    static function canPurge() {
       return (Session::getCurrentInterface() != 'helpdesk');
    }
@@ -150,7 +150,7 @@ class Reminder extends CommonDBVisible {
     * @see CommonDBTM::cleanDBonPurge()
     *
     * @since 0.83.1
-   **/
+    */
    function cleanDBonPurge() {
       global $DB;
 
@@ -180,7 +180,7 @@ class Reminder extends CommonDBVisible {
     * @param $forceall force all joins (false by default)
     *
     * @return string joins to add
-   **/
+    */
    static function addVisibilityJoins($forceall = false) {
 
       if (!Session::haveRight(self::$rightname, READ)) {
@@ -221,7 +221,7 @@ class Reminder extends CommonDBVisible {
     * Return visibility SQL restriction to add
     *
     * @return string restrict to add
-   **/
+    */
    static function addVisibilityRestrict() {
 
       $restrict = "`glpi_reminders`.`users_id` = '".Session::getLoginUserID()."' ";
@@ -281,7 +281,7 @@ class Reminder extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       if (isset($this->fields["begin"]) && !empty($this->fields["begin"])) {
@@ -417,7 +417,7 @@ class Reminder extends CommonDBVisible {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -438,7 +438,7 @@ class Reminder extends CommonDBVisible {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-    **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -456,7 +456,7 @@ class Reminder extends CommonDBVisible {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (self::canView()) {
@@ -478,7 +478,7 @@ class Reminder extends CommonDBVisible {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -495,7 +495,7 @@ class Reminder extends CommonDBVisible {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       switch ($item->getType()) {
@@ -509,7 +509,7 @@ class Reminder extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       Toolbox::manageBeginAndEndPlanDates($input['plan']);
@@ -549,7 +549,7 @@ class Reminder extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       Toolbox::manageBeginAndEndPlanDates($input['plan']);
@@ -616,7 +616,7 @@ class Reminder extends CommonDBVisible {
     * @param $options   array of possible options:
     *     - target filename : where to go when done.
     *     - from_planning_ajax : set to disable planning form part
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -806,7 +806,7 @@ class Reminder extends CommonDBVisible {
     *    - display_done_events (boolean)
     *
     * @return array of planning item
-   **/
+    */
    static function populatePlanning($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -954,7 +954,7 @@ class Reminder extends CommonDBVisible {
     * @param $val Array of the item to display
     *
     * @return Already planned information
-    **/
+    */
    static function getAlreadyPlannedInformation(array $val) {
       global $CFG_GLPI;
 
@@ -978,7 +978,7 @@ class Reminder extends CommonDBVisible {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       global $CFG_GLPI;
 
@@ -1029,7 +1029,7 @@ class Reminder extends CommonDBVisible {
     * @param $personal boolean : display reminders created by me ? (true by default)
     *
     * @return Nothing (display function)
-    **/
+    */
    static function showListForCentral($personal = true) {
       global $DB, $CFG_GLPI;
 
@@ -1142,7 +1142,7 @@ class Reminder extends CommonDBVisible {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       if ($interface == 'helpdesk') {

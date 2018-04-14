@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * @see Project
  * @author Julien Dombre
  * @since 0.85
- **/
+ */
 class ProjectTeam extends CommonDBRelation {
 
    // From CommonDBTM
@@ -60,7 +60,7 @@ class ProjectTeam extends CommonDBRelation {
 
    /**
     * @see CommonDBTM::getNameField()
-   **/
+    */
    static function getNameField() {
       return 'id';
    }
@@ -81,7 +81,7 @@ class ProjectTeam extends CommonDBRelation {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (self::canView()) {
@@ -102,7 +102,7 @@ class ProjectTeam extends CommonDBRelation {
     * @param $item
     *
     * @return number
-   **/
+    */
    static function countForProject(Project $item) {
 
       return countElementsInTable(['glpi_projectteams'], ['glpi_projectteams.projects_id' => $item->getField('id')]);
@@ -125,7 +125,7 @@ class ProjectTeam extends CommonDBRelation {
     *
     * @param integer $oldid        ID of the item to clone
     * @param integer $newid        ID of the item cloned
-    **/
+    */
    static function cloneProjectTeam ($oldid, $newid) {
       global $DB;
 
@@ -146,7 +146,7 @@ class ProjectTeam extends CommonDBRelation {
     * Get team for a project
     *
     * @param $projects_id
-   **/
+    */
    static function getTeamFor($projects_id) {
       global $DB;
 

@@ -35,7 +35,7 @@ class RuleDictionnaryMonitorModel extends RuleDictionnaryDropdown {
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryMonitorModel');
    }
@@ -43,7 +43,7 @@ class RuleDictionnaryMonitorModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -66,7 +66,7 @@ class RuleDictionnaryMonitorModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Ajax Class
-**/
+ */
 class Ajax {
 
    /**

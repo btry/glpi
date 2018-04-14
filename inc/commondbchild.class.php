@@ -59,7 +59,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $items_id
     *
     * @return string
-   **/
+    */
    static function getSQLRequestToSearchForItem($itemtype, $items_id) {
 
       $conditions = [];
@@ -89,7 +89,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canCreate() {
 
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, CREATE))) {
@@ -101,7 +101,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canView() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, READ))) {
          return false;
@@ -112,7 +112,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canUpdate() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, UPDATE))) {
          return false;
@@ -123,7 +123,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canDelete() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, DELETE))) {
          return false;
@@ -134,7 +134,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.85
-    **/
+    */
    static function canPurge() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, PURGE))) {
          return false;
@@ -145,7 +145,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canCreateItem() {
       return $this->canChildItem('canUpdateItem', 'canUpdate');
    }
@@ -153,7 +153,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canViewItem() {
       return $this->canChildItem('canViewItem', 'canView');
    }
@@ -161,7 +161,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canUpdateItem() {
       return $this->canChildItem('canUpdateItem', 'canUpdate');
    }
@@ -169,7 +169,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canDeleteItem() {
       return $this->canChildItem('canUpdateItem', 'canUpdate');
    }
@@ -179,7 +179,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @since 0.84
     *
     * @param $method
-   **/
+    */
    static function canChild($method) {
 
       return static::canConnexity($method, static::$checkParentRights, static::$itemtype,
@@ -194,7 +194,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $methodNotItem
     *
     * @return boolean
-   **/
+    */
    function canChildItem($methodItem, $methodNotItem) {
 
       try {
@@ -215,7 +215,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $getEmpty    (true by default)
     *
     * @return object of the concerned item or false on error
-   **/
+    */
    function getItem($getFromDB = true, $getEmpty = true) {
 
       return $this->getConnexityItem(static::$itemtype, static::$items_id,
@@ -228,7 +228,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     *
     * @param $recursiveItems     array of the items of the current elements (see recursivelyGetItems())
     * @param $elementToDisplay         what to display : 'Type', 'Name', 'Link'
-   **/
+    */
    static function displayRecursiveItems(array $recursiveItems, $elementToDisplay) {
 
       if ((!is_array($recursiveItems)) || (count($recursiveItems) == 0)) {
@@ -264,7 +264,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @since 0.84
     *
     * @return an array containing all the items
-   **/
+    */
    function recursivelyGetItems() {
 
       $item = $this->getItem();
@@ -282,7 +282,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * Get the ID of entity assigned to the object
     *
     * @return ID of the entity
-   **/
+    */
    function getEntityID () {
 
       // Case of Duplicate Entity info to child
@@ -321,7 +321,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * Is the object may be recursive
     *
     * @return boolean
-   **/
+    */
    function maybeRecursive() {
 
       // Case of Duplicate Entity info to child
@@ -343,7 +343,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * Is the object recursive
     *
     * @return booleanDONT_CHECK_ITEM_RIGHTS
-   **/
+    */
    function isRecursive () {
 
       // Case of Duplicate Entity info to child
@@ -363,7 +363,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function addNeededInfoToInput($input) {
 
       // is entity missing and forwarding on ?
@@ -392,7 +392,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (!is_array($input)) {
@@ -411,7 +411,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (!is_array($input)) {
@@ -439,7 +439,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     *              - 'delete' when this CommonDBChild is remove (from an item)
     *
     * @return (string) the name of the entry for the database (ie. : correctly slashed)
-   **/
+    */
    function getHistoryNameForItem(CommonDBTM $item, $case) {
 
       return $this->getNameID(['forceid'    => true,
@@ -451,7 +451,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * Actions done after the ADD of the item in the database
     *
     * @return nothing
-   **/
+    */
    function post_addItem() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -480,7 +480,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $history store changes history ? (default 1)
     *
     * @return nothing
-   **/
+    */
    function post_updateItem($history = 1) {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -537,7 +537,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * Actions done after the DELETE of the item in the database
     *
     *@return nothing
-   **/
+    */
    function post_deleteFromDB() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -570,7 +570,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @since 0.84
     *
     * @return nothing
-   **/
+    */
    function cleanDBonMarkDeleted() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -600,7 +600,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @since 0.84
     *
     * @return nothing
-   **/
+    */
 
    function post_restoreItem() {
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -636,7 +636,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     *                            of items
     *
     * @return (string) the code
-   **/
+    */
    static function getJSCodeToAddForItemChild($field_name, $child_count_js_var) {
       return "<input type=\'text\' size=\'40\' ". "name=\'" . $field_name .
              "[-'+$child_count_js_var+']\'>";
@@ -655,7 +655,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $id          id of the child
     *
     * @return nothing (display only)
-   **/
+    */
    function showChildForItemForm($canedit, $field_name, $id) {
 
       if ($this->isNewID($this->getID())) {
@@ -689,7 +689,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     *
     *
     * @return the button HTML code if $display is true
-   **/
+    */
    static function showAddChildButtonForItemForm(CommonDBTM $item, $field_name, $canedit = null,
                                                  $display = true) {
       global $CFG_GLPI;
@@ -751,7 +751,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $canedit      (default NULL) NULL to use default behaviour
     *
     * @return nothing (display only)
-   **/
+    */
    static function showChildsForItemForm(CommonDBTM $item, $field_name, $canedit = null) {
       global $DB, $CFG_GLPI;
 
@@ -832,7 +832,7 @@ abstract class CommonDBChild extends CommonDBConnexity {
     * @param $itemtype    string    the type of the new item (default '')
     *
     * @return boolean : true on success
-   **/
+    */
    function affectChild($id, $items_id = 0, $itemtype = '') {
 
       $input = [static::getIndexName() => $id,

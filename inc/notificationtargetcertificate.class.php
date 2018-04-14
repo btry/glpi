@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetSoftwareLicense Class
-**/
+ */
 class NotificationTargetCertificate extends NotificationTarget {
 
 

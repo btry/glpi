@@ -40,7 +40,7 @@ class HTMLTableUnknownHeadersOrder extends Exception {}
 
 /**
  * @since 0.84
-**/
+ */
 abstract class HTMLTableBase  {
 
    private $headers = [];
@@ -51,7 +51,7 @@ abstract class HTMLTableBase  {
 
    /**
     * @param $super
-   **/
+    */
    function __construct($super) {
       $this->super = $super;
    }
@@ -60,7 +60,7 @@ abstract class HTMLTableBase  {
    /**
     * @param $header_object         HTMLTableHeader object
     * @param $allow_super_header    (false by default
-   **/
+    */
    function appendHeader(HTMLTableHeader $header_object, $allow_super_header = false) {
 
       if (!$header_object instanceof HTMLTableHeader) {
@@ -98,7 +98,7 @@ abstract class HTMLTableBase  {
     * Internal test to see if we can add an header. For instance, we can only add a super header
     * to a table if there is no group defined. And we can only create a sub Header to a group if
     * it contains no row
-   **/
+    */
    abstract function tryAddHeader();
 
 
@@ -120,7 +120,7 @@ abstract class HTMLTableBase  {
     *                                     header or a super header while creating a super one
     *
     * @return the HTMLTableHeader        that have been created
-   **/
+    */
    function addHeader($name, $content, HTMLTableSuperHeader $super = null,
                       HTMLTableHeader $father = null) {
 
@@ -141,7 +141,7 @@ abstract class HTMLTableBase  {
 
    /**
     * @param $name
-   **/
+    */
    function getSuperHeaderByName($name) {
       return $this->getHeaderByName($name, '');
    }
@@ -150,7 +150,7 @@ abstract class HTMLTableBase  {
    /**
     * @param $name
     * @param $sub_name (default NULL)
-   **/
+    */
    function getHeaderByName($name, $sub_name = null) {
 
       if (is_string($sub_name)) {
@@ -171,7 +171,7 @@ abstract class HTMLTableBase  {
 
    /**
     * @param $header_name  (default '')
-   **/
+    */
    function getHeaders($header_name = '') {
 
       if (empty($header_name)) {
@@ -186,7 +186,7 @@ abstract class HTMLTableBase  {
 
    /**
     * @param $header_name  (default '')
-   **/
+    */
    function getHeaderOrder($header_name = '') {
 
       if (empty($header_name)) {

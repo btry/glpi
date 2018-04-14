@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 /** QueuedNotification class
  *
  * @since 0.85
-**/
+ */
 class QueuedNotification extends CommonDBTM {
 
    static $rightname = 'queuednotification';
@@ -70,7 +70,7 @@ class QueuedNotification extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null, $is_deleted = false) {
 
       $isadmin = static::canUpdate();
@@ -86,7 +86,7 @@ class QueuedNotification extends CommonDBTM {
 
    /**
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
       switch ($ma->getAction()) {
@@ -376,7 +376,7 @@ class QueuedNotification extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -450,7 +450,7 @@ class QueuedNotification extends CommonDBTM {
     * @return true if send false if not
     *
     * @deprecated 9.2 see QueuedNotification::sendById
-   **/
+    */
    function sendMailById($ID) {
       Toolbox::deprecated('sendMailById() method is deprecated');
       return $this->sendById($ID);
@@ -463,7 +463,7 @@ class QueuedNotification extends CommonDBTM {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -547,7 +547,7 @@ class QueuedNotification extends CommonDBTM {
     * @param CommonDBTM $task for log (default NULL)
     *
     * @return integer either 0 or 1
-   **/
+    */
    static function cronQueuedNotification($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -591,7 +591,7 @@ class QueuedNotification extends CommonDBTM {
     * @param CommonDBTM $task for log (default NULL)
     *
     * @return integer either 0 or 1
-   **/
+    */
    static function cronQueuedNotificationClean($task = null) {
       global $DB;
 
@@ -622,7 +622,7 @@ class QueuedNotification extends CommonDBTM {
     * @param integer $items_id id of the item
     *
     * @return void
-   **/
+    */
    static function forceSendFor($itemtype, $items_id) {
       global $DB;
 
@@ -653,7 +653,7 @@ class QueuedNotification extends CommonDBTM {
     * @param array   $options Options
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -767,7 +767,7 @@ class QueuedNotification extends CommonDBTM {
     * @since 0.85
     *
     * @param $string
-    **/
+    */
    static function cleanHtml($string) {
 
       $begin_strip     = -1;

@@ -1268,7 +1268,7 @@ final class DbUtils {
     * @param string $table dropdown tree table to compute
     *
     * @return void
-    **/
+    */
    public function regenerateTreeCompleteName($table) {
       global $DB;
 

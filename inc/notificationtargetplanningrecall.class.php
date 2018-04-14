@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetPlanningRecall Class
  *
  * @since 0.84
-**/
+ */
 class NotificationTargetPlanningRecall extends NotificationTarget {
 
 
@@ -50,7 +50,7 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
 
    /**
     * @see NotificationTarget::addNotificationTargets()
-   **/
+    */
    function addNotificationTargets($entity) {
       $this->addTarget(Notification::AUTHOR, __('Requester'));
       $this->addTarget(Notification::TASK_ASSIGN_TECH, __('Technician in charge of the task'));
@@ -58,7 +58,7 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
 
    /**
     * @see NotificationTarget::addSpecificTargets()
-   **/
+    */
    function addSpecificTargets($data, $options) {
       switch ($data['type']) {
          case Notification::USER_TYPE :
@@ -76,7 +76,7 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
     * Get tech related to the task
     *
     * @param $options array
-   **/
+    */
    function addTaskAssignUser() {
       $item = new $this->obj->fields['itemtype'];
       if ($item->getFromDB($this->obj->fields['items_id'])) {
@@ -202,7 +202,7 @@ class NotificationTargetPlanningRecall extends NotificationTarget {
     * @param $event  (default '')
     *
     * @return the object associated with the itemtype
-   **/
+    */
    function getObjectItem($event = '') {
 
       if ($this->obj) {

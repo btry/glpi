@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Profile class
-**/
+ */
 class Profile extends CommonDBTM {
 
    // Specific ones
@@ -338,7 +338,7 @@ class Profile extends CommonDBTM {
     * @since 0.85
     *
     * @return boolean
-   **/
+    */
    function pre_deleteItem() {
       global $DB;
 
@@ -374,7 +374,7 @@ class Profile extends CommonDBTM {
 
    /**
     * Unset unused rights for helpdesk
-   **/
+    */
    function cleanProfile() {
 
       if (isset($this->fields['interface']) && $this->fields["interface"] == "helpdesk") {
@@ -420,7 +420,7 @@ class Profile extends CommonDBTM {
     * @param $separator string   Separator used at the beginning of the request (default 'AND')
     *
     * @return SQL restrict string
-   **/
+    */
    static function getUnderActiveProfileRestrictRequest($separator = "AND") {
 
       // I don't understand usefull of this code (yllen)
@@ -501,7 +501,7 @@ class Profile extends CommonDBTM {
     * @param $IDs array of profile ID to test
     *
     * @return boolean true if have more right
-   **/
+    */
    static function currentUserHaveMoreRightThan($IDs = []) {
       global $DB;
 
@@ -570,7 +570,7 @@ class Profile extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean item found
-    **/
+    */
    function showForm($ID, $options = []) {
 
       $onfocus = "";
@@ -628,7 +628,7 @@ class Profile extends CommonDBTM {
     * Print the helpdesk right form for the current profile
     *
     * @since 0.85
-   **/
+    */
    function showFormTrackingHelpdesk() {
       global $CFG_GLPI;
 
@@ -720,7 +720,7 @@ class Profile extends CommonDBTM {
     * Print the helpdesk right form for the current profile
     *
     * @since 0.85
-   **/
+    */
    function showFormToolsHelpdesk() {
       global $CFG_GLPI;
 
@@ -772,7 +772,7 @@ class Profile extends CommonDBTM {
     * @param $openform  boolean open the form (true by default)
     * @param $closeform boolean close the form (true by default)
     *
-   **/
+    */
    function showFormAsset($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -845,7 +845,7 @@ class Profile extends CommonDBTM {
     *
     * @param $openform  boolean open the form (true by default)
     * @param $closeform boolean close the form (true by default)
-   **/
+    */
    function showFormManagement($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -914,7 +914,7 @@ class Profile extends CommonDBTM {
     *
     * @param $openform  boolean open the form (true by default)
     * @param $closeform boolean close the form (true by default)
-   **/
+    */
    function showFormTools($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -978,7 +978,7 @@ class Profile extends CommonDBTM {
     *
     * @param $openform     boolean  open the form (true by default)
     * @param $closeform    boolean  close the form (true by default)
-   **/
+    */
    function showFormTracking($openform = true, $closeform = true) {
       global $CFG_GLPI;
 
@@ -1133,7 +1133,7 @@ class Profile extends CommonDBTM {
     * @param $canedit        can we edit the elements ?
     *
     * @return nothing
-   **/
+    */
    function displayLifeCycleMatrix($title, $html_field, $db_field, $statuses, $canedit) {
 
       $columns  = [];
@@ -1169,7 +1169,7 @@ class Profile extends CommonDBTM {
    *
    * @param $openform   boolean  open the form (true by default)
    * @param $closeform  boolean  close the form (true by default)
-   **/
+    */
    function showFormLifeCycle($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -1215,7 +1215,7 @@ class Profile extends CommonDBTM {
     * @param $canedit        can we edit the elements ?
     *
     * @return nothing
-   **/
+    */
    function displayLifeCycleMatrixTicketHelpdesk($title, $html_field, $db_field, $canedit) {
 
       $columns     = [];
@@ -1270,7 +1270,7 @@ class Profile extends CommonDBTM {
    *
    * @param $openform   boolean  open the form (true by default)
    * @param $closeform  boolean  close the form (true by default)
-   **/
+    */
    function showFormLifeCycleHelpdesk($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -1304,7 +1304,7 @@ class Profile extends CommonDBTM {
     *
     * @param $openform     boolean  open the form (true by default)
     * @param $closeform    boolean  close the form (true by default)
-   **/
+    */
    function showFormAdmin($openform = true, $closeform = true) {
       global $DB;
 
@@ -1399,7 +1399,7 @@ class Profile extends CommonDBTM {
     *
     * @param $openform     boolean  open the form (true by default)
     * @param $closeform    boolean  close the form (true by default)
-   **/
+    */
    function showFormSetup($openform = true, $closeform = true) {
 
       if (!self::canView()) {
@@ -2401,7 +2401,7 @@ class Profile extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-    **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -2435,7 +2435,7 @@ class Profile extends CommonDBTM {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -2469,7 +2469,7 @@ class Profile extends CommonDBTM {
     * @param $name      integer  name of the dropdown
     * @param $current   integer  value in database (sum of rights)
     * @param $options   array
-   **/
+    */
    static function dropdownRights(array $values, $name, $current, $options = []) {
 
       foreach ($values as $key => $value) {
@@ -2521,7 +2521,7 @@ class Profile extends CommonDBTM {
     *       - rand    : specific rand (default is generated one)
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownRight($name, $options = []) {
 
       $param['value']   = '';
@@ -2561,7 +2561,7 @@ class Profile extends CommonDBTM {
     *    - name : string / name of the select (default is profiles_id)
     *    - value : integer / preselected value (default 0)
     *
-   **/
+    */
    static function dropdownUnder($options = []) {
       global $DB;
 
@@ -2598,7 +2598,7 @@ class Profile extends CommonDBTM {
     * Get the default Profile for new user
     *
     * @return integer profiles_id
-   **/
+    */
    static function getDefault() {
       global $DB;
 
@@ -2611,7 +2611,7 @@ class Profile extends CommonDBTM {
 
    /**
     * @since 0.84
-   **/
+    */
    static function getInterfaces() {
 
       return ['central'  => __('Standard interface'),
@@ -2621,7 +2621,7 @@ class Profile extends CommonDBTM {
 
    /**
     * @param $value
-   **/
+    */
    static function getInterfaceName($value) {
 
       $tab = self::getInterfaces();
@@ -2636,7 +2636,7 @@ class Profile extends CommonDBTM {
     * @since 0.84
     *
     * @param $rights   boolean   (false by default)
-   **/
+    */
    static function getHelpdeskHardwareTypes($rights = false) {
 
       if ($rights) {
@@ -2656,7 +2656,7 @@ class Profile extends CommonDBTM {
     * @since 0.84
     *
     * @param $value
-   **/
+    */
    static function getHelpdeskHardwareTypeName($value) {
 
       $tab = self::getHelpdeskHardwareTypes();
@@ -2669,7 +2669,7 @@ class Profile extends CommonDBTM {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getHelpdeskItemtypes() {
       global $CFG_GLPI;
 
@@ -2693,7 +2693,7 @@ class Profile extends CommonDBTM {
     * @param $options array of possible options:
     *    - name : string / name of the select (default is profiles_id)
     *    - values : array of values
-   **/
+    */
    static function dropdownHelpdeskItemtypes($options) {
       global $CFG_GLPI;
 
@@ -2756,7 +2756,7 @@ class Profile extends CommonDBTM {
     * @param $interface  string   (default 'central')
     *
     * @return rights
-   **/
+    */
    static function getRightsFor($itemtype, $interface = 'central') {
 
       if (class_exists($itemtype)) {
@@ -2784,7 +2784,7 @@ class Profile extends CommonDBTM {
     *             'default_class' the default CSS class used for the row
     *
     * @return random value used to generate the ids
-   **/
+    */
    function displayRightsChoiceMatrix(array $rights, array $options = []) {
 
       $param                  = [];
@@ -2913,7 +2913,7 @@ class Profile extends CommonDBTM {
     *             'check_method'  method used to check the right
     *
     * @return content if !display
-   **/
+    */
    static function getLinearRightChoice(array $elements, array $options = []) {
 
       $param                  = [];

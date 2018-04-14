@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Relation between item and devices
-**/
+ */
 class Item_DeviceGraphicCard extends Item_Devices {
 
    static public $itemtype_2 = 'DeviceGraphicCard';
@@ -46,7 +46,7 @@ class Item_DeviceGraphicCard extends Item_Devices {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getSpecificities($specif = '') {
 
       return ['memory' => ['long name'  => sprintf(__('%1$s (%2$s)'), __('Memory'),

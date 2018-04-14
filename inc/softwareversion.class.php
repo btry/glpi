@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SoftwareVersion Class
-**/
+ */
 class SoftwareVersion extends CommonDBChild {
 
    // From CommonDBTM
@@ -75,7 +75,7 @@ class SoftwareVersion extends CommonDBChild {
     * @since 0.84
     *
     * @see CommonDBTM::getPreAdditionalInfosForName
-   **/
+    */
    function getPreAdditionalInfosForName() {
 
       $soft = new Software();
@@ -96,7 +96,7 @@ class SoftwareVersion extends CommonDBChild {
     *
     * @return true if displayed  false if item not found or not right to display
     *
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -214,7 +214,7 @@ class SoftwareVersion extends CommonDBChild {
     *    - used          : array / already used items
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownForOneSoftware($options = []) {
       global $CFG_GLPI, $DB;
 
@@ -271,7 +271,7 @@ class SoftwareVersion extends CommonDBChild {
     * @param $soft Software object
     *
     * @return nothing
-   **/
+    */
    static function showForSoftware(Software $soft) {
       global $DB, $CFG_GLPI;
 

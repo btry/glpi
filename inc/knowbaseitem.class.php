@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * KnowbaseItem Class
-**/
+ */
 class KnowbaseItem extends CommonDBVisible {
 
 
@@ -69,7 +69,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'b';
    }
@@ -78,7 +78,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @see CommonGLPI::getMenuName()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuName() {
       if (!Session::haveRight('knowbase', READ)) {
          return __('FAQ');
@@ -96,7 +96,7 @@ class KnowbaseItem extends CommonDBVisible {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canUpdate() {
       return Session::haveRightsOr(self::$rightname, [UPDATE, self::KNOWBASEADMIN]);
    }
@@ -156,7 +156,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @since 0.84
     *
     * @param $full path or relative one (true by default)
-   **/
+    */
    static function getSearchURL($full = true) {
       global $CFG_GLPI;
 
@@ -232,7 +232,7 @@ class KnowbaseItem extends CommonDBVisible {
     * Actions done at the end of the getEmpty function
     *
     *@return nothing
-   **/
+    */
    function post_getEmpty() {
 
       if (Session::haveRight(self::$rightname, self::PUBLISHFAQ)
@@ -245,7 +245,7 @@ class KnowbaseItem extends CommonDBVisible {
    /**
     * @since 0.85
     * @see CommonDBTM::post_addItem()
-   **/
+    */
    function post_addItem() {
 
       // add documents (and replace inline pictures)
@@ -308,7 +308,7 @@ class KnowbaseItem extends CommonDBVisible {
 
    /**
     * @since 0.83
-   **/
+    */
    function post_getFromDB() {
 
       // Users
@@ -332,7 +332,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @see CommonDBTM::cleanDBonPurge()
     *
     * @since 0.83.1
-   **/
+    */
    function cleanDBonPurge() {
 
       $class = new KnowbaseItem_User();
@@ -357,7 +357,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @since 0.83
     *
     * @return Boolean
-   **/
+    */
    function isPubliclyVisible() {
       global $CFG_GLPI;
 
@@ -397,7 +397,7 @@ class KnowbaseItem extends CommonDBVisible {
    * @param $forceall force all joins (false by default)
    *
    * @return string joins to add
-   **/
+    */
    static function addVisibilityJoins($forceall = false) {
 
       $join = '';
@@ -441,7 +441,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @since 0.83
     *
     * @return string restrict to add
-   **/
+    */
    static function addVisibilityRestrict() {
 
       $restrict = '';
@@ -600,7 +600,7 @@ class KnowbaseItem extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       // set new date if not exists
@@ -628,7 +628,7 @@ class KnowbaseItem extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       // add documents (and replace inline pictures)
@@ -651,7 +651,7 @@ class KnowbaseItem extends CommonDBVisible {
     *     - target for the Form
     *
     * @return nothing (display the form)
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -837,7 +837,7 @@ class KnowbaseItem extends CommonDBVisible {
     * Add kb item to the public FAQ
     *
     * @return nothing
-   **/
+    */
    function addToFaq() {
       global $DB;
 
@@ -879,7 +879,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $options      array of options
     *
     * @return nothing (display item : question and answer)
-   **/
+    */
    function showFull($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -985,7 +985,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $options   $_GET
     *
     * @return nothing (display the form)
-   **/
+    */
    function searchForm($options) {
       global $CFG_GLPI;
 
@@ -1032,7 +1032,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $options   $_GET
     *
     * @return nothing (display the form)
-   **/
+    */
    function showBrowseForm($options) {
       global $CFG_GLPI;
 
@@ -1081,7 +1081,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $options   $_GET
     *
     * @return nothing (display the form)
-   **/
+    */
    function showManageForm($options) {
       global $CFG_GLPI;
 
@@ -1126,7 +1126,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $type   string search type : browse / search (default search)
     *
     * @return String : SQL request
-   **/
+    */
    static function getListRequest(array $params, $type = 'search') {
       global $DB;
 
@@ -1311,7 +1311,7 @@ class KnowbaseItem extends CommonDBVisible {
     *
     * @param $options            $_GET
     * @param $type      string   search type : browse / search (default search)
-   **/
+    */
    static function showList($options, $type = 'search') {
       global $DB, $CFG_GLPI;
 
@@ -1549,7 +1549,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @param $type      type : recent / popular / not published
     *
     * @return nothing (display table)
-   **/
+    */
    static function showRecentPopular($type) {
       global $DB, $CFG_GLPI;
 
@@ -1768,7 +1768,7 @@ class KnowbaseItem extends CommonDBVisible {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       if ($interface == 'central') {

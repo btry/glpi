@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Computer_Item Class
  *
  * Relation between Computer and Items (monitor, printer, phone, peripheral only)
-**/
+ */
 class Computer_Item extends CommonDBRelation{
 
    // From CommonDBRelation
@@ -54,7 +54,7 @@ class Computer_Item extends CommonDBRelation{
    /**
     * @since 0.84
     *
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -69,7 +69,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $item   CommonDBTM object
     *
     * @return integer: count
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       return countElementsInTable('glpi_computers_items',
@@ -85,7 +85,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $comp   Computer object
     *
     * @return integer: count
-   **/
+    */
    static function countForComputer(Computer $comp) {
 
       return countElementsInTable('glpi_computers_items',
@@ -103,7 +103,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $item   CommonDBTM object
     *
     * @return integer: count
-   **/
+    */
    static function countForAll(Computer $comp, CommonDBTM $item) {
 
       return countElementsInTable('glpi_computers_items',
@@ -123,7 +123,7 @@ class Computer_Item extends CommonDBRelation{
     *
     * @return the modified $input array
     *
-   **/
+    */
    function prepareInputForAdd($input) {
       global $DB, $CFG_GLPI;
 
@@ -213,7 +213,7 @@ class Computer_Item extends CommonDBRelation{
     * Overloaded to manage autoupdate feature
     *
     *@return nothing
-   **/
+    */
    function cleanDBonPurge() {
       global $CFG_GLPI;
 
@@ -270,7 +270,7 @@ class Computer_Item extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBTM::getMassiveActionsForItemtype()
-   **/
+    */
    static function getMassiveActionsForItemtype(array &$actions, $itemtype, $is_deleted = 0,
                                                 CommonDBTM $checkitem = null) {
 
@@ -289,7 +289,7 @@ class Computer_Item extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 
@@ -352,7 +352,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $withtemplate    boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForComputer(Computer $comp, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -505,7 +505,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $withtemplate    integer  withtemplate param (default 0)
     *
     * @return nothing (print out a table)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       // Prints a direct connection to a computer
       global $DB;
@@ -642,7 +642,7 @@ class Computer_Item extends CommonDBRelation{
     * Unglobalize an item : duplicate item and connections
     *
     * @param $item   CommonDBTM object to unglobalize
-   **/
+    */
    static function unglobalizeItem(CommonDBTM $item) {
       global $DB;
 
@@ -762,7 +762,7 @@ class Computer_Item extends CommonDBRelation{
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       // can exists for Template
@@ -829,7 +829,7 @@ class Computer_Item extends CommonDBRelation{
     *
     * @param $oldid        ID of the item to clone
     * @param $newid        ID of the item cloned
-   **/
+    */
    static function cloneComputer($oldid, $newid) {
       global $DB;
 
@@ -855,7 +855,7 @@ class Computer_Item extends CommonDBRelation{
     * @param $itemtype     type of the item to clone
     * @param $oldid        ID of the item to clone
     * @param $newid        ID of the item cloned
-   **/
+    */
    static function cloneItem($itemtype, $oldid, $newid) {
       global $DB;
 
@@ -883,7 +883,7 @@ class Computer_Item extends CommonDBRelation{
     * $param  $entities
     *
     * @return boolean
-   **/
+    */
    static function canUnrecursSpecif($item, $entities) {
       global $DB;
 

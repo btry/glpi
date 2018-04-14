@@ -51,7 +51,7 @@ class ProjectCost extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (empty($input['end_date'])
@@ -67,7 +67,7 @@ class ProjectCost extends CommonDBChild {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (empty($input['end_date'])
@@ -83,7 +83,7 @@ class ProjectCost extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       // can exists for template
@@ -197,7 +197,7 @@ class ProjectCost extends CommonDBChild {
     *
     * @param $oldid
     * @param $newid
-   **/
+    */
    static function cloneProject ($oldid, $newid) {
       global $DB;
 
@@ -216,7 +216,7 @@ class ProjectCost extends CommonDBChild {
 
    /**
     * Init cost for creation based on previous cost
-   **/
+    */
    function initBasedOnPrevious() {
 
       $ticket = new Ticket();
@@ -245,7 +245,7 @@ class ProjectCost extends CommonDBChild {
     * Get last datas for a project
     *
     * @param $projects_id        integer  ID of the project
-   **/
+    */
    function getLastCostForProject($projects_id) {
       global $DB;
 
@@ -266,7 +266,7 @@ class ProjectCost extends CommonDBChild {
     *
     * @param $ID        integer  ID of the item
     * @param $options   array    options used
-   **/
+    */
    function showForm($ID, $options = []) {
 
       if ($ID > 0) {
@@ -325,7 +325,7 @@ class ProjectCost extends CommonDBChild {
     * @param $withtemplate  boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForProject(Project $project, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 

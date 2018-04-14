@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Update class
-**/
+ */
 class Update extends CommonGLPI {
    private $args = [];
    private $DB;

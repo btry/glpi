@@ -36,7 +36,7 @@ class RuleDictionnaryNetworkEquipmentModelCollection extends RuleDictionnaryDrop
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of networking equipment models');
    }

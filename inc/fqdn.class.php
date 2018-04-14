@@ -69,7 +69,7 @@ class FQDN extends CommonDropdown {
     * @param $input fields of the record to check
     *
     * @return false or fields checks and update (lowercase for the fqdn field)
-   **/
+    */
    function prepareInput($input) {
 
       if (isset($input['fqdn'])
@@ -118,7 +118,7 @@ class FQDN extends CommonDropdown {
 
    /**
     * @return the FQDN of the element, or "" if invalid FQDN
-   **/
+    */
    function getFQDN() {
 
       if ($this->can($this->getID(), READ)) {
@@ -136,7 +136,7 @@ class FQDN extends CommonDropdown {
     *
     * @return if $wildcard_search == false : the id of the fqdn, -1 if not found or several answers
     *         if $wildcard_search == true : an array of the id of the fqdn
-   **/
+    */
    static function getFQDNIDByFQDN($fqdn, $wildcard_search = false) {
       global $DB;
 
@@ -180,7 +180,7 @@ class FQDN extends CommonDropdown {
     * @param $ID id of the FQDN
     *
     * @return the FQDN of the element, or "" if invalid FQDN
-   **/
+    */
    static function getFQDNFromID($ID) {
 
       $thisDomain = new self();
@@ -212,7 +212,7 @@ class FQDN extends CommonDropdown {
     * @param $fqdn the FQDN to check
     *
     * @return true if the FQDN is valid
-   **/
+    */
    static function checkFQDN($fqdn) {
 
       // The FQDN must be compose of several labels separated by dots '.'

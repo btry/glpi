@@ -55,7 +55,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       // Unlimited
       return 1;
@@ -140,7 +140,7 @@ class RuleImportComputer extends Rule {
     * @param value the value for this action
     *
     * @return the label's value or ''
-   **/
+    */
    function displayAdditionRuleActionValue($value) {
 
       $values = self::getRuleActionValues();
@@ -155,7 +155,7 @@ class RuleImportComputer extends Rule {
     * @param $criteria
     * @param $name
     * @param $value
-   **/
+    */
    function manageSpecificCriteriaValues($criteria, $name, $value) {
 
       switch ($criteria['type']) {
@@ -172,7 +172,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * Add more criteria specific to this type of rule
-   **/
+    */
    static function addMoreCriteria() {
 
       return [Rule::PATTERN_FIND     => __('is already present in GLPI'),
@@ -182,7 +182,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @see Rule::getAdditionalCriteriaDisplayPattern()
-   **/
+    */
    function getAdditionalCriteriaDisplayPattern($ID, $condition, $pattern) {
 
       if ($condition == Rule::PATTERN_IS_EMPTY) {
@@ -194,7 +194,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @see Rule::displayAdditionalRuleCondition()
-   **/
+    */
    function displayAdditionalRuleCondition($condition, $criteria, $name, $value, $test = false) {
 
       if ($test) {
@@ -214,7 +214,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @see Rule::displayAdditionalRuleAction()
-   **/
+    */
    function displayAdditionalRuleAction(array $action, $value = '') {
 
       switch ($action['type']) {
@@ -228,7 +228,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @param $ID
-   **/
+    */
    function getCriteriaByID($ID) {
 
       $criteria = [];
@@ -243,7 +243,7 @@ class RuleImportComputer extends Rule {
 
    /**
     * @see Rule::findWithGlobalCriteria()
-   **/
+    */
    function findWithGlobalCriteria($input) {
       global $DB, $PLUGIN_HOOKS;
 
@@ -399,7 +399,7 @@ class RuleImportComputer extends Rule {
     * @param $params parameters
     *
     * @return the $output array modified
-   **/
+    */
    function executeActions($output, $params) {
 
       if (count($this->actions)) {
@@ -418,7 +418,7 @@ class RuleImportComputer extends Rule {
     * Function used to display type specific criterias during rule's preview
     *
     * @see Rule::showSpecificCriteriasForPreview()
-   **/
+    */
    function showSpecificCriteriasForPreview($fields) {
 
       $entity_as_criteria = false;

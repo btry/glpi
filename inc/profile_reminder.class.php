@@ -54,7 +54,7 @@ class Profile_Reminder extends CommonDBRelation {
     * @param $reminders_id ID of the reminder
     *
     * @return array of profiles linked to a reminder
-   **/
+    */
    static function getProfiles($reminders_id) {
       global $DB;
 

@@ -51,7 +51,7 @@ class Certificate_Item extends CommonDBRelation {
    /**
     * @since 9.2
     *
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
       $forbidden   = parent::getForbiddenStandardMassiveAction();
       $forbidden[] = 'update';
@@ -205,7 +205,7 @@ class Certificate_Item extends CommonDBRelation {
     * @param $certificate Certificate object
     *
     * @return nothing (HTML display)
-    **/
+    */
    public static function showForCertificate(Certificate $certificate) {
       global $DB;
 

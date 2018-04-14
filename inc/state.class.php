@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * State Class
-**/
+ */
 class State extends CommonTreeDropdown {
 
    protected $visibility_fields    = ['Computer'         => 'is_visible_computer',
@@ -65,7 +65,7 @@ class State extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see CommonTreeDropdown::getAdditionalFields()
-   **/
+    */
    function getAdditionalFields() {
 
       $fields   = parent::getAdditionalFields();
@@ -89,7 +89,7 @@ class State extends CommonTreeDropdown {
     * @param $name            select name
     * @param $lib    string   to add for -1 value (default '')
     * @param $value           default value (default 0)
-   **/
+    */
    static function dropdownBehaviour($name, $lib = "", $value = 0) {
       global $DB;
 
@@ -235,7 +235,7 @@ class State extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::getEmpty()
-   **/
+    */
    function getEmpty() {
 
       parent::getEmpty();
@@ -255,7 +255,7 @@ class State extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see CommonTreeDropdown::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
       if (!isset($input['states_id'])) {
          $input['states_id'] = 0;

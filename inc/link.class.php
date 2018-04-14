@@ -35,7 +35,7 @@ if (!defined('GLPI_ROOT')) {
 }
 
 /** Link Class
-**/
+ */
 class Link extends CommonDBTM {
 
    // From CommonDBTM
@@ -56,7 +56,7 @@ class Link extends CommonDBTM {
     * For plugins, add a tag to the links tags
     *
     * @param $tag    string    class name
-   **/
+    */
    static function registerTag($tag) {
 
       if (!in_array($tag, self::$tags)) {
@@ -114,7 +114,7 @@ class Link extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::getEmpty()
-   **/
+    */
    function getEmpty() {
 
       parent::getEmpty();
@@ -131,7 +131,7 @@ class Link extends CommonDBTM {
    *     - target filename : where to go when done.
    *
    * @return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -180,7 +180,7 @@ class Link extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -266,7 +266,7 @@ class Link extends CommonDBTM {
     * @param $item             CommonDBTM object: item used to make replacements
     *
     * @return array of link contents (may have several when item have several IP / MAC cases)
-   **/
+    */
    static function generateLinkContents($link, CommonDBTM $item) {
       global $DB;
 
@@ -456,7 +456,7 @@ class Link extends CommonDBTM {
     *
     * @param $item                     CommonDBTM object
     * @param $withtemplate    integer  withtemplate param (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -517,7 +517,7 @@ class Link extends CommonDBTM {
     *
     * @param $item                        CommonDBTM object
     * @param $params    array of params : must contain id / name / link / data
-   **/
+    */
    static function getAllLinksFor($item, $params = []) {
       global $CFG_GLPI;
 

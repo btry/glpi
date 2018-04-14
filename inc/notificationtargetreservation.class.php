@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetReservation Class
-**/
+ */
 class NotificationTargetReservation extends NotificationTarget {
 
 
@@ -194,7 +194,7 @@ class NotificationTargetReservation extends NotificationTarget {
     * @param string $event (default '')
     *
     * @return the object associated with the itemtype
-   **/
+    */
    function getObjectItem($event = '') {
 
       if ($this->obj) {

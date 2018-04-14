@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * RuleRight Class
  *
  * Rule class for Rights management
-**/
+ */
 class RuleRight extends Rule {
 
    // From Rule
@@ -49,7 +49,7 @@ class RuleRight extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       // Unlimited
       return 4;
@@ -58,7 +58,7 @@ class RuleRight extends Rule {
 
    /**
     * @see Rule::showNewRuleForm()
-   **/
+    */
    function showNewRuleForm($ID) {
 
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL('Entity')."'>";
@@ -103,7 +103,7 @@ class RuleRight extends Rule {
     * @param $params the parameters
     *
     * @return the fields modified
-   **/
+    */
    function executeActions($output, $params) {
       global $CFG_GLPI;
 
@@ -226,7 +226,7 @@ class RuleRight extends Rule {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
       static $criterias = [];
 
@@ -280,7 +280,7 @@ class RuleRight extends Rule {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                                              = [];
@@ -333,7 +333,7 @@ class RuleRight extends Rule {
     * Get all ldap rules criterias from the DB and add them into the RULES_CRITERIAS
     *
     * @param &$criterias
-   **/
+    */
    function addSpecificCriteriasToArray(&$criterias) {
 
       $criterias['ldap'] = __('LDAP criteria');

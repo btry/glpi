@@ -82,7 +82,7 @@ Session::changeProfile(4);
 /* ----------------------------------------------------------------- */
 /**
  * Extends class Migration to redefine display mode
-**/
+ */
 class CliMigration extends Migration {
 
 

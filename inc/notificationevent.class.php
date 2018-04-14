@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Class which manages notification events
-**/
+ */
 class NotificationEvent extends CommonDBTM {
 
    static function getTypeName($nb = 0) {
@@ -49,7 +49,7 @@ class NotificationEvent extends CommonDBTM {
     * @param array  $options  array to pass to showFromArray or $value
     *
     * @return string
-   **/
+    */
    static function dropdownEvents($itemtype, $options = []) {
 
       $p['name']                = 'event';
@@ -81,7 +81,7 @@ class NotificationEvent extends CommonDBTM {
     * @param string $event    name of the event
     *
     * @return string
-   **/
+    */
    static function getEventName($itemtype, $event) {
 
       $events = [];
@@ -105,7 +105,7 @@ class NotificationEvent extends CommonDBTM {
     * @param string     $label   used for debugEvent() (default '')
     *
     * @return boolean
-   **/
+    */
    static function raiseEvent($event, $item, $options = [], $label = '') {
       global $CFG_GLPI;
 
@@ -181,7 +181,7 @@ class NotificationEvent extends CommonDBTM {
     * @param array      $options Options
     *
     * @return void
-   **/
+    */
    static function debugEvent($item, $options = []) {
 
       echo "<div class='spaced'>";

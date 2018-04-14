@@ -46,7 +46,7 @@ if (!defined('GLPI_ROOT')) {
  * locks for fields
  *
  * @since 0.84
- **/
+ */
 class Lock {
 
    static function getTypeName($nb = 0) {
@@ -58,7 +58,7 @@ class Lock {
     * Display form to unlock fields and links
     *
     * @param CommonDBTM $item the source item
-   **/
+    */
    static function showForItem(CommonDBTM $item) {
       global $DB;
 
@@ -349,7 +349,7 @@ class Lock {
     *
     * @param $item               CommonGLPI object
     * @param $withtemplate       (default 0)
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->isDynamic() && $item->canCreate()) {
@@ -363,7 +363,7 @@ class Lock {
     * @param $item            CommonGLPI object
     * @param $tabnum          (default 1)
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->isDynamic()) {
@@ -380,7 +380,7 @@ class Lock {
     * @param $baseitemtype   itemtype of the based item
     *
     * @return an array which contains necessary informations to build the SQL query
-   **/
+    */
    static function getLocksQueryInfosByItemType($itemtype, $baseitemtype) {
 
       $condition = [];
@@ -483,7 +483,7 @@ class Lock {
     * @since 0.85
     *
     * @see CommonDBTM::getMassiveActionsForItemtype()
-   **/
+    */
    static function getMassiveActionsForItemtype(array &$actions, $itemtype, $is_deleted = 0,
                                                 CommonDBTM $checkitem = null) {
 
@@ -501,7 +501,7 @@ class Lock {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -536,7 +536,7 @@ class Lock {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $baseitem,
                                                        array $ids) {
       global $DB;

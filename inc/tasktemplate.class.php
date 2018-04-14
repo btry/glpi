@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Template for task
  * @since 9.1
-**/
+ */
 class TaskTemplate extends CommonDropdown {
 
    // From CommonDBTM
@@ -107,7 +107,7 @@ class TaskTemplate extends CommonDropdown {
 
    /**
     * @see CommonDropdown::displaySpecificTypeField()
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['type']) {

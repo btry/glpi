@@ -56,7 +56,7 @@ class NetworkPort_NetworkPort extends CommonDBRelation {
     * @param $ID ID of the item to get
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBForNetworkPort($ID) {
 
       return $this->getFromDBByCrit([
@@ -74,7 +74,7 @@ class NetworkPort_NetworkPort extends CommonDBRelation {
     * @param $ID networking port ID
     *
     * @return integer ID of opposite port. false if not found
-   **/
+    */
    function getOppositeContact($ID) {
       global $DB;
 

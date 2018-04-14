@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * @since 0.85
  *
  * Relation between Groups and Tickets
-**/
+ */
 class Group_Ticket extends CommonITILActor {
 
    // From CommonDBRelation

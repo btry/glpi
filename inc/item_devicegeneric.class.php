@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-**/
+ */
 class Item_DeviceGeneric extends Item_Devices {
 
    static public $itemtype_2 = 'DeviceGeneric';
@@ -44,7 +44,7 @@ class Item_DeviceGeneric extends Item_Devices {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getSpecificities($specif = '') {
       return ['serial' => parent::getSpecificities('serial'),
                    'otherserial' => parent::getSpecificities('otherserial'),

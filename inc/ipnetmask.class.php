@@ -44,7 +44,7 @@ class IPNetmask extends IPAddress {
    /**
     * @param $ipnetmask (default '')
     * @param $version   (default 0)
-   **/
+    */
    function __construct($ipnetmask = '', $version = 0) {
 
       // First, be sure that the parent is correctly initialised
@@ -85,7 +85,7 @@ class IPNetmask extends IPAddress {
     * @param $version   integer  =4 or =6 : version of IP protocol
     *
     * @return false if the netmask is not valid or if it does not correspond to version
-   **/
+    */
    function setNetmaskFromString($netmask, $version) {
 
       if (is_numeric($netmask)) {

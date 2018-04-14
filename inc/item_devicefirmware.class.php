@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Relation between item and devices
-**/
+ */
 class Item_DeviceFirmware extends Item_Devices {
 
    static public $itemtype_2 = 'DeviceFirmware';

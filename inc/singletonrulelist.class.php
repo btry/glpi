@@ -48,7 +48,7 @@ class SingletonRuleList {
     * @param $entity entity where the rule Rule is processed
     *
     * @return unique instance of an object
-   **/
+    */
    public static function &getInstance($type, $entity) {
       static $instances = [];
 

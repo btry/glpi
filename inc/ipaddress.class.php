@@ -50,7 +50,7 @@ if (!defined('GLPI_ROOT')) {
 * @warning All textual representation of IPv6 addresses conforms to RFC 5952 : they are
 * automatically converted by IPAddress::setAddressFromString().
 * @since 0.84
-**/
+ */
 class IPAddress extends CommonDBChild {
 
    // From CommonDBChild
@@ -78,7 +78,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @param $ipaddress (default '')
-   **/
+    */
    function __construct($ipaddress = '') {
 
       // First, be sure that the parent is correctly initialised
@@ -111,7 +111,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @param $input
-   **/
+    */
    function prepareInput($input) {
 
       // If $input['name'] does not exists, then, don't check anything !
@@ -160,7 +160,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
       return parent::prepareInputForAdd($this->prepareInput($input));
    }
@@ -168,7 +168,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
       return parent::prepareInputForUpdate($this->prepareInput($input));
    }
@@ -176,7 +176,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @see CommonDBTM::post_addItem()
-   **/
+    */
    function post_addItem() {
       IPAddress_IPNetwork::addIPAddress($this);
       parent::post_addItem();
@@ -185,7 +185,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       if ((isset($this->oldvalues['name']))
@@ -299,7 +299,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * @param $item      CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
       global $DB;
 
@@ -320,7 +320,7 @@ class IPAddress extends CommonDBChild {
     * @param $withtemplate   (default 0)
     *
     * @return string
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->getID()
@@ -342,7 +342,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * Disable the address
-   **/
+    */
    function disableAddress() {
 
       $this->version = '';
@@ -365,7 +365,7 @@ class IPAddress extends CommonDBChild {
     *                            Each element of the array is post-fixed by _i, with i the index
     *
     * @return result the array altered
-   **/
+    */
    function setArrayFromAddress(array $array, $versionField, $textualField, $binaryField) {
 
       if (!empty($versionField)) {
@@ -413,7 +413,7 @@ class IPAddress extends CommonDBChild {
     * If the field name is empty, then, the field is not set
     *
     * @return true is succeffully defined
-   **/
+    */
    function setAddressFromArray(array $array, $versionField, $textualField, $binaryField) {
 
       // First, we empty the fields to notify that this address is not valid
@@ -445,7 +445,7 @@ class IPAddress extends CommonDBChild {
 
    /**
     * Check address validity
-   **/
+    */
    function is_valid() {
       return (($this->version != '') && ($this->textual != '') && ($this->binary != ''));
    }
@@ -494,7 +494,7 @@ class IPAddress extends CommonDBChild {
     * @param $address (bytes[4] or bytes) the address to transform.
     *
     * @return IPv6 mapped address
-   **/
+    */
    static function getIPv4ToIPv6Address($address) {
 
       if (is_numeric($address)) {
@@ -513,7 +513,7 @@ class IPAddress extends CommonDBChild {
     * @param $address (bytes[4]) the address to check
     *
     * @return true if the address is IPv4 mapped to IPv6
-   **/
+    */
    static function isIPv4MappedToIPv6Address($address) {
 
       if (is_array($address) && (count($address) == 4)) {
@@ -530,7 +530,7 @@ class IPAddress extends CommonDBChild {
     * Replace textual representation by its canonical form.
     *
     * @return nothing (internal class update)
-   **/
+    */
    function canonicalizeTextual() {
       $this->setAddressFromBinary($this->getBinary());
    }
@@ -548,7 +548,7 @@ class IPAddress extends CommonDBChild {
     * @param $items_id           id of the item this address has to be attached (default -1)
     *
     * @return true if the address is valid.
-   **/
+    */
    function setAddressFromString($address, $itemtype = "", $items_id = -1) {
       global $DB;
 
@@ -719,7 +719,7 @@ class IPAddress extends CommonDBChild {
     * @param $items_id  id of the item this address has to be attached (default -1)
     *
     * @return true if the address is valid.
-   **/
+    */
    function setAddressFromBinary($address, $itemtype = "", $items_id = -1) {
       global $DB;
 
@@ -825,7 +825,7 @@ class IPAddress extends CommonDBChild {
     * @param $value     the value to add or remove. Must be betwwen -0xffffffff and +0xffffffff
     *
     * @return true if the increment is valid
-   **/
+    */
    static function addValueToAddress(&$address, $value) {
 
       if (!is_array($address)
@@ -864,7 +864,7 @@ class IPAddress extends CommonDBChild {
     *
     * @return float value that is the absolute of $value
     *
-   **/
+    */
    static function convertNegativeIntegerToPositiveFloat($value) {
 
       if (intval($value) && ($value < 0)) {
@@ -880,7 +880,7 @@ class IPAddress extends CommonDBChild {
     *
     * @return (array) each value of the array (corresponding to one IPAddress) is an array of the
     *                 items from the master item to the IPAddress
-   **/
+    */
    static function getItemsByIPAddress($IPaddress) {
       global $DB;
 
@@ -921,7 +921,7 @@ class IPAddress extends CommonDBChild {
     *
     * @return an array containing the object ID
     *         or an empty array is no value of serverals ID where found
-   **/
+    */
    static function getUniqueItemByIPAddress($value, $entity) {
 
       $addressesWithItems = self::getItemsByIPAddress($value);
@@ -964,7 +964,7 @@ class IPAddress extends CommonDBChild {
     * @param $ipaddress the ip address to check with this
     *
     * @return return true if and only if both addresses are binary equals.
-   **/
+    */
    function equals($ipaddress) {
 
       // To normalise the address, just make new one
@@ -993,7 +993,7 @@ class IPAddress extends CommonDBChild {
     * @param $super                 HTMLTableSuperHeader object (default NULL)
     * @param $father                HTMLTableHeader object (default NULL)
     * @param $options      array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -1036,7 +1036,7 @@ class IPAddress extends CommonDBChild {
     * @param $item               CommonDBTM object (default NULL)
     * @param $father             HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
       global $DB, $CFG_GLPI;

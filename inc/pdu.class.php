@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * PDU Class
-**/
+ */
 class PDU extends CommonDBTM {
    use DCBreadcrumb;
 

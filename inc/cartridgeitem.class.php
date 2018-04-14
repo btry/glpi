@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * CartridgeItem Class
  * This class is used to manage the various types of cartridges.
  * \see Cartridge
-**/
+ */
 class CartridgeItem extends CommonDBTM {
 
    // From CommonDBTM
@@ -58,7 +58,7 @@ class CartridgeItem extends CommonDBTM {
     * @see CommonGLPI::getMenuName()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuName() {
       return Cartridge::getTypeName(Session::getPluralNumber());
    }
@@ -68,7 +68,7 @@ class CartridgeItem extends CommonDBTM {
     * @since 0.84
     *
     * @see CommonDBTM::getPostAdditionalInfosForName
-   **/
+    */
    function getPostAdditionalInfosForName() {
 
       if (isset($this->fields["ref"]) && !empty($this->fields["ref"])) {
@@ -126,7 +126,7 @@ class CartridgeItem extends CommonDBTM {
     * @return number of cartridges
     *
     * @since 9.2 add $id parameter
-    **/
+    */
    static function getCount($id) {
       global $DB;
 
@@ -149,7 +149,7 @@ class CartridgeItem extends CommonDBTM {
     * @param printermodels_id    integer: printer type identifier
     *
     * @return boolean : true for success
-   **/
+    */
    function addCompatibleType($cartridgeitems_id, $printermodels_id) {
       global $DB;
 
@@ -178,7 +178,7 @@ class CartridgeItem extends CommonDBTM {
     *     - withtemplate : 1 for newtemplate, 2 for newobject from template
     *
     * @return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -252,7 +252,7 @@ class CartridgeItem extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -462,7 +462,7 @@ class CartridgeItem extends CommonDBTM {
     * @param $task for log, display information if NULL? (default NULL)
     *
     * @return 0 : nothing to do 1 : done with success
-   **/
+    */
    static function cronCartridge($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -554,7 +554,7 @@ class CartridgeItem extends CommonDBTM {
     * @param $printer Printer object
     *
     * @return nothing (display)
-   **/
+    */
    static function dropdownForPrinter(Printer $printer) {
       global $DB;
 
@@ -603,7 +603,7 @@ class CartridgeItem extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       // see query_alert in cronCartridge()

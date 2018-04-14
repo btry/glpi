@@ -147,7 +147,7 @@ class RuleRightCollection extends RuleCollection {
     *
     * @param $name   action name
     * @param $value  default value
-   **/
+    */
    function displayActionByName($name, $value) {
 
       echo "<tr class='tab_bg_2'>";
@@ -175,7 +175,7 @@ class RuleRightCollection extends RuleCollection {
     * Get all the fields needed to perform the rule
     *
     * @see RuleCollection::getFieldsToLookFor()
-   **/
+    */
    function getFieldsToLookFor() {
       global $DB;
 
@@ -208,7 +208,7 @@ class RuleRightCollection extends RuleCollection {
     * @param $params extra parameters given
     *
     * @return an array of attributes
-   **/
+    */
    function prepareInputDataForProcess($input, $params) {
 
       $rule_parameters = [];
@@ -285,7 +285,7 @@ class RuleRightCollection extends RuleCollection {
 
    /**
     * Get the list of fields to be retreived to process rules
-   **/
+    */
    function getFieldsForQuery() {
 
       $rule      = new RuleRight();

@@ -38,7 +38,7 @@ use Sabre\VObject;
 
 /**
  * Planning Class
-**/
+ */
 class Planning extends CommonGLPI {
 
    static $rightname = 'planning';
@@ -69,7 +69,7 @@ class Planning extends CommonGLPI {
     * @since 0.85
     *
     * @param $nb
-   **/
+    */
    static function getTypeName($nb = 0) {
       return __('Planning');
    }
@@ -78,7 +78,7 @@ class Planning extends CommonGLPI {
     *  @see CommonGLPI::getMenuContent()
     *
     *   @since 9.1
-   **/
+    */
    static function getMenuContent() {
       global $CFG_GLPI;
 
@@ -98,7 +98,7 @@ class Planning extends CommonGLPI {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'p';
    }
@@ -106,7 +106,7 @@ class Planning extends CommonGLPI {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canView() {
 
       return Session::haveRightsOr(self::$rightname, [self::READMY, self::READGROUP,
@@ -153,7 +153,7 @@ class Planning extends CommonGLPI {
     * Get planning state name
     *
     * @param $value status ID
-   **/
+    */
    static function getState($value) {
 
       switch ($value) {
@@ -176,7 +176,7 @@ class Planning extends CommonGLPI {
     * @param $value  default value (default '')
     * @param $display  display of send string ? (true by default)
     * @param $options  options
-   **/
+    */
    static function dropdownState($name, $value = '', $display = true, $options = []) {
 
       $values = [static::INFO => _n('Information', 'Information', 1),
@@ -196,7 +196,7 @@ class Planning extends CommonGLPI {
     * @param $end             end date
     * @param $except    array of items which not be into account array
     *                         ('Reminder'=>array(1,2,id_of_items))
-   **/
+    */
    static function checkAlreadyPlanned($users_id, $begin, $end, $except = []) {
       global $CFG_GLPI;
 
@@ -255,7 +255,7 @@ class Planning extends CommonGLPI {
     *          - limitto : limit display to a specific user
     *
     * @return Nothing (display function)
-   **/
+    */
    static function checkAvailability($params = []) {
       global $CFG_GLPI, $DB;
 
@@ -516,7 +516,7 @@ class Planning extends CommonGLPI {
     * Function prototype changes in 9.1 (no more parameters)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function showPlanning($fullview = true) {
       global $CFG_GLPI, $DB;
 
@@ -2023,7 +2023,7 @@ class Planning extends CommonGLPI {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       global $CFG_GLPI;
 
@@ -2061,7 +2061,7 @@ class Planning extends CommonGLPI {
     * @param $time value to display
     *
     * @return string return the 2 digits item
-   **/
+    */
    static private function displayUsingTwoDigits($time) {
 
       $time = round($time);
@@ -2078,7 +2078,7 @@ class Planning extends CommonGLPI {
     * @param $who ID of the user
     *
     * @return Nothing (display function)
-   **/
+    */
    static function showCentral($who) {
       global $CFG_GLPI;
 
@@ -2113,7 +2113,7 @@ class Planning extends CommonGLPI {
     * @param $limititemtype   itemtype only display this itemtype (default '')
     *
     * @return icalendar string
-   **/
+    */
    static function generateIcal($who, $who_group, $limititemtype = '') {
       global $CFG_GLPI;
 
@@ -2216,7 +2216,7 @@ class Planning extends CommonGLPI {
 
    /**
     * @since 0.85
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values[self::READMY]    = __('See personnal planning');

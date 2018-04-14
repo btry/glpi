@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * This class is used to manage the cartridges.
  * @see CartridgeItem
  * @author Julien Dombre
- **/
+ */
 class Cartridge extends CommonDBChild {
 
    // From CommonDBTM
@@ -54,7 +54,7 @@ class Cartridge extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -67,7 +67,7 @@ class Cartridge extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -88,7 +88,7 @@ class Cartridge extends CommonDBChild {
     * @since 0.84
     *
     * @see CommonDBTM::getNameField()
-   **/
+    */
    static function getNameField() {
       return 'id';
    }
@@ -140,7 +140,7 @@ class Cartridge extends CommonDBChild {
     * @since 0.84
     *
     * @see CommonDBTM::getPreAdditionalInfosForName
-   **/
+    */
    function getPreAdditionalInfosForName() {
 
       $ci = new CartridgeItem();
@@ -155,7 +155,7 @@ class Cartridge extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -253,7 +253,7 @@ class Cartridge extends CommonDBChild {
     * @param $pID : printer identifier
     *
     * @return boolean : true for success
-   **/
+    */
    function install($pID, $tID) {
       global $DB;
 
@@ -304,7 +304,7 @@ class Cartridge extends CommonDBChild {
     * @param $ID : cartridge identifier
     *
     * @return boolean
-   **/
+    */
    function uninstall($ID) {
       global $DB;
 
@@ -343,7 +343,7 @@ class Cartridge extends CommonDBChild {
     * @param $nohtml           integer: Return value without HTML tags (default 0)
     *
     * @return string to display
-   **/
+    */
    static function getCount($tID, $alarm_threshold, $nohtml = 0) {
       global $DB;
 
@@ -398,7 +398,7 @@ class Cartridge extends CommonDBChild {
     * @param $nohtml           integer: Return value without HTML tags (default 0)
     *
     * @return string to display
-   **/
+    */
    static function getCountForPrinter($pID, $nohtml = 0) {
       global $DB;
 
@@ -446,7 +446,7 @@ class Cartridge extends CommonDBChild {
     * @param $tID integer: cartridge item identifier.
     *
     * @return integer : number of cartridge counted.
-   **/
+    */
    static function getTotalNumber($tID) {
       global $DB;
 
@@ -467,7 +467,7 @@ class Cartridge extends CommonDBChild {
     * @param $pID integer: printer identifier.
     *
     * @return integer : number of cartridge counted.
-   **/
+    */
    static function getTotalNumberForPrinter($pID) {
       global $DB;
 
@@ -486,7 +486,7 @@ class Cartridge extends CommonDBChild {
     * @param $tID integer: cartridge item identifier.
     *
     * @return integer : number of cartridge used counted.
-   **/
+    */
    static function getUsedNumber($tID) {
       global $DB;
 
@@ -514,7 +514,7 @@ class Cartridge extends CommonDBChild {
     * @param $pID integer: printer identifier.
     *
     * @return integer : number of cartridge used counted.
-   **/
+    */
    static function getUsedNumberForPrinter($pID) {
       global $DB;
 
@@ -534,7 +534,7 @@ class Cartridge extends CommonDBChild {
     * @param $tID integer: cartridge item identifier.
     *
     * @return integer : number of old cartridge counted.
-   **/
+    */
    static function getOldNumber($tID) {
       global $DB;
 
@@ -555,7 +555,7 @@ class Cartridge extends CommonDBChild {
     * @param $pID integer: printer identifier.
     *
     * @return integer : number of old cartridge counted.
-   **/
+    */
    static function getOldNumberForPrinter($pID) {
       global $DB;
 
@@ -574,7 +574,7 @@ class Cartridge extends CommonDBChild {
     * @param $tID integer: cartridge item identifier.
     *
     * @return integer : number of cartridge unused counted.
-   **/
+    */
    static function getUnusedNumber($tID) {
       global $DB;
 
@@ -594,7 +594,7 @@ class Cartridge extends CommonDBChild {
     * @param $date_out  date : date of delete
     *
     * @return string : dict value for the cartridge status.
-   **/
+    */
    static function getStatus($date_use, $date_out) {
 
       if (is_null($date_use) || empty($date_use)) {
@@ -614,7 +614,7 @@ class Cartridge extends CommonDBChild {
     * @param $show_old  boolean  show old cartridges or not (default 0)
     *
     * @return Nothing (displays)
-   **/
+    */
    static function showForCartridgeItem(CartridgeItem $cartitem, $show_old = 0) {
       global $DB, $CFG_GLPI;
 
@@ -824,7 +824,7 @@ class Cartridge extends CommonDBChild {
     * @param $cartitem  CartridgeItem object
     *
     * @return Nothing (displays)
-   **/
+    */
    static function showAddForm(CartridgeItem $cartitem) {
       global $CFG_GLPI;
 
@@ -861,7 +861,7 @@ class Cartridge extends CommonDBChild {
     * @param $old       boolean  old cartridges or not ? (default 0)
     *
     * @return nothing (display)
-   **/
+    */
    static function showForPrinter(Printer $printer, $old = 0) {
       global $DB, $CFG_GLPI;
 
@@ -1091,7 +1091,7 @@ class Cartridge extends CommonDBChild {
     * @param $ID      integer  Id of the cartridge
     * @param $options array    of possible options:
     *     - parent Object : the printers where the cartridge is used
-   **/
+    */
    function showForm($ID, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -1219,7 +1219,7 @@ class Cartridge extends CommonDBChild {
 
    /**
     * @param $item Printer object
-   **/
+    */
    static function countForPrinter(Printer $item) {
 
       return countElementsInTable(['glpi_cartridges'], ['glpi_cartridges.printers_id' => $item->getField('id')]);

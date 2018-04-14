@@ -86,7 +86,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
 
    /**
     * @param $item   CartridgeItem object
-   **/
+    */
    static function countForCartridgeItem(CartridgeItem $item) {
 
       return countElementsInTable(['glpi_printermodels', static::getTable()],
@@ -101,7 +101,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
     * @param $item   CartridgeItem object
     *
     * @return nothing (display)
-   **/
+    */
    static function showForCartridgeItem(CartridgeItem $item) {
       global $DB, $CFG_GLPI;
 

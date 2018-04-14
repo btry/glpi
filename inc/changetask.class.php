@@ -41,7 +41,7 @@ class ChangeTask extends CommonITILTask {
 
    /**
     * @since 0.84
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Change task', 'Change tasks', $nb);
    }
@@ -76,7 +76,7 @@ class ChangeTask extends CommonITILTask {
     * Is the current user have right to show the current task ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
       return parent::canReadITILItem();
    }
@@ -86,7 +86,7 @@ class ChangeTask extends CommonITILTask {
     * Is the current user have right to create the current task ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -112,7 +112,7 @@ class ChangeTask extends CommonITILTask {
     * Is the current user have right to update the current task ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -132,7 +132,7 @@ class ChangeTask extends CommonITILTask {
     * Is the current user have right to purge the current task ?
     *
     * @return boolean
-   **/
+    */
    function canPurgeItem() {
       return $this->canUpdateItem();
    }
@@ -148,7 +148,7 @@ class ChangeTask extends CommonITILTask {
     *    - end Date
     *
     * @return array of planning item
-   **/
+    */
    static function populatePlanning($options = []) {
       return parent::genericPopulatePlanning(__CLASS__, $options);
    }
@@ -160,7 +160,7 @@ class ChangeTask extends CommonITILTask {
     * @param $val array of the item to display
     *
     * @return Already planned information
-   **/
+    */
    static function getAlreadyPlannedInformation($val) {
       return parent::genericGetAlreadyPlannedInformation(__CLASS__, $val);
    }
@@ -176,7 +176,7 @@ class ChangeTask extends CommonITILTask {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       return parent::genericDisplayPlanningItem(__CLASS__, $val, $who, $type, $complete);
    }

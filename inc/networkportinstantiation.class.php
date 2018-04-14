@@ -49,7 +49,7 @@ if (!defined('GLPI_ROOT')) {
  *
  * @since 0.84
  *
-**/
+ */
 class NetworkPortInstantiation extends CommonDBChild {
 
    // From CommonDBTM
@@ -78,7 +78,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *                               (usefull, for instance to get network port attributs
     * @param $options         array of options given to NetworkPort::showForm
     * @param $recursiveItems        list of the items on which this port is attached
-   **/
+    */
    function showInstantiationForm(NetworkPort $netport, $options, $recursiveItems) {
 
       echo "<tr><td colspan='4' class='center'>".__('No options available for this port type.').
@@ -110,7 +110,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     * Get all the instantiation specific options to display
     *
     * @return array containing the options
-   **/
+    */
    static function getInstantiationNetworkPortDisplayOptions() {
       return [];
    }
@@ -120,7 +120,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     * Get the instantiation specific options to display that applies for all instantiations
     *
     * @return array containing the options
-   **/
+    */
    static function getGlobalInstantiationNetworkPortDisplayOptions() {
       return ['mac'           => ['name'    => __('MAC'),
                                             'default' => true],
@@ -145,7 +145,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *       - 'dont_display' : array of the columns that must not be display
     *
     * @return the father group for the Internet Informations ...
-   **/
+    */
    function getInstantiationHTMLTableHeaders(HTMLTableGroup $group, HTMLTableSuperHeader $super,
                                              HTMLTableSuperHeader $internet_super = null,
                                              HTMLTableHeader $father = null,
@@ -186,7 +186,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *       - 'withtemplate' : integer withtemplate param
     *
     * @return the father cell for the Internet Informations ...
-   **/
+    */
    protected function getPeerInstantiationHTMLTable(NetworkPort $netport, HTMLTableRow $row,
                                                     HTMLTableCell $father = null,
                                                     array $options = []) {
@@ -211,7 +211,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *       - 'withtemplate' : integer withtemplate param
     *
     * @return the father cell for the Internet Informations ...
-   **/
+    */
    function getInstantiationHTMLTableWithPeer(NetworkPort $netport, HTMLTableRow $row,
                                               HTMLTableCell $father = null, array $options = []) {
 
@@ -266,7 +266,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *       - 'withtemplate' : integer withtemplate param
     *
     * @return the father cell for the Internet Informations ...
-   **/
+    */
    function getInstantiationHTMLTable(NetworkPort $netport, HTMLTableRow $row,
                                       HTMLTableCell $father = null, array $options = []) {
       global $DB;
@@ -345,7 +345,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *
     * @return (array) each value of the array (corresponding to one NetworkPort) is an array of the
     *                 items from the master item to the NetworkPort
-   **/
+    */
    static function getItemsByMac($mac, $wildcard_search = false) {
       global $DB;
 
@@ -395,7 +395,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *
     * @return an array containing the object ID
     *         or an empty array is no value of serverals ID where found
-   **/
+    */
    static function getUniqueItemByMac($value, $entity) {
 
       $macs_with_items = self::getItemsByMac($value);
@@ -432,7 +432,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     * from the network card to the network port (mac address, port type, ...)
     *
     * @return an array with SQL field (for instance : device.`type`) => form field (type)
-   **/
+    */
    function getNetworkCardInterestingFields() {
       return [];
    }
@@ -447,7 +447,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *                               (usefull, for instance to get network port attributs
     * @param $options         array of options given to NetworkPort::showForm
     * @param $recursiveItems        list of the items on which this port is attached
-   **/
+    */
    function showNetworkCardField(NetworkPort $netport, $options = [], $recursiveItems = []) {
       global $DB;
 
@@ -539,7 +539,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     * @param $netport         NetworkPort object : the port that owns this instantiation
     *                         (usefull, for instance to get network port attributs
     * @param $options   array of options given to NetworkPort::showForm
-   **/
+    */
    function showMacField(NetworkPort $netport, $options = []) {
 
       // Show device MAC adresses
@@ -556,7 +556,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *                               (usefull, for instance to get network port attributs
     * @param $options         array of options given to NetworkPort::showForm
     * @param $recursiveItems        list of the items on which this port is attached
-   **/
+    */
    function showNetpointField(NetworkPort $netport, $options = [], $recursiveItems = []) {
 
       echo "<td>" . __('Network outlet') . "</td>\n";
@@ -578,7 +578,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *
     * NetworkPortAlias and NetworkPortAggregate are based on other physical network ports
     * (Ethernet or Wifi). This method displays the physical network ports.
-   **/
+    */
    function getInstantiationNetworkPortHTMLTable() {
 
       $netports = [];
@@ -619,7 +619,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     * @param $recursiveItems
     * @param $origin          NetworkPortAlias are based on one NetworkPort wherever
     *                         NetworkPortAggregate are based on several NetworkPort.
-   **/
+    */
    function showNetworkPortSelector($recursiveItems, $origin) {
       global $DB;
 
@@ -736,7 +736,7 @@ class NetworkPortInstantiation extends CommonDBChild {
    /**
     * @param $tab          array
     * @param $joinparams   array
-    **/
+    */
    static function getSearchOptionsToAddForInstantiation(array &$tab, array $joinparams) {
    }
 
@@ -746,7 +746,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *
     * @param $netport      to be displayed
     * @param $edit         boolean permit to edit ? (false by default)
-   **/
+    */
    static function showConnection($netport, $edit = false) {
 
       $ID = $netport->fields["id"];
@@ -833,7 +833,7 @@ class NetworkPortInstantiation extends CommonDBChild {
     *                   only available if entity is a single value not an array (default false)
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownConnect($ID, $options = []) {
       global $CFG_GLPI;
 

@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
  * The base entity for the table. The entity is the base of kind of cell (header or not). It
  * provides facilities to manage the cells such as attributs or specific content (mixing of strings
  * and call of method during table display)
-**/
+ */
 abstract class HTMLTableEntity {
 
    private $html_id    = '';
@@ -59,7 +59,7 @@ abstract class HTMLTableEntity {
     *                 of direct display function (for instance: Dropdown::showNumber). A function
     *                 call is an array containing two elements : 'function', the name the function
     *                 and 'parameters', an array of the parameters given to the function.
-   **/
+    */
    function __construct($content) {
       $this->content = $content;
    }
@@ -67,7 +67,7 @@ abstract class HTMLTableEntity {
 
    /**
     * @param $origin
-   **/
+    */
    function copyAttributsFrom(HTMLTableEntity $origin) {
 
       $this->html_id    = $origin->html_id;
@@ -78,7 +78,7 @@ abstract class HTMLTableEntity {
 
    /**
     * @param $html_id
-   **/
+    */
    function setHTMLID($html_id) {
       $this->html_id = $html_id;
    }
@@ -88,7 +88,7 @@ abstract class HTMLTableEntity {
     * userfull ? function never called
     *
     * @param $html_style
-   **/
+    */
    function setHTMLStyle($html_style) {
       if (is_array($html_style)) {
          $this->html_style = array_merge($this->html_style, $html_style);
@@ -100,7 +100,7 @@ abstract class HTMLTableEntity {
 
    /**
     * @param $html_class
-   **/
+    */
    function setHTMLClass($html_class) {
       if (is_array($html_class)) {
          $this->html_class = array_merge($this->html_class, $html_class);
@@ -112,7 +112,7 @@ abstract class HTMLTableEntity {
 
    /**
     * @param $options   array
-   **/
+    */
    function displayEntityAttributs(array $options = []) {
 
       $id = $this->html_id;
@@ -151,7 +151,7 @@ abstract class HTMLTableEntity {
 
    /**
     * @param $content
-   **/
+    */
    function setContent($content) {
       $this->content = $content;
    }

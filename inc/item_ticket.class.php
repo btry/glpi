@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Item_Ticket Class
  *
  *  Relation between Tickets and Items
-**/
+ */
 class Item_Ticket extends CommonDBRelation{
 
 
@@ -54,7 +54,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -66,7 +66,7 @@ class Item_Ticket extends CommonDBRelation{
    /**
     * @since 0.85.5
     * @see CommonDBRelation::canCreateItem()
-   **/
+    */
    function canCreateItem() {
 
       $ticket = new Ticket();
@@ -121,7 +121,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       // Avoid duplicate entry
@@ -162,7 +162,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       $restrict = "`glpi_items_tickets`.`tickets_id` = `glpi_tickets`.`id`
@@ -185,7 +185,7 @@ class Item_Ticket extends CommonDBRelation{
     *    - items_id            : array of elements (itemtype => array(id1, id2, id3, ...))
     *
     * @return Nothing (display)
-   **/
+    */
    static function itemAddForm(Ticket $ticket, $options = []) {
       global $CFG_GLPI;
 
@@ -385,7 +385,7 @@ class Item_Ticket extends CommonDBRelation{
     * @param $ticket Ticket object
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForTicket(Ticket $ticket) {
       global $DB, $CFG_GLPI;
 
@@ -610,7 +610,7 @@ class Item_Ticket extends CommonDBRelation{
     *    - rand       : random number
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownAllDevices($myname, $itemtype, $items_id = 0, $admin = 0, $users_id = 0,
                                       $entity_restrict = -1, $options = []) {
       global $CFG_GLPI, $DB;
@@ -705,7 +705,7 @@ class Item_Ticket extends CommonDBRelation{
     *    - multiple : allow multiple choice
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownMyDevices($userID = 0, $entity_restrict = -1, $itemtype = 0, $items_id = 0, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -1003,7 +1003,7 @@ class Item_Ticket extends CommonDBRelation{
     *    - display      : boolean / display or get string (default true)
     *    - width        : specific width needed (default 80%)
     *
-   **/
+    */
    static function dropdown($options = []) {
       global $DB;
 
@@ -1073,7 +1073,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * Form for Followup on Massive action
-   **/
+    */
    static function showFormMassiveAction($ma) {
       global $CFG_GLPI;
 
@@ -1106,7 +1106,7 @@ class Item_Ticket extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -1127,7 +1127,7 @@ class Item_Ticket extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -1243,7 +1243,7 @@ class Item_Ticket extends CommonDBRelation{
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -1283,7 +1283,7 @@ class Item_Ticket extends CommonDBRelation{
     * @param $options   array
     *
     * @return string
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
       if (!is_array($values)) {
          $values = [$field => $values];
@@ -1306,7 +1306,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * Add a message on add action
-   **/
+    */
    function addMessageOnAddAction() {
       global $CFG_GLPI;
 
@@ -1347,7 +1347,7 @@ class Item_Ticket extends CommonDBRelation{
 
    /**
     * Add a message on delete action
-   **/
+    */
    function addMessageOnPurgeAction() {
 
       if (!$this->maybeDeleted()) {

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetMailCollector Class
  *
  * @since 0.85
-**/
+ */
 class NotificationTargetMailCollector extends NotificationTarget {
 
 

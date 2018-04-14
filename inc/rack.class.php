@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Rack Class
-**/
+ */
 class Rack extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -521,7 +521,7 @@ class Rack extends CommonDBTM {
     * @param DCRoom $room DCRoom object
     *
     * @return void
-   **/
+    */
    static function showForRoom(DCRoom $room) {
       global $DB, $CFG_GLPI;
 

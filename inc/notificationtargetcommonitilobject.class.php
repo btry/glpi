@@ -41,7 +41,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param $event           (default '')
     * @param $object          (default null)
     * @param $options   array
-   **/
+    */
    function __construct($entity = '', $event = '', $object = null, $options = []) {
 
       parent::__construct($entity, $event, $object, $options);
@@ -55,7 +55,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param $event Event name (default '')
     *
     * @return string
-    **/
+    */
    function getSubjectPrefix($event = '') {
 
       $perso_tag = trim(Entity::getUsedConfig('notification_subject_tag', $this->getEntity(),
@@ -73,7 +73,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @since 9.2
     *
     * @return array of events (event key => event label)
-   **/
+    */
    function getEvents() {
 
       $events = ['requester_user'    => __('New user in requesters'),
@@ -244,7 +244,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
 
    /**
     * Get the email of the item's user : Overloaded manual address used
-   **/
+    */
    function addItemAuthor() {
       $this->addLinkedUserByType(CommonITILActor::REQUESTER);
    }
@@ -367,7 +367,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param array $options Options
     *
     * @return void
-   **/
+    */
    function addValidationRequester($options = []) {
       global $DB;
 
@@ -521,7 +521,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param string $event specif event to get additional targets (default '')
     *
     * @return void
-   **/
+    */
    function addAdditionalTargets($event = '') {
 
       if ($event=='update') {
@@ -584,7 +584,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param array $options Options
     *
     * @return void
-   **/
+    */
    function addSpecificTargets($data, $options) {
 
       //Look for all targets whose type is Notification::ITEM_USER
@@ -753,7 +753,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param boolean    $simple  (false by default)
     *
     * @return array
-   **/
+    */
    function getDataForObject(CommonDBTM $item, array $options, $simple = false) {
       global $CFG_GLPI, $DB;
 
@@ -1384,7 +1384,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param integer $type type of linked users
     *
     * @return void
-   **/
+    */
    function getLinkedUserByType($type) {
       Toolbox::deprecated('getLinkedUserByType() method is deprecated');
       $this->addLinkedUserByType($type);
@@ -1398,7 +1398,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetCommonITILObject::addLinkedGroupByType()
     *
     * @return void
-   **/
+    */
    function getLinkedGroupByType($type) {
       Toolbox::deprecated('getLinkedGroupByType() method is deprecated');
       $this->addLinkedGroupByType();
@@ -1465,7 +1465,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetCommonITILObject::addSupplier()
     *
     * @return void
-   **/
+    */
    function getSupplierAddress($sendprivate = false) {
       Toolbox::deprecated('getSupplierAddress() method is deprecated');
       $this->addSupplier($sendprivate);
@@ -1479,7 +1479,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetCommonITILObject::addValidationApprover()
     *
     * @return void
-   **/
+    */
    function getValidationApproverAddress($options = []) {
       Toolbox::deprecated('getValidationApproverAddress() method is deprecated');
       $this->addValidationApprover($options);
@@ -1491,7 +1491,7 @@ abstract class NotificationTargetCommonITILObject extends NotificationTarget {
     * @param array $options Options
     *
     * @return void
-   **/
+    */
    function getValidationRequesterAddress($options = []) {
       Toolbox::deprecated('getValidationRequesterAddress() method is deprecated');
       $this->addValidationRequester($options);

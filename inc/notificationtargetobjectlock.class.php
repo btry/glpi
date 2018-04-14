@@ -44,7 +44,7 @@ if (!defined('GLPI_ROOT')) {
  * Notifications for ObjectLock
  *
  * @since 9.1
-**/
+ */
 class NotificationTargetObjectLock extends NotificationTarget {
 
 
@@ -77,7 +77,7 @@ class NotificationTargetObjectLock extends NotificationTarget {
 
    /**
     * @see NotificationTarget::addNotificationTargets()
-   **/
+    */
    function addNotificationTargets($entity) {
       $this->addTarget(Notification::USER, __('Locking User'));
    }
@@ -85,7 +85,7 @@ class NotificationTargetObjectLock extends NotificationTarget {
 
    /**
     * @see NotificationTarget::addSpecificTargets()
-    **/
+    */
    function addSpecificTargets($data, $options) {
 
       $user = new User();

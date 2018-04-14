@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * DeviceNetworkCard Class
-**/
+ */
 class DeviceNetworkCard extends CommonDevice {
 
    static protected $forward_entity_to = ['Item_DeviceNetworkCard', 'Infocom'];
@@ -50,7 +50,7 @@ class DeviceNetworkCard extends CommonDevice {
     * Criteria used for import function
     *
     * @since 0.84
-   **/
+    */
    function getImportCriteria() {
 
       return ['designation'      => 'equal',
@@ -117,7 +117,7 @@ class DeviceNetworkCard extends CommonDevice {
     * @param $input array of datas
     *
     * @return interger ID of existing or new Device
-   **/
+    */
    function import(array $input) {
       global $DB;
 
@@ -146,7 +146,7 @@ class DeviceNetworkCard extends CommonDevice {
     * @since 0.84
     *
     * @see CommonDevice::getHTMLTableHeader()
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -174,7 +174,7 @@ class DeviceNetworkCard extends CommonDevice {
     * @since 0.84
     *
     * @see CommonDevice::getHTMLTableCellForItem()
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
 

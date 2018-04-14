@@ -46,7 +46,7 @@ abstract class CommonDBVisible extends CommonDBTM {
     * @since 9.2 moved from each class to parent class
     *
     * @return boolean
-   **/
+    */
    public function haveVisibilityAccess() {
       // Author
       if ($this->fields['users_id'] == Session::getLoginUserID()) {
@@ -131,7 +131,7 @@ abstract class CommonDBVisible extends CommonDBTM {
     * @since 9.2 moved from each class to parent class
     *
     * @return void
-   **/
+    */
    public function showVisibility() {
       global $DB, $CFG_GLPI;
 

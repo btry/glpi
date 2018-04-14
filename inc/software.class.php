@@ -35,7 +35,7 @@ if (!defined('GLPI_ROOT')) {
 }
 
 /** Software Class
-**/
+ */
 class Software extends CommonDBTM {
 
 
@@ -58,7 +58,7 @@ class Software extends CommonDBTM {
     * @see CommonGLPI::getMenuShorcut()
     *
     *  @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 's';
    }
@@ -217,7 +217,7 @@ class Software extends CommonDBTM {
     * @since 0.85
     *
     * @return nothing
-   **/
+    */
    static function updateValidityIndicator($ID) {
 
       $soft = new self();
@@ -245,7 +245,7 @@ class Software extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     *@return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -335,7 +335,7 @@ class Software extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -370,7 +370,7 @@ class Software extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -704,7 +704,7 @@ class Software extends CommonDBTM {
     * @param $entity_restrict restrict to a defined entity
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownSoftwareToInstall($myname, $entity_restrict) {
       global $CFG_GLPI;
 
@@ -734,7 +734,7 @@ class Software extends CommonDBTM {
     * @param $entity_restrict restrict to a defined entity
     *
     * @return nothing (print out an HTML select box)
-   **/
+    */
    static function dropdownLicenseToInstall($myname, $entity_restrict) {
       global $CFG_GLPI, $DB;
 
@@ -786,7 +786,7 @@ class Software extends CommonDBTM {
     * @param is_helpdesk_visible           show in helpdesk, default : from config (false by default)
     *
     * @return the software's ID
-   **/
+    */
    function addSoftware($name, $manufacturer_id, $entity, $comment = '',
                         $is_recursive = false, $is_helpdesk_visible = null) {
       global $DB, $CFG_GLPI;
@@ -883,7 +883,7 @@ class Software extends CommonDBTM {
     * @param $comment   the comment to add to the already existing software's comment (default '')
     *
     * @return boolean (success)
-   **/
+    */
    function putInTrash($ID, $comment = '') {
       global $CFG_GLPI;
 
@@ -911,7 +911,7 @@ class Software extends CommonDBTM {
     * @param $ID  the ID of the software to put in dustbin
     *
     * @return boolean (success)
-   **/
+    */
    function removeFromTrash($ID) {
 
       $res         = $this->restore(["id" => $ID]);
@@ -934,7 +934,7 @@ class Software extends CommonDBTM {
     * Show softwares candidates to be merged with the current
     *
     * @return nothing
-   **/
+    */
    function showMergeCandidates() {
       global $DB, $CFG_GLPI;
 
@@ -1008,7 +1008,7 @@ class Software extends CommonDBTM {
     * @param boolean display html progress bar
     *
     * @return boolean about success
-   **/
+    */
    function merge($item, $html = true) {
       global $DB;
 

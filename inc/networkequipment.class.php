@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Network equipment Class
-**/
+ */
 class NetworkEquipment extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -55,7 +55,7 @@ class NetworkEquipment extends CommonDBTM {
     * Name of the type
     *
     * @param $nb  integer  number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Network device', 'Network devices', $nb);
    }
@@ -65,7 +65,7 @@ class NetworkEquipment extends CommonDBTM {
     * @see CommonGLPI::getAdditionalMenuOptions()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (static::canView()) {
@@ -82,7 +82,7 @@ class NetworkEquipment extends CommonDBTM {
     * @see CommonGLPI::getMenuName()
     *
     * @since 0.85
-   **/
+    */
    // bug in translation: https://github.com/glpi-project/glpi/issues/1970
    /*static function getMenuName() {
       return _n('Network', 'Networks', Session::getPluralNumber());
@@ -93,7 +93,7 @@ class NetworkEquipment extends CommonDBTM {
     * @since 0.84
     *
     * @see CommonDBTM::cleanDBonPurge()
-   **/
+    */
    function cleanDBonPurge() {
 
       $ip = new Item_Problem();
@@ -117,7 +117,7 @@ class NetworkEquipment extends CommonDBTM {
     * @see CommonDBTM::useDeletedToLockIfDynamic()
     *
     * @since 0.84
-   **/
+    */
    function useDeletedToLockIfDynamic() {
       return false;
    }
@@ -197,7 +197,7 @@ class NetworkEquipment extends CommonDBTM {
     * Overloaded from CommonDBTM
     *
     * @return booleen
-   **/
+    */
    function canUnrecurs() {
       global $DB;
 
@@ -259,7 +259,7 @@ class NetworkEquipment extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     *@return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -407,7 +407,7 @@ class NetworkEquipment extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();

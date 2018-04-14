@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * UserEmail class
-**/
+ */
 class UserEmail  extends CommonDBChild {
 
    // From CommonDBTM
@@ -59,7 +59,7 @@ class UserEmail  extends CommonDBChild {
     * @param $users_id user ID
     *
     * @return default email, empty if no email set
-   **/
+    */
    static function getDefaultForUser($users_id) {
       global $DB;
 
@@ -84,7 +84,7 @@ class UserEmail  extends CommonDBChild {
     * @param $users_id user ID
     *
     * @return array of emails
-   **/
+    */
    static function getAllForUser($users_id) {
       global $DB;
 
@@ -106,7 +106,7 @@ class UserEmail  extends CommonDBChild {
     * @param $email     string   email to check user ID
     *
     * @return boolean is this email set for the user ?
-   **/
+    */
    static function isEmailForUser($users_id, $email) {
       global $DB;
 
@@ -125,7 +125,7 @@ class UserEmail  extends CommonDBChild {
     * @param $child_count_js_var
     *
     * @return string
-   **/
+    */
    static function getJSCodeToAddForItemChild($field_name, $child_count_js_var) {
 
       return "<input title=\'".__s('Default email')."\' type=\'radio\' name=\'_default_email\'" .
@@ -141,7 +141,7 @@ class UserEmail  extends CommonDBChild {
     * @param $canedit
     * @param $field_name
     * @param $id
-   **/
+    */
    function showChildForItemForm($canedit, $field_name, $id) {
 
       if ($this->isNewID($this->getID())) {
@@ -175,7 +175,7 @@ class UserEmail  extends CommonDBChild {
     * @param $user User object
     *
     * @return nothing
-   **/
+    */
    static function showForUser(User $user) {
 
       $users_id = $user->getID();
@@ -193,7 +193,7 @@ class UserEmail  extends CommonDBChild {
 
    /**
     * @param $user
-   **/
+    */
    static function showAddEmailButton(User $user) {
 
       $users_id = $user->getID();
@@ -230,7 +230,7 @@ class UserEmail  extends CommonDBChild {
     * @see CommonDBTM::getNameField
     *
     * @return string
-   **/
+    */
    static function getNameField() {
       return 'email';
    }

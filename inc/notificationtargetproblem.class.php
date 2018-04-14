@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetProblem Class
-**/
+ */
 class NotificationTargetProblem extends NotificationTargetCommonITILObject {
 
    public $private_profiles = [];
@@ -47,7 +47,7 @@ class NotificationTargetProblem extends NotificationTargetCommonITILObject {
 
    /**
     * Get events related to tickets
-   **/
+    */
    function getEvents() {
 
       $events = ['new'            => __('New problem'),

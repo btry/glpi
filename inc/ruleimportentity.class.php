@@ -49,7 +49,7 @@ class RuleImportEntity extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       // Unlimited
       return 3;
@@ -57,7 +57,7 @@ class RuleImportEntity extends Rule {
 
    /**
     * @see Rule::executeActions()
-   **/
+    */
    function executeActions($output, $params) {
 
       if (count($this->actions)) {
@@ -95,7 +95,7 @@ class RuleImportEntity extends Rule {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -117,7 +117,7 @@ class RuleImportEntity extends Rule {
     * @since 0.84
     *
     * @see Rule::displayAdditionalRuleCondition()
-   **/
+    */
    function displayAdditionalRuleCondition($condition, $criteria, $name, $value, $test = false) {
       global $PLUGIN_HOOKS;
 
@@ -137,7 +137,7 @@ class RuleImportEntity extends Rule {
     * @since 0.84
     *
     * @see Rule::getAdditionalCriteriaDisplayPattern()
-   **/
+    */
    function getAdditionalCriteriaDisplayPattern($ID, $condition, $pattern) {
 
       $crit = $this->getCriteria($ID);
@@ -153,7 +153,7 @@ class RuleImportEntity extends Rule {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                             = [];

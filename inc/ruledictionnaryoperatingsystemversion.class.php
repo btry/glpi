@@ -35,7 +35,7 @@ class RuleDictionnaryOperatingSystemVersion extends RuleDictionnaryDropdown {
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryOperatingSystemVersion');
    }
@@ -43,7 +43,7 @@ class RuleDictionnaryOperatingSystemVersion extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -62,7 +62,7 @@ class RuleDictionnaryOperatingSystemVersion extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

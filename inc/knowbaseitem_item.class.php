@@ -97,7 +97,7 @@ class KnowbaseItem_Item extends CommonDBRelation {
     * @param $item                     CommonDBTM object
     * @param $withtemplate    integer  withtemplate param (default 0)
 
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB;
 
@@ -294,7 +294,7 @@ class KnowbaseItem_Item extends CommonDBRelation {
     * @param boolean    $used      whether to retrieve data for "used" records
     *
     * @return array of linked items
-   **/
+    */
    static function getItems(CommonDBTM $item, $start = 0, $limit = 0, $used = false) {
       global $DB;
 
@@ -371,7 +371,7 @@ class KnowbaseItem_Item extends CommonDBRelation {
     * @param $oldid        ID of the item to clone
     * @param $newid        ID of the item cloned
     * @param $newitemtype  itemtype of the new item (= $itemtype if empty) (default '')
-   **/
+    */
    static function cloneItem($itemtype, $oldid, $newid, $newitemtype = '') {
       global $DB;
 

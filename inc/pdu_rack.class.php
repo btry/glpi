@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-**/
+ */
 class PDU_Rack extends CommonDBRelation {
 
    static public $itemtype_1 = 'Rack';

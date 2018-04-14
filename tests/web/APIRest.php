@@ -127,7 +127,7 @@ class APIRest extends APIBaseClass {
    /**
     * @tags   api
     * @covers API::cors
-   **/
+    */
    public function testCORS() {
       $res = $this->doHttpRequest('OPTIONS', '',
                                          ['headers' => [
@@ -161,7 +161,7 @@ class APIRest extends APIBaseClass {
    /**
     * @tags   api
     * @covers API::inlineDocumentation
-   **/
+    */
    public function testInlineDocumentation() {
       $res = $this->doHttpRequest('GET');
       $this->variable($res)->isNotNull();
@@ -174,7 +174,7 @@ class APIRest extends APIBaseClass {
    /**
     * @tags   api
     * @covers API::initSession
-   **/
+    */
    public function initSessionCredentials() {
       $res = $this->doHttpRequest('GET', 'initSession/', ['auth' => [TU_USER, TU_PASS]]);
 
@@ -192,7 +192,7 @@ class APIRest extends APIBaseClass {
    /**
     * @tags   api
     * @covers API::initSession
-   **/
+    */
    public function testInitSessionUserToken() {
       // retrieve personnal token of TU_USER user
       $user = new \User;

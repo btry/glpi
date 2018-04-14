@@ -36,7 +36,7 @@ class RuleDictionnaryPhoneTypeCollection extends RuleDictionnaryDropdownCollecti
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of phone types');
    }

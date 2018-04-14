@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Saved search alerts
-**/
+ */
 class SavedSearch_Alert extends CommonDBChild {
 
    // From CommonDBChild
@@ -98,7 +98,7 @@ class SavedSearch_Alert extends CommonDBChild {
     *     - computers_id ID of the computer for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
 
       /*if (!Session::haveRight("savedsearch", UPDATE)) {
@@ -179,7 +179,7 @@ class SavedSearch_Alert extends CommonDBChild {
     * @param boolean     $withtemplate Template or basic item (default '')
     *
     * @return void
-   **/
+    */
    static function showForSavedSearch(SavedSearch $search, $withtemplate = 0) {
       global $DB;
 

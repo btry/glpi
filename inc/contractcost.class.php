@@ -51,7 +51,7 @@ class ContractCost extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (!empty($input['begin_date'])
@@ -68,7 +68,7 @@ class ContractCost extends CommonDBChild {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (!empty($input['begin_date'])
@@ -85,7 +85,7 @@ class ContractCost extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       // can exists for template
@@ -200,7 +200,7 @@ class ContractCost extends CommonDBChild {
     *
     * @param $oldid
     * @param $newid
-   **/
+    */
    static function cloneContract ($oldid, $newid) {
       global $DB;
 
@@ -219,7 +219,7 @@ class ContractCost extends CommonDBChild {
 
    /**
     * Init cost for creation based on previous cost
-   **/
+    */
    function initBasedOnPrevious() {
 
       $ticket = new Ticket();
@@ -248,7 +248,7 @@ class ContractCost extends CommonDBChild {
     * Get last datas for a contract
     *
     * @param $contracts_id        integer  ID of the contract
-   **/
+    */
    function getLastCostForContract($contracts_id) {
       global $DB;
 
@@ -269,7 +269,7 @@ class ContractCost extends CommonDBChild {
     *
     * @param $ID        integer  ID of the item
     * @param $options   array    options used
-   **/
+    */
    function showForm($ID, $options = []) {
 
       if ($ID > 0) {
@@ -328,7 +328,7 @@ class ContractCost extends CommonDBChild {
     * @param $withtemplate  boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForContract(Contract $contract, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 

@@ -75,7 +75,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
    /**
     * @since 0.84
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (!isset($input['is_template_computer'])
@@ -98,7 +98,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -132,7 +132,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
       global $DB;
@@ -194,7 +194,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
    /**
     * @param $computers_id
-   **/
+    */
    function updateDatasForComputer($computers_id) {
       global $DB;
 
@@ -222,7 +222,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     *                               (default '')
     *
     * @return number of installations
-   **/
+    */
    static function countForVersion($softwareversions_id, $entity = '') {
       global $DB;
 
@@ -255,7 +255,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $softwares_id software ID
     *
     * @return number of installations
-   **/
+    */
    static function countForSoftware($softwares_id) {
       global $DB;
 
@@ -295,7 +295,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $software Software object
     *
     * @return nothing
-   **/
+    */
    static function showForSoftware(Software $software) {
       self::showInstallations($software->getField('id'), 'softwares_id');
    }
@@ -307,7 +307,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $version SoftwareVersion object
     *
     * @return nothing
-   **/
+    */
    static function showForVersion(SoftwareVersion $version) {
       self::showInstallations($version->getField('id'), 'id');
    }
@@ -320,7 +320,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $crit      to search : softwares_id (software) or id (version)
     *
     * @return nothing
-   **/
+    */
    private static function showInstallations($searchID, $crit) {
       global $DB, $CFG_GLPI;
 
@@ -590,7 +590,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $version SoftwareVersion object
     *
     * @return nothing
-   **/
+    */
    static function showForVersionByEntity(SoftwareVersion $version) {
       global $DB, $CFG_GLPI;
 
@@ -641,7 +641,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $withtemplate    template case of the view process (default 0)
     *
     * @return nothing
-   **/
+    */
    static function showForComputer(Computer $comp, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -925,7 +925,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $display         boolean  display and calculte if true or juste calculate
     *
     * @return array of found license id
-   **/
+    */
    private static function softsByCategory($data, $computers_id, $withtemplate, $canedit,
                                            $display) {
       global $DB, $CFG_GLPI;
@@ -1080,7 +1080,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $dohistory             Do history ? (default 1)
     *
     * @return nothing
-   **/
+    */
    function upgrade($instID, $softwareversions_id, $dohistory = 1) {
 
       if ($this->getFromDB($instID)) {
@@ -1097,7 +1097,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     *
     * @param $oldid ID of the computer to clone
     * @param $newid ID of the computer cloned
-   **/
+    */
    static function cloneComputer($oldid, $newid) {
       global $DB;
 
@@ -1119,7 +1119,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       $nb = 0;
@@ -1164,7 +1164,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
     * @param $item            CommonGLPI object
     * @param $tabnum          (default 1)
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType()=='Software') {

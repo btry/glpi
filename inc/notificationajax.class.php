@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  NotificationAjax
-**/
+ */
 class NotificationAjax implements NotificationInterface {
 
    /**
@@ -46,7 +46,7 @@ class NotificationAjax implements NotificationInterface {
     * @param array $options Optionnal special options (may be needed)
     *
     * @return boolean
-   **/
+    */
    static function check($value, $options = []) {
       //waiting for a user ID
       $value = (int)$value;

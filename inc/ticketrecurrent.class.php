@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Ticket Recurrent class
  *
  * @since 0.83
-**/
+ */
 class TicketRecurrent extends CommonDropdown {
 
    // From CommonDBTM
@@ -129,7 +129,7 @@ class TicketRecurrent extends CommonDropdown {
 
    /**
     * Return Additional Fileds for this type
-   **/
+    */
    function getAdditionalFields() {
 
       return [['name'  => 'is_active',
@@ -171,7 +171,7 @@ class TicketRecurrent extends CommonDropdown {
     * @since 0.83.1
     *
     * @see CommonDropdown::displaySpecificTypeField()
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['name']) {
@@ -204,7 +204,7 @@ class TicketRecurrent extends CommonDropdown {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -293,7 +293,7 @@ class TicketRecurrent extends CommonDropdown {
     * Show next creation date
     *
     * @return nothing only display
-   **/
+    */
    function showInfos() {
 
       if (!is_null($this->fields['next_creation_date'])) {
@@ -318,7 +318,7 @@ class TicketRecurrent extends CommonDropdown {
     * @param $calendars_id    integer     ID of the calendar to used
     *
     * @return datetime next creation date
-   **/
+    */
    function computeNextCreationDate($begin_date, $end_date, $periodicity, $create_before,
                                     $calendars_id) {
 
@@ -401,7 +401,7 @@ class TicketRecurrent extends CommonDropdown {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -418,7 +418,7 @@ class TicketRecurrent extends CommonDropdown {
     * @param $task : crontask object
     *
     * @return integer (0 : nothing done - 1 : done)
-   **/
+    */
    static function cronTicketRecurrent($task) {
       global $DB;
 
@@ -452,7 +452,7 @@ class TicketRecurrent extends CommonDropdown {
     * @param $data array data of a entry of glpi_ticketrecurrents
     *
     * @return boolean
-   **/
+    */
    static function createTicket($data) {
 
       $result = false;

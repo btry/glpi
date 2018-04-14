@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Reservation Class
-**/
+ */
 class Reservation extends CommonDBChild {
 
    // From CommonDBChild
@@ -49,7 +49,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @param $nb  integer  for singular or plural
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Reservation', 'Reservations', $nb);
    }
@@ -57,7 +57,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (!$withtemplate
@@ -72,7 +72,7 @@ class Reservation extends CommonDBChild {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default1)
     * @param $withtemplate (default0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType() == 'User') {
@@ -102,7 +102,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       $item = 0;
@@ -139,7 +139,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
       global $CFG_GLPI;
 
@@ -157,7 +157,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @see CommonDBChild::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       // Error on previous added reservation on several add
@@ -199,7 +199,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @param $reservationitems_id
-   **/
+    */
    function getUniqueGroupFor($reservationitems_id) {
       global $DB;
 
@@ -222,7 +222,7 @@ class Reservation extends CommonDBChild {
     * Is the item already reserved ?
     *
     *@return boolean
-   **/
+    */
    function is_reserved() {
       global $DB;
 
@@ -253,7 +253,7 @@ class Reservation extends CommonDBChild {
     * Current dates are valid ? begin before end
     *
     *@return boolean
-   **/
+    */
    function test_valid_date() {
 
       return (!empty($this->fields["begin"])
@@ -269,7 +269,7 @@ class Reservation extends CommonDBChild {
     * @param $ID     ID of the item
     *
     * @return nothing
-   **/
+    */
    function displayError($type, $ID) {
 
       echo "<br><div class='center'>";
@@ -293,7 +293,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canCreate() {
       return (Session::haveRight(self::$rightname, ReservationItem::RESERVEANITEM));
    }
@@ -301,7 +301,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canUpdate() {
       return (Session::haveRight(self::$rightname, ReservationItem::RESERVEANITEM));
    }
@@ -309,7 +309,7 @@ class Reservation extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canDelete() {
       return (Session::haveRight(self::$rightname, ReservationItem::RESERVEANITEM));
    }
@@ -318,7 +318,7 @@ class Reservation extends CommonDBChild {
    /**
     * Overload canChildItem to make specific checks
     * @since 0.84
-   **/
+    */
    function canChildItem($methodItem, $methodNotItem) {
 
       // Original user always have right
@@ -364,7 +364,7 @@ class Reservation extends CommonDBChild {
     * Show reservation calendar
     *
     * @param $ID   ID of the reservation item (if empty display all) (default '')
-   **/
+    */
    static function showCalendar($ID = "") {
       global $CFG_GLPI;
 
@@ -592,7 +592,7 @@ class Reservation extends CommonDBChild {
     * @param $options   array of possibles options:
     *     - item  reservation items ID for creation process
     *     - date date for creation process
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -788,7 +788,7 @@ class Reservation extends CommonDBChild {
     * @param $begin             begin of the initial reservation
     * @param $end               begin of the initial reservation
     * @param $options   array   periodicity parameters : must contain : type (day/week/month), end
-   **/
+    */
    static function computePeriodicities ($begin, $end, $options = []) {
       $toadd = [];
 
@@ -897,7 +897,7 @@ class Reservation extends CommonDBChild {
     *
     * @param $ID     ID a the reservation item (empty to show all)
     * @param $date   date to display
-   **/
+    */
    static function displayReservationDay($ID, $date) {
       global $DB;
 
@@ -961,7 +961,7 @@ class Reservation extends CommonDBChild {
     *
     * @param $ID     ID a the reservation item
     * @param $date   date to display
-   **/
+    */
    static function displayReservationsForAnItem($ID, $date) {
       global $DB;
 
@@ -1042,7 +1042,7 @@ class Reservation extends CommonDBChild {
     *
     * @param $item            CommonDBTM object for which the reservation tab need to be displayed
     * @param $withtemplate    withtemplate param (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -1159,7 +1159,7 @@ class Reservation extends CommonDBChild {
     * Display reservations for a user
     *
     * @param $ID ID a the user
-   **/
+    */
    static function showForUser($ID) {
       global $DB, $CFG_GLPI;
 

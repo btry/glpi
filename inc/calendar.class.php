@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Calendar Class
-**/
+ */
 class Calendar extends CommonDropdown {
 
    // From CommonDBTM
@@ -50,7 +50,7 @@ class Calendar extends CommonDropdown {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -76,7 +76,7 @@ class Calendar extends CommonDropdown {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -94,7 +94,7 @@ class Calendar extends CommonDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -119,7 +119,7 @@ class Calendar extends CommonDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -200,7 +200,7 @@ class Calendar extends CommonDropdown {
    /** Clone a calendar to another entity : name is updated
     *
     * @param $options array of new values to set
-   **/
+    */
    function duplicate($options = []) {
 
       if (is_array($options) && count($options)) {
@@ -246,7 +246,7 @@ class Calendar extends CommonDropdown {
     * @param $date date of the day to check
     *
     * @return boolean
-   **/
+    */
    function isHoliday($date) {
       global $DB;
 
@@ -279,7 +279,7 @@ class Calendar extends CommonDropdown {
     * @param $work_in_days    boolean  force working in days (false by default)
     *
     * @return timestamp of delay
-   **/
+    */
    function getActiveTimeBetween($start, $end, $work_in_days = false) {
 
       if (!isset($this->fields['id'])) {
@@ -350,7 +350,7 @@ class Calendar extends CommonDropdown {
     * @param $time    time  time to check
     *
     * @return boolean
-   **/
+    */
    function isAWorkingDay($time) {
 
       $cache_duration   = $this->getDurationsCache();
@@ -368,7 +368,7 @@ class Calendar extends CommonDropdown {
     * @param $time    time  time to check
     *
     * @return boolean
-   **/
+    */
    function isAWorkingHour($time) {
 
       if ($this->isAWorkingDay($time)) {
@@ -393,7 +393,7 @@ class Calendar extends CommonDropdown {
     * @param $end_of_working_day boolean     end of working day (false by default)
     *
     * @return end date
-   **/
+    */
    function computeEndDate($start, $delay, $additional_delay = 0, $work_in_days = false, $end_of_working_day = false) {
 
       if (!isset($this->fields['id'])) {
@@ -557,7 +557,7 @@ class Calendar extends CommonDropdown {
     * Get days durations including all segments of the current calendar
     *
     * @return end date
-   **/
+    */
    function getDurationsCache() {
 
       if (!isset($this->fields['id'])) {
@@ -579,7 +579,7 @@ class Calendar extends CommonDropdown {
     * Get days durations including all segments of the current calendar
     *
     * @return end date
-   **/
+    */
    function getDaysDurations() {
 
       if (!isset($this->fields['id'])) {
@@ -600,7 +600,7 @@ class Calendar extends CommonDropdown {
     * Update the calendar cache
     *
     * @param $calendars_id integer calendar ID
-   **/
+    */
    function updateDurationCache($calendars_id) {
 
       if ($this->getFromDB($calendars_id)) {
@@ -616,7 +616,7 @@ class Calendar extends CommonDropdown {
     * Get day number (in week) for a date
     *
     * @param $date date
-   **/
+    */
    static function getDayNumberInWeek($date) {
       return date('w', $date);
    }

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Saved searches class
  *
  * @since 9.2
-**/
+ */
 class SavedSearch extends CommonDBTM {
 
    static $rightname               = 'bookmark_public';
@@ -340,7 +340,7 @@ class SavedSearch extends CommonDBTM {
     *                         - itemtype when adding
     *
     * @return void
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $ID = $this->getID();
@@ -455,7 +455,7 @@ class SavedSearch extends CommonDBTM {
     * @param array   $query_tab Parameters
     *
     * @return clean query array
-   **/
+    */
    protected function prepareQueryToStore($type, $query_tab) {
 
       switch ($type) {
@@ -486,7 +486,7 @@ class SavedSearch extends CommonDBTM {
     * @param array   $query_tab Parameters array
     *
     * @return prepared query array
-   **/
+    */
    function prepareQueryToUse($type, $query_tab) {
 
       switch ($type) {
@@ -549,7 +549,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $ID ID of the saved search
     *
     * @return nothing
-   **/
+    */
    function load($ID) {
       global $CFG_GLPI;
 
@@ -568,7 +568,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $ID ID of the saved search
     *
     * @return array|false
-   **/
+    */
    function getParameters($ID) {
 
       if ($this->getFromDB($ID)) {
@@ -589,7 +589,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $ID ID of the saved search
     *
     * @return void
-   **/
+    */
    function markDefault($ID) {
       global $DB;
 
@@ -624,7 +624,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $ID ID of the saved search
     *
     * @return void
-   **/
+    */
    function unmarkDefault($ID) {
       global $DB;
 
@@ -655,7 +655,7 @@ class SavedSearch extends CommonDBTM {
     * @param array $ids IDs of the saved searches
     *
     * @return boolean
-   **/
+    */
    function unmarkDefaults(array $ids) {
       global $DB;
 
@@ -851,16 +851,16 @@ class SavedSearch extends CommonDBTM {
                _rows.each(function() {
                   var _row = $(this);
                   var rowtext = _row.text().toLowerCase();
- 
+
                   var show = true;
- 
+
                   for (var i=0; i < searchparts.length; i++) {
                      if (rowtext.indexOf(searchparts[i]) == -1) {
                         show = false;
                         break;
                      }
                   }
- 
+
                   if (show) {
                      _row.show();
                   } else {
@@ -882,7 +882,7 @@ class SavedSearch extends CommonDBTM {
     * @param string $searches Search type
     *
     * @return void
-   **/
+    */
    private function displaySavedSearchType($searches) {
       global $CFG_GLPI;
 
@@ -1039,7 +1039,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $itemtype Device type of item where is the bookmark (default 0)
     *
     * @return void
-   **/
+    */
    static function showSaveButton($type, $itemtype = 0) {
       global $CFG_GLPI;
 
@@ -1060,7 +1060,7 @@ class SavedSearch extends CommonDBTM {
     * Get personal order field name
     *
     * @return string
-   **/
+    */
    protected function getPersonalOrderField() {
       return 'privatebookmarkorder';
    }
@@ -1070,7 +1070,7 @@ class SavedSearch extends CommonDBTM {
     * Get all itemtypes used
     *
     * @return array of itemtypes
-   **/
+    */
    static function getUsedItemtypes() {
       global $DB;
 
@@ -1093,7 +1093,7 @@ class SavedSearch extends CommonDBTM {
     * @param integer $time Execution time, in milliseconds
     *
     * @return void
-   **/
+    */
    static public function updateExecutionTime($id, $time) {
       global $DB;
 
@@ -1160,7 +1160,7 @@ class SavedSearch extends CommonDBTM {
     *                       - display  : boolean if false get string
     *
     * @return void|string
-   **/
+    */
    static function dropdownDoCount(array $options = []) {
 
       $p['name']      = 'do_count';
@@ -1269,7 +1269,7 @@ class SavedSearch extends CommonDBTM {
     * @param Crontask $task Crontask instance
     *
     * @return void
-   **/
+    */
    static public function croncountAll($task) {
       global $DB, $CFG_GLPI;
 
@@ -1330,7 +1330,7 @@ class SavedSearch extends CommonDBTM {
     * @throws RuntimeException
     *
     * @return array
-   **/
+    */
    public function execute($force = false) {
       global $CFG_GLPI;
 
@@ -1393,7 +1393,7 @@ class SavedSearch extends CommonDBTM {
     * Return visibility SQL restriction to add
     *
     * @return string restrict to add
-   **/
+    */
    static function addVisibilityRestrict() {
       if (Session::haveRight('config', UPDATE)) {
          return '';

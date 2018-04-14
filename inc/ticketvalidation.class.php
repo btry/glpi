@@ -64,7 +64,7 @@ class TicketValidation  extends CommonITILValidation {
 
    /**
     * @since 0.85
-   **/
+    */
    function canCreateItem() {
 
       if ($this->canChildItem('canViewItem', 'canView')) {
@@ -89,7 +89,7 @@ class TicketValidation  extends CommonITILValidation {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

@@ -44,7 +44,7 @@ if (!defined('GLPI_ROOT')) {
  *  but not its network information)
  *
  * @since 0.84
-**/
+ */
 class NetworkName extends FQDNLabel {
 
    // From CommonDBChild
@@ -88,7 +88,7 @@ class NetworkName extends FQDNLabel {
     *     - withtemplate template or basic computer
     *
     *@return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -209,7 +209,7 @@ class NetworkName extends FQDNLabel {
    /**
     * @param $tab          array   the array to fill
     * @param $joinparams   array
-   **/
+    */
    static function rawSearchOptionsToAdd(array &$tab, array $joinparams) {
       $tab[] = [
          'id'                 => '126',
@@ -255,7 +255,7 @@ class NetworkName extends FQDNLabel {
    /**
     * \brief Update IPAddress database
     * Update IPAddress database to remove old IPs and add new ones.
-   **/
+    */
    function post_workOnItem() {
 
       if ((isset($this->input['_ipaddresses']))
@@ -331,7 +331,7 @@ class NetworkName extends FQDNLabel {
     *
     * @param $items_id  the id of the item
     * @param $itemtype  the type of the item
-   **/
+    */
    static function unaffectAddressesOfItem($items_id, $itemtype) {
       global $DB;
 
@@ -352,7 +352,7 @@ class NetworkName extends FQDNLabel {
     * The address can be unaffected, and remain "free"
     *
     * @param $networkNameID the id of the NetworkName
-   **/
+    */
    static function unaffectAddressByID($networkNameID) {
       return self::affectAddress($networkNameID, 0, '');
    }
@@ -362,7 +362,7 @@ class NetworkName extends FQDNLabel {
     * @param $networkNameID
     * @param $items_id
     * @param $itemtype
-   **/
+    */
    static function affectAddress($networkNameID, $items_id, $itemtype) {
       global $DB;
 
@@ -379,7 +379,7 @@ class NetworkName extends FQDNLabel {
     * @param $ID ID of the NetworkName
     *
     * @return its internet name, or empty string if invalid NetworkName
-   **/
+    */
    static function getInternetNameFromID($ID) {
 
       $networkName = new self();
@@ -395,7 +395,7 @@ class NetworkName extends FQDNLabel {
 
    /**
     * @param $networkPortID
-   **/
+    */
    static function showFormForNetworkPort($networkPortID) {
       global $DB, $CFG_GLPI;
 
@@ -490,7 +490,7 @@ class NetworkName extends FQDNLabel {
     * @param $super           HTMLTableSuperHeader object (default NULL
     * @param $father          HTMLTableHeader object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -531,7 +531,7 @@ class NetworkName extends FQDNLabel {
     * @param $item            CommonDBTM object (default NULL)
     * @param $father          HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
       global $DB, $CFG_GLPI;
@@ -668,7 +668,7 @@ class NetworkName extends FQDNLabel {
     *
     * @param $item                     CommonGLPI object
     * @param $withtemplate   integer   withtemplate param (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -816,7 +816,7 @@ class NetworkName extends FQDNLabel {
 
    /**
     * @param $item      CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
       global $DB;
 

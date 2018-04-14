@@ -42,7 +42,7 @@ if (!defined('GLPI_ROOT')) {
  * ComputerVirtualMachine Class
  *
  * Class to manage virtual machines
-**/
+ */
 class ComputerVirtualMachine extends CommonDBChild {
 
    // From CommonDBChild
@@ -58,7 +58,7 @@ class ComputerVirtualMachine extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (!$withtemplate
@@ -79,7 +79,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     * @see CommonGLPI::defineTabs()
     *
     * @since 0.85
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -93,7 +93,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       self::showForVirtualMachine($item);
@@ -118,7 +118,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     *     - computers_id ID of the computer for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -246,7 +246,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     * @param $comp   Computer object that represents the virtual machine
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForVirtualMachine(Computer $comp) {
       global $DB;
 
@@ -315,7 +315,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     * @param $comp Computer object
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForComputer(Computer $comp) {
       global $DB;
 
@@ -426,7 +426,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     *
     * @return the restrict which contains uuid, uuid with first block flipped,
     * uuid with 3 first block flipped
-   **/
+    */
    static function getUUIDRestrictRequest($uuid) {
 
       //More infos about uuid, please see wikipedia :
@@ -468,7 +468,7 @@ class ComputerVirtualMachine extends CommonDBChild {
     * @param fields array of virtualmachine fields
     *
     * @return the ID of the computer that have this uuid or false otherwise
-   **/
+    */
    static function findVirtualMachine($fields = []) {
       global $DB;
 

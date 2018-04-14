@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Notepad class
  *
  * @since 0.85
-**/
+ */
 class Notepad extends CommonDBChild {
 
    // From CommonDBChild
@@ -103,7 +103,7 @@ class Notepad extends CommonDBChild {
     * @param string $itemtype      itemtype of the item
     * @param integer $oldid        ID of the item to clone
     * @param integer $newid        ID of the item cloned
-    **/
+    */
    static function cloneItem ($itemtype, $oldid, $newid) {
       global $DB;
 
@@ -120,7 +120,7 @@ class Notepad extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (Session::haveRight($item::$rightname, READNOTE)) {
@@ -138,7 +138,7 @@ class Notepad extends CommonDBChild {
     * @param $item            CommonGLPI object
     * @param $tabnum          (default 1)
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       static::showForItem($item, $withtemplate);
    }
@@ -148,7 +148,7 @@ class Notepad extends CommonDBChild {
     * @param $item    CommonDBTM object
     *
     * @return number
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       return countElementsInTable('glpi_notepads',
@@ -159,7 +159,7 @@ class Notepad extends CommonDBChild {
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function getAllForItem(CommonDBTM $item) {
       global $DB;
 
@@ -272,7 +272,7 @@ class Notepad extends CommonDBChild {
     *
     * @param $item                  CommonDBTM object
     * @param $withtemplate integer  template or basic item (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $CFG_GLPI;
 

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Profile_User Class
-**/
+ */
 class Profile_User extends CommonDBRelation {
 
    // From CommonDBTM
@@ -64,7 +64,7 @@ class Profile_User extends CommonDBRelation {
     * @since 0.84
     *
     * @see CommonDBTM::getForbiddenStandardMassiveAction()
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -107,7 +107,7 @@ class Profile_User extends CommonDBRelation {
     * Show rights of a user
     *
     * @param $user User object
-   **/
+    */
    static function showForUser(User $user) {
       global $DB,$CFG_GLPI;
 
@@ -265,7 +265,7 @@ class Profile_User extends CommonDBRelation {
     * Show users of an entity
     *
     * @param $entity Entity object
-   **/
+    */
    static function showForEntity(Entity $entity) {
       global $DB;
 
@@ -437,7 +437,7 @@ class Profile_User extends CommonDBRelation {
     * Show the User having a profile, in allowed Entity
     *
     * @param $prof Profile object
-   **/
+    */
    static function showForProfile(Profile $prof) {
       global $DB, $CFG_GLPI;
 
@@ -603,7 +603,7 @@ class Profile_User extends CommonDBRelation {
     * @param $default_first   user default entity first (false by default)
     *
     * @return array of entities ID
-   **/
+    */
    static function getUserEntities($user_ID, $is_recursive = true, $default_first = false) {
       global $DB;
 
@@ -651,7 +651,7 @@ class Profile_User extends CommonDBRelation {
     * @param boolean $is_recursive check also using recursive rights (true by default)
     *
     * @return array of entities ID
-   **/
+    */
    static function getUserEntitiesForRight($user_ID, $rightname, $rights, $is_recursive = true) {
       global $DB;
 
@@ -695,7 +695,7 @@ class Profile_User extends CommonDBRelation {
     * @param $sqlfilter  string  additional filter (default [])
     *
     * @return array of the IDs of the profiles
-   **/
+    */
    static function getUserProfiles($user_ID, $sqlfilter = []) {
       global $DB;
 
@@ -744,7 +744,7 @@ class Profile_User extends CommonDBRelation {
     *                               (false by default)
     *
     * @return Array of entity ID
-   **/
+    */
    static function getEntitiesForProfileByUser($users_id, $profiles_id, $child = false) {
       global $DB;
 
@@ -778,7 +778,7 @@ class Profile_User extends CommonDBRelation {
     * @since 0.85
     *
     * @return Array of entity ID
-   **/
+    */
    static function getEntitiesForUser($users_id, $child = false) {
       global $DB;
 
@@ -810,7 +810,7 @@ class Profile_User extends CommonDBRelation {
     * @param $only_dynamic    get only recursive rights (false by default)
     *
     * @return array of entities ID
-   **/
+    */
    static function getForUser($user_ID, $only_dynamic = false) {
       global $DB;
 
@@ -827,7 +827,7 @@ class Profile_User extends CommonDBRelation {
    /**
     * @param $user_ID
     * @param $profile_id
-   **/
+    */
    static function haveUniqueRight($user_ID, $profile_id) {
       global $DB;
 
@@ -844,7 +844,7 @@ class Profile_User extends CommonDBRelation {
    /**
     * @param $user_ID
     * @param $only_dynamic    (false by default)
-   **/
+    */
    static function deleteRights($user_ID, $only_dynamic = false) {
 
       $crit['users_id'] = $user_ID;
@@ -932,7 +932,7 @@ class Profile_User extends CommonDBRelation {
 
    /**
     * @see CommonDBTM::getRawName()
-   **/
+    */
    function getRawName() {
 
       $name = sprintf(__('%1$s, %2$s'),
@@ -1029,7 +1029,7 @@ class Profile_User extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 
@@ -1046,7 +1046,7 @@ class Profile_User extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::showRelationMassiveActionsSubForm()
-   **/
+    */
    static function showRelationMassiveActionsSubForm(MassiveAction $ma, $peer_number) {
 
       if (($ma->getAction() == 'add')
@@ -1063,7 +1063,7 @@ class Profile_User extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationInputForProcessingOfMassiveActions()
-   **/
+    */
    static function getRelationInputForProcessingOfMassiveActions($action, CommonDBTM $item,
                                                                  array $ids, array $input) {
       $result = [];

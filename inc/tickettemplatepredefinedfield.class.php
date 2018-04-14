@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
  * Predefined fields for ticket template class
  *
  * @since 0.83
-**/
+ */
 class TicketTemplatePredefinedField extends CommonDBChild {
 
    // From CommonDBChild
@@ -52,7 +52,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -70,7 +70,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
     * @see CommonDBTM::getRawName()
     *
     * @since 0.85
-   **/
+    */
    function getRawName() {
 
       $tt     = new TicketTemplate();
@@ -156,7 +156,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
     * @param $withtypeandcategory   boolean   with type and category (false by default)
     *
     * @return an array of predefined fields
-   **/
+    */
    function getPredefinedFields($ID, $withtypeandcategory = false) {
       global $DB;
 
@@ -190,7 +190,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getMultiplePredefinedValues() {
 
       $ticket = new Ticket();
@@ -225,7 +225,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
     * @param $withtemplate    boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForTicketTemplate(TicketTemplate $tt, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 

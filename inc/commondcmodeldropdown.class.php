@@ -43,7 +43,7 @@ abstract class CommonDCModelDropdown extends CommonDropdown {
     * Return Additional Fields for this type
     *
     * @return array
-   **/
+    */
    function getAdditionalFields() {
       global $DB;
 

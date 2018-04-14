@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Database iterator class for Mysql
-**/
+ */
 class QueryParam  {
    private $value;
 

@@ -46,7 +46,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       //TRANS: software in plural
       return __('Dictionnary of software');
@@ -55,7 +55,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::cleanTestOutputCriterias()
-   **/
+    */
    function cleanTestOutputCriterias(array $output) {
 
       //If output array contains keys begining with _ : drop it
@@ -70,7 +70,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::warningBeforeReplayRulesOnExistingDB()
-   **/
+    */
    function warningBeforeReplayRulesOnExistingDB($target) {
       global $CFG_GLPI;
 
@@ -106,7 +106,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::replayRulesOnExistingDB()
-   **/
+    */
    function replayRulesOnExistingDB($offset = 0, $maxtime = 0, $items = [], $params = []) {
       global $DB;
 
@@ -221,7 +221,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
     * @param $res_rule  array of rule results
     *
     * @return Query result handler
-   **/
+    */
    function replayDictionnaryOnSoftwaresByID(array $IDs, $res_rule = []) {
       global $DB;
 
@@ -267,7 +267,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
     * @param $name                  softwrae name
     * @param $manufacturer          manufacturer name
     * @param &$soft_ids       array containing replay software need to be dustbined
-   **/
+    */
    function replayDictionnaryOnOneSoftware(array &$new_softs, array $res_rule, $ID, $entity, $name,
                                            $manufacturer, array &$soft_ids) {
       global $DB;
@@ -360,7 +360,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
     * Delete a list of softwares
     *
     * @param $soft_ids array containing replay software need to be dustbined
-   **/
+    */
    function putOldSoftsInTrash(array $soft_ids) {
       global $DB;
 
@@ -475,7 +475,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
     * @param $old_software_id    old software ID
     * @param $new_software_id    new software ID
     * @return true if move was successful
-   **/
+    */
    function moveLicenses($old_software_id, $new_software_id) {
       global $DB;
 
@@ -504,7 +504,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
     *
     * @param $software_id  software ID
     * @param $version      version name
-   **/
+    */
    function versionExists($software_id, $version) {
       global $DB;
 

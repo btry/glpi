@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Vlan Class
-**/
+ */
 class Vlan extends CommonDropdown {
 
    public $dohistory         = true;
@@ -107,7 +107,7 @@ class Vlan extends CommonDropdown {
     * @param $super           HTMLTableSuperHeader object (default NULL
     * @param $father          HTMLTableHeader object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -131,7 +131,7 @@ class Vlan extends CommonDropdown {
     * @param $item            CommonDBTM object (default NULL)
     * @param $father          HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
       global $DB, $CFG_GLPI;

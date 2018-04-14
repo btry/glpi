@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Document_Item Class
  *
  *  Relation between Documents and Items
-**/
+ */
 class Document_Item extends CommonDBRelation{
 
 
@@ -54,7 +54,7 @@ class Document_Item extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -66,7 +66,7 @@ class Document_Item extends CommonDBRelation{
    /**
     * @since 0.85.5
     * @see CommonDBRelation::canCreateItem()
-   **/
+    */
    function canCreateItem() {
 
       if ($this->fields['itemtype'] == 'Ticket') {
@@ -125,7 +125,7 @@ class Document_Item extends CommonDBRelation{
     * @since 0.90.2
     *
     * @see CommonDBTM::pre_deleteItem()
-   **/
+    */
    function pre_deleteItem() {
       global $DB;
 
@@ -179,7 +179,7 @@ class Document_Item extends CommonDBRelation{
     * @since 0.83
     *
     * @see CommonDBTM::post_purgeItem()
-   **/
+    */
    function post_purgeItem() {
 
       if ($this->fields['itemtype'] == 'Ticket') {
@@ -209,7 +209,7 @@ class Document_Item extends CommonDBRelation{
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       $restrict = "`glpi_documents_items`.`items_id` = '".$item->getField('id')."'
@@ -243,7 +243,7 @@ class Document_Item extends CommonDBRelation{
 
    /**
     * @param $item   Document object
-   **/
+    */
    static function countForDocument(Document $item) {
       return countElementsInTable(['glpi_documents_items'],
                                  ['glpi_documents_items.documents_id' => $item->getField('id'),
@@ -315,7 +315,7 @@ class Document_Item extends CommonDBRelation{
     * @param $oldid        ID of the item to clone
     * @param $newid        ID of the item cloned
     * @param $newitemtype  itemtype of the new item (= $itemtype if empty) (default '')
-   **/
+    */
    static function cloneItem($itemtype, $oldid, $newid, $newitemtype = '') {
       global $DB;
 
@@ -343,7 +343,7 @@ class Document_Item extends CommonDBRelation{
     * @param $doc Document object
     *
     * @return nothing (HTML display)
-   **/
+    */
    static function showForDocument(Document $doc) {
       global $DB, $CFG_GLPI;
 
@@ -570,7 +570,7 @@ class Document_Item extends CommonDBRelation{
     *
     * @param $item            CommonDBTM object for which associated documents must be displayed
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       $ID = $item->getField('id');
 
@@ -634,7 +634,7 @@ class Document_Item extends CommonDBRelation{
     * @param $options         array
     *
     * @return boolean
-   **/
+    */
    static function showAddFormForItem(CommonDBTM $item, $withtemplate = 0, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -984,7 +984,7 @@ class Document_Item extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsPeerForSubForm()
-   **/
+    */
    static function getRelationMassiveActionsPeerForSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -1004,7 +1004,7 @@ class Document_Item extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 

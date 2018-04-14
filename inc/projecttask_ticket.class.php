@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * Relation between ProjectTasks and Tickets
  *
  * @since 0.85
-**/
+ */
 class ProjectTask_Ticket extends CommonDBRelation{
 
    // From CommonDBRelation
@@ -111,7 +111,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
     * @param $projecttasks_id    integer    $projecttasks_id ID of the project task
     *
     * @return integer total actiontime
-   **/
+    */
    static function getTicketsTotalActionTime($projecttasks_id) {
       global $DB;
 
@@ -133,7 +133,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
     * Show tickets for a projecttask
     *
     * @param $projecttask ProjectTask object
-   **/
+    */
    static function showForProjectTask(ProjectTask $projecttask) {
       global $DB, $CFG_GLPI;
 
@@ -239,7 +239,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
     * Show projecttasks for a ticket
     *
     * @param $ticket Ticket object
-    **/
+    */
    static function showForTicket(Ticket $ticket) {
       global $DB, $CFG_GLPI;
 

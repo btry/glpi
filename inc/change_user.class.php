@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Change_User Class
  *
  * Relation between Changes and Users
-**/
+ */
 class Change_User extends CommonITILActor {
 
    // From CommonDBRelation

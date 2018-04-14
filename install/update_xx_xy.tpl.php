@@ -35,7 +35,7 @@
  * Update from XX to XY
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function updateXXtoXY() {
    global $DB, $migration, $CFG_GLPI;
 

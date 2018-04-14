@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Fieldblacklist Class
-**/
+ */
 class Fieldblacklist extends CommonDropdown {
 
    static $rightname         = 'config';
@@ -55,7 +55,7 @@ class Fieldblacklist extends CommonDropdown {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canPurge() {
       return static::canUpdate();
    }
@@ -80,7 +80,7 @@ class Fieldblacklist extends CommonDropdown {
     * Get search function for the class
     *
     * @return array of search option
-   **/
+    */
    function rawSearchOptions() {
       $tab = parent::rawSearchOptions();
 
@@ -158,7 +158,7 @@ class Fieldblacklist extends CommonDropdown {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -193,7 +193,7 @@ class Fieldblacklist extends CommonDropdown {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       $input = parent::prepareInputForAdd($input);
@@ -203,7 +203,7 @@ class Fieldblacklist extends CommonDropdown {
 
    /**
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       $input = parent::prepareInputForUpdate($input);
@@ -216,7 +216,7 @@ class Fieldblacklist extends CommonDropdown {
     *
     * @param $ID
     * @param $field array
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['type']) {
@@ -239,7 +239,7 @@ class Fieldblacklist extends CommonDropdown {
     * Display a dropdown which contains all the available itemtypes
     *
     * @return nothing
-   **/
+    */
    function showItemtype() {
       global $CFG_GLPI;
 
@@ -305,7 +305,7 @@ class Fieldblacklist extends CommonDropdown {
     *
     * @param $itemtype          itemtype
     * @param $options    array    of options
-   **/
+    */
    static function dropdownField($itemtype, $options = []) {
       global $DB;
 
@@ -345,7 +345,7 @@ class Fieldblacklist extends CommonDropdown {
 
    /**
     * @param $field  (default '')
-   **/
+    */
    function selectValues($field = '') {
       global $DB, $CFG_GLPI;
 
@@ -377,7 +377,7 @@ class Fieldblacklist extends CommonDropdown {
     * @param value         the field's value
     *
     * @return true is value if blacklisted, false otherwise
-   **/
+    */
    static function isFieldBlacklisted($itemtype, $entities_id, $field, $value) {
       global $DB;
 

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * BlacklistedMailContent Class
  *
  * @since 0.85
-**/
+ */
 class BlacklistedMailContent extends CommonDropdown {
 
    // From CommonDBTM

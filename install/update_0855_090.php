@@ -34,7 +34,7 @@
  * Update from 0.85.5 to 0.90
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function update0855to090() {
    global $DB, $migration;
 

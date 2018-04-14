@@ -54,7 +54,7 @@ class Reminder_User extends CommonDBRelation {
     * @param $reminders_id ID of the reminder
     *
     * @return array of users linked to a reminder
-   **/
+    */
    static function getUsers($reminders_id) {
       global $DB;
 

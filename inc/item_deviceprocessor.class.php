@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Relation between item and devices
-**/
+ */
 class Item_DeviceProcessor extends Item_Devices {
 
    static public $itemtype_2 = 'DeviceProcessor';
@@ -47,7 +47,7 @@ class Item_DeviceProcessor extends Item_Devices {
 
    /**
     * @since 0.85
-    **/
+    */
    static function getSpecificities($specif = '') {
 
       return ['frequency' => ['long name'  => sprintf(__('%1$s (%2$s)'), __('Frequency'),

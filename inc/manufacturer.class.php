@@ -49,7 +49,7 @@ class Manufacturer extends CommonDropdown {
    /**
     * @since 0.85
     * @see CommonDropdown::displaySpecificTypeField()
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['type']) {
@@ -63,7 +63,7 @@ class Manufacturer extends CommonDropdown {
    /**
     * @since 0.85
     * @see CommonDropdown::getAdditionalFields()
-   **/
+    */
    function getAdditionalFields() {
 
       return [['name'  => 'none',
@@ -77,7 +77,7 @@ class Manufacturer extends CommonDropdown {
 
    /**
     * @since 0.85
-   **/
+    */
    function post_workOnItem() {
 
       if ((isset($this->input['_registeredID']))
@@ -118,7 +118,7 @@ class Manufacturer extends CommonDropdown {
    /**
     * @since 0.85
     * @see CommonDBTM::post_addItem()
-   **/
+    */
    function post_addItem() {
 
       $this->post_workOnItem();
@@ -129,7 +129,7 @@ class Manufacturer extends CommonDropdown {
    /**
     * @since 0.85
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       $this->post_workOnItem();
@@ -141,7 +141,7 @@ class Manufacturer extends CommonDropdown {
     * @param $old_name Old name (need to be addslashes)
     *
     * @return new addslashes name
-   **/
+    */
    static function processName($old_name) {
 
       if ($old_name == null) {
@@ -173,7 +173,7 @@ class Manufacturer extends CommonDropdown {
     * @param $super                 HTMLTableSuperHeader object (default NULL)
     * @param $father                HTMLTableHeader object (default NULL)
     * @param $options      array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -195,7 +195,7 @@ class Manufacturer extends CommonDropdown {
     * @param $item               CommonDBTM object (default NULL)
     * @param $father             HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
 

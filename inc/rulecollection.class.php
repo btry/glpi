@@ -70,7 +70,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * @param $entity (default 0)
-   **/
+    */
    function setEntity($entity = 0) {
       $this->entity = $entity;
    }
@@ -93,7 +93,7 @@ class RuleCollection extends CommonDBTM {
     * @param $condition (0 by default)
     *
     * @return : number of rules
-   **/
+    */
    function getCollectionSize($recursive = true, $condition = 0) {
 
       $restrict = "`sub_type` = '".$this->getRuleClassName()."'".
@@ -109,7 +109,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * @param $options   array
-   **/
+    */
    function getRuleListQuery($options = []) {
 
       $p['active']    = true;
@@ -173,7 +173,7 @@ class RuleCollection extends CommonDBTM {
     *         - limit : max number of rules to retrieve (default 0)
     *         - recursive : boolean get recursive rules
     *         - childirens : boolean get childrens rules
-   **/
+    */
    function getCollectionPart($options = []) {
       global $DB;
 
@@ -212,7 +212,7 @@ class RuleCollection extends CommonDBTM {
     * @param $retrieve_criteria  Retrieve the criterias of the rules ? (default 0)
     * @param $retrieve_action    Retrieve the action of the rules ? (default 0)
     * @param $condition          Retrieve with a specific condition
-   **/
+    */
    function getCollectionDatas($retrieve_criteria = 0, $retrieve_action = 0, $condition = 0) {
       global $DB;
 
@@ -259,7 +259,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Get a instance of the class to manipulate rule of this collection
-   **/
+    */
    function getRuleClass() {
 
       $name = $this->getRuleClassName();
@@ -277,7 +277,7 @@ class RuleCollection extends CommonDBTM {
     * @param $target filename : where to go when done
     *
     * @return  true if confirmtion is needed, else false
-   **/
+    */
    function warningBeforeReplayRulesOnExistingDB($target) {
       return false;
    }
@@ -292,7 +292,7 @@ class RuleCollection extends CommonDBTM {
     * @param $params    array    additional parameters if needed
     *
     * @return -1 if all rows done, else offset for next run
-   **/
+    */
    function replayRulesOnExistingDB($offset = 0, $maxtime = 0, $items = [], $params = []) {
    }
 
@@ -301,7 +301,7 @@ class RuleCollection extends CommonDBTM {
     * Get title used in list of rules
     *
     * @return Title of the rule collection
-   **/
+    */
    function getTitle() {
       return __('Rules list');
    }
@@ -309,7 +309,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Indicates if the rule can be affected to an entity or if it's global
-   **/
+    */
    function isRuleEntityAssigned() {
 
       $rule = $this->getRuleClass();
@@ -319,7 +319,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Indicates if the rule can be affected to an entity or if it's global
-   **/
+    */
    function isRuleRecursive() {
 
       $rule = $this->getRuleClass();
@@ -328,7 +328,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Indicates if the rule use conditions
-   **/
+    */
    function isRuleUseConditions() {
 
       $rule = $this->getRuleClass();
@@ -337,7 +337,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Indicates if the rule use conditions
-   **/
+    */
    function getDefaultRuleConditionForList() {
 
       $rule = $this->getRuleClass();
@@ -389,7 +389,7 @@ class RuleCollection extends CommonDBTM {
     * @param $options   array
     *
     * @return nothing
-   **/
+    */
    function showListRules($target, $options = []) {
       global $CFG_GLPI;
 
@@ -569,7 +569,7 @@ class RuleCollection extends CommonDBTM {
     * @param $target
     *
     * @return nothing
-   **/
+    */
    function showAdditionalInformationsInForm($target) {
    }
 
@@ -580,7 +580,7 @@ class RuleCollection extends CommonDBTM {
     * @param $ID     the rule ID whose ranking must be modified
     * @param $action up or down
     * @param $condition action on a specific condition
-   **/
+    */
    function changeRuleOrder($ID, $action, $condition = 0) {
       global $DB;
 
@@ -683,7 +683,7 @@ class RuleCollection extends CommonDBTM {
     * @param $ranking rank of the deleted rule
     *
     * @return true if all ok
-   **/
+    */
    function deleteRuleOrder($ranking) {
       global $DB;
 
@@ -707,7 +707,7 @@ class RuleCollection extends CommonDBTM {
     * @param $type      of move : after or before ( default 'after')
     *
     * @return true if all ok
-   **/
+    */
    function moveRule($ID, $ref_ID, $type = 'after') {
       global $DB;
 
@@ -795,7 +795,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return nothing (display)
-   **/
+    */
    static function titleBackup() {
       global $CFG_GLPI;
 
@@ -818,7 +818,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return true if all ok
-   **/
+    */
    function duplicateRule($ID) {
 
       //duplicate rule
@@ -881,7 +881,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return nothing, send attachment to browser
-   **/
+    */
    static function exportRulesToXML($items = []) {
 
       if (!count($items)) {
@@ -983,7 +983,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return nothing (display)
-   **/
+    */
    static function displayImportRulesForm() {
 
       echo "<form name='form' method='post' action='rule.backup.php' ".
@@ -1013,7 +1013,7 @@ class RuleCollection extends CommonDBTM {
     * @param $criterion             the criterion
     *
     * @return true if a criterion is a dropdown, false otherwise
-   **/
+    */
    static function isCriteraADropdown($available_criteria, $condition, $criterion) {
 
       if (isset($available_criteria[$criterion]['type'])) {
@@ -1033,7 +1033,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return true if all ok
-   **/
+    */
    static function previewImportRules() {
       global $DB;
 
@@ -1298,7 +1298,7 @@ class RuleCollection extends CommonDBTM {
     * @since 0.85
     *
     * @return true if all ok
-   **/
+    */
    static function processImportRules() {
       global $DB;
 
@@ -1432,7 +1432,7 @@ class RuleCollection extends CommonDBTM {
     *                            - only_criteria : only react on specific criteria
     *
     * @return the output array updated by actions (addslashes datas)
-   **/
+    */
    function processAllRules($input = [], $output = [], $params = [], $options = []) {
 
       $p['condition']     = 0;
@@ -1483,7 +1483,7 @@ class RuleCollection extends CommonDBTM {
     * @param $target          where to go
     * @param $values    array of data
     * @param $condition       condition to limit rules (default 0)
-    **/
+    */
    function showRulesEnginePreviewCriteriasForm($target, array $values, $condition = 0) {
       global $DB;
 
@@ -1542,7 +1542,7 @@ class RuleCollection extends CommonDBTM {
     * @param $condition       condition to limit rules (DEFAULT 0)
     *
     * @return the output array updated by actions
-   **/
+    */
    function testAllRules($input = [], $output = [], $params = [], $condition = 0) {
 
       // Get Collection datas
@@ -1594,7 +1594,7 @@ class RuleCollection extends CommonDBTM {
     * @param $params parameters
     *
     * @return the updated input datas
-   **/
+    */
    function prepareInputDataForProcess($input, $params) {
       return $input;
    }
@@ -1609,7 +1609,7 @@ class RuleCollection extends CommonDBTM {
     * @param $params parameters
     *
     * @return the updated input datas
-   **/
+    */
    function prepareInputDataForProcessWithPlugins($input, $params) {
       global $PLUGIN_HOOKS;
 
@@ -1639,7 +1639,7 @@ class RuleCollection extends CommonDBTM {
     * @param $condition condition to limit rules (DEFAULT 0)
     *
     * @return the updated input datas
-   **/
+    */
    function prepareInputDataForTestProcess($condition = 0) {
       global $DB;
 
@@ -1668,7 +1668,7 @@ class RuleCollection extends CommonDBTM {
     * @param $target          where to go
     * @param $input     array of data
     * @param $condition       condition to limit rules (DEFAULT 0)
-   **/
+    */
    function showRulesEnginePreviewResultsForm($target, array $input, $condition = 0) {
 
       $output = [];
@@ -1726,7 +1726,7 @@ class RuleCollection extends CommonDBTM {
     * @param $output    array clean output array to clean
     *
     * @return cleaned array
-   **/
+    */
    function cleanTestOutputCriterias(array $output) {
 
       $rule   = $this->getRuleClass();
@@ -1750,7 +1750,7 @@ class RuleCollection extends CommonDBTM {
     * @param $global_result   boolean  global result
     *
     * @return cleaned array
-    **/
+    */
    function showTestResults($rule, array $output, $global_result) {
 
       $actions = $rule->getAllActions();
@@ -1777,7 +1777,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * @param $output
-   **/
+    */
    function preProcessPreviewResults($output) {
       global $PLUGIN_HOOKS;
 
@@ -1804,7 +1804,7 @@ class RuleCollection extends CommonDBTM {
     * Print a title if needed which will be displayed above list of rules
     *
     * @return nothing (display)
-   **/
+    */
    function title() {
    }
 
@@ -1855,7 +1855,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * Get all the fields needed to perform the rule
-   **/
+    */
    function getFieldsToLookFor() {
       global $DB;
 
@@ -1878,7 +1878,7 @@ class RuleCollection extends CommonDBTM {
     * For tabs management : force isNewItem
     *
     * @since 0.83
-   **/
+    */
    function isNewItem() {
       return false;
    }
@@ -1886,7 +1886,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong               = [];
@@ -1898,7 +1898,7 @@ class RuleCollection extends CommonDBTM {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item instanceof RuleCollection) {

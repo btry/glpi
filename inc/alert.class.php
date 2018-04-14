@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Alert class
-**/
+ */
 class Alert extends CommonDBTM {
 
    // ALERTS TYPE

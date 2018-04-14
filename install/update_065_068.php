@@ -941,7 +941,7 @@ function update065to068() {
  * @param $string string: initial string
  *
  * @return formatted string
-**/
+ */
 function rembo($string) {
 
    // Adapte de PunBB
@@ -1007,7 +1007,7 @@ function rembo($string) {
  * @param $chaine
  *
  * @return $string
-**/
+ */
 function clicurl($chaine) {
 
    $text = preg_replace("`((?:https?|ftp)://\S+)(\s|\z)`", '<a href="$1">$1</a>$2', $chaine);
@@ -1023,7 +1023,7 @@ function clicurl($chaine) {
  * @param $br
  *
  * @return $string
-**/
+ */
 function autop($pee, $br = 1) {
 
    // Thanks  to Matthew Mullenweg
@@ -1047,7 +1047,7 @@ function autop($pee, $br = 1) {
  * @param $end
  *
  * @return array
-**/
+ */
 function split_text($text, $start, $end) {
 
    // Adapt?? de PunBB

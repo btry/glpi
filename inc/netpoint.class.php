@@ -83,7 +83,7 @@ class Netpoint extends CommonDropdown {
     * @since 0.83 (before addMulti)
     *
     * @param $input array of values
-   **/
+    */
    function executeAddMulti(array $input) {
 
       $this->check(-1, CREATE, $input);
@@ -107,7 +107,7 @@ class Netpoint extends CommonDropdown {
     * @param $devtype            (default '')
     *
     * @return nothing (display the select box)
-   **/
+    */
    static function dropdownNetpoint($myname, $value = 0, $locations_id = -1, $display_comment = 1,
                                     $entity_restrict = -1, $devtype = '') {
       global $CFG_GLPI;
@@ -166,7 +166,7 @@ class Netpoint extends CommonDropdown {
     * @param $input array of value to import (name, locations_id, entities_id)
     *
     * @return the ID of the new (or -1 if not found)
-   **/
+    */
    function findID(array &$input) {
       global $DB;
 
@@ -246,7 +246,7 @@ class Netpoint extends CommonDropdown {
     * @param $item Location
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForLocation($item) {
       global $DB, $CFG_GLPI;
 
@@ -388,7 +388,7 @@ class Netpoint extends CommonDropdown {
     * @param $super           HTMLTableSuperHeader object (default NULL
     * @param $father          HTMLTableHeader object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -411,7 +411,7 @@ class Netpoint extends CommonDropdown {
     * @param $item            CommonDBTM object (default NULL)
     * @param $father          HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, $options = []) {
 

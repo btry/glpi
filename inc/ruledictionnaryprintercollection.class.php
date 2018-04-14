@@ -46,7 +46,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of printers');
    }
@@ -54,7 +54,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::cleanTestOutputCriterias()
-   **/
+    */
    function cleanTestOutputCriterias(array $output) {
 
       //If output array contains keys begining with _ : drop it
@@ -69,7 +69,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::replayRulesOnExistingDB()
-   **/
+    */
    function replayRulesOnExistingDB($offset = 0, $maxtime = 0, $items = [], $params = []) {
       global $DB;
 
@@ -167,7 +167,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
    /**
     * @param $res_rule  array
     * @param $input     array
-   **/
+    */
    static function somethingHasChanged(array $res_rule, array $input) {
 
       if ((isset($res_rule["name"]) && ($res_rule["name"] != $input["name"]))
@@ -186,7 +186,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
     * @param $res_rule  array of rule results
     *
     * @return Query result handler
-   **/
+    */
    function replayDictionnaryOnPrintersByID(array $IDs, $res_rule = []) {
       global $DB;
 
@@ -236,7 +236,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
     * @param $res_rule        array of rule results
     * @param $params          array
     * @param &$printers_ids   array containing replay printer need to be dustbined
-   **/
+    */
    function replayDictionnaryOnOnePrinter(array &$new_printers, array $res_rule,
                                           array $params, array &$printers_ids) {
       global $DB;
@@ -313,7 +313,7 @@ class RuleDictionnaryPrinterCollection extends RuleCollection {
     * @param $new_printers_id    the new printer's id
     *
     * @return nothing
-   **/
+    */
    function moveDirectConnections($ID, $new_printers_id) {
       global $DB;
 

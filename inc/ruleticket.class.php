@@ -74,7 +74,7 @@ class RuleTicket extends Rule {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getConditionsArray() {
 
       return [static::ONADD                   => __('Add'),
@@ -88,7 +88,7 @@ class RuleTicket extends Rule {
     * display title for action form
     *
     * @since 0.84.3
-   **/
+    */
    function getTitleAction() {
 
       parent::getTitleAction();
@@ -114,7 +114,7 @@ class RuleTicket extends Rule {
 
    /**
     * @param $params
-   **/
+    */
    function addSpecificParamsForPreview($params) {
 
       if (!isset($params["entities_id"])) {
@@ -128,7 +128,7 @@ class RuleTicket extends Rule {
     * Function used to display type specific criterias during rule's preview
     *
     * @param $fields fields values
-   **/
+    */
    function showSpecificCriteriasForPreview($fields) {
 
       $entity_as_criteria = false;
@@ -147,7 +147,7 @@ class RuleTicket extends Rule {
    /**
     * @param $output
     * @param $params
-   **/
+    */
    function executeActions($output, $params) {
 
       if (count($this->actions)) {
@@ -311,7 +311,7 @@ class RuleTicket extends Rule {
 
    /**
     * @param $output
-   **/
+    */
    function preProcessPreviewResults($output) {
 
       $output = parent::preProcessPreviewResults($output);
@@ -661,7 +661,7 @@ class RuleTicket extends Rule {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

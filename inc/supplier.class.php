@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Supplier class (suppliers)
-**/
+ */
 class Supplier extends CommonDBTM {
 
    // From CommonDBTM
@@ -51,7 +51,7 @@ class Supplier extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Supplier', 'Suppliers', $nb);
    }
@@ -121,7 +121,7 @@ class Supplier extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     *@return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -200,7 +200,7 @@ class Supplier extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -422,7 +422,7 @@ class Supplier extends CommonDBTM {
     * Get links for an enterprise (website / edit)
     *
     * @param $withname boolean : also display name ? (false by default)
-   **/
+    */
    function getLinks($withname = false) {
       global $CFG_GLPI;
 
@@ -453,7 +453,7 @@ class Supplier extends CommonDBTM {
     *
     *@return Nothing (display)
     *
-   **/
+    */
    function showInfocoms() {
       global $DB, $CFG_GLPI;
 

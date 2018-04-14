@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Ticket Class
-**/
+ */
 class Ticket extends CommonITILObject {
 
    // From CommonDBTM
@@ -159,7 +159,7 @@ class Ticket extends CommonITILObject {
     * Name of the type
     *
     * @param $nb : number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Ticket', 'Tickets', $nb);
    }
@@ -169,7 +169,7 @@ class Ticket extends CommonITILObject {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 't';
    }
@@ -179,7 +179,7 @@ class Ticket extends CommonITILObject {
     * @see CommonGLPI::getAdditionalMenuOptions()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (TicketTemplate::canView()) {
@@ -199,7 +199,7 @@ class Ticket extends CommonITILObject {
     * @see CommonGLPI::getAdditionalMenuContent()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuContent() {
 
       if (static::canCreate()) {
@@ -214,7 +214,7 @@ class Ticket extends CommonITILObject {
     * @see CommonGLPI::getAdditionalMenuLinks()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuLinks() {
       global $CFG_GLPI;
 
@@ -324,7 +324,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to show the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -354,7 +354,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to approve solution of the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canApprove() {
 
       return ((($this->fields["users_id_recipient"] === Session::getLoginUserID())
@@ -367,7 +367,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @see CommonDBTM::canMassiveAction()
-   **/
+    */
    function canMassiveAction($action, $field, $value) {
 
       switch ($action) {
@@ -396,7 +396,7 @@ class Ticket extends CommonITILObject {
     * @since 9.1 (before getDatasToAddSla without type parameter)
     *
     * @return array of datas to add in ticket
-   **/
+    */
    function getDatasToAddSLA($slas_id, $entities_id, $date, $type) {
 
       list($dateField, $slaField) = SLA::getFieldNames($type);
@@ -434,7 +434,7 @@ class Ticket extends CommonITILObject {
     * @since 9.2 (before getDatasToAddOla without type parameter)
     *
     * @return array of datas to add in ticket
-    **/
+    */
    function getDatasToAddOLA($olas_id, $entities_id, $date, $type) {
 
       list($dateField, $olaField) = OLA::getFieldNames($type);
@@ -473,7 +473,7 @@ class Ticket extends CommonITILObject {
     * @param bool    $delete_date (default false)
     *
     * @return bool
-    **/
+    */
    function deleteLevelAgreement($laType, $la_id, $subtype, $delete_date = false) {
       switch ($laType) {
          case "SLA":
@@ -517,7 +517,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to create the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -531,7 +531,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to update the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
       if (!$this->checkEntity()) {
          return false;
@@ -569,7 +569,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canDelete() {
 
       // to allow delete for self-service only if no action on the ticket
@@ -596,7 +596,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to delete the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canDeleteItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -618,7 +618,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @see CommonITILObject::getDefaultActor()
-   **/
+    */
    function getDefaultActor($type) {
 
       if ($type == CommonITILActor::ASSIGN) {
@@ -639,7 +639,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @see CommonITILObject::getDefaultActorRightSearch()
-   **/
+    */
    function getDefaultActorRightSearch($type) {
 
       $right = "all";
@@ -892,7 +892,7 @@ class Ticket extends CommonITILObject {
     * Retrieve data of the hardware linked to the ticket if exists
     *
     * @return nothing : set computerfound to 1 if founded
-   **/
+    */
    function getAdditionalDatas() {
 
       $this->hardwaredatas = [];
@@ -1485,7 +1485,7 @@ class Ticket extends CommonITILObject {
     * @since 9.1
     *
     * @param $slas_id
-   **/
+    */
    function manageSlaLevel($slas_id) {
 
       $calendars_id = Entity::getUsedConfig('calendars_id', $this->fields['entities_id']);
@@ -1506,7 +1506,7 @@ class Ticket extends CommonITILObject {
     * @since 9.1
     *
     * @param $slas_id
-   **/
+    */
    function manageOlaLevel($slas_id) {
 
       $calendars_id = Entity::getUsedConfig('calendars_id', $this->fields['entities_id']);
@@ -1548,7 +1548,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * Compute take into account stat of the current ticket
-   **/
+    */
    function computeTakeIntoAccountDelayStat() {
 
       if (isset($this->fields['id'])
@@ -2172,7 +2172,7 @@ class Ticket extends CommonITILObject {
     * @param $input array : input array
     *
     * @return nothing
-   **/
+    */
    function manageValidationAdd($input) {
 
       //Action for send_validation rule
@@ -2325,7 +2325,7 @@ class Ticket extends CommonITILObject {
     * @param $with_private boolean : true : all followups / false : only public ones (default 1)
     *
     * @return followup count
-   **/
+    */
    function numberOfFollowups($with_private = 1) {
       global $DB;
 
@@ -2351,7 +2351,7 @@ class Ticket extends CommonITILObject {
     * @param $with_private boolean : true : all ticket / false : only public ones (default 1)
     *
     * @return followup count
-   **/
+    */
    function numberOfTasks($with_private = 1) {
       global $DB;
 
@@ -2381,7 +2381,7 @@ class Ticket extends CommonITILObject {
     * @param $days      integer  day number
     *
     * @return integer
-   **/
+    */
    function getActiveOrSolvedLastDaysTicketsForItem($itemtype, $items_id, $days) {
       global $DB;
 
@@ -2418,7 +2418,7 @@ class Ticket extends CommonITILObject {
     * @param $items_id  integer  ID of the Item
     *
     * @return integer
-   **/
+    */
    function countActiveTicketsForItem($itemtype, $items_id) {
       global $DB;
 
@@ -2451,7 +2451,7 @@ class Ticket extends CommonITILObject {
     * @param $days      integer  day number
     *
     * @return integer
-   **/
+    */
    function countSolvedTicketsForItemLastDays($itemtype, $items_id, $days) {
       global $DB;
 
@@ -2485,7 +2485,7 @@ class Ticket extends CommonITILObject {
     * @param $ID                           ID of the ticket
     * @param $no_stat_computation  boolean do not cumpute take into account stat (false by default)
     * @param $users_id_lastupdater integer to force last_update id (default 0 = not used)
-   **/
+    */
    function updateDateMod($ID, $no_stat_computation = false, $users_id_lastupdater = 0) {
       global $DB;
 
@@ -2522,7 +2522,7 @@ class Ticket extends CommonITILObject {
     * @param $type itemtype of object to add
     *
     * @return rights
-   **/
+    */
    function canAddItem($type) {
 
       if ($type == 'Document') {
@@ -2548,7 +2548,7 @@ class Ticket extends CommonITILObject {
     * Is the current user have right to add followups to the current ticket ?
     *
     * @return boolean
-   **/
+    */
    function canAddFollowups() {
 
       return ((Session::haveRight("followup", TicketFollowup::ADDMYTICKET)
@@ -2567,7 +2567,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * Get default values to search engine to override
-   **/
+    */
    static function getDefaultSearchRequest() {
 
       $search = ['criteria' => [0 => ['field'      => 12,
@@ -2585,7 +2585,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -3351,7 +3351,7 @@ class Ticket extends CommonITILObject {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -3382,7 +3382,7 @@ class Ticket extends CommonITILObject {
     * @param $options   array
     *
     * @return string
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -3412,7 +3412,7 @@ class Ticket extends CommonITILObject {
     *    - display   : boolean / display or get string (default true)
     *
     * @return string id of the select
-   **/
+    */
    static function dropdownType($name, $options = []) {
 
       $params['value']       = 0;
@@ -3441,7 +3441,7 @@ class Ticket extends CommonITILObject {
     * Get ticket types
     *
     * @return array of types
-   **/
+    */
    static function getTypes() {
 
       $options[self::INCIDENT_TYPE] = __('Incident');
@@ -3455,7 +3455,7 @@ class Ticket extends CommonITILObject {
     * Get ticket type Name
     *
     * @param $value type ID
-   **/
+    */
    static function getTicketTypeName($value) {
 
       switch ($value) {
@@ -3478,7 +3478,7 @@ class Ticket extends CommonITILObject {
     * @param $withmetaforsearch boolean (false by default)
     *
     * @return an array
-   **/
+    */
    static function getAllStatusArray($withmetaforsearch = false) {
 
       // To be overridden by class
@@ -3506,7 +3506,7 @@ class Ticket extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getClosedStatusArray() {
       return [self::CLOSED];
    }
@@ -3518,7 +3518,7 @@ class Ticket extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getSolvedStatusArray() {
       return [self::SOLVED];
    }
@@ -3529,7 +3529,7 @@ class Ticket extends CommonITILObject {
     * @since 0.83.8
     *
     * @return an array
-   **/
+    */
    static function getNewStatusArray() {
       return [self::INCOMING];
    }
@@ -3540,7 +3540,7 @@ class Ticket extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getProcessStatusArray() {
       return [self::ASSIGNED, self::PLANNED];
    }
@@ -3551,7 +3551,7 @@ class Ticket extends CommonITILObject {
     * @since 0.90.1
     *
     * @return an array
-   **/
+    */
    static function getReopenableStatusArray() {
       return [self::CLOSED, self::SOLVED, self::WAITING];
    }
@@ -3562,7 +3562,7 @@ class Ticket extends CommonITILObject {
     *@param $item CommonDBTM object of the item
     *
     *@return float
-   **/
+    */
    static function computeTco(CommonDBTM $item) {
       global $DB;
 
@@ -3597,7 +3597,7 @@ class Ticket extends CommonITILObject {
     *                                  (false by default)
     *
     * @return nothing (print the helpdesk)
-   **/
+    */
    function showFormHelpdesk($ID, $ticket_template = false) {
       global $DB, $CFG_GLPI;
 
@@ -4082,7 +4082,7 @@ class Ticket extends CommonITILObject {
     * Display a single oberver selector
     *
     *  * @param $options array options for default values ($options of showActorAddFormOnCreate)
-   **/
+    */
    static function showFormHelpdeskObserver($options = []) {
       global $CFG_GLPI;
 
@@ -4136,7 +4136,7 @@ class Ticket extends CommonITILObject {
     * @since 0.83
     *
     * @param $entity  integer  entities_id usefull is function called by cron (default 0)
-   **/
+    */
    static function getDefaultValues($entity = 0) {
       global $CFG_GLPI;
 
@@ -4229,7 +4229,7 @@ class Ticket extends CommonITILObject {
     * @since 0.84
     *
     * @return ticket template object
-   **/
+    */
    function getTicketTemplateToUse($force_template = 0, $type = 0, $itilcategories_id = 0,
                                    $entities_id = -1) {
 
@@ -5242,7 +5242,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @param $size (default 25)
-   **/
+    */
    static function showDocumentAddButton($size = 25) {
       global $CFG_GLPI;
 
@@ -5702,7 +5702,7 @@ class Ticket extends CommonITILObject {
     * Get tickets count
     *
     * @param $foruser boolean : only for current login user as requester (false by default)
-   **/
+    */
    static function showCentralCount($foruser = false) {
       global $DB, $CFG_GLPI;
 
@@ -5894,7 +5894,7 @@ class Ticket extends CommonITILObject {
     * @param boolean    $withtemplate (default 0)
     *
     * @return void (display a table)
-   **/
+    */
    static function showListForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -6144,7 +6144,7 @@ class Ticket extends CommonITILObject {
    /**
     * @param $ID
     * @param $forcetab  string   name of the tab to force at the display (default '')
-   **/
+    */
    static function showVeryShort($ID, $forcetab = '') {
       global $CFG_GLPI;
 
@@ -6279,7 +6279,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @param $output
-   **/
+    */
    static function showPreviewAssignAction($output) {
 
       //If ticket is assign to an object, display this information first
@@ -6311,7 +6311,7 @@ class Ticket extends CommonITILObject {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -6334,7 +6334,7 @@ class Ticket extends CommonITILObject {
     * @param $task : crontask object
     *
     * @return integer (0 : nothing done - 1 : done)
-   **/
+    */
    static function cronCloseTicket($task) {
       global $DB;
 
@@ -6380,7 +6380,7 @@ class Ticket extends CommonITILObject {
     * @param $task : crontask object
     *
     * @return integer (0 : nothing done - 1 : done)
-   **/
+    */
    static function cronAlertNotClosed($task) {
       global $DB, $CFG_GLPI;
 
@@ -6429,7 +6429,7 @@ class Ticket extends CommonITILObject {
     * @param $task : crontask object
     *
     * @return integer (0 : nothing done - 1 : done)
-   **/
+    */
    static function cronCreateInquest($task) {
       global $DB;
 
@@ -6521,7 +6521,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
       NotificationEvent::debugEvent($this);
    }
@@ -6531,7 +6531,7 @@ class Ticket extends CommonITILObject {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -6574,7 +6574,7 @@ class Ticket extends CommonITILObject {
     * @param $tags          array  of image tag
     *
     * @return htlm content
-   **/
+    */
    static function convertContentForTicket($content_html, $files, $tags) {
 
       // We inject another meta tag
@@ -6609,7 +6609,7 @@ class Ticket extends CommonITILObject {
     * @deprecated 9.2.1, code copied into more generic function NotificationEventMailing::send
     *
     * @return htlm content
-   **/
+    */
    function convertContentForNotification($content, $item) {
       global $CFG_GLPI, $DB;
 
@@ -6702,7 +6702,7 @@ class Ticket extends CommonITILObject {
    /**
     * @since 0.90
     *
-   **/
+    */
    function getTimelineItems() {
       global $DB, $CFG_GLPI;
 
@@ -6852,7 +6852,7 @@ class Ticket extends CommonITILObject {
     * @since 0.90
     *
     * @param $rand
-   **/
+    */
    function showTimeline($rand) {
       global $CFG_GLPI, $DB, $autolink_options;
 
@@ -7256,7 +7256,7 @@ class Ticket extends CommonITILObject {
     * will return an assoc array of users_id => array of roles.
     * @return array[] of array[] of users and roles
     * @since 0.90
-   **/
+    */
    function getTicketActors() {
       global $DB;
 
@@ -7286,7 +7286,7 @@ class Ticket extends CommonITILObject {
 
    /**
     * @since 0.90
-   **/
+    */
    function showTimelineHeader() {
 
       echo "<h2>".__("Actions historical")." : </h2>";
@@ -7326,7 +7326,7 @@ class Ticket extends CommonITILObject {
     * @since 0.90
     *
     * @param $rand
-   **/
+    */
    function showTimelineForm($rand) {
       global $CFG_GLPI;
 
@@ -7468,7 +7468,7 @@ class Ticket extends CommonITILObject {
     * @param $item
     * @param $id
     * @param $params
-   **/
+    */
    static function showSubForm(CommonDBTM $item, $id, $params) {
 
       if ($item instanceof Document_Item) {
@@ -7486,7 +7486,7 @@ class Ticket extends CommonITILObject {
     *
     * @param $tickets_id
     * @param $action         (default 'add')
-   **/
+    */
    static function getSplittedSubmitButtonHtml($tickets_id, $action = "add") {
 
       $locale = _sx('button', 'Add');
@@ -7528,7 +7528,7 @@ class Ticket extends CommonITILObject {
     *
     * @since 0.90.4
     *
-   **/
+    */
    function getCalendar() {
 
       if (isset($this->fields['slas_ttr_id']) && $this->fields['slas_ttr_id'] > 0) {

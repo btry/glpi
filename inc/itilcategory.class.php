@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * ITILCategory class
-**/
+ */
 class ITILCategory extends CommonTreeDropdown {
 
    // From CommonDBTM
@@ -261,7 +261,7 @@ class ITILCategory extends CommonTreeDropdown {
     *
     * @param $item         CommonGLPI object
     * @param $withtemplate (default 0)
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (Session::haveRight(self::$rightname, READ)) {
@@ -287,7 +287,7 @@ class ITILCategory extends CommonTreeDropdown {
    /**
     * @param $tt           TicketTemplate object
     * @param $withtemplate (default 0)
-   **/
+    */
    static function showForTicketTemplate(TicketTemplate $tt, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 

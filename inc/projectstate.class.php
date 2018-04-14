@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * ProjectState Class
  *
  * @since 0.85
-**/
+ */
 class ProjectState extends CommonDropdown {
 
 

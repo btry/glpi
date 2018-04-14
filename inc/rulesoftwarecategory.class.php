@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
 *   - criterias
 *   - actions
 *
-**/
+ */
 class RuleSoftwareCategory extends Rule {
 
    // From Rule
@@ -56,7 +56,7 @@ class RuleSoftwareCategory extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       return 1;
    }

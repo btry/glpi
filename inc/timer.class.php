@@ -63,7 +63,7 @@ class Timer {
     * @param boolean $raw      Get raw time
     *
     * @return time past from start
-   **/
+    */
    function getTime ($decimals = 3, $raw = false) {
       $elapsed = microtime(true) - $this->timer;
       if ($raw === true) {

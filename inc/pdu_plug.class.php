@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-**/
+ */
 
 class Pdu_Plug extends CommonDBRelation {
 
@@ -55,7 +55,7 @@ class Pdu_Plug extends CommonDBRelation {
     * @param Rack $rack Rack object instance
     *
     * @return integer
-   **/
+    */
    /*static function countForRack(Rack $rack) {
       return countElementsInTable(self::getTable(),
                                   ['racks_id' => $rack->getID()]);

@@ -98,7 +98,7 @@ class PlanningRecall extends CommonDBChild {
     * @param $users_id     integer  id of the user
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBForItemAndUser($itemtype, $items_id, $users_id) {
 
       return $this->getFromDBByCrit([
@@ -111,7 +111,7 @@ class PlanningRecall extends CommonDBChild {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
 
       $alert = new Alert();
@@ -124,7 +124,7 @@ class PlanningRecall extends CommonDBChild {
     * Manage recall set
     *
     * @param $data array of data to manage
-   **/
+    */
    static function manageDatas(array $data) {
 
       // Check data informations
@@ -194,7 +194,7 @@ class PlanningRecall extends CommonDBChild {
     * @param $begin     datetime new begin date
     *
     * @return true if succeed else false
-   **/
+    */
    static function managePlanningUpdates($itemtype, $items_id, $begin) {
       global $DB;
 
@@ -230,7 +230,7 @@ class PlanningRecall extends CommonDBChild {
     *    - field    : string  field used as time mark (default begin)
     *
     * @return nothing (print out an HTML select box) / return false if mandatory fields are not ok
-   **/
+    */
    static function dropdown($options = []) {
       global $DB, $CFG_GLPI;
 
@@ -303,7 +303,7 @@ class PlanningRecall extends CommonDBChild {
     *    - field    : string  field used as time mark (default begin)
     *
     * @return nothing (print out an HTML select box) / return false if mandatory fields are not ok
-   **/
+    */
    static function specificForm($options = []) {
       global $CFG_GLPI;
 
@@ -339,7 +339,7 @@ class PlanningRecall extends CommonDBChild {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -354,7 +354,7 @@ class PlanningRecall extends CommonDBChild {
     * Cron action on contracts : alert depending of the config : on notice and expire
     *
     * @param $task for log, if NULL display (default NULL)
-   **/
+    */
    static function cronPlanningRecall($task = null) {
       global $DB, $CFG_GLPI;
 

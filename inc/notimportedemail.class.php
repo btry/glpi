@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotImportedEmail Class
-**/
+ */
 class NotImportedEmail extends CommonDBTM {
 
    static $rightname = 'config';
@@ -63,7 +63,7 @@ class NotImportedEmail extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-    **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -82,7 +82,7 @@ class NotImportedEmail extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -100,7 +100,7 @@ class NotImportedEmail extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -215,7 +215,7 @@ class NotImportedEmail extends CommonDBTM {
 
    /**
     * @param $reason_id
-   **/
+    */
    static function getReason($reason_id) {
 
       $tab = self::getAllReasons();
@@ -230,7 +230,7 @@ class NotImportedEmail extends CommonDBTM {
     * @since versin 0.84
     *
     * Get All possible reasons array
-   **/
+    */
    static function getAllReasons() {
 
       return [self::MATCH_NO_RULE => __('Unable to affect the email to an entity'),
@@ -245,7 +245,7 @@ class NotImportedEmail extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -271,7 +271,7 @@ class NotImportedEmail extends CommonDBTM {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {

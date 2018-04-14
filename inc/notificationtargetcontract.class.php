@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetContract Class
-**/
+ */
 class NotificationTargetContract extends NotificationTarget {
 
 

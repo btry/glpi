@@ -54,7 +54,7 @@ class ComputerAntivirus extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       // can exists for template
@@ -75,7 +75,7 @@ class ComputerAntivirus extends CommonDBChild {
     * @param $item            CommonGLPI object
     * @param $tabnum          (default 1)
     * @param $withtemplate    (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       self::showForComputer($item, $withtemplate);
@@ -85,7 +85,7 @@ class ComputerAntivirus extends CommonDBChild {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -101,7 +101,7 @@ class ComputerAntivirus extends CommonDBChild {
     *
     * @param $oldid
     * @param $newid
-   **/
+    */
    static function cloneComputer ($oldid, $newid) {
       global $DB;
 
@@ -216,7 +216,7 @@ class ComputerAntivirus extends CommonDBChild {
     * @param $options array
     *
     * @return bool TRUE if form is ok
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -308,7 +308,7 @@ class ComputerAntivirus extends CommonDBChild {
     * @param $withtemplate boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForComputer(Computer $comp, $withtemplate = 0) {
       global $DB;
 

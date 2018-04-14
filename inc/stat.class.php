@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Stat class
-**/
+ */
 class Stat extends CommonGLPI {
 
    static $rightname = 'statistic';
@@ -56,7 +56,7 @@ class Stat extends CommonGLPI {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'a';
    }
@@ -68,7 +68,7 @@ class Stat extends CommonGLPI {
     * @param $date2
     * @param $type
     * @param $parent    (default 0)
-   **/
+    */
    static function getItems($itemtype, $date1, $date2, $type, $parent = 0) {
       global $CFG_GLPI, $DB;
 
@@ -280,7 +280,7 @@ class Stat extends CommonGLPI {
     * @param $start
     * @param $value     array
     * @param $value2             (default '')
-   **/
+    */
    static function getData($itemtype, $type, $date1, $date2, $start, array $value, $value2 = "") {
 
       $export_data = [];
@@ -339,7 +339,7 @@ class Stat extends CommonGLPI {
     * @param $value2          (default '')
     *
     * @since 0.85 (before show with same parameters)
-   **/
+    */
    static function showTable($itemtype, $type, $date1, $date2, $start, array $value, $value2 = "") {
       global $CFG_GLPI;
 
@@ -1094,7 +1094,7 @@ class Stat extends CommonGLPI {
     * @param $date1
     * @param $date2
     * @param $start
-   **/
+    */
    static function showItems($target, $date1, $date2, $start) {
       global $DB, $CFG_GLPI;
 
@@ -1203,7 +1203,7 @@ class Stat extends CommonGLPI {
 
    /**
     * @since 0.84
-   **/
+    */
    static function title() {
       global $PLUGIN_HOOKS, $CFG_GLPI;
 
@@ -1302,7 +1302,7 @@ class Stat extends CommonGLPI {
 
    /**
     * @since 0.85
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values[READ] = __('Read');

@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * CommonITILValidation Class
  *
  * @since 0.85
-**/
+ */
 abstract class CommonITILValidation  extends CommonDBChild {
 
    // From CommonDBTM
@@ -101,7 +101,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
    * Is the current user have right to delete the current validation ?
    *
    * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (($this->fields["users_id"] == Session::getLoginUserID())
@@ -133,7 +133,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
    * Is the current user have right to delete the current validation ?
    *
    * @return boolean
-   **/
+    */
    function canDeleteItem() {
 
       if (($this->fields["users_id"] == Session::getLoginUserID())
@@ -161,7 +161,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
    /**
     * @param $items_id ID of the item
-   **/
+    */
    static function canValidate($items_id) {
       global $DB;
 
@@ -384,7 +384,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
    /**
     * @see CommonDBConnexity::getHistoryChangeWhenUpdateField
-   **/
+    */
    function getHistoryChangeWhenUpdateField($field) {
 
       if ($field == 'status') {
@@ -406,7 +406,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
    /**
     * @see CommonDBChild::getHistoryNameForItem
-   **/
+    */
    function getHistoryNameForItem(CommonDBTM $item, $case) {
 
       $username = getUserName($this->fields["users_id_validate"]);
@@ -430,7 +430,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *                                    (false by default)
     *
     * @return an array
-   **/
+    */
    static function getAllStatusArray($withmetaforsearch = false, $global = false) {
 
       $tab = [self::WAITING  => __('Waiting for approval'),
@@ -462,7 +462,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *      - display  : boolean display or get string ? (default true)
     *
     * @return nothing (display)
-   **/
+    */
    static function dropdownStatus($name, $options = []) {
 
       $p['value']    = self::WAITING;
@@ -488,7 +488,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * Get Ticket validation status Name
     *
     * @param $value status ID
-   **/
+    */
    static function getStatus($value) {
 
       $tab = self::getAllStatusArray(true, true);
@@ -501,7 +501,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * Get Ticket validation status Color
     *
     * @param $value status ID
-   **/
+    */
    static function getStatusColor($value) {
 
       switch ($value) {
@@ -528,7 +528,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * Get item validation demands count for a user
     *
     * @param $users_id  integer  User ID
-   **/
+    */
    static function getNumberToValidate($users_id) {
       global $DB;
 
@@ -553,7 +553,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *
     * @param $items_id   integer  item ID
     * @param $status              status
-   **/
+    */
    static function getTicketStatusNumber($items_id, $status) {
       global $DB;
 
@@ -582,7 +582,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @since 0.85
     *
     * @return boolean
-   **/
+    */
    static function alreadyExists($items_id, $users_id) {
       global $DB;
 
@@ -605,7 +605,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
    /**
     * Form for Followup on Massive action
-   **/
+    */
    static function showFormMassiveAction() {
 
       global $CFG_GLPI;
@@ -634,7 +634,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -651,7 +651,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -701,7 +701,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * Print the validation list into item
     *
     * @param $item class
-   **/
+    */
    function showSummary($item) {
       global $DB, $CFG_GLPI;
 
@@ -875,7 +875,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *
     * @param $ID        integer  ID of the item
     * @param $options   array    options used
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -1216,7 +1216,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -1235,7 +1235,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @param $name              (default '')
     * @param $values            (default '')
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -1254,7 +1254,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
 
    /**
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -1279,7 +1279,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *  - applyto
     *
     * @return nothing (display)
-   **/
+    */
    static function dropdownValidator(array $options = []) {
       global $CFG_GLPI;
 
@@ -1333,7 +1333,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     *       entity
     *
     * @return array
-   **/
+    */
    static function getGroupUserHaveRights(array $options = []) {
       global $DB;
 
@@ -1371,7 +1371,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @param $item CommonITILObject
     *
     * @return validation status
-   **/
+    */
    static function computeValidationStatus(CommonITILObject $item) {
 
       $validation_status  = self::WAITING;
@@ -1418,7 +1418,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @param $tID tickets id
     *
     * @return statistics array
-   **/
+    */
    static function getValidationStats($tID) {
 
       $tab = self::getAllStatusArray();
@@ -1507,7 +1507,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @since 0.85
     *
     * @return an array
-    **/
+    */
    static function getCanValidationStatusArray() {
       return [self::NONE, self::ACCEPTED];
    }
@@ -1519,7 +1519,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
     * @since 0.85
     *
     * @return an array
-    **/
+    */
    static function getAllValidationStatusArray() {
       return [self::NONE, self::WAITING, self::REFUSED, self::ACCEPTED];
    }

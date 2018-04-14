@@ -40,7 +40,7 @@ class RuleDictionnaryMonitorTypeCollection extends RuleDictionnaryDropdownCollec
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of monitor types');
    }

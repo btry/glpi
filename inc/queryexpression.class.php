@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Query expression class
-**/
+ */
 class QueryExpression {
    private $expression;
 

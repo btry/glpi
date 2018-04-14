@@ -55,7 +55,7 @@ class DisplayPreference extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
       global $DB;
 
@@ -75,7 +75,7 @@ class DisplayPreference extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -113,7 +113,7 @@ class DisplayPreference extends CommonDBTM {
     *
     * @param $itemtype  itemtype
     * @param $user_id   user ID
-   **/
+    */
    static function getForTypeUser($itemtype, $user_id) {
       global $DB;
 
@@ -143,7 +143,7 @@ class DisplayPreference extends CommonDBTM {
     * Active personal config based on global one
     *
     * @param $input  array parameter (itemtype,users_id)
-   **/
+    */
    function activatePerso(array $input) {
       global $DB;
 
@@ -195,7 +195,7 @@ class DisplayPreference extends CommonDBTM {
     *
     * @param $input  array parameter (id,itemtype,users_id)
     * @param $action       up or down
-   **/
+    */
    function orderItem(array $input, $action) {
       global $DB;
 
@@ -253,7 +253,7 @@ class DisplayPreference extends CommonDBTM {
     * @param $itemtype  item type
     *
     * @return nothing
-   **/
+    */
    function showFormPerso($target, $itemtype) {
       global $CFG_GLPI, $DB;
 
@@ -420,7 +420,7 @@ class DisplayPreference extends CommonDBTM {
     * @param $itemtype  item type
     *
     * @return nothing
-   **/
+    */
    function showFormGlobal($target, $itemtype) {
       global $CFG_GLPI, $DB;
 
@@ -573,7 +573,7 @@ class DisplayPreference extends CommonDBTM {
     * show defined display preferences for a user
     *
     * @param $users_id integer user ID
-   **/
+    */
    static function showForUser($users_id) {
       global $DB;
 
@@ -637,7 +637,7 @@ class DisplayPreference extends CommonDBTM {
     * For tab management : force isNewItem
     *
     * @since 0.83
-   **/
+    */
    function isNewItem() {
       return false;
    }
@@ -700,7 +700,7 @@ class DisplayPreference extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       //TRANS: short for : Search result user display

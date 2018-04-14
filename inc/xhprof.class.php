@@ -65,7 +65,7 @@ class XHProf {
 
    /**
     * @param $msg (default '')
-   **/
+    */
    function __construct($msg = '') {
       $this->start($msg);
    }
@@ -78,7 +78,7 @@ class XHProf {
 
    /**
     * @param $msg (default '')
-   **/
+    */
    function start($msg = '') {
 
       if (!self::$run

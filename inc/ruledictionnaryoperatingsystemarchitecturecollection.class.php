@@ -36,7 +36,7 @@ class RuleDictionnaryOperatingSystemArchitectureCollection extends RuleDictionna
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of operating system architectures');
    }

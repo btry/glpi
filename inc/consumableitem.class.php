@@ -57,7 +57,7 @@ class ConsumableItem extends CommonDBTM {
     * @see CommonGLPI::getMenuName()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuName() {
       return Consumable::getTypeName(Session::getPluralNumber());
    }
@@ -67,7 +67,7 @@ class ConsumableItem extends CommonDBTM {
     * @see CommonGLPI::getAdditionalMenuLinks()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuLinks() {
 
       if (static::canView()) {
@@ -81,7 +81,7 @@ class ConsumableItem extends CommonDBTM {
     * @since 0.84
     *
     * @see CommonDBTM::getPostAdditionalInfosForName
-   **/
+    */
    function getPostAdditionalInfosForName() {
 
       if (isset($this->fields["ref"]) && !empty($this->fields["ref"])) {
@@ -133,7 +133,7 @@ class ConsumableItem extends CommonDBTM {
     *
     * @return Nothing (display)
     *
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -209,7 +209,7 @@ class ConsumableItem extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -385,7 +385,7 @@ class ConsumableItem extends CommonDBTM {
     * @param $task   to log, if NULL display (default NULL)
     *
     * @return 0 : nothing to do 1 : done with success
-   **/
+    */
    static function cronConsumable($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -484,7 +484,7 @@ class ConsumableItem extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       // see query_alert in cronConsumable()
@@ -511,7 +511,7 @@ class ConsumableItem extends CommonDBTM {
     * Overriden here to check entities recursively
     *
     * @return booleen
-   **/
+    */
    function canUpdateItem() {
 
       if (!$this->checkEntity(true)) {

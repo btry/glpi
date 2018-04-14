@@ -38,7 +38,7 @@ use Sabre\VObject;
 
 /**
  * Contact class
-**/
+ */
 class Contact extends CommonDBTM{
 
    // From CommonDBTM
@@ -92,7 +92,7 @@ class Contact extends CommonDBTM{
     * Get address of the contact (company one)
     *
     *@return string containing the address
-   **/
+    */
    function GetAddress() {
       global $DB;
 
@@ -118,7 +118,7 @@ class Contact extends CommonDBTM{
     * Get website of the contact (company one)
     *
     *@return string containing the website
-   **/
+    */
    function GetWebsite() {
       global $DB;
 
@@ -145,7 +145,7 @@ class Contact extends CommonDBTM{
     *     - withtemplate boolean : template or basic item
     *
     * @return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -238,7 +238,7 @@ class Contact extends CommonDBTM{
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-    **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -261,7 +261,7 @@ class Contact extends CommonDBTM{
     * @see CommonDBTM::getRawName()
     *
     * @since 0.85
-   **/
+    */
    function getRawName() {
 
       if (isset($this->fields["id"]) && ($this->fields["id"] > 0)) {
@@ -476,7 +476,7 @@ class Contact extends CommonDBTM{
     * Generate the Vcard for the current Contact
     *
     *@return Nothing (display)
-   **/
+    */
    function generateVcard() {
 
       if (!$this->can($this->fields['id'], READ)) {

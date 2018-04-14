@@ -39,7 +39,7 @@ class RuleDictionnaryDropdown extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       return 1;
    }

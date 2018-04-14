@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.85 (before migration_cleaner)
-**/
+ */
 class MigrationCleaner extends CommonGLPI {
 
    static $rightname = 'networking';
@@ -50,7 +50,7 @@ class MigrationCleaner extends CommonGLPI {
 
    /**
     * @see CommonGLPI::getAdditionalMenuOptions()
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (static::canView()) {

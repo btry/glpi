@@ -205,7 +205,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     *                                     (default '') -1 means no entity restriction
     *
     * @return integer number of installations
-   **/
+    */
    static function countForLicense($softwarelicenses_id, $entity = '') {
       global $DB;
 
@@ -243,7 +243,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param integer $softwares_id software ID
     *
     * @return integer number of installations
-   **/
+    */
    static function countForSoftware($softwares_id) {
       global $DB;
 
@@ -283,7 +283,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param SoftwareLicense $license SoftwareLicense instance
     *
     * @return void
-   **/
+    */
    static function showForLicenseByEntity(SoftwareLicense $license) {
       global $DB, $CFG_GLPI;
 
@@ -333,7 +333,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param SoftwareLicense $license SoftwareLicense instance
     *
     * @return void
-   **/
+    */
    static function showForLicense(SoftwareLicense $license) {
       global $DB, $CFG_GLPI;
 
@@ -574,7 +574,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param integer $softwarelicenses_id ID of the new license
     *
     * @return void
-   **/
+    */
    function upgrade($licID, $softwarelicenses_id) {
       global $DB;
 
@@ -594,7 +594,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param integer $softwareversions_id ID of the version
     *
     * @return void
-   **/
+    */
    static function getLicenseForInstallation($computers_id, $softwareversions_id) {
       global $DB;
 
@@ -628,7 +628,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param integer $newid ID of the computer cloned
     *
     * @return void
-   **/
+    */
    static function cloneComputer($oldid, $newid) {
       global $DB;
 
@@ -692,7 +692,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
     * @param integer $softwares_id Software ID
     *
     * @return void
-    **/
+    */
    static function countLicenses($softwares_id) {
       global $DB;
 

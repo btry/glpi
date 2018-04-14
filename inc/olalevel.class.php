@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * OlaLevel class
-**/
+ */
 class OlaLevel extends LevelAgreementLevel {
 
    protected $rules_id_field     = 'olalevels_id';
@@ -77,7 +77,7 @@ class OlaLevel extends LevelAgreementLevel {
     * @param $ola OLA object
     *
     * @since 9.1 (before showForOLA)
-   **/
+    */
    function showForOLA(OLA $ola) {
       global $DB;
 
@@ -218,7 +218,7 @@ class OlaLevel extends LevelAgreementLevel {
     * @param $options   array of possible options
     *
     * @return nothing
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $canedit = $this->can('ola', UPDATE);
@@ -272,7 +272,7 @@ class OlaLevel extends LevelAgreementLevel {
     * @since 9.1 (before getFirst OlaLevel)
     *
     * @return id of the ola level : 0 if not exists
-   **/
+    */
    static function getFirstOlaLevel($olas_id) {
       global $DB;
 
@@ -298,7 +298,7 @@ class OlaLevel extends LevelAgreementLevel {
     * @param $olalevels_id    integer id of the current OLA level
     *
     * @return id of the ola level : 0 if not exists
-   **/
+    */
    static function getNextOlaLevel($olas_id, $olalevels_id) {
       global $DB;
 

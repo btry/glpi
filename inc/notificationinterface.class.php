@@ -43,7 +43,7 @@ interface NotificationInterface {
     * Send notifications
     *
     * @return 0|1
-   **/
+    */
    function sendNotification();
 
 
@@ -54,7 +54,7 @@ interface NotificationInterface {
     * @param array $options Optionnal special options (may be needed)
     *
     * @return boolean
-   **/
+    */
    static function check($value, $options = []);
 
 
@@ -62,6 +62,6 @@ interface NotificationInterface {
     * Method to test notification
     *
     * @return mixed
-   **/
+    */
    static function testNotification();
 }

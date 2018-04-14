@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * LevelAgreement base Class for OLA & SLA
  * @since 9.2
-**/
+ */
 
 abstract class LevelAgreement extends CommonDBChild {
    // From CommonDBTM
@@ -105,7 +105,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * Define calendar of the ticket using the SLA/OLA when using this calendar as sla/ola-s calendar
     *
     * @param integer $calendars_id calendars_id of the ticket
-   **/
+    */
    function setTicketCalendar($calendars_id) {
 
       if ($this->fields['calendars_id'] == -1) {
@@ -135,7 +135,7 @@ abstract class LevelAgreement extends CommonDBChild {
     *     - withtemplate boolean : template or basic item
     *
     *@return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
       $rowspan = 3;
       if ($ID > 0) {
@@ -734,7 +734,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -768,7 +768,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * @param $options   array
     *
     * @return string
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -788,7 +788,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * Get computed resolution time
     *
     * @return integer resolution time (default 0)
-   **/
+    */
    function getTime() {
 
       if (isset($this->fields['id'])) {
@@ -813,7 +813,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * @param datetime $end end
     *
     * @return integer timestamp of delay
-    **/
+    */
    function getActiveTimeBetween($start, $end) {
 
       if ($end < $start) {
@@ -848,7 +848,7 @@ abstract class LevelAgreement extends CommonDBChild {
     *                                     (default 0)
     *
     * @return due date time (NULL if sla/ola not exists)
-   **/
+    */
    function computeDate($start_date, $additional_delay = 0) {
 
       if (isset($this->fields['id'])) {
@@ -886,7 +886,7 @@ abstract class LevelAgreement extends CommonDBChild {
     *                                        (default 0)
     *
     * @return execution date time (NULL if ola/sla not exists)
-   **/
+    */
    function computeExecutionDate($start_date, $levels_id, $additional_delay = 0) {
 
       if (isset($this->fields['id'])) {
@@ -923,7 +923,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * Get types
     *
     * @return array array of types
-    **/
+    */
    static function getTypes() {
       return [SLM::TTO => __('Time to own'),
               SLM::TTR => __('Time to resolve')];
@@ -935,7 +935,7 @@ abstract class LevelAgreement extends CommonDBChild {
     *
     * @param type $type
     * @return string name
-    **/
+    */
    static function getOneTypeName($type) {
 
       $types = self::getTypes();
@@ -991,7 +991,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * @param integer $levels_id SlaLevel or OlaLevel ID
     *
     * @return void
-    **/
+    */
    function addLevelToDo(Ticket $ticket, $levels_id = 0) {
 
       $pre = static::$prefix;
@@ -1021,7 +1021,7 @@ abstract class LevelAgreement extends CommonDBChild {
     * @param $ticket Ticket object
     *
     * @return void
-   **/
+    */
    static function deleteLevelsToDo(Ticket $ticket) {
       global $DB;
 

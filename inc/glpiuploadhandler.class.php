@@ -39,7 +39,7 @@ include_once(GLPI_JQUERY_UPLOADHANDLER);
 /** GLPIUploadHandler class
  *
  * @since 9.2
-**/
+ */
 class GLPIUploadHandler extends UploadHandler {
 
    protected function get_error_message($error) {

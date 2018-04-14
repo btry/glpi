@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Peripheral Class
-**/
+ */
 class Peripheral extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -55,7 +55,7 @@ class Peripheral extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Device', 'Devices', $nb);
    }
@@ -65,7 +65,7 @@ class Peripheral extends CommonDBTM {
     * @see CommonDBTM::useDeletedToLockIfDynamic()
     *
     * @since 0.84
-   **/
+    */
    function useDeletedToLockIfDynamic() {
       return false;
    }
@@ -164,7 +164,7 @@ class Peripheral extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -311,7 +311,7 @@ class Peripheral extends CommonDBTM {
     *
     * @return an array of linked items  like array('Computer' => array(1,2), 'Printer' => array(5,6))
     * @since 0.84.4
-   **/
+    */
    function getLinkedItems() {
       global $DB;
 
@@ -329,7 +329,7 @@ class Peripheral extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $actions = parent::getSpecificMassiveActions($checkitem);

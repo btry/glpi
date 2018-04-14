@@ -35,7 +35,7 @@ class RuleDictionnaryNetworkEquipmentModel extends RuleDictionnaryDropdown {
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryNetworkEquipmentModel');
    }
@@ -43,7 +43,7 @@ class RuleDictionnaryNetworkEquipmentModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -65,7 +65,7 @@ class RuleDictionnaryNetworkEquipmentModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

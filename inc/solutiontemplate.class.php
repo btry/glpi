@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SolutionTemplate Class
-**/
+ */
 class SolutionTemplate extends CommonDropdown {
 
    // From CommonDBTM
@@ -90,7 +90,7 @@ class SolutionTemplate extends CommonDropdown {
 
    /**
     * @see CommonDropdown::displaySpecificTypeField()
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['type']) {

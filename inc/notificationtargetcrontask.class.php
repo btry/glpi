@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetCrontask Class
-**/
+ */
 class NotificationTargetCrontask extends NotificationTarget {
 
 

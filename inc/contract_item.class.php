@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Contract_Item Class
  *
  * Relation between Contracts and Items
-**/
+ */
 class Contract_Item extends CommonDBRelation{
 
    // From CommonDBRelation
@@ -52,7 +52,7 @@ class Contract_Item extends CommonDBRelation{
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -68,7 +68,7 @@ class Contract_Item extends CommonDBRelation{
     * @see CommonDBRelation::canCreateItem()
     *
     * @since 0.84
-   **/
+    */
    function canCreateItem() {
 
       // Try to load the contract
@@ -122,7 +122,7 @@ class Contract_Item extends CommonDBRelation{
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -180,7 +180,7 @@ class Contract_Item extends CommonDBRelation{
 
    /**
     * @param $item    CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       return countElementsInTable('glpi_contracts_items',
@@ -191,7 +191,7 @@ class Contract_Item extends CommonDBRelation{
 
    /**
     * @param $item   Contract object
-   **/
+    */
    static function countForContract(Contract $item) {
       global $DB;
 
@@ -230,7 +230,7 @@ class Contract_Item extends CommonDBRelation{
     * @param $entities_id   entity ID
     *
     * @return array of items linked to contracts
-   **/
+    */
    static function getItemsForContract($contract_id, $entities_id) {
       global $DB;
 
@@ -285,7 +285,7 @@ class Contract_Item extends CommonDBRelation{
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
       global $CFG_GLPI;
 
@@ -315,7 +315,7 @@ class Contract_Item extends CommonDBRelation{
     * @param $item         CommonGLPI object
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       global $CFG_GLPI;
 
@@ -341,7 +341,7 @@ class Contract_Item extends CommonDBRelation{
     * @param $oldid        ID of the item to clone
     * @param $newid        ID of the item cloned
     * @param $newitemtype  itemtype of the new item (= $itemtype if empty) (default '')
-   **/
+    */
    static function cloneItem($itemtype, $oldid, $newid, $newitemtype = '') {
       global $DB;
 
@@ -370,7 +370,7 @@ class Contract_Item extends CommonDBRelation{
     * @param $withtemplate    not used (to be deleted) (default 0)
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -532,7 +532,7 @@ class Contract_Item extends CommonDBRelation{
     * @param boolean  $withtemplate (default 0)
     *
     * @return void (display)
-   **/
+    */
    static function showForContract(Contract $contract, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 
@@ -777,7 +777,7 @@ class Contract_Item extends CommonDBRelation{
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 

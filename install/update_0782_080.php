@@ -34,7 +34,7 @@
  * Update from 0.78.2 to 0.80
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function update0782to080() {
    global $DB,$migration;
 

@@ -42,7 +42,7 @@ class Link_Itemtype extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -57,7 +57,7 @@ class Link_Itemtype extends CommonDBChild {
     * @param $link : Link
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForLink($link) {
       global $DB,$CFG_GLPI;
 

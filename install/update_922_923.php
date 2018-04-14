@@ -38,7 +38,7 @@
  * Update from 9.2.2 to 9.2.3
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function update922to923() {
    global $DB, $migration, $CFG_GLPI;
 

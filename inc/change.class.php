@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Change Class
-**/
+ */
 class Change extends CommonITILObject {
 
    // From CommonDBTM
@@ -66,7 +66,7 @@ class Change extends CommonITILObject {
     * Name of the type
     *
     * @param $nb : number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Change', 'Changes', $nb);
    }
@@ -110,7 +110,7 @@ class Change extends CommonITILObject {
     * Is the current user have right to show the current change ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -135,7 +135,7 @@ class Change extends CommonITILObject {
     * Is the current user have right to approve solution of the current change ?
     *
     * @return boolean
-   **/
+    */
    function canApprove() {
 
       return (($this->fields["users_id_recipient"] === Session::getLoginUserID())
@@ -149,7 +149,7 @@ class Change extends CommonITILObject {
     * Is the current user have right to create the current change ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -168,7 +168,7 @@ class Change extends CommonITILObject {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $actions = parent::getSpecificMassiveActions($checkitem);
@@ -389,7 +389,7 @@ class Change extends CommonITILObject {
 
    /**
     * Get default values to search engine to override
-   **/
+    */
    static function getDefaultSearchRequest() {
 
       $search = ['criteria' => [ 0 => ['field'      => 12,
@@ -480,7 +480,7 @@ class Change extends CommonITILObject {
     * @param $withmetaforsearch boolean (default false)
     *
     * @return an array
-   **/
+    */
    static function getAllStatusArray($withmetaforsearch = false) {
 
       $tab = [self::INCOMING      => _x('status', 'New'),
@@ -513,7 +513,7 @@ class Change extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getClosedStatusArray() {
 
       // To be overridden by class
@@ -529,7 +529,7 @@ class Change extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getSolvedStatusArray() {
       // To be overridden by class
       $tab = [self::OBSERVED, self::SOLVED];
@@ -542,7 +542,7 @@ class Change extends CommonITILObject {
     * @since 0.83.8
     *
     * @return an array
-   **/
+    */
    static function getNewStatusArray() {
       return [self::INCOMING, self::ACCEPTED, self::EVALUATION, self::APPROVAL];
    }
@@ -554,7 +554,7 @@ class Change extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getProcessStatusArray() {
 
       // To be overridden by class
@@ -814,7 +814,7 @@ class Change extends CommonITILObject {
 
    /**
     * Form to add an analysis to a change
-   **/
+    */
    function showAnalysisForm() {
 
       $this->check($this->getField('id'), READ);
@@ -854,7 +854,7 @@ class Change extends CommonITILObject {
 
    /**
     * Form to add an analysis to a change
-   **/
+    */
    function showPlanForm() {
 
       $this->check($this->getField('id'), READ);
@@ -908,7 +908,7 @@ class Change extends CommonITILObject {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -925,7 +925,7 @@ class Change extends CommonITILObject {
     * Number of tasks of the problem
     *
     * @return followup count
-   **/
+    */
    function numberOfTasks() {
       global $DB;
       // Set number of followups
@@ -977,7 +977,7 @@ class Change extends CommonITILObject {
     * @param $item CommonDBTM object
     *
     * @return nothing (display a table)
-   **/
+    */
    static function showListForItem(CommonDBTM $item) {
       global $DB, $CFG_GLPI;
 
@@ -1165,7 +1165,7 @@ class Change extends CommonITILObject {
     * Display debug information for current object
     *
     * @since 0.90.2
-    **/
+    */
    function showDebug() {
       NotificationEvent::debugEvent($this);
    }

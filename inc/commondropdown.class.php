@@ -61,7 +61,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.85
     *
     * @param $nb
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Dropdown', 'Dropdowns', $nb);
    }
@@ -73,7 +73,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.85
     *
     * @return true if translation is available, false otherwise
-   **/
+    */
    function maybeTranslated () {
       return $this->can_be_translated;
    }
@@ -83,7 +83,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'n';
    }
@@ -93,7 +93,7 @@ abstract class CommonDropdown extends CommonDBTM {
     *  @see CommonGLPI::getMenuContent()
     *
     *  @since 0.85
-   **/
+    */
    static function getMenuContent() {
       global $CFG_GLPI;
 
@@ -133,7 +133,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * Return Additional Fields for this type
     *
     * @return array
-   **/
+    */
    function getAdditionalFields() {
       global $DB;
 
@@ -167,7 +167,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * Display title above search engine
     *
     * @return nothing (HTML display if needed)
-   **/
+    */
    function title() {
 
       if ($this->display_dropdowntitle) {
@@ -192,7 +192,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.83.3
     *
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
       global $DB;
 
@@ -222,7 +222,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.83.3
     *
     * @see CommonDBTM::prepareInputForUpdate()
-   **/
+    */
    function prepareInputForUpdate($input) {
       return self::prepareInputForAdd($input);
    }
@@ -559,7 +559,7 @@ abstract class CommonDropdown extends CommonDBTM {
    /** Check if the dropdown $ID is used into item tables
     *
     * @return boolean : is the value used ?
-   **/
+    */
    function isUsed() {
       global $DB;
 
@@ -601,7 +601,7 @@ abstract class CommonDropdown extends CommonDBTM {
    /**
     * Report if a dropdown have Child
     * Used to (dis)allow delete action
-   **/
+    */
    function haveChildren() {
       return false;
    }
@@ -612,7 +612,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * And propose a value to replace
     *
     * @param $target string URL
-   **/
+    */
    function showDeleteConfirmForm($target) {
 
       if ($this->haveChildren()) {
@@ -684,7 +684,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @param &$input  array of value to import (name)
     *
     * @return the ID of the new (or -1 if not found)
-   **/
+    */
    function findID(array &$input) {
       global $DB;
 
@@ -716,7 +716,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @param $input  array of value to import (name, ...)
     *
     * @return the ID of the new or existing dropdown (-1 on failure)
-   **/
+    */
    function import(array $input) {
 
       if (!isset($input['name'])) {
@@ -753,7 +753,7 @@ abstract class CommonDropdown extends CommonDBTM {
     *                                  just check if exists (true by default)
     *
     * @return integer : dropdown id.
-   **/
+    */
    function importExternal($value, $entities_id = -1, $external_params = [], $comment = "",
                            $add = true) {
 
@@ -800,7 +800,7 @@ abstract class CommonDropdown extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-    **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -824,7 +824,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -842,7 +842,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -899,7 +899,7 @@ abstract class CommonDropdown extends CommonDBTM {
     * Get links to Faq
     *
     * @param $withname  boolean  also display name ? (false by default)
-   **/
+    */
    function getLinks($withname = false) {
       global $CFG_GLPI;
 

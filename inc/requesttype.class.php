@@ -171,7 +171,7 @@ class RequestType extends CommonDropdown {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
       global $DB;
       $update =[];
@@ -225,7 +225,7 @@ class RequestType extends CommonDropdown {
     * @param $source string
     *
     * @return requesttypes_id
-   **/
+    */
    static function getDefault($source) {
       global $DB;
 

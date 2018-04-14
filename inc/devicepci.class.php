@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * DevicePci Class
-**/
+ */
 class DevicePci extends CommonDevice {
 
    static protected $forward_entity_to = ['Item_DevicePci', 'Infocom'];

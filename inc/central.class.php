@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Central class
-**/
+ */
 class Central extends CommonGLPI {
 
 
@@ -99,7 +99,7 @@ class Central extends CommonGLPI {
 
    /**
     * Show the central global view
-   **/
+    */
    static function showGlobalView() {
 
       $showticket  = Session::haveRight("ticket", Ticket::READALL);
@@ -141,7 +141,7 @@ class Central extends CommonGLPI {
 
    /**
     * Show the central personal view
-   **/
+    */
    static function showMyView() {
       global $DB, $CFG_GLPI;
 
@@ -260,7 +260,7 @@ class Central extends CommonGLPI {
     * Show the central RSS view
     *
     * @since 0.84
-   **/
+    */
    static function showRSSView() {
 
       echo "<table class='tab_cadre_central'>";
@@ -280,7 +280,7 @@ class Central extends CommonGLPI {
 
    /**
     * Show the central group view
-   **/
+    */
    static function showGroupView() {
 
       $showticket = Session::haveRightsOr("ticket", [Ticket::READALL, Ticket::READASSIGN]);

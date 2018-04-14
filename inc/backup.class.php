@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Backup class
  *
  * @since 0.85
-**/
+ */
 
 
 class Backup extends CommonGLPI {
@@ -51,7 +51,7 @@ class Backup extends CommonGLPI {
 
    /**
     * @since 0.85.3
-    **/
+    */
    static function canView() {
       return Session::haveRight(self::$rightname, READ);
    }
@@ -66,7 +66,7 @@ class Backup extends CommonGLPI {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = [READ                => __('Read'),

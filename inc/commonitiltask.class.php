@@ -70,7 +70,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @since 0.84
     *
     * @return object of the concerned item or false on error
-   **/
+    */
    function getItem() {
 
       if ($item = getItemForItemtype($this->getItilObjectItemType())) {
@@ -86,7 +86,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * can read the parent ITIL Object ?
     *
     * @return boolean
-   **/
+    */
    function canReadITILItem() {
 
       $itemtype = $this->getItilObjectItemType();
@@ -104,7 +104,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @since 0.85
     *
     * @return boolean
-   **/
+    */
    function canUpdateITILItem() {
 
       $itemtype = $this->getItilObjectItemType();
@@ -120,7 +120,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Task', 'Tasks', $nb);
 
@@ -133,7 +133,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -157,7 +157,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $options   array
     *
     * @return string
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -524,7 +524,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @see CommonDBTM::cleanDBonPurge()
     *
     * @since 0.84
-   **/
+    */
    function cleanDBonPurge() {
 
       $class = new PlanningRecall();
@@ -538,7 +538,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @see CommonDBTM::getRawName()
     *
     * @since 0.85
-   **/
+    */
    function getRawName() {
 
       if (isset($this->fields['taskcategories_id'])) {
@@ -636,7 +636,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
    /**
     * @since 0.85
-   **/
+    */
    static function rawSearchOptionsToAdd($itemtype = null) {
       $task = new static();
       $tab = [];
@@ -865,7 +865,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $input
     *
     *@return boolean
-   **/
+    */
    function test_valid_date($input) {
 
       return (!empty($input["begin"])
@@ -888,7 +888,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     *    - display_done_events (boolean)
     *
     * @return array of planning item
-   **/
+    */
    static function genericPopulatePlanning($itemtype, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -1079,7 +1079,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $val       Array    of the item to display
     *
     * @return Already planned information
-   **/
+    */
    static function genericGetAlreadyPlannedInformation($itemtype, array $val) {
       global $CFG_GLPI;
 
@@ -1109,7 +1109,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function genericDisplayPlanningItem($itemtype, array $val, $who, $type = "", $complete = 0) {
       global $CFG_GLPI;
 
@@ -1182,7 +1182,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $item         CommonITILObject
     * @param $rand
     * @param $showprivate  (false by default)
-   **/
+    */
    function showInObjectSumnary(CommonITILObject $item, $rand, $showprivate = false) {
       global $DB, $CFG_GLPI;
 
@@ -1325,7 +1325,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $ID        Integer : Id of the task
     * @param $options   array
     *     -  parent Object : the object
-   **/
+    */
    function showForm($ID, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -1644,7 +1644,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * Show the current task sumnary
     *
     * @param $item   CommonITILObject
-   **/
+    */
    function showSummary(CommonITILObject $item) {
       global $DB, $CFG_GLPI;
 
@@ -1740,7 +1740,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
    /**
     * Form for Ticket or Problem Task on Massive action
-   **/
+    */
    function showFormMassiveAction() {
 
       echo "&nbsp;".__('Category')."&nbsp;";

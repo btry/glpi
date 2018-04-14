@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * CommonITILActor Class
-**/
+ */
 abstract class CommonITILActor extends CommonDBRelation {
 
    // items_id_1, items_id_2, itemtype_1 and itemtype_2 are defined inside the inherited classes
@@ -69,7 +69,7 @@ abstract class CommonITILActor extends CommonDBRelation {
     * @param $input  array of data to be added
     *
     * @see CommonDBRelation::isAttach2Valid()
-   **/
+    */
    function isAttach2Valid(Array &$input) {
 
       // Anonymous user (only email) as requester or observer
@@ -84,7 +84,7 @@ abstract class CommonITILActor extends CommonDBRelation {
 
    /**
     * @param $items_id
-   **/
+    */
    function getActors($items_id) {
       global $DB;
 
@@ -104,7 +104,7 @@ abstract class CommonITILActor extends CommonDBRelation {
    /**
     * @param $items_id
     * @param $email
-   **/
+    */
    function isAlternateEmailForITILObject($items_id, $email) {
       global $DB;
 
@@ -134,7 +134,7 @@ abstract class CommonITILActor extends CommonDBRelation {
 
    /**
     * @since 0.84
-   **/
+    */
    function canDeleteItem() {
 
       return (parent::canDeleteItem()
@@ -149,7 +149,7 @@ abstract class CommonITILActor extends CommonDBRelation {
     * @param $options   array
     *
     * @return Nothing (display)
-   **/
+    */
    function showUserNotificationForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -231,7 +231,7 @@ abstract class CommonITILActor extends CommonDBRelation {
     * @param $options   array
     *
     * @return Nothing (display)
-   **/
+    */
    function showSupplierNotificationForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -327,7 +327,7 @@ abstract class CommonITILActor extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (!isset($input['alternative_email']) || is_null($input['alternative_email'])) {

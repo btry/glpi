@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Knowbase Class
  *
  * @since 0.84
-**/
+ */
 class Knowbase extends CommonGLPI {
 
 
@@ -97,7 +97,7 @@ class Knowbase extends CommonGLPI {
 
    /**
     * Show the knowbase search view
-   **/
+    */
    static function showSearchView() {
 
       // Search a solution
@@ -137,7 +137,7 @@ class Knowbase extends CommonGLPI {
 
    /**
     * Show the knowbase browse view
-   **/
+    */
    static function showBrowseView() {
 
       if (isset($_GET["knowbaseitemcategories_id"])) {
@@ -158,7 +158,7 @@ class Knowbase extends CommonGLPI {
 
    /**
     * Show the knowbase Manage view
-   **/
+    */
    static function showManageView() {
 
       if (isset($_GET["unpublished"])) {

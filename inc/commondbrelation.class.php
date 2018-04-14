@@ -88,7 +88,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $items_id
     *
     * @return string
-   **/
+    */
    static function getSQLRequestToSearchForItem($itemtype, $items_id) {
 
       $conditions = [];
@@ -148,7 +148,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     *
     * @param $item            CommonDBTM object
     * @param $relations_id    (default NULL)
-   **/
+    */
    static function getOpposite(CommonDBTM $item, &$relations_id = null) {
       return static::getOppositeByTypeAndID($item->getType(), $item->getID(), $relations_id);
    }
@@ -160,7 +160,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $itemtype        Type of the item to search for its opposite
     * @param $items_id        ID of the item to search for its opposite
     * @param $relations_id    (default NULL)
-    **/
+    */
    static function getOppositeByTypeAndID($itemtype, $items_id, &$relations_id = null) {
       global $DB;
 
@@ -209,7 +209,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $number
     *
     * @return boolean
-   **/
+    */
    function getOnePeer($number) {
 
       if ($number == 0) {
@@ -234,7 +234,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $item2 object 2
     *
     * @return boolean
-   **/
+    */
    function getFromDBForItems(CommonDBTM $item1, CommonDBTM $item2) {
 
       // Check items ID
@@ -267,7 +267,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * Get search function for the class
     *
     * @return array of search option
-   **/
+    */
    function rawSearchOptions() {
       $tab = [];
 
@@ -319,7 +319,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $input Array of data to be added
     *
     * @return boolean
-   **/
+    */
    function isAttach2Valid(Array &$input) {
       return false;
    }
@@ -333,7 +333,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $input Array of data to be added
     *
     * @return boolean
-   **/
+    */
    function isAttach1Valid(Array &$input) {
       return false;
    }
@@ -346,7 +346,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $forceCheckBoth boolean force check both items(false by default)
     *
     * @return boolean
-   **/
+    */
    static function canRelation($method, $forceCheckBoth = false) {
 
       $can1 = static::canConnexity($method, static::$checkItem_1_Rights, static::$itemtype_1,
@@ -392,7 +392,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $forceCheckBoth boolean  force check both items (false by default)
     *
     * @return boolean
-   **/
+    */
    function canRelationItem($method, $methodNotItem, $check_entity = true, $forceCheckBoth = false) {
 
       $OneWriteIsEnough = (!$forceCheckBoth
@@ -481,7 +481,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canCreate() {
 
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, CREATE))) {
@@ -493,7 +493,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canView() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, READ))) {
          return false;
@@ -505,7 +505,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canUpdate() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, UPDATE))) {
          return false;
@@ -516,7 +516,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    static function canDelete() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, DELETE))) {
          return false;
@@ -527,7 +527,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.85
-    **/
+    */
    static function canPurge() {
       if ((static::$rightname) && (!Session::haveRight(static::$rightname, PURGE))) {
          return false;
@@ -538,7 +538,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canCreateItem() {
 
       return $this->canRelationItem('canUpdateItem', 'canUpdate', true,
@@ -548,7 +548,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canViewItem() {
       return $this->canRelationItem('canViewItem', 'canView', false, true);
    }
@@ -556,7 +556,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canUpdateItem() {
 
       return $this->canRelationItem('canUpdateItem', 'canUpdate', true,
@@ -566,7 +566,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function canDeleteItem() {
 
       return $this->canRelationItem('canUpdateItem', 'canUpdate', false,
@@ -576,7 +576,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function addNeededInfoToInput($input) {
 
       // is entity missing and forwarding on ?
@@ -615,7 +615,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.84
     *
     * @param $input
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (!is_array($input)) {
@@ -628,7 +628,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
 
    /**
     * @since 0.84
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (!is_array($input)) {
@@ -660,7 +660,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     *              - 'delete' when this CommonDBRelation is remove (from an item)
     *
     * @return (string) the name of the entry for the database (ie. : correctly slashed)
-   **/
+    */
    function getHistoryNameForItem1(CommonDBTM $item, $case) {
 
       return $item->getNameID(['forceid'    => true,
@@ -681,7 +681,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     *              - 'delete' when this CommonDBRelation is remove (from an item)
     *
     * @return (string) the name of the entry for the database (ie. : correctly slashed)
-   **/
+    */
    function getHistoryNameForItem2(CommonDBTM $item, $case) {
 
       return $item->getNameID(['forceid'    => true,
@@ -693,7 +693,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * Actions done after the ADD of the item in the database
     *
     * @return nothing
-   **/
+    */
    function post_addItem() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -736,7 +736,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $history store changes history ? (default 1)
     *
     * @return nothing
-   **/
+    */
    function post_updateItem($history = 1) {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -839,7 +839,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.84
     *
     * @return nothing
-   **/
+    */
    function cleanDBonMarkDeleted() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -885,7 +885,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.84
     *
     * @return nothing
-   **/
+    */
    function post_restoreItem() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -931,7 +931,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.84
     *
     *@return nothing
-   **/
+    */
    function post_deleteFromDB() {
 
       if ((isset($this->input['_no_history']) && $this->input['_no_history'])
@@ -977,7 +977,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $super                 HTMLTableSuperHeader object (default NULL)
     * @param $father                HTMLTableHeader object (default NULL)
     * @param $options      array
-   **/
+    */
    static function getHTMLTableHeader($itemtype, HTMLTableBase $base,
                                       HTMLTableSuperHeader $super = null,
                                       HTMLTableHeader $father = null, array $options = []) {
@@ -1010,7 +1010,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $item               CommonDBTM object (default NULL)
     * @param $father             HTMLTableCell object (default NULL)
     * @param $options   array
-   **/
+    */
    static function getHTMLTableCellsForItem(HTMLTableRow $row = null, CommonDBTM $item = null,
                                             HTMLTableCell $father = null, array $options = []) {
       global $DB, $CFG_GLPI;
@@ -1056,7 +1056,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $itemtype the type of the new item
     *
     * @return boolean : true on success
-   **/
+    */
    function affectRelation($id, $peer, $items_id = 0, $itemtype = '') {
 
       $input = [static::getIndexName() => $id];
@@ -1100,7 +1100,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     *        'can_link_several_times' Is it possible to link items several times ?
     *        'update_id_different'    Do we update the link if it already exists (not used in case
     *                                 of 'can_link_several_times')
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
 
       return ['select_items_options_1'        => [],
@@ -1128,7 +1128,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $peer_number    the number of the concerned peer
     *
     * @return nothing (display only)
-   **/
+    */
    static function showRelationMassiveActionsSubForm(MassiveAction $ma, $peer_number) {
    }
 
@@ -1141,7 +1141,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $ma current massive action
     *
     * @return number of the peer
-   **/
+    */
    static function getRelationMassiveActionsPeerForSubForm(MassiveAction $ma) {
 
       $items = $ma->getItems();
@@ -1170,7 +1170,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -1259,7 +1259,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @param $input     array   of the input provided by the form ($_POST, $_GET ...)
     *
     * @return array containing the elements
-   **/
+    */
    static function getRelationInputForProcessingOfMassiveActions($action, CommonDBTM $item,
                                                                  array $ids, array $input) {
       return [];
@@ -1272,7 +1272,7 @@ abstract class CommonDBRelation extends CommonDBConnexity {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
       global $DB;

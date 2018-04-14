@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * Notification_NotificationTemplate Class
  *
  * @since 9.2
-**/
+ */
 class Notification_NotificationTemplate extends CommonDBChild {
    // From CommonDBChild
    static public $itemtype             = 'Notification';
@@ -88,7 +88,7 @@ class Notification_NotificationTemplate extends CommonDBChild {
     * @param boolean      $withtemplate Template or basic item (default '')
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForNotification(Notification $notif, $withtemplate = 0) {
       global $DB;
 
@@ -184,7 +184,7 @@ class Notification_NotificationTemplate extends CommonDBChild {
     *     - computers_id ID of the computer for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -240,7 +240,7 @@ class Notification_NotificationTemplate extends CommonDBChild {
     * @param string $mode the mode to use
     *
     * @return array
-   **/
+    */
    static function getMode($mode) {
       $tab = self::getModes();
       if (isset($tab[$mode])) {
@@ -274,7 +274,7 @@ class Notification_NotificationTemplate extends CommonDBChild {
     * @since 0.84
     *
     * @return the mode's label
-   **/
+    */
    static function getModes() {
       global $CFG_GLPI;
 

@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Relation between item and devices
  * We completely relies on CommonDBConnexity to manage the can* and the history and the deletion ...
-**/
+ */
 class Item_Devices extends CommonDBRelation {
 
    static public $itemtype_1            = 'itemtype';
@@ -71,14 +71,14 @@ class Item_Devices extends CommonDBRelation {
    /**
     * @since 0.85
     * No READ right for devices and extends CommonDBRelation not CommonDevice
-   **/
+    */
    static function canView() {
       return true;
    }
 
    /**
     * @since 0.85
-   **/
+    */
    static function getTypeName($nb = 0) {
 
       $device_type = static::getDeviceType();
@@ -92,7 +92,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBTM::getForbiddenStandardMassiveAction()
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden = parent::getForbiddenStandardMassiveAction();
@@ -163,7 +163,7 @@ class Item_Devices extends CommonDBRelation {
     *
     * @return array of the specificities: index is the field name and the values are the attributs
     *                                     of the specificity (long name, short name, size)
-   **/
+    */
    static function getSpecificities($specif = '') {
 
       switch ($specif) {
@@ -215,7 +215,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @return array of the itemtype that can have this Item_Device
-   **/
+    */
    static function itemAffinity() {
       global $CFG_GLPI;
 
@@ -233,7 +233,7 @@ class Item_Devices extends CommonDBRelation {
     * This method is equivalent to getItemAffinities('')
     *
     * @return array of the types of Item_Device* available
-   **/
+    */
    static function getDeviceTypes() {
       global $CFG_GLPI;
 
@@ -261,7 +261,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @return array of Item_Device*
-   **/
+    */
    static function getItemAffinities($itemtype) {
 
       if (!isset($_SESSION['glpi_item_device_affinities'])) {
@@ -288,7 +288,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @return array of the available items
-   **/
+    */
    static function getConcernedItems() {
       global $CFG_GLPI;
       return $CFG_GLPI["itemdevices_types"];
@@ -301,7 +301,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @return string containing the device
-   **/
+    */
    static function getDeviceType() {
 
       $devicetype = get_called_class();
@@ -527,7 +527,7 @@ class Item_Devices extends CommonDBRelation {
     * @param $specific_column
     * @param $delete_column
     * @param $dynamic_column
-   **/
+    */
    function getTableGroup(CommonDBTM $item, HTMLTableMain $table, array $options,
                           HTMLTableSuperHeader $delete_all_column = null,
                           HTMLTableSuperHeader $common_column,
@@ -772,7 +772,7 @@ class Item_Devices extends CommonDBRelation {
     * @param $items_id
     * @param $devices_id
     * @param $input          array to complete (permit to define values)
-   **/
+    */
    function addDevices($numberToAdd, $itemtype, $items_id, $devices_id, $input = []) {
       global $DB;
 
@@ -808,7 +808,7 @@ class Item_Devices extends CommonDBRelation {
     * @param $input array of input: should be $_POST
     *
     * @since 0.85
-   **/
+    */
    static function addDevicesFromPOST($input) {
       if (isset($input['devicetype']) && !$input['devicetype']) {
          Session::addMessageAfterRedirect(
@@ -869,7 +869,7 @@ class Item_Devices extends CommonDBRelation {
 
    /**
     * @param $input array of input: should be $_POST
-   **/
+    */
    static function updateAll($input) {
 
       if (!isset($input['itemtype'])
@@ -962,7 +962,7 @@ class Item_Devices extends CommonDBRelation {
     * @param $itemtype
     *
     * @return boolean
-   **/
+    */
    static function affectItem_Device($item_devices_id, $items_id, $itemtype) {
 
       $link = new static();
@@ -976,7 +976,7 @@ class Item_Devices extends CommonDBRelation {
     * @param $itemtype
     * @param $items_id
     * @param $unaffect
-   **/
+    */
    static function cleanItemDeviceDBOnItemDelete($itemtype, $items_id, $unaffect) {
       global $DB;
 
@@ -1006,7 +1006,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -1018,7 +1018,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBConnexity::getConnexityMassiveActionsSpecificities()
-   **/
+    */
    static function getConnexityMassiveActionsSpecificities() {
 
       $specificities              = parent::getConnexityMassiveActionsSpecificities();
@@ -1035,7 +1035,7 @@ class Item_Devices extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -1051,7 +1051,7 @@ class Item_Devices extends CommonDBRelation {
 
    /**
     * @since 0.85
-   **/
+    */
    function showForm($ID, $options = []) {
       if (!$this->isNewID($ID)) {
          $this->check($ID, READ);
@@ -1205,7 +1205,7 @@ class Item_Devices extends CommonDBRelation {
     *
     * @return the modified $input array
     *
-   **/
+    */
    function prepareInputForAdd($input) {
       global $DB, $CFG_GLPI;
 

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Problem class
-**/
+ */
 class Problem extends CommonITILObject {
 
    // From CommonDBTM
@@ -65,7 +65,7 @@ class Problem extends CommonITILObject {
     * Name of the type
     *
     * @param $nb : number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Problem', 'Problems', $nb);
    }
@@ -109,7 +109,7 @@ class Problem extends CommonITILObject {
     * Is the current user have right to show the current problem ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID(), $this->isRecursive())) {
@@ -134,7 +134,7 @@ class Problem extends CommonITILObject {
     * Is the current user have right to approve solution of the current problem ?
     *
     * @return boolean
-   **/
+    */
    function canApprove() {
 
       return (($this->fields["users_id_recipient"] === Session::getLoginUserID())
@@ -148,7 +148,7 @@ class Problem extends CommonITILObject {
     * Is the current user have right to create the current problem ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -273,7 +273,7 @@ class Problem extends CommonITILObject {
 
    /**
     * @see CommonDBTM::post_updateItem()
-   **/
+    */
    function post_updateItem($history = 1) {
       global $CFG_GLPI;
 
@@ -371,7 +371,7 @@ class Problem extends CommonITILObject {
 
    /**
     * Get default values to search engine to override
-   **/
+    */
    static function getDefaultSearchRequest() {
 
       $search = ['criteria' => [0 => ['field'      => 12,
@@ -386,7 +386,7 @@ class Problem extends CommonITILObject {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -533,7 +533,7 @@ class Problem extends CommonITILObject {
     * @param $withmetaforsearch  boolean  (false by default)
     *
     * @return an array
-   **/
+    */
    static function getAllStatusArray($withmetaforsearch = false) {
 
       // To be overridden by class
@@ -563,7 +563,7 @@ class Problem extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getClosedStatusArray() {
 
       // To be overridden by class
@@ -579,7 +579,7 @@ class Problem extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getSolvedStatusArray() {
 
       // To be overridden by class
@@ -594,7 +594,7 @@ class Problem extends CommonITILObject {
     * @since 0.83.8
     *
     * @return an array
-   **/
+    */
    static function getNewStatusArray() {
       return [self::INCOMING, self::ACCEPTED];
    }
@@ -605,7 +605,7 @@ class Problem extends CommonITILObject {
     * @since 0.83
     *
     * @return an array
-   **/
+    */
    static function getProcessStatusArray() {
 
       // To be overridden by class
@@ -621,7 +621,7 @@ class Problem extends CommonITILObject {
     * @param $start
     * @param $status             (default 'proces)
     * @param $showgroupproblems  (true by default)
-   **/
+    */
    static function showCentralList($start, $status = "process", $showgroupproblems = true) {
       global $DB, $CFG_GLPI;
 
@@ -828,7 +828,7 @@ class Problem extends CommonITILObject {
     * @since 0.84
     *
     * @param $foruser boolean : only for current login user as requester (false by default)
-   **/
+    */
    static function showCentralCount($foruser = false) {
       global $DB, $CFG_GLPI;
 
@@ -934,7 +934,7 @@ class Problem extends CommonITILObject {
     *
     * @param $ID
     * @param $forcetab  string   name of the tab to force at the display (default '')
-   **/
+    */
    static function showVeryShort($ID, $forcetab = '') {
       global $CFG_GLPI;
 
@@ -1010,7 +1010,7 @@ class Problem extends CommonITILObject {
    /**
     * @param $ID
     * @param $options   array
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI, $DB;
 
@@ -1240,7 +1240,7 @@ class Problem extends CommonITILObject {
 
    /**
     * Form to add an analysis to a problem
-   **/
+    */
    function showAnalysisForm() {
 
       $this->check($this->getField('id'), READ);
@@ -1331,7 +1331,7 @@ class Problem extends CommonITILObject {
     * @param $item CommonDBTM object
     *
     * @return nothing (display a table)
-   **/
+    */
    static function showListForItem(CommonDBTM $item) {
       global $DB, $CFG_GLPI;
 
@@ -1519,7 +1519,7 @@ class Problem extends CommonITILObject {
     * Number of tasks of the problem
     *
     * @return followup count
-   **/
+    */
    function numberOfTasks() {
       global $DB;
 
@@ -1537,7 +1537,7 @@ class Problem extends CommonITILObject {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

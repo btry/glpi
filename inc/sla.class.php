@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SLA Class
-**/
+ */
 class SLA extends LevelAgreement {
    static protected $prefix            = 'sla';
    static protected $prefixticket      = '';

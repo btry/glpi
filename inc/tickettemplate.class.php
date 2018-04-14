@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Ticket Template class
  *
  * since version 0.83
-**/
+ */
 class TicketTemplate extends CommonDropdown {
 
    // From CommonDBTM
@@ -73,7 +73,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $withtypeandcategory   boolean  with type and category (true by default)
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBWithDatas($ID, $withtypeandcategory = true) {
       global $DB;
 
@@ -140,7 +140,7 @@ class TicketTemplate extends CommonDropdown {
    /**
     * @param $withtypeandcategory   (default 0)
     * @param $withitemtype         (default 0)
-   **/
+    */
    static function getAllowedFields($withtypeandcategory = 0, $withitemtype = 0) {
 
       static $allowed_fields = [];
@@ -254,7 +254,7 @@ class TicketTemplate extends CommonDropdown {
    /**
     * @param $withtypeandcategory   (default 0)
     * @param $with_items_id         (default 0)
-   **/
+    */
    function getAllowedFieldsNames($withtypeandcategory = 0, $with_items_id = 0) {
 
       $searchOption = Search::getOptions('Ticket');
@@ -281,7 +281,7 @@ class TicketTemplate extends CommonDropdown {
 
    /**
     *  ??since version 0.84
-   **/
+    */
    function getSimplifiedInterfaceFields() {
 
       $ticket = new Ticket();
@@ -359,7 +359,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $force  boolean  force display based on global config (false by default)
     *
     * @return string to display
-   **/
+    */
    function getMandatoryMark($field, $force = false) {
 
       if ($force || $this->isMandatoryField($field)) {
@@ -377,7 +377,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return string to display
-   **/
+    */
    function getBeginHiddenFieldText($field) {
 
       if ($this->isHiddenField($field) && !$this->isPredefinedField($field)) {
@@ -395,7 +395,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return string to display
-   **/
+    */
    function getEndHiddenFieldText($field) {
 
       if ($this->isHiddenField($field) && !$this->isPredefinedField($field)) {
@@ -413,7 +413,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return string to display
-   **/
+    */
    function getBeginHiddenFieldValue($field) {
 
       if ($this->isHiddenField($field)) {
@@ -432,7 +432,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $ticket          ticket object (default NULL)
     *
     * @return string to display
-   **/
+    */
    function getEndHiddenFieldValue($field, &$ticket = null) {
 
       $output = '';
@@ -473,7 +473,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return bool
-   **/
+    */
    function isHiddenField($field) {
 
       if (isset($this->hidden[$field])) {
@@ -491,7 +491,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return bool
-   **/
+    */
    function isPredefinedField($field) {
 
       if (isset($this->predefined[$field])) {
@@ -509,7 +509,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $field string field
     *
     * @return bool
-   **/
+    */
    function isMandatoryField($field) {
 
       if (isset($this->mandatory[$field])) {
@@ -527,7 +527,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $tt TicketTemplate object
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showCentralPreview(TicketTemplate $tt) {
 
       if (!$tt->getID()) {
@@ -546,7 +546,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $tt TicketTemplate object
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showHelpdeskPreview(TicketTemplate $tt) {
 
       if (!$tt->getID()) {
@@ -563,7 +563,7 @@ class TicketTemplate extends CommonDropdown {
     * @since 0.90
     *
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -583,7 +583,7 @@ class TicketTemplate extends CommonDropdown {
     * @since 0.90
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -601,7 +601,7 @@ class TicketTemplate extends CommonDropdown {
     * @since 0.90
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -650,7 +650,7 @@ class TicketTemplate extends CommonDropdown {
     *
     * @param $target_id
     * @param  $source_id
-   **/
+    */
    function mergeTemplateFields($target_id, $source_id) {
       global $DB;
 
@@ -741,7 +741,7 @@ class TicketTemplate extends CommonDropdown {
     * @since 0.90
     *
     * @param $data
-   **/
+    */
    function formatFieldsToMerge($data) {
 
       $output = [];
@@ -761,7 +761,7 @@ class TicketTemplate extends CommonDropdown {
     * @param $input  array of value to import (name, ...)
     *
     * @return the ID of the new or existing dropdown
-   **/
+    */
    function import(array $input) {
 
       if (!isset($input['name'])) {
@@ -800,7 +800,7 @@ class TicketTemplate extends CommonDropdown {
     * @since 0.90
     *
     * @see CommonDBTM::getForbiddenStandardMassiveAction()
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();

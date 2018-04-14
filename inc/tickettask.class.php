@@ -42,7 +42,7 @@ class TicketTask  extends CommonITILTask {
 
    /**
     * @since 0.84
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Ticket task', 'Ticket tasks', $nb);
    }
@@ -83,7 +83,7 @@ class TicketTask  extends CommonITILTask {
     * Is the current user have right to show the current task ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!parent::canReadITILItem()) {
@@ -119,7 +119,7 @@ class TicketTask  extends CommonITILTask {
     * Is the current user have right to create the current task ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -144,7 +144,7 @@ class TicketTask  extends CommonITILTask {
     * Is the current user have right to update the current task ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -170,7 +170,7 @@ class TicketTask  extends CommonITILTask {
     * Is the current user have right to delete the current task ?
     *
     * @return boolean
-   **/
+    */
    function canPurgeItem() {
       $ticket = new Ticket();
       if ($ticket->getFromDB($this->fields['tickets_id'])
@@ -192,7 +192,7 @@ class TicketTask  extends CommonITILTask {
     *    - end Date
     *
     * @return array of planning item
-   **/
+    */
    static function populatePlanning($options = []) {
       return parent::genericPopulatePlanning(__CLASS__, $options);
    }
@@ -204,7 +204,7 @@ class TicketTask  extends CommonITILTask {
     * @param $val    array of the item to display
     *
     * @return Already planned information
-   **/
+    */
    static function getAlreadyPlannedInformation($val) {
       return parent::genericGetAlreadyPlannedInformation(__CLASS__, $val);
    }
@@ -220,7 +220,7 @@ class TicketTask  extends CommonITILTask {
     * @param $complete           complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       return parent::genericDisplayPlanningItem(__CLASS__, $val, $who, $type, $complete);
    }
@@ -230,7 +230,7 @@ class TicketTask  extends CommonITILTask {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -256,7 +256,7 @@ class TicketTask  extends CommonITILTask {
     * @since 0.90
     *
     * @see CommonDBTM::showFormButtons()
-   **/
+    */
    function showFormButtons($options = []) {
       global $CFG_GLPI;
 

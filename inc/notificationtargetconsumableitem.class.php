@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetConsumableItem Class
  *
  * @since 0.84
-**/
+ */
 class NotificationTargetConsumableItem extends NotificationTarget {
 
 

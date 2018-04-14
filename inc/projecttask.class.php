@@ -39,7 +39,7 @@ if (!defined('GLPI_ROOT')) {
  * ProjectTask Class
  *
  * @since 0.85
-**/
+ */
 class ProjectTask extends CommonDBChild {
 
    // From CommonDBTM
@@ -81,7 +81,7 @@ class ProjectTask extends CommonDBChild {
     * Is the current user have right to show the current task ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -118,7 +118,7 @@ class ProjectTask extends CommonDBChild {
     * Is the current user have right to edit the current task ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -155,7 +155,7 @@ class ProjectTask extends CommonDBChild {
     *
     * @param integer $oldid        ID of the item to clone
     * @param integer $newid        ID of the item cloned
-    **/
+    */
    static function cloneProjectTask ($oldid, $newid) {
       global $DB;
 
@@ -171,7 +171,7 @@ class ProjectTask extends CommonDBChild {
 
    /**
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -242,7 +242,7 @@ class ProjectTask extends CommonDBChild {
     * Is the current user in the team?
     *
     * @return boolean
-   **/
+    */
    function isInTheTeam() {
 
       if (isset($this->team['User']) && count($this->team['User'])) {
@@ -335,7 +335,7 @@ class ProjectTask extends CommonDBChild {
     * @param $ID        integer  Id of the project
     *
     * @return array of tasks ordered by dates
-   **/
+    */
    static function getAllForProject($ID) {
       global $DB;
 
@@ -356,7 +356,7 @@ class ProjectTask extends CommonDBChild {
     * @param $ID        integer  Id of the project
     *
     * @return array of tickets
-   **/
+    */
    static function getAllTicketsForProject($ID) {
       global $DB;
 
@@ -383,7 +383,7 @@ class ProjectTask extends CommonDBChild {
     *     - projects_id ID of the software for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -644,7 +644,7 @@ class ProjectTask extends CommonDBChild {
     * @param $projecttasks_id    integer    $projecttasks_id ID of the project task
     *
     * @return integer total effective duration
-   **/
+    */
    static function getTotalEffectiveDuration($projecttasks_id) {
       global $DB;
 
@@ -677,7 +677,7 @@ class ProjectTask extends CommonDBChild {
     * @param $projects_id    integer    $project_id ID of the project
     *
     * @return integer total effective duration
-   **/
+    */
    static function getTotalEffectiveDurationForProject($projects_id) {
       global $DB;
 
@@ -698,7 +698,7 @@ class ProjectTask extends CommonDBChild {
     * @param $projects_id    integer    $project_id ID of the project
     *
     * @return integer total effective duration
-   **/
+    */
    static function getTotalPlannedDurationForProject($projects_id) {
       global $DB;
 
@@ -917,7 +917,7 @@ class ProjectTask extends CommonDBChild {
     * @param $item Project or ProjectTask object
     *
     * @return nothing
-   **/
+    */
    static function showFor($item) {
       global $DB, $CFG_GLPI;
 
@@ -1149,7 +1149,7 @@ class ProjectTask extends CommonDBChild {
     * @param $task   ProjectTask object
     *
     * @return boolean
-   **/
+    */
    function showTeam(ProjectTask $task) {
       global $DB, $CFG_GLPI;
 
@@ -1366,7 +1366,7 @@ class ProjectTask extends CommonDBChild {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
       NotificationEvent::debugEvent($this);
    }
@@ -1385,7 +1385,7 @@ class ProjectTask extends CommonDBChild {
     *    - event_type_color
     *
     * @return array of planning item
-   **/
+    */
    static function populatePlanning($options = []) {
 
       global $DB, $CFG_GLPI;
@@ -1543,7 +1543,7 @@ class ProjectTask extends CommonDBChild {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-    **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       global $CFG_GLPI;
 

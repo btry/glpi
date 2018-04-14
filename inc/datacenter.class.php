@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Datacenter Class
-**/
+ */
 class Datacenter extends CommonDBTM {
 
    // From CommonDBTM

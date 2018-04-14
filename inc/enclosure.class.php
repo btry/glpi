@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Enclosure Class
-**/
+ */
 class Enclosure extends CommonDBTM {
    use DCBreadcrumb;
 

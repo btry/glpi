@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * FieldUnicity Class
-**/
+ */
 class FieldUnicity extends CommonDropdown {
 
    // From CommonDBTM
@@ -60,7 +60,7 @@ class FieldUnicity extends CommonDropdown {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canPurge() {
       return static::canUpdate();
    }
@@ -90,7 +90,7 @@ class FieldUnicity extends CommonDropdown {
     * Define tabs to display
     *
     * @param $options array
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong          = [];
@@ -127,7 +127,7 @@ class FieldUnicity extends CommonDropdown {
     *
     * @param $ID
     * @param $field array
-   **/
+    */
    function displaySpecificTypeField($ID, $field = []) {
 
       switch ($field['type']) {
@@ -149,7 +149,7 @@ class FieldUnicity extends CommonDropdown {
     * @param value   the selected value (default 0)
     *
     * @return nothing
-   **/
+    */
    function showItemtype($ID, $value = 0) {
       global $CFG_GLPI;
 
@@ -190,7 +190,7 @@ class FieldUnicity extends CommonDropdown {
     * @param $check_active (true by default)
     *
     * @return an array of fields to check, or an empty array if no
-   **/
+    */
    public static function getUnicityFieldsConfig($itemtype, $entities_id = 0, $check_active = true) {
       global $DB;
 
@@ -231,7 +231,7 @@ class FieldUnicity extends CommonDropdown {
     * @param $unicity an instance of CommonDBTM class
     *
     * @return nothing
-   **/
+    */
    static function selectCriterias(CommonDBTM $unicity) {
       global $DB;
 
@@ -261,7 +261,7 @@ class FieldUnicity extends CommonDropdown {
     *
     * @param $itemtype          itemtype
     * @param $options   array    of options
-   **/
+    */
    static function dropdownFields($itemtype, $options = []) {
       global $DB;
 
@@ -404,7 +404,7 @@ class FieldUnicity extends CommonDropdown {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -441,7 +441,7 @@ class FieldUnicity extends CommonDropdown {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
       global $DB;
 
@@ -469,7 +469,7 @@ class FieldUnicity extends CommonDropdown {
     * @param input the values to insert in DB
     *
     * @return input the values to insert, but modified
-   **/
+    */
    static function checkBeforeInsert($input) {
 
       if (!$input['itemtype']
@@ -506,7 +506,7 @@ class FieldUnicity extends CommonDropdown {
     * @param itemtype
     *
     * @return nothing
-   **/
+    */
    static function deleteForItemtype($itemtype) {
       global $DB;
 
@@ -521,7 +521,7 @@ class FieldUnicity extends CommonDropdown {
     * List doubles
     *
     * @param $unicity an instance of FieldUnicity class
-   **/
+    */
    static function showDoubles(FieldUnicity $unicity) {
       global $DB;
 
@@ -611,7 +611,7 @@ class FieldUnicity extends CommonDropdown {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
 
       $params = ['action_type' => true,

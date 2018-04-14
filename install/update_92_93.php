@@ -34,7 +34,7 @@
  * Update from 9.2 to 9.3
  *
  * @return bool for success (will die for most error)
-**/
+ */
 function update92to93() {
    global $DB, $migration, $CFG_GLPI;
    $dbutils = new DbUtils();

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Log Class
-**/
+ */
 class Log extends CommonDBTM {
 
    const HISTORY_ADD_DEVICE         = 1;
@@ -108,7 +108,7 @@ class Log extends CommonDBTM {
     * @param $values       array of all values of the item
     *
     * @return boolean for success (at least 1 log entry added)
-   **/
+    */
    static function constructHistory(CommonDBTM $item, &$oldvalues, &$values) {
 
       if (!count($oldvalues)) {
@@ -188,7 +188,7 @@ class Log extends CommonDBTM {
     * @param $linked_action   (default '0')
     *
     * @return boolean success
-   **/
+    */
    static function history ($items_id, $itemtype, $changes, $itemtype_link = '', $linked_action = '0') {
       global $DB;
 
@@ -250,7 +250,7 @@ class Log extends CommonDBTM {
     * @param $item                     CommonDBTM object
     * @param $withtemplate    integer  withtemplate param (default 0)
 
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB;
 
@@ -318,7 +318,7 @@ class Log extends CommonDBTM {
     * @param array      $sqlfilter to add an SQL filter (default '')
     *
     * @return array of localized log entry (TEXT only, no HTML)
-   **/
+    */
    static function getHistoryData(CommonDBTM $item, $start = 0, $limit = 0, array $sqlfilter = []) {
       global $DB;
 
@@ -711,7 +711,7 @@ class Log extends CommonDBTM {
     * @since 0.83
     *
     * @see CommonDBTM::post_addItem()
-   **/
+    */
    function post_addItem() {
       $_SESSION['glpi_maxhistory'] = $this->fields['id'];
    }
@@ -721,7 +721,7 @@ class Log extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = [ READ => __('Read')];

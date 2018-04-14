@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.84
-**/
+ */
 class IPNetwork_Vlan extends CommonDBRelation {
 
    // From CommonDBRelation
@@ -60,7 +60,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
    /**
     * @param $portID
     * @param $vlanID
-   **/
+    */
    function unassignVlan($portID, $vlanID) {
 
       $this->getFromDBByCrit([
@@ -75,7 +75,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
    /**
     * @param $port
     * @param $vlan
-   **/
+    */
    function assignVlan($port, $vlan) {
 
       $input = ['ipnetworks_id' => $port,
@@ -87,7 +87,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
 
    /**
     * @param $port   IPNetwork object
-   **/
+    */
    static function showForIPNetwork(IPNetwork $port) {
       global $DB, $CFG_GLPI;
 
@@ -195,7 +195,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
 
    /**
     * @param $portID
-   **/
+    */
    static function getVlansForIPNetwork($portID) {
       global $DB;
 

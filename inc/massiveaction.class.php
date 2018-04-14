@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * @todo all documentation !
  *
  * @since 0.85
-**/
+ */
 class MassiveAction {
 
    const CLASS_ACTION_SEPARATOR  = ':';
@@ -65,7 +65,7 @@ class MassiveAction {
     * @param $stage the current stage
     *
     * @return nothing (it is a constructor).
-   **/
+    */
    function __construct (array $POST, array $GET, $stage) {
       global $CFG_GLPI;
 
@@ -304,7 +304,7 @@ class MassiveAction {
     * Beware that the fields that are common (items, action ...) are not provided
     *
     * @return array of the elements
-   **/
+    */
    function getInput() {
 
       if (isset($this->POST)) {
@@ -318,7 +318,7 @@ class MassiveAction {
     * Get current action
     *
     * @return a string with the current action or NULL if we are at initial stage
-   **/
+    */
    function getAction() {
 
       if (isset($this->action)) {
@@ -332,7 +332,7 @@ class MassiveAction {
     * Get all items on which this action must work
     *
     * @return array of the items (empty if initial state)
-   **/
+    */
    function getItems() {
 
       if (isset($this->items)) {
@@ -346,7 +346,7 @@ class MassiveAction {
     * Get remaining items
     *
     * @return array of the remaining items (empty if not in process state)
-   **/
+    */
    function getRemainings() {
 
       if (isset($this->remainings)) {
@@ -359,7 +359,7 @@ class MassiveAction {
    /**
     * Destructor of the object
     * It is used when reloading the page during process to store informations in $_SESSION.
-   **/
+    */
    function __destruct() {
 
       if (isset($this->identifier)) {
@@ -374,7 +374,7 @@ class MassiveAction {
 
    /**
     * @param $POST
-   **/
+    */
    function getCheckItem($POST) {
 
       if (!isset($this->check_item)) {
@@ -401,7 +401,7 @@ class MassiveAction {
     * Add hidden fields containing all the checked items to the current form
     *
     * @return nothing (display)
-   **/
+    */
    function addHiddenFields() {
 
       if (empty($this->hidden_fields_defined)) {
@@ -432,7 +432,7 @@ class MassiveAction {
     * @param $display_selector can we display the itemtype selector ?
     *
     * @return the itemtype or false if we cannot define it (and we cannot display the selector)
-   **/
+    */
    function getItemtype($display_selector) {
 
       if (isset($this->items) && is_array($this->items)) {
@@ -469,7 +469,7 @@ class MassiveAction {
     * Get 'add to transfer list' action when needed
     *
     * @param $actions   array
-   **/
+    */
    static function getAddTransferList(array &$actions) {
 
       if (Session::haveRight('transfer', READ)
@@ -489,7 +489,7 @@ class MassiveAction {
     * @param $checkitem              link item to check right              (default NULL)
     *
     * @return an array of massive actions or false if $item is not valid
-   **/
+    */
    static function getAllMassiveActions($item, $is_deleted = 0, CommonDBTM $checkitem = null) {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
@@ -608,7 +608,7 @@ class MassiveAction {
     * Main entry of the modal window for massive actions
     *
     * @return nothing: display
-   **/
+    */
    function showSubForm() {
       global $CFG_GLPI;
 
@@ -626,7 +626,7 @@ class MassiveAction {
     * Class-specific method used to show the fields to specify the massive action
     *
     * @return nothing (display only)
-   **/
+    */
    function showDefaultSubForm() {
       echo Html::submit(_x('button', 'Post'), ['name' => 'massiveaction']);
    }
@@ -634,7 +634,7 @@ class MassiveAction {
 
    /**
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
       global $CFG_GLPI;
 
@@ -906,7 +906,7 @@ class MassiveAction {
     * Display and update the progress bar. If the delay is more than 1 second, then activate it
     *
     * @return nothing (display only)
-   **/
+    */
    function updateProgressBars() {
 
       if ($this->timer->getTime() > 1) {
@@ -949,7 +949,7 @@ class MassiveAction {
     * new system, old one and plugins ...
     *
     * @return an array of results (ok, ko, noright counts, redirect ...)
-   **/
+    */
    function process() {
 
       if (!empty($this->remainings)) {
@@ -979,7 +979,7 @@ class MassiveAction {
    /**
     * Process the specific massive actions for severl itemtypes
     * @return array of the results for the actions
-   **/
+    */
    function processForSeveralItemtypes() {
 
       $processor = $this->processor;
@@ -993,7 +993,7 @@ class MassiveAction {
 
    /**
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
       global $CFG_GLPI;
@@ -1225,7 +1225,7 @@ class MassiveAction {
     * @param $redirect link to the page
     *
     * @return nothing
-   **/
+    */
    function setRedirect($redirect) {
       $this->redirect = $redirect;
    }
@@ -1237,7 +1237,7 @@ class MassiveAction {
     * @param $message the message to add
     *
     * @return nothing
-   **/
+    */
    function addMessage($message) {
       $this->results['messages'][] = $message;
    }
@@ -1254,7 +1254,7 @@ class MassiveAction {
     *                MassiveAction::ACTION_OK      everything is OK for the action
     *                MassiveAction::ACTION_KO      something went wrong for the action
     *                MassiveAction::ACTION_NORIGHT not anough right for the action
-   **/
+    */
    function itemDone($itemtype, $id, $result) {
 
       $this->current_itemtype = $itemtype;

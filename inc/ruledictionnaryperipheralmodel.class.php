@@ -35,7 +35,7 @@ class RuleDictionnaryPeripheralModel extends RuleDictionnaryDropdown {
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryPeripheralModel');
    }
@@ -43,7 +43,7 @@ class RuleDictionnaryPeripheralModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -66,7 +66,7 @@ class RuleDictionnaryPeripheralModel extends RuleDictionnaryDropdown {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

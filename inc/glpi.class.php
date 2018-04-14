@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  GLPI (instantiation and so on)
-**/
+ */
 class GLPI {
 
    private $loggers;

@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * OLA Class
  * @since 9.2
-**/
+ */
 class OLA extends LevelAgreement {
 
    static protected $prefix            = 'ola';

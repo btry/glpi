@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * NotificationTargetTicket Class
  *
  * @since 0.85
-**/
+ */
 class NotificationTargetProjectTask extends NotificationTarget {
 
 
@@ -46,7 +46,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * Get events related to tickets
     *
     * @return array
-   **/
+    */
    function getEvents() {
 
       $events = ['new'               => __('New project task'),
@@ -115,7 +115,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * Add team users to the notified user list
     *
     * @return void
-   **/
+    */
    function addTeamUsers() {
       global $DB;
 
@@ -139,7 +139,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * @param integer $manager 0 all users, 1 only supervisors, 2 all users without supervisors
     *
     * @return void
-   **/
+    */
    function addTeamGroups($manager) {
       global $DB;
 
@@ -157,7 +157,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * Add team contacts to the notified user list
     *
     * @return void
-   **/
+    */
    function addTeamContacts() {
       global $DB, $CFG_GLPI;
 
@@ -181,7 +181,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * Add team suppliers to the notified user list
     *
     * @return void
-   **/
+    */
    function addTeamSuppliers() {
       global $DB, $CFG_GLPI;
 
@@ -585,7 +585,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetProjectTask::addTeamUsers()
     *
     * @return void
-   **/
+    */
    function getTeamUsers() {
       Toolbox::deprecated('getTeamUsers() method is deprecated');
       $this->addTeamUsers();
@@ -600,7 +600,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetProjectTask::addTeamGroups()
     *
     * @return void
-   **/
+    */
    function getTeamGroups($manager) {
       Toolbox::deprecated('getTeamGroups() method is deprecated');
       $this->addTeamGroups($manager);
@@ -613,7 +613,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetProjectTask::addTeamContacts()
     *
     * @return void
-   **/
+    */
    function getTeamContacts() {
       Toolbox::deprecated('getTeamContacts() method is deprecated');
       $this->addTeamContacts();
@@ -626,7 +626,7 @@ class NotificationTargetProjectTask extends NotificationTarget {
     * @deprecated 9.2 Use NotificationTargetProjectTask::addTeamSuppliers()
     *
     * @return void
-   **/
+    */
    function getTeamSuppliers() {
       Toolbox::deprecated('getTeamContacts() method is deprecated');
       $this->addTeamSuppliers();

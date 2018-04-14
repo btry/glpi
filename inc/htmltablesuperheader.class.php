@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Only an HTMLTableMain can create an HTMLTableSuperHeader.
  * @since 0.84
-**/
+ */
 class HTMLTableSuperHeader extends HTMLTableHeader {
 
    /// The headers of each column
@@ -52,7 +52,7 @@ class HTMLTableSuperHeader extends HTMLTableHeader {
     * @param $name      string   the name of the header
     * @param $content            see inc/HTMLTableEntity#__construct()
     * @param $father             HTMLTableSuperHeader objet (default NULL)
-   **/
+    */
    function __construct(HTMLTableMain $table, $name, $content, HTMLTableSuperHeader $father = null) {
 
       $this->table = $table;
@@ -67,7 +67,7 @@ class HTMLTableSuperHeader extends HTMLTableHeader {
     * @param $second
     *
     * @return integer LCM of $first and $second
-   **/
+    */
    private static function LCM($first, $second) {
 
       $result = $first * $second;
@@ -91,7 +91,7 @@ class HTMLTableSuperHeader extends HTMLTableHeader {
 
    /**
     * @see HTMLTableHeader::getHeaderAndSubHeaderName()
-   **/
+    */
    function getHeaderAndSubHeaderName(&$header_name, &$subheader_name) {
 
       $header_name    = $this->getName();
@@ -114,7 +114,7 @@ class HTMLTableSuperHeader extends HTMLTableHeader {
     * Multiple of the colspan of each subHeader it owns.
     *
     * @param $number the colspan for this header given by the group
-   **/
+    */
    function updateNumberOfSubHeader($number) {
       $this->setColSpan(self::LCM($number, $this->getColSpan()));
    }
@@ -124,7 +124,7 @@ class HTMLTableSuperHeader extends HTMLTableHeader {
     * The super headers always have to be displayed, conversely to sub headers
     *
     * @return always true
-   **/
+    */
    function hasToDisplay() {
       return true;
    }

@@ -50,7 +50,7 @@ class RuleMailCollectorCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::prepareInputDataForProcess()
-   **/
+    */
    function prepareInputDataForProcess($input, $params) {
 
       $input['mailcollector']       = $params['mailcollector'];
@@ -128,7 +128,7 @@ class RuleMailCollectorCollection extends RuleCollection {
 
    /**
     * @see RuleCollection::canList()
-   **/
+    */
    function canList() {
 
       return static::canView()

@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * RegisteredID class
  * @since 0.85
-**/
+ */
 class RegisteredID  extends CommonDBChild {
 
    // From CommonDBTM
@@ -66,7 +66,7 @@ class RegisteredID  extends CommonDBChild {
     * @param $child_count_js_var
     *
     * @return string
-   **/
+    */
    static function getJSCodeToAddForItemChild($field_name, $child_count_js_var) {
 
       $result  ="<select name=\'" . $field_name . "_type[-'+$child_count_js_var+']\'>";
@@ -83,7 +83,7 @@ class RegisteredID  extends CommonDBChild {
 
    /**
     * @see CommonDBChild::showChildForItemForm()
-   **/
+    */
    function showChildForItemForm($canedit, $field_name, $id) {
 
       if ($this->isNewID($this->getID())) {

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * NotificationTargetTicket Class
-**/
+ */
 class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    public $private_profiles = [];
@@ -72,7 +72,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    /**
     * @see NotificationTarget::validateSendTo()
-   **/
+    */
    function validateSendTo($event, array $infos, $notify_me = false) {
 
       // Always send notification for satisfaction : if send on ticket closure
@@ -112,7 +112,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    /**
    * Get header to add to content
-   **/
+    */
    function getContentHeader() {
 
       if (MailCollector::getNumberOfActiveMailCollectors()) {
@@ -126,7 +126,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    /**
    * Get footer to add to content
-   **/
+    */
    function getContentFooter() {
 
       if (MailCollector::getNumberOfActiveMailCollectors()) {
@@ -142,7 +142,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
     * @since 0.84
     *
     * @return string
-   **/
+    */
    function getMessageID() {
       return "GLPI-".$this->obj->getField('id').".".time().".".rand(). "@".php_uname('n');
    }
@@ -172,7 +172,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
     * @param $event  (default '')
     *
     * @return the object associated with the itemtype
-   **/
+    */
    function getObjectItem($event = '') {
 
       if ($this->obj && isset($this->obj->fields['id']) && !empty($this->obj->fields['id'])) {
@@ -193,7 +193,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    /**
     * @param $data   array
-   **/
+    */
    function addAdditionnalUserInfo(array $data) {
       global $DB;
 
@@ -218,7 +218,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
 
    /**
     *Get events related to tickets
-   **/
+    */
    function getEvents() {
 
       $events = ['new'               => __('New ticket'),
@@ -250,7 +250,7 @@ class NotificationTargetTicket extends NotificationTargetCommonITILObject {
    /**
     * Restrict by profile and by config
     * to avoid send notification to a user without rights
-   **/
+    */
    function getProfileJoinSql() {
 
       $query = " INNER JOIN `glpi_profiles_users`

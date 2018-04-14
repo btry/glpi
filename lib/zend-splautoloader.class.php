@@ -40,6 +40,6 @@ if (!defined('GLPI_ROOT')) {
  * Fake SplAutoloader class to prevent plugin issues when upgrading to 9.2
  *
  * @deprecated 9.2
-**/
+ */
 interface SplAutoloader {
 }

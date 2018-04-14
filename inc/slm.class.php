@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SLM Class
-**/
+ */
 class SLM extends CommonDBTM {
 
    // From CommonDBTM
@@ -61,7 +61,7 @@ class SLM extends CommonDBTM {
     * Force calendar of the SLM if value -1: calendar of the entity
     *
     * @param integer $calendars_id calendars_id of the ticket
-   **/
+    */
    function setTicketCalendar($calendars_id) {
 
       if ($this->fields['calendars_id'] == -1) {
@@ -99,7 +99,7 @@ class SLM extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $rowspan = 2;

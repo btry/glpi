@@ -56,7 +56,7 @@ class KnowbaseItemCategory extends CommonTreeDropdown {
     * @param $options   $_GET
     *
     * @return nothing (display the form)
-   **/
+    */
    static function showFirstLevel($options) {
       global $DB, $CFG_GLPI;
 

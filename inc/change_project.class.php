@@ -40,7 +40,7 @@ if (!defined('GLPI_ROOT')) {
  * Change_Project Class
  *
  * Relation between Changes and Projects
-**/
+ */
 class Change_Project extends CommonDBRelation{
 
    // From CommonDBRelation
@@ -72,7 +72,7 @@ class Change_Project extends CommonDBRelation{
     *
     * @param integer $oldid        ID of the item to clone
     * @param integer $newid        ID of the item cloned
-    **/
+    */
    static function cloneChangeProject ($oldid, $newid) {
       global $DB;
 
@@ -89,7 +89,7 @@ class Change_Project extends CommonDBRelation{
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (static::canView()) {
@@ -133,7 +133,7 @@ class Change_Project extends CommonDBRelation{
     * Show tickets for a project
     *
     * @param $project Project object
-   **/
+    */
    static function showForProject(Project $project) {
       global $DB, $CFG_GLPI;
 
@@ -228,7 +228,7 @@ class Change_Project extends CommonDBRelation{
     * Show projects for a change
     *
     * @param $change Change object
-   **/
+    */
    static function showForChange(Change $change) {
       global $DB, $CFG_GLPI;
 

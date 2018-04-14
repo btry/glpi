@@ -1883,7 +1883,7 @@ function computeTicketTco($item_type, $item) {
  * @param $cost_material float : ticket material cost
  *
  * @return total cost formatted string
-**/
+ */
 function trackingTotalCost($realtime, $cost_time, $cost_fixed, $cost_material) {
    return Html::formatNumber(($realtime*$cost_time)+$cost_fixed+$cost_material, true);
 }

@@ -58,7 +58,7 @@ if (!defined('GLPI_ROOT')) {
  * RSSFeed Class
  *
  * @since 0.84
-**/
+ */
 class RSSFeed extends CommonDBVisible {
 
    // From CommonDBTM
@@ -123,7 +123,7 @@ class RSSFeed extends CommonDBVisible {
    /**
     * @since 0.85
     * for personal rss feed
-   **/
+    */
    static function canUpdate() {
       return (Session::getCurrentInterface() != 'helpdesk');
    }
@@ -132,7 +132,7 @@ class RSSFeed extends CommonDBVisible {
    /**
     * @since 0.85
     * for personal rss feed
-   **/
+    */
    static function canPurge() {
       return (Session::getCurrentInterface() != 'helpdesk');
    }
@@ -142,7 +142,7 @@ class RSSFeed extends CommonDBVisible {
     * @since 0.85
     *
     * @see CommonDBTM::canPurgeItem()
-   **/
+    */
    function canPurgeItem() {
 
       return (($this->fields['users_id'] == Session::getLoginUserID())
@@ -169,7 +169,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::cleanDBonPurge()
-   **/
+    */
    function cleanDBonPurge() {
 
       $class = new RSSFeed_User();
@@ -196,7 +196,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $forceall force all joins (false by default)
     *
     * @return string joins to add
-   **/
+    */
    static function addVisibilityJoins($forceall = false) {
 
       if (!self::canView()) {
@@ -238,7 +238,7 @@ class RSSFeed extends CommonDBVisible {
     * Return visibility SQL restriction to add
     *
     * @return string restrict to add
-   **/
+    */
    static function addVisibilityRestrict() {
 
       $restrict = "`glpi_rssfeeds`.`users_id` = '".Session::getLoginUserID()."' ";
@@ -282,7 +282,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -301,7 +301,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-    **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -440,7 +440,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (self::canView()) {
@@ -464,7 +464,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -480,7 +480,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       switch ($item->getType()) {
@@ -501,7 +501,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if ($feed = self::getRSSFeed($input['url'])) {
@@ -525,7 +525,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       if (empty($input['name'])
@@ -566,7 +566,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $ID        integer  Id of the item to print
     * @param $options   array    of possible options:
     *     - target filename : where to go when done.
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -678,7 +678,7 @@ class RSSFeed extends CommonDBVisible {
     * Set error field
     *
     * @param $error   (false by default
-    **/
+    */
    function setError($error = false) {
 
       if (!isset($this->fields['id']) && !isset($this->fields['have_error'])) {
@@ -700,7 +700,7 @@ class RSSFeed extends CommonDBVisible {
 
    /**
     * Show the feed content
-    **/
+    */
    function showFeedContent() {
 
       if (!$this->canViewItem()) {
@@ -747,7 +747,7 @@ class RSSFeed extends CommonDBVisible {
     * Show discovered feeds
     *
     * @return nothin
-    **/
+    */
    function showDiscoveredFeeds() {
 
       $feed = new SimplePie();
@@ -786,7 +786,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $cache_duration  timestamp      cache duration (default DAY_TIMESTAMP)
     *
     * @return feed object
-   **/
+    */
    static function getRSSFeed($url, $cache_duration = DAY_TIMESTAMP) {
       global $CFG_GLPI;
 
@@ -832,7 +832,7 @@ class RSSFeed extends CommonDBVisible {
     * @param $personal boolean   display rssfeeds created by me ? (true by default)
     *
     * @return Nothing (display function)
-    **/
+    */
    static function showListForCentral($personal = true) {
       global $DB, $CFG_GLPI;
 
@@ -956,7 +956,7 @@ class RSSFeed extends CommonDBVisible {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       if ($interface == 'helpdesk') {

@@ -48,7 +48,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -60,7 +60,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
    /**
     * @param $portID
     * @param $vlanID
-   **/
+    */
    function unassignVlan($portID, $vlanID) {
 
       $this->getFromDBByCrit([
@@ -76,7 +76,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
     * @param $port
     * @param $vlan
     * @param $tagged
-   **/
+    */
    function assignVlan($port, $vlan, $tagged) {
       $input = ['networkports_id' => $port,
                      'vlans_id'        => $vlan,
@@ -87,7 +87,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
 
    /**
     * @param $port   NetworkPort object
-   **/
+    */
    static function showForNetworkPort(NetworkPort $port) {
       global $DB, $CFG_GLPI;
 
@@ -201,7 +201,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
 
    /**
     * @param $portID
-   **/
+    */
    static function getVlansForNetworkPort($portID) {
       global $DB;
 
@@ -247,7 +247,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationMassiveActionsSpecificities()
-   **/
+    */
    static function getRelationMassiveActionsSpecificities() {
       global $CFG_GLPI;
 
@@ -265,7 +265,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::showRelationMassiveActionsSubForm()
-   **/
+    */
    static function showRelationMassiveActionsSubForm(MassiveAction $ma, $peer_number) {
 
       if ($ma->getAction() == 'add') {
@@ -278,7 +278,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
     * @since 0.85
     *
     * @see CommonDBRelation::getRelationInputForProcessingOfMassiveActions()
-   **/
+    */
    static function getRelationInputForProcessingOfMassiveActions($action, CommonDBTM $item,
                                                                  array $ids, array $input) {
       if ($action == 'add') {

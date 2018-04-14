@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Disk Class
-**/
+ */
 class Item_Disk extends CommonDBChild {
 
    // From CommonDBChild
@@ -58,7 +58,7 @@ class Item_Disk extends CommonDBChild {
 
    /**
     * @see CommonGLPI::getTabNameForItem()
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       // can exists for template
@@ -94,7 +94,7 @@ class Item_Disk extends CommonDBChild {
     * @see CommonGLPI::defineTabs()
     *
     * @since 0.85
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -115,7 +115,7 @@ class Item_Disk extends CommonDBChild {
     * @param integer $newid New id
     *
     * @return void
-   **/
+    */
    static function cloneItem($type, $oldid, $newid) {
       global $DB;
 
@@ -146,7 +146,7 @@ class Item_Disk extends CommonDBChild {
     *     - items_id ID of the item for add process
     *
     * @return true if displayed  false if item not found or not right to display
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -241,7 +241,7 @@ class Item_Disk extends CommonDBChild {
     * @param $withtemplate boolean  Template or basic item (default 0)
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB;
 

@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-**/
+ */
 class Item_Enclosure extends CommonDBRelation {
 
    static public $itemtype_1 = 'Enclosure';
@@ -54,7 +54,7 @@ class Item_Enclosure extends CommonDBRelation {
     * @param Enclosure $enclosure Enclosure object instance
     *
     * @return integer
-   **/
+    */
    static function countForEnclosure(Enclosure $enclosure) {
       return countElementsInTable(self::getTable(),
                                   ['enclosures_id' => $enclosure->getID()]);
@@ -84,7 +84,7 @@ class Item_Enclosure extends CommonDBRelation {
     * Print enclosure items
     *
     * @return void
-   **/
+    */
    static function showItems(Enclosure $enclosure) {
       global $DB, $CFG_GLPI;
 

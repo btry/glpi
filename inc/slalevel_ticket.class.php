@@ -47,7 +47,7 @@ class SlaLevel_Ticket extends CommonDBTM {
     * @since 9.1 2 mandatory parameters
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBForTicket($ID, $slaType) {
       global $DB;
 
@@ -90,7 +90,7 @@ class SlaLevel_Ticket extends CommonDBTM {
     * @since 9.1 2 parameters mandatory
     *
     * @return nothing
-   **/
+    */
    function deleteForTicket($tickets_id, $slaType) {
       global $DB;
 
@@ -114,7 +114,7 @@ class SlaLevel_Ticket extends CommonDBTM {
     * @param $name : task's name
     *
     * @return arrray of information
-   **/
+    */
    static function cronInfo($name) {
 
       switch ($name) {
@@ -131,7 +131,7 @@ class SlaLevel_Ticket extends CommonDBTM {
     * @param $task : CronTask object
     *
     * @return integer (0 : nothing done - 1 : done)
-   **/
+    */
    static function cronSlaTicket(CronTask $task) {
       global $DB;
 
@@ -163,7 +163,7 @@ class SlaLevel_Ticket extends CommonDBTM {
     * @since 9.1   2 parameters mandatory
     *
     * @return nothing
-   **/
+    */
    static function doLevelForTicket(array $data, $slaType) {
 
       $ticket         = new Ticket();

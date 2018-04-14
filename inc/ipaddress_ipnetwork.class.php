@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Class IPAddress_IPNetwork : Connection between IPAddress and IPNetwork
  *
  * @since 0.84
-**/
+ */
 class IPAddress_IPNetwork extends CommonDBRelation {
 
    // From CommonDBRelation
@@ -53,7 +53,7 @@ class IPAddress_IPNetwork extends CommonDBRelation {
     * Update IPNetwork's dependency
     *
     * @param $network IPNetwork object
-   **/
+    */
    static function linkIPAddressFromIPNetwork(IPNetwork $network) {
       global $DB;
 
@@ -84,7 +84,7 @@ class IPAddress_IPNetwork extends CommonDBRelation {
 
    /**
     * @param $ipaddress IPAddress object
-   **/
+    */
    static function addIPAddress(IPAddress $ipaddress) {
 
       $linkObject = new self();

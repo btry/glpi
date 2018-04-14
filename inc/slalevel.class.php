@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * SlaLevel class
-**/
+ */
 class SlaLevel extends LevelAgreementLevel {
 
    protected $rules_id_field     = 'slalevels_id';
@@ -73,7 +73,7 @@ class SlaLevel extends LevelAgreementLevel {
     * @param $sla SLA object
     *
     * @since 9.1 (before showForSLA)
-   **/
+    */
    function showForSLA(SLA $sla) {
       global $DB;
 
@@ -215,7 +215,7 @@ class SlaLevel extends LevelAgreementLevel {
     * @param $options   array of possible options
     *
     * @return nothing
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $canedit = $this->can('sla', UPDATE);
@@ -273,7 +273,7 @@ class SlaLevel extends LevelAgreementLevel {
     * @since 9.1 (before getFirst SlaLevel)
     *
     * @return id of the sla level : 0 if not exists
-   **/
+    */
    static function getFirstSlaLevel($slas_id) {
       global $DB;
 
@@ -299,7 +299,7 @@ class SlaLevel extends LevelAgreementLevel {
     * @param $slalevels_id    integer id of the current SLA level
     *
     * @return id of the sla level : 0 if not exists
-   **/
+    */
    static function getNextSlaLevel($slas_id, $slalevels_id) {
       global $DB;
 

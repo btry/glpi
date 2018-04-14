@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Project Class
  *
  * @since 0.85
-**/
+ */
 class Project extends CommonDBTM {
 
    // From CommonDBTM
@@ -57,7 +57,7 @@ class Project extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type (default 0)
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Project', 'Projects', $nb);
    }
@@ -72,7 +72,7 @@ class Project extends CommonDBTM {
     * Is the current user have right to show the current project ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       if (!parent::canViewItem()) {
@@ -92,7 +92,7 @@ class Project extends CommonDBTM {
     * Is the current user have right to create the current change ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
@@ -106,7 +106,7 @@ class Project extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();
@@ -213,7 +213,7 @@ class Project extends CommonDBTM {
 
    /**
     * @see CommonGLPI::getAdditionalMenuLinks()
-   **/
+    */
    static function getAdditionalMenuLinks() {
       global $CFG_GLPI;
 
@@ -332,7 +332,7 @@ class Project extends CommonDBTM {
     * Return visibility joins to add to SQL
     *
     * @return string joins to add
-    **/
+    */
    static function addVisibilityJoins() {
 
       $join = '';
@@ -349,7 +349,7 @@ class Project extends CommonDBTM {
     * Return visibility to add to SQL
     *
     * @return string joins to add
-    **/
+    */
    static function addVisibility() {
 
       $condition = '';
@@ -375,7 +375,7 @@ class Project extends CommonDBTM {
     * Is the current user in the team?
     *
     * @return boolean
-   **/
+    */
    function isInTheTeam() {
 
       if (isset($this->team['User']) && count($this->team['User'])) {
@@ -404,7 +404,7 @@ class Project extends CommonDBTM {
     * Is the current user in manager group?
     *
     * @return boolean
-   **/
+    */
    function isInTheManagerGroup() {
 
       if (isset($_SESSION['glpigroups']) && count($_SESSION['glpigroups'])
@@ -423,7 +423,7 @@ class Project extends CommonDBTM {
     * Get team member count
     *
     * @return number
-   **/
+    */
    function getTeamCount() {
 
       $nb = 0;
@@ -992,7 +992,7 @@ class Project extends CommonDBTM {
     * Print the HTML array children of a TreeDropdown
     *
     * @return Nothing (display)
-    **/
+    */
    function showChildren() {
       global $DB, $CFG_GLPI;
 
@@ -1053,7 +1053,7 @@ class Project extends CommonDBTM {
     *     - withtemplate template or basic computer
     *
     *@return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI, $DB;
 
@@ -1229,7 +1229,7 @@ class Project extends CommonDBTM {
     * @param $name            (default '')
     * @param $values          (default '')
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
 
       if (!is_array($values)) {
@@ -1250,7 +1250,7 @@ class Project extends CommonDBTM {
 
    /**
     * Show team for a project
-   **/
+    */
    function showTeam(Project $project) {
       global $DB, $CFG_GLPI;
 
@@ -1580,7 +1580,7 @@ class Project extends CommonDBTM {
 
    /**
     * Display debug information for current object
-   **/
+    */
    function showDebug() {
       NotificationEvent::debugEvent($this);
    }

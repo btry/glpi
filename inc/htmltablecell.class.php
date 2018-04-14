@@ -41,7 +41,7 @@ class HTMLTableCellWithoutFather         extends Exception {}
 
 /**
  * @since 0.84
-**/
+ */
 class HTMLTableCell extends HTMLTableEntity {
 
    private $row;
@@ -59,7 +59,7 @@ class HTMLTableCell extends HTMLTableEntity {
     * @param $content   see HTMLTableEntity#__construct()
     * @param $father    HTMLTableCell object (default NULL)
     * @param $item      CommonDBTM object: The item associated with the current cell (default NULL)
-   **/
+    */
    function __construct($row, $header, $content, HTMLTableCell $father = null,
                         CommonDBTM $item = null) {
 
@@ -127,7 +127,7 @@ class HTMLTableCell extends HTMLTableEntity {
 
    /**
     * @param $attributForTheRow
-   **/
+    */
    function setAttributForTheRow($attributForTheRow) {
       $this->attributForTheRow = $attributForTheRow;
    }
@@ -150,7 +150,7 @@ class HTMLTableCell extends HTMLTableEntity {
    /**
     * @param $son          HTMLTableCell object
     * @param $sons_header  HTMLTableHeader object
-   **/
+    */
    function addSon(HTMLTableCell $son, HTMLTableHeader $sons_header) {
 
       if (!isset($this->sons[$sons_header->getName()])) {
@@ -187,7 +187,7 @@ class HTMLTableCell extends HTMLTableEntity {
 
    /**
     * @param $value
-   **/
+    */
    function addToNumberOfLines($value) {
       $this->numberOfLines += $value;
    }
@@ -196,7 +196,7 @@ class HTMLTableCell extends HTMLTableEntity {
    /**
     * @param $cells                 array
     * @param $totalNumberOflines
-   **/
+    */
    static function updateCellSteps(array $cells, $totalNumberOflines) {
 
       $numberOfLines = 0;
@@ -218,7 +218,7 @@ class HTMLTableCell extends HTMLTableEntity {
 
    /**
     * @param &$start
-   **/
+    */
    function computeStartEnd(&$start) {
 
       if (!isset($this->start)) {
@@ -245,7 +245,7 @@ class HTMLTableCell extends HTMLTableEntity {
    /**
     * @param $index
     * @param $options   array
-   **/
+    */
    function displayCell($index, array $options = []) {
 
       if (($index >= $this->start)

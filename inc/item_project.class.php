@@ -41,7 +41,7 @@ if (!defined('GLPI_ROOT')) {
  *  Relation between Projects and Items
  *
  *  @since 0.85
-**/
+ */
 class Item_Project extends CommonDBRelation{
 
 
@@ -65,7 +65,7 @@ class Item_Project extends CommonDBRelation{
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       // Avoid duplicate entry
@@ -80,7 +80,7 @@ class Item_Project extends CommonDBRelation{
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function countForItem(CommonDBTM $item) {
 
       $restrict = "`glpi_items_projects`.`projects_id` = `glpi_projects`.`id`
@@ -100,7 +100,7 @@ class Item_Project extends CommonDBRelation{
     * @param $project Project object
     *
     * @return Nothing (display)
-   **/
+    */
    static function showForProject(Project $project) {
       global $DB, $CFG_GLPI;
 

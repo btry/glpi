@@ -547,7 +547,7 @@ Session::loadLanguage();
 
 /**
  * @since 0.84.2
-**/
+ */
 function checkConfigFile() {
 
    if (file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {

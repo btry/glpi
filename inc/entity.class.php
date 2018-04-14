@@ -119,7 +119,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @since 0.84
-   **/
+    */
    function pre_deleteItem() {
       global $GLPI_CACHE;
 
@@ -153,7 +153,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
    * @since 0.84
-   **/
+    */
    static function canUpdate() {
 
       return (Session::haveRightsOr(self::$rightname, [UPDATE, self::UPDATEHELPDESK])
@@ -171,7 +171,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84
     *
     * @see CommonDBTM::canViewItem()
-   **/
+    */
    function canViewItem() {
       // Check the current entity
       return Session::haveAccessToEntity($this->getField('id'));
@@ -180,7 +180,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @see CommonDBTM::isNewID()
-   **/
+    */
    static function isNewID($ID) {
       return (($ID < 0) || !strlen($ID));
    }
@@ -194,7 +194,7 @@ class Entity extends CommonTreeDropdown {
     * @param $input array (form)
     *
     * @return array (filtered input)
-   **/
+    */
    private function checkRightDatas($input) {
 
       $tmp = [];
@@ -236,7 +236,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @since 0.84 (before in entitydata.class)
-   **/
+    */
    function prepareInputForAdd($input) {
       global $DB;
 
@@ -267,7 +267,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @since 0.84 (before in entitydata.class)
-   **/
+    */
    function prepareInputForUpdate($input) {
 
       $input = parent::prepareInputForUpdate($input);
@@ -300,7 +300,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @see CommonTreeDropdown::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -319,7 +319,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @since 0.84 (before in entitydata.class)
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (!$withtemplate) {
@@ -347,7 +347,7 @@ class Entity extends CommonTreeDropdown {
 
    /**
     * @since 0.84 (before in entitydata.class)
-   **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType()==__CLASS__) {
@@ -385,7 +385,7 @@ class Entity extends CommonTreeDropdown {
     * Print a good title for entity pages
     *
     *@return nothing (display)
-    **/
+    */
    function title() {
       // Empty title for entities
    }
@@ -402,7 +402,7 @@ class Entity extends CommonTreeDropdown {
     * simply return ID
     *
     * @return ID of the entity
-   **/
+    */
    function getEntityID() {
 
       if (isset($this->fields["id"])) {
@@ -428,7 +428,7 @@ class Entity extends CommonTreeDropdown {
     * Entity are always recursive
     *
     * @return integer (0/1)
-   **/
+    */
    function isRecursive () {
       return true;
    }
@@ -1080,7 +1080,7 @@ class Entity extends CommonTreeDropdown {
     *
     * @param $target target for entity change action
     * @param $myname select name
-   **/
+    */
    static function showSelector($target, $myname) {
       global $CFG_GLPI;
 
@@ -1200,7 +1200,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.83 (before addRule)
     *
     * @param $input array of values
-   **/
+    */
    function executeAddRule($input) {
 
       $this->check($_POST["affectentity"], UPDATE);
@@ -1243,7 +1243,7 @@ class Entity extends CommonTreeDropdown {
     * @param $field  String name of the field to search (>0)
     *
     * @return Array of id => value
-   **/
+    */
    static function getEntitiesToNotify($field) {
       global $DB, $CFG_GLPI;
 
@@ -1288,7 +1288,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84
     *
     * @param $entity Entity object
-   **/
+    */
    static function showStandardOptions(Entity $entity) {
 
       $con_spotted = false;
@@ -1377,7 +1377,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $entity Entity object
-   **/
+    */
    static function showAdvancedOptions(Entity $entity) {
       global $DB;
 
@@ -1463,7 +1463,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $entity Entity object
-   **/
+    */
    static function showInventoryOptions(Entity $entity) {
 
       $ID = $entity->getField('id');
@@ -1621,7 +1621,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $entity Entity object
-   **/
+    */
    static function showNotificationOptions(Entity $entity) {
 
       $ID = $entity->getField('id');
@@ -2012,7 +2012,7 @@ class Entity extends CommonTreeDropdown {
     *
     * @param $field
     * @param $value must be addslashes
-   **/
+    */
    private static function getEntityIDByField($field, $value) {
       global $DB;
 
@@ -2032,7 +2032,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $value
-   **/
+    */
    static function getEntityIDByDN($value) {
       return self::getEntityIDByField("ldap_dn", $value);
    }
@@ -2042,7 +2042,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84
     *
     * @param $value
-   **/
+    */
    static function getEntityIDByCompletename($value) {
       return self::getEntityIDByField("completename", $value);
    }
@@ -2052,7 +2052,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $value
-   **/
+    */
    static function getEntityIDByTag($value) {
       return self::getEntityIDByField("tag", $value);
    }
@@ -2062,7 +2062,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $value
-   **/
+    */
    static function getEntityIDByDomain($value) {
       return self::getEntityIDByField("mail_domain", $value);
    }
@@ -2072,7 +2072,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $entities_id
-   **/
+    */
    static function isEntityDirectoryConfigured($entities_id) {
 
       $entity = new self();
@@ -2094,7 +2094,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84 (before in entitydata.class)
     *
     * @param $entity Entity object
-   **/
+    */
    static function showHelpdeskOptions(Entity $entity) {
       global $CFG_GLPI;
 
@@ -2334,7 +2334,7 @@ class Entity extends CommonTreeDropdown {
     * @param $entities_id
     * @param $fieldval        string   name of the field that we want value (default '')
     * @param $default_value            value to return (default -2)
-   **/
+    */
    static function getUsedConfig($fieldref, $entities_id, $fieldval = '', $default_value = -2) {
 
       // for calendar
@@ -2389,7 +2389,7 @@ class Entity extends CommonTreeDropdown {
     * @param $ticket ticket object
     *
     * @return url contents
-   **/
+    */
    static function generateLinkSatisfaction($ticket) {
       global $DB;
 
@@ -2507,7 +2507,7 @@ class Entity extends CommonTreeDropdown {
     * @param $val if not set, ask for all values, else for 1 value (default NULL)
     *
     * @return array or string
-   **/
+    */
    static function getAutoAssignMode($val = null) {
 
       $tab = [self::CONFIG_PARENT                  => __('Inheritance of the parent entity'),
@@ -2528,7 +2528,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.84
     *
     * @param $options array
-   **/
+    */
    static function dropdownAutoAssignMode(array $options) {
 
       $p['name']    = 'auto_assign_mode';
@@ -2552,7 +2552,7 @@ class Entity extends CommonTreeDropdown {
     * @param $field
     * @param $values
     * @param $options   array
-   **/
+    */
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
@@ -2730,7 +2730,7 @@ class Entity extends CommonTreeDropdown {
     * @param $name               (default '')
     * @param $values             (default '')
     * @param $options      array
-   **/
+    */
    static function getSpecificValueToSelect($field, $name = '', $values = '', array $options = []) {
       global $DB;
 
@@ -2846,7 +2846,7 @@ class Entity extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * @since 0.84
-**/
+ */
 class SsoVariable extends CommonDropdown {
 
    static $rightname = 'config';
@@ -58,7 +58,7 @@ class SsoVariable extends CommonDropdown {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canPurge() {
       return static::canUpdate();
    }

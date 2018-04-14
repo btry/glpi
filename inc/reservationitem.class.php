@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * ReservationItem Class
-**/
+ */
 class ReservationItem extends CommonDBChild {
 
    /// From CommonDBChild
@@ -55,7 +55,7 @@ class ReservationItem extends CommonDBChild {
 
    /**
     * @since 0.85
-   **/
+    */
    static function canView() {
       global $CFG_GLPI;
 
@@ -72,7 +72,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonGLPI::getMenuName()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuName() {
       return Reservation::getTypeName(Session::getPluralNumber());
    }
@@ -82,7 +82,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonGLPI::getForbiddenActionsForMenu()
     *
     * @since 0.85
-   **/
+    */
    static function getForbiddenActionsForMenu() {
       return ['add'];
    }
@@ -92,7 +92,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonGLPI::getAdditionalMenuLinks()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuLinks() {
 
       if (static::canView()) {
@@ -110,7 +110,7 @@ class ReservationItem extends CommonDBChild {
     * @param $ID         ID of the item
     *
     * @return true if succeed else false
-   **/
+    */
    function getFromDBbyItem($itemtype, $ID) {
 
       return $this->getFromDBByCrit([
@@ -275,7 +275,7 @@ class ReservationItem extends CommonDBChild {
 
    /**
     * @param $item   CommonDBTM object
-   **/
+    */
    static function showActivationFormForItem(CommonDBTM $item) {
 
       if (!self::canUpdate()) {
@@ -593,7 +593,7 @@ class ReservationItem extends CommonDBChild {
     * @param $name
     *
     * @return an array
-   **/
+    */
    static function cronInfo($name) {
       return ['description' => __('Alerts on reservations')];
    }
@@ -605,7 +605,7 @@ class ReservationItem extends CommonDBChild {
     * @param $task to log, if NULL use display (default NULL)
     *
     * @return 0 : nothing to do 1 : done with success
-   **/
+    */
    static function cronReservation($task = null) {
       global $DB, $CFG_GLPI;
 
@@ -701,7 +701,7 @@ class ReservationItem extends CommonDBChild {
 
    /**
     * Display debug information for reservation of current object
-   **/
+    */
    function showDebugResa() {
 
       $resa                                = new Reservation();
@@ -720,7 +720,7 @@ class ReservationItem extends CommonDBChild {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-   **/
+    */
    function getRights($interface = 'central') {
 
       if ($interface == 'central') {
@@ -736,7 +736,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonGLPI::defineTabs()
     *
     * @since 0.85
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -750,7 +750,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonGLPI::getTabNameForItem()
     *
     * @since 0.85
-   **/
+    */
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->getType() == __CLASS__) {
@@ -770,7 +770,7 @@ class ReservationItem extends CommonDBChild {
     * @param $item         CommonGLPI object
     * @param $tabnum       (default1)
     * @param $withtemplate (default0)
-    **/
+    */
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType() == __CLASS__) {
@@ -791,7 +791,7 @@ class ReservationItem extends CommonDBChild {
     * @see CommonDBTM::isNewItem()
     *
     * @since 0.85
-   **/
+    */
    function isNewItem() {
       return false;
    }

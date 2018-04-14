@@ -36,7 +36,7 @@ class RuleDictionnaryOperatingSystemVersionCollection extends RuleDictionnaryDro
 
    /**
     * @see RuleCollection::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Dictionnary of operating system versions');
    }

@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * ITILSolution Class
-**/
+ */
 class ITILSolution extends CommonDBTM {
 
    // From CommonDBTM
@@ -105,7 +105,7 @@ class ITILSolution extends CommonDBTM {
     *     - kb_id_toload: load new item content from KB entry
     *
     * @return boolean item found
-   **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 

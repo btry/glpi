@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Monitor Class
-**/
+ */
 class Monitor extends CommonDBTM {
    use DCBreadcrumb;
 
@@ -52,7 +52,7 @@ class Monitor extends CommonDBTM {
     * Name of the type
     *
     * @param $nb  string   number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Monitor', 'Monitors', $nb);
    }
@@ -62,7 +62,7 @@ class Monitor extends CommonDBTM {
     * @see CommonDBTM::useDeletedToLockIfDynamic()
     *
     * @since 0.84
-   **/
+    */
    function useDeletedToLockIfDynamic() {
       return false;
    }
@@ -70,7 +70,7 @@ class Monitor extends CommonDBTM {
 
    /**
     * @see CommonGLPI::defineTabs()
-   **/
+    */
    function defineTabs($options = []) {
 
       $ong = [];
@@ -95,7 +95,7 @@ class Monitor extends CommonDBTM {
 
    /**
     * @see CommonDBTM::prepareInputForAdd()
-   **/
+    */
    function prepareInputForAdd($input) {
 
       if (isset($input["id"]) && ($input["id"] > 0)) {
@@ -168,7 +168,7 @@ class Monitor extends CommonDBTM {
     *     - withtemplate boolean : template or basic item
     *
     * @return boolean item found
-    **/
+    */
    function showForm($ID, $options = []) {
       global $CFG_GLPI;
 
@@ -341,7 +341,7 @@ class Monitor extends CommonDBTM {
     *
     * @return an array of linked items  like array('Computer' => array(1,2), 'Printer' => array(5,6))
     * @since 0.84.4
-   **/
+    */
    function getLinkedItems() {
       global $DB;
 
@@ -359,7 +359,7 @@ class Monitor extends CommonDBTM {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $actions = parent::getSpecificMassiveActions($checkitem);

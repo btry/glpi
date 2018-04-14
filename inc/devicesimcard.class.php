@@ -103,7 +103,7 @@ class DeviceSimcard extends CommonDevice {
     * @see CommonDevice::getImportCriteria()
     *
     * @since 9.2
-    **/
+    */
    function getImportCriteria() {
 
       return [

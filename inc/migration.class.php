@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Migration Class
  *
  * @since 0.80
-**/
+ */
 class Migration {
 
    private   $change    = [];
@@ -70,7 +70,7 @@ class Migration {
 
    /**
     * @param integer $ver Version number
-   **/
+    */
    function __construct($ver) {
 
       $this->deb = time();
@@ -85,7 +85,7 @@ class Migration {
     * @param integer $ver Version number
     *
     * @return void
-   **/
+    */
    function setVersion($ver) {
 
       $this->flushLogDisplayMessage();
@@ -102,7 +102,7 @@ class Migration {
     * @param string $id Area ID
     *
     * @return void
-   **/
+    */
    function addNewMessageArea($id) {
 
       if ($id == $this->current_message_area_id) {
@@ -122,7 +122,7 @@ class Migration {
     * @since 0.84
     *
     * @return void
-   **/
+    */
    function flushLogDisplayMessage() {
 
       if (isset($this->lastMessage)) {
@@ -139,7 +139,7 @@ class Migration {
     * @param string $msg text  to display
     *
     * @return void
-   **/
+    */
    function displayMessage($msg) {
 
       $now = time();
@@ -166,7 +166,7 @@ class Migration {
     * @param boolean $warning Is a warning
     *
     * @return void
-   **/
+    */
    function log($message, $warning) {
 
       if ($warning) {
@@ -189,7 +189,7 @@ class Migration {
     * @param string $title Title to display
     *
     * @return void
-   **/
+    */
    function displayTitle($title) {
       echo "<h3>".Html::entities_deep($title)."</h3>";
    }
@@ -202,7 +202,7 @@ class Migration {
     * @param boolean $red Displays with red class (false by default)
     *
     * @return void
-   **/
+    */
    function displayWarning($msg, $red = false) {
 
       echo ($red ? "<div class='migred'><p>" : "<p><span class='b'>") .
@@ -221,7 +221,7 @@ class Migration {
     * @param boolean $nodefault     No default value (false by default)
     *
     * @return string
-   **/
+    */
    private function fieldFormat($type, $default_value, $nodefault = false) {
 
       $format = '';
@@ -348,7 +348,7 @@ class Migration {
     *                         - null      : value could be NULL (default false)
     *
     * @return boolean
-   **/
+    */
    function addField($table, $field, $type, $options = []) {
       global $DB;
 
@@ -415,7 +415,7 @@ class Migration {
     *                         - nodefault : do not define default value (default false)
     *
     * @return boolean
-   **/
+    */
    function changeField($table, $oldfield, $newfield, $type, $options = []) {
       global $DB;
 
@@ -460,7 +460,7 @@ class Migration {
     * @param string $field Field name
     *
     * @return void
-   **/
+    */
    function dropField($table, $field) {
       global $DB;
 
@@ -476,7 +476,7 @@ class Migration {
     * @param string $table Table name
     *
     * @return void
-   **/
+    */
    function dropTable($table) {
       global $DB;
 
@@ -496,7 +496,7 @@ class Migration {
     * @param integer      $len       Field length (default 0)
     *
     * @return void
-   **/
+    */
    function addKey($table, $fields, $indexname = '', $type = 'INDEX', $len = 0) {
 
       // si pas de nom d'index, on prend celui du ou des champs
@@ -537,7 +537,7 @@ class Migration {
     * @param string $indexname Index name
     *
     * @return void
-   **/
+    */
    function dropKey($table, $indexname) {
 
       if (isIndex($table, $indexname)) {
@@ -553,7 +553,7 @@ class Migration {
     * @param string $newtable new table name
     *
     * @return void
-   **/
+    */
    function renameTable($oldtable, $newtable) {
       global $DB;
 
@@ -588,7 +588,7 @@ class Migration {
     * @param string $newtable The copy of the old table
     *
     * @return void
-   **/
+    */
    function copyTable($oldtable, $newtable) {
       global $DB;
 
@@ -620,7 +620,7 @@ class Migration {
     * @param array  $input The elements to add inside the table
     *
     * @return integer id of the last item inserted by mysql
-   **/
+    */
    function insertInTable($table, array $input) {
       global $DB;
 
@@ -647,7 +647,7 @@ class Migration {
     * @param string $table Table name
     *
     * @return void
-   **/
+    */
    function migrationOneTable($table) {
       global $DB;
 
@@ -674,7 +674,7 @@ class Migration {
     * Execute global migration
     *
     * @return void
-   **/
+    */
    function executeMigration() {
       global $DB;
 
@@ -716,7 +716,7 @@ class Migration {
     * @param array $actions  Array of Array of fields of glpi_ruleactions
     *
     * @return integer new rule id
-   **/
+    */
    function createRule(Array $rule, Array $criteria, Array $actions) {
       global $DB;
 
@@ -776,7 +776,7 @@ class Migration {
     * @param array $todel items to del : itemtype => array of values
     *
     * @return void
-   **/
+    */
    function updateDisplayPrefs($toadd = [], $todel = []) {
       global $DB;
 

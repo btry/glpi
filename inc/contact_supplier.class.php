@@ -96,7 +96,7 @@ class Contact_Supplier extends CommonDBRelation{
 
    /**
     * @param $item   string   Supplier object
-   **/
+    */
    static function countForSupplier(Supplier $item) {
 
       $restrict = "`glpi_contacts_suppliers`.`suppliers_id` = '".$item->getField('id') ."'
@@ -110,7 +110,7 @@ class Contact_Supplier extends CommonDBRelation{
 
    /**
     * @param $item   string   Contact object
-   **/
+    */
    static function countForContact(Contact $item) {
 
       $restrict = "`glpi_contacts_suppliers`.`contacts_id` = '".$item->getField('id') ."'
@@ -126,7 +126,7 @@ class Contact_Supplier extends CommonDBRelation{
     * Print the HTML array for entreprises on the current contact
     *
     *@return Nothing (display)
-   **/
+    */
    static function showForContact(Contact $contact) {
       global $DB,$CFG_GLPI;
 
@@ -269,7 +269,7 @@ class Contact_Supplier extends CommonDBRelation{
 
    /**
     * Show contacts asociated to an enterprise
-   **/
+    */
    static function showForSupplier(Supplier $supplier) {
       global $DB,$CFG_GLPI;
 

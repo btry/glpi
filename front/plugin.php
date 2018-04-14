@@ -38,7 +38,7 @@ Session::checkRight("config", UPDATE);
  * Obsolete function provided to detect compatibility issue
  *
  * @since 0.84
- **/
+ */
 function handleObsoleteCall($func) {
 
    $name = NOT_AVAILABLE;
@@ -62,7 +62,7 @@ function handleObsoleteCall($func) {
  * Obsolete function keep only for compatibility old versions
  *
  * @param $name
-**/
+ */
 function registerPluginType($name) {
    handleObsoleteCall('registerPluginType');
 }
@@ -70,7 +70,7 @@ function registerPluginType($name) {
 
 /**
  * Obsolete function keep only for compatibility old versions
-**/
+ */
 function getLoginUserID() {
    handleObsoleteCall('getLoginUserID');
 }
@@ -78,7 +78,7 @@ function getLoginUserID() {
 
 /**
  * Obsolete function keep only for compatibility old versions
-**/
+ */
 function haveRight() {
    handleObsoleteCall('haveRight');
 }

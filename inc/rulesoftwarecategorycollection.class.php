@@ -57,7 +57,7 @@ class RuleSoftwareCategoryCollection extends RuleCollection {
     * @param $software  software data array
     *
     * @return an array of attributes
-   **/
+    */
    function prepareInputDataForProcess($input, $software) {
 
       $params["name"] = $software["name"];

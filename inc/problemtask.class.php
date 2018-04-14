@@ -39,7 +39,7 @@ class ProblemTask extends CommonITILTask {
 
    /**
     * @since 0.84
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Problem task', 'Problem tasks', $nb);
    }
@@ -64,7 +64,7 @@ class ProblemTask extends CommonITILTask {
     * @since 0.85
     *
     * @return boolean
-   **/
+    */
    static function canPurge() {
       return Session::haveRight('problem', UPDATE);
    }
@@ -84,7 +84,7 @@ class ProblemTask extends CommonITILTask {
     * Is the current user have right to show the current task ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
       return parent::canReadITILItem();
    }
@@ -94,7 +94,7 @@ class ProblemTask extends CommonITILTask {
     * Is the current user have right to create the current task ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -118,7 +118,7 @@ class ProblemTask extends CommonITILTask {
     * Is the current user have right to update the current task ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
 
       if (!parent::canReadITILItem()) {
@@ -138,7 +138,7 @@ class ProblemTask extends CommonITILTask {
     * Is the current user have right to purge the current task ?
     *
     * @return boolean
-   **/
+    */
    function canPurgeItem() {
       return $this->canUpdateItem();
    }
@@ -154,7 +154,7 @@ class ProblemTask extends CommonITILTask {
     *    - end Date
     *
     * @return array of planning item
-   **/
+    */
    static function populatePlanning($options = []) {
       return parent::genericPopulatePlanning(__CLASS__, $options);
    }
@@ -166,7 +166,7 @@ class ProblemTask extends CommonITILTask {
     * @param $val Array of the item to display
     *
     * @return Already planned information
-   **/
+    */
    static function getAlreadyPlannedInformation($val) {
       return parent::genericGetAlreadyPlannedInformation(__CLASS__, $val);
    }
@@ -182,7 +182,7 @@ class ProblemTask extends CommonITILTask {
     * @param $complete        complete display (more details) (default 0)
     *
     * @return Nothing (display function)
-   **/
+    */
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
       return parent::genericDisplayPlanningItem(__CLASS__, $val, $who, $type, $complete);
    }

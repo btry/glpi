@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /// TODO extends it from CommonDBChild
 /**
  * TicketFollowup Class
-**/
+ */
 class TicketFollowup  extends CommonDBTM {
 
 
@@ -60,7 +60,7 @@ class TicketFollowup  extends CommonDBTM {
     * Name of the type
     *
     * @param $nb : number of item in the type
-   **/
+    */
    static function getTypeName($nb = 0) {
       return _n('Followup', 'Followups', $nb);
    }
@@ -86,7 +86,7 @@ class TicketFollowup  extends CommonDBTM {
     * Is the current user have right to delete the current followup ?
     *
     * @return boolean
-   **/
+    */
    function canPurgeItem() {
 
       $ticket = new Ticket();
@@ -106,7 +106,7 @@ class TicketFollowup  extends CommonDBTM {
     * Is the current user have right to show the current followup ?
     *
     * @return boolean
-   **/
+    */
    function canViewItem() {
 
       $ticket = new Ticket();
@@ -131,7 +131,7 @@ class TicketFollowup  extends CommonDBTM {
     * Is the current user have right to create the current followup ?
     *
     * @return boolean
-   **/
+    */
    function canCreateItem() {
 
       $ticket = new Ticket();
@@ -149,7 +149,7 @@ class TicketFollowup  extends CommonDBTM {
     * Is the current user have right to update the current followup ?
     *
     * @return boolean
-   **/
+    */
    function canUpdateItem() {
 
       if (($this->fields["users_id"] != Session::getLoginUserID())
@@ -481,7 +481,7 @@ class TicketFollowup  extends CommonDBTM {
     * @see CommonDBTM::getRawName()
     *
     * @since 0.85
-   **/
+    */
    function getRawName() {
 
       if (isset($this->fields['requesttypes_id'])) {
@@ -498,7 +498,7 @@ class TicketFollowup  extends CommonDBTM {
     * @param $ticket       Tichet object
     * @param $rand
     * @param $showprivate
-   **/
+    */
    function showInTicketSumnary(Ticket $ticket, $rand, $showprivate) {
       global $DB, $CFG_GLPI;
 
@@ -544,7 +544,7 @@ class TicketFollowup  extends CommonDBTM {
 
    /**
     * Form for Followup on Massive action
-   **/
+    */
    static function showFormMassiveAction() {
 
       echo "&nbsp;".__('Source of followup')."&nbsp;";
@@ -562,7 +562,7 @@ class TicketFollowup  extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       switch ($ma->getAction()) {
@@ -579,7 +579,7 @@ class TicketFollowup  extends CommonDBTM {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -619,7 +619,7 @@ class TicketFollowup  extends CommonDBTM {
     *@param $ID      integer : Id of the followup
     *@param $options array of possible options:
     *     - ticket Object : the ticket
-   **/
+    */
    function showForm($ID, $options = []) {
       global $DB, $CFG_GLPI;
 
@@ -761,7 +761,7 @@ class TicketFollowup  extends CommonDBTM {
     * @since 0.90
     *
     * @see CommonDBTM::showFormButtons()
-   **/
+    */
    function showFormButtons($options = []) {
       global $CFG_GLPI;
 
@@ -827,7 +827,7 @@ class TicketFollowup  extends CommonDBTM {
     * Show the current ticketfollowup summary
     *
     * @param $ticket Ticket object
-   **/
+    */
    function showSummary($ticket) {
       global $DB, $CFG_GLPI;
 
@@ -1060,7 +1060,7 @@ class TicketFollowup  extends CommonDBTM {
 
    /**
     * @param $ID  integer  ID of the ticket
-   **/
+    */
    static function showShortForTicket($ID) {
       global $DB, $CFG_GLPI;
 
@@ -1108,7 +1108,7 @@ class TicketFollowup  extends CommonDBTM {
    /** form for soluce's approbation
     *
     * @param $ticket Object : the ticket
-   **/
+    */
    function showApprobationForm($ticket) {
       global $DB, $CFG_GLPI;
 
@@ -1204,7 +1204,7 @@ class TicketFollowup  extends CommonDBTM {
     * @since 0.85
     *
     * @see commonDBTM::getRights()
-    **/
+    */
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

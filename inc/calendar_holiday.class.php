@@ -49,7 +49,7 @@ class Calendar_Holiday extends CommonDBRelation {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -62,7 +62,7 @@ class Calendar_Holiday extends CommonDBRelation {
     * Show holidays for a calendar
     *
     * @param $calendar Calendar object
-   **/
+    */
    static function showForCalendar(Calendar $calendar) {
       global $DB, $CFG_GLPI;
 
@@ -174,7 +174,7 @@ class Calendar_Holiday extends CommonDBRelation {
     *
     * @param $oldid
     * @param $newid
-   **/
+    */
    static function cloneCalendar($oldid, $newid) {
       global $DB;
 

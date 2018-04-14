@@ -47,7 +47,7 @@ class CalendarSegment extends CommonDBChild {
 
    /**
     * @since 0.84
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden   = parent::getForbiddenStandardMassiveAction();
@@ -79,7 +79,7 @@ class CalendarSegment extends CommonDBChild {
     *
     * @param $oldid
     * @param $newid
-   **/
+    */
    static function cloneCalendar($oldid, $newid) {
       global $DB;
 
@@ -126,7 +126,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $begin_time      begin time to check
     * @param $end_day         end day number
     * @param $end_time        end time to check
-   **/
+    */
    static function getSegmentsBetween($calendars_id, $begin_day, $begin_time, $end_day, $end_time) {
       global $DB;
 
@@ -149,7 +149,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $end_time        end time to check
     *
     * @return timestamp value
-   **/
+    */
    static function getActiveTimeBetween($calendars_id, $day, $begin_time, $end_time) {
       global $DB;
 
@@ -184,7 +184,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $delay           timestamp delay to add
     *
     * @return timestamp value
-   **/
+    */
    static function addDelayInDay($calendars_id, $day, $begin_time, $delay) {
       global $DB;
 
@@ -230,7 +230,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $day             day number
     *
     * @return time value
-   **/
+    */
    static function getFirstWorkingHour($calendars_id, $day) {
       global $DB;
 
@@ -257,7 +257,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $day             day number
     *
     * @return time value
-   **/
+    */
    static function getLastWorkingHour($calendars_id, $day) {
       global $DB;
 
@@ -285,7 +285,7 @@ class CalendarSegment extends CommonDBChild {
     * @param $hour            hour (Format HH:MM::SS)
     *
     * @return boolean
-   **/
+    */
    static function isAWorkingHour($calendars_id, $day, $hour) {
       global $DB;
 
@@ -310,7 +310,7 @@ class CalendarSegment extends CommonDBChild {
     * Show segments of a calendar
     *
     * @param $calendar Calendar object
-   **/
+    */
    static function showForCalendar(Calendar $calendar) {
       global $DB, $CFG_GLPI;
 

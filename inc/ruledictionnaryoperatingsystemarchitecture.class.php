@@ -35,7 +35,7 @@ class RuleDictionnaryOperatingSystemArchitecture extends RuleDictionnaryDropdown
 
    /**
     * Constructor
-   **/
+    */
    function __construct() {
       parent::__construct('RuleDictionnaryOperatingSystemArchitecture');
    }
@@ -43,7 +43,7 @@ class RuleDictionnaryOperatingSystemArchitecture extends RuleDictionnaryDropdown
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -62,7 +62,7 @@ class RuleDictionnaryOperatingSystemArchitecture extends RuleDictionnaryDropdown
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                          = [];

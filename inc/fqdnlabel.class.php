@@ -59,7 +59,7 @@ abstract class FQDNLabel extends CommonDBChild {
     * @param $domain  integer  id of the domain that owns the item
     *
     * @return result the full internet name
-   **/
+    */
    static function getInternetNameFromLabelAndDomainID($label, $domain) {
 
       $domainName = FQDN::getFQDNFromID($domain);
@@ -76,7 +76,7 @@ abstract class FQDNLabel extends CommonDBChild {
     * than alphanumerics. Minus ('-') is allowed if it is not at the end or begin of the lable.
     *
     * @param $label        the label to check
-   **/
+    */
    static function checkFQDNLabel($label) {
 
       if (strlen($label) == 1) {
@@ -101,7 +101,7 @@ abstract class FQDNLabel extends CommonDBChild {
 
    /**
     * @param $input
-   **/
+    */
    function prepareLabelInput($input) {
 
       if (isset($input['name']) && !empty($input['name'])) {
@@ -140,7 +140,7 @@ abstract class FQDNLabel extends CommonDBChild {
     * @param $wildcard_search boolean  true if we search with wildcard (false by default)
     *
     * @return array two arrays (NetworkName and NetworkAlias) of the IDs
-    **/
+    */
    static function getIDsByLabelAndFQDNID($label, $fqdns_id, $wildcard_search = false) {
       global $DB;
 
@@ -185,7 +185,7 @@ abstract class FQDNLabel extends CommonDBChild {
     *
     * @return (array) each value of the array (corresponding to one NetworkPort) is an array of the
     *                 items from the master item to the NetworkPort
-    **/
+    */
    static function getItemsByFQDN($fqdn, $wildcard_search = false) {
 
       $FQNDs_with_Items = [];
@@ -228,7 +228,7 @@ abstract class FQDNLabel extends CommonDBChild {
     *
     * @return an array containing the object ID
     *         or an empty array is no value of serverals ID where found
-    **/
+    */
    static function getUniqueItemByFQDN($value, $entity) {
 
       $labels_with_items = self::getItemsByFQDN($value);

@@ -39,7 +39,7 @@ $NETPOINT = [0, 0, 0, 0];
 $faker = Faker\Factory::create($CFG_GLPI['language']);
 
 /** Generate bigdump : Get next netpoint name
-**/
+ */
 function getNextNETPOINT() {
    global $NETPOINT;
 
@@ -63,7 +63,7 @@ function getNextNETPOINT() {
 
 
 /** Generate bigdump : Get next IP address
-**/
+ */
 function getNextIP() {
    global $IP;
 
@@ -102,7 +102,7 @@ function getNextIP() {
 
 
 /** Generate bigdump :  Get next MAC address
-**/
+ */
 function getNextMAC() {
    global $MAC;
 
@@ -141,7 +141,7 @@ function getNextMAC() {
  * @param $items_id        item ID
  * @param $entities_id     item entity ID
  * @param $locations_id    ID of the location trying to link with network equipment (default 0)
-**/
+ */
 function addNetworkEthernetPort($itemtype, $items_id, $entities_id, $locations_id = 0) {
    global $NET_LOC, $NET_PORT, $MAX, $VLAN_LOC;
 
@@ -259,7 +259,7 @@ function addNetworkEthernetPort($itemtype, $items_id, $entities_id, $locations_i
  * @param $type      item type
  * @param $ID        item ID
  * @param $ID_entity item entity ID
-**/
+ */
 function addReservation($type, $ID, $ID_entity) {
    global $percent, $DB, $FIRST, $LAST;
 
@@ -302,7 +302,7 @@ function addReservation($type, $ID, $ID_entity) {
  *
  * @param $type   item type
  * @param $ID     item ID
-**/
+ */
 function addDocuments($type, $ID) {
    global $DOC_PER_ITEM, $DB, $FIRST, $LAST, $DOCUMENTS;
 
@@ -335,7 +335,7 @@ function addDocuments($type, $ID) {
  * @param $ID              item ID
  * @param $ID_entity       entity ID
  * @param $is_recursive    (default 0)
-**/
+ */
 function addInfocoms($type, $ID, $ID_entity, $is_recursive = 0) {
    global $DB, $FIRST, $LAST;
 
@@ -389,7 +389,7 @@ function addInfocoms($type, $ID, $ID_entity, $is_recursive = 0) {
  *
  * @param $type   item type
  * @param $ID     item ID
-**/
+ */
 function addContracts($type, $ID) {
    global $CONTRACT_PER_ITEM, $DB, $FIRST, $LAST;
 
@@ -416,7 +416,7 @@ function addContracts($type, $ID) {
  * @param $type      item type
  * @param $ID        item ID
  * @param $ID_entity entity ID
-**/
+ */
 function addTracking($type, $ID, $ID_entity) {
    global $percent, $DB, $MAX, $FIRST, $LAST, $faker;
 
@@ -642,7 +642,7 @@ function addTracking($type, $ID, $ID_entity) {
 
 
 /** Generate bigdump : generate global dropdowns
-**/
+ */
 function generateGlobalDropdowns() {
    global $MAX, $DB, $faker;
 
@@ -1441,7 +1441,7 @@ function generateGlobalDropdowns() {
 /** Generate bigdump : get max ID of a table
  *
  * @param $table table name
-**/
+ */
 function getMaxItem($table) {
    global $DB;
 
@@ -1456,7 +1456,7 @@ function getMaxItem($table) {
 /** Generate bigdump : generate items for an entity
  *
  * @param $ID_entity entity ID
-**/
+ */
 function generate_entity($ID_entity) {
    global $MAX, $DB, $percent, $FIRST, $LAST, $MAX_KBITEMS_BY_CAT, $MAX_DISK,
          $DOCUMENTS, $NET_PORT, $NET_LOC, $faker;

@@ -45,7 +45,7 @@ class RuleMailCollector extends Rule {
 
    /**
     * @see Rule::maxActionsCount()
-   **/
+    */
    function maxActionsCount() {
       return 1;
    }
@@ -53,7 +53,7 @@ class RuleMailCollector extends Rule {
 
    /**
     * @see Rule::getTitle()
-   **/
+    */
    function getTitle() {
       return __('Rules for assigning a ticket created through a mails receiver');
    }
@@ -61,7 +61,7 @@ class RuleMailCollector extends Rule {
 
    /**
     * @see Rule::getCriterias()
-   **/
+    */
    function getCriterias() {
 
       static $criterias = [];
@@ -171,7 +171,7 @@ class RuleMailCollector extends Rule {
 
    /**
     * @see Rule::getActions()
-   **/
+    */
    function getActions() {
 
       $actions                                              = [];
@@ -208,7 +208,7 @@ class RuleMailCollector extends Rule {
 
    /**
     * @see Rule::executeActions()
-   **/
+    */
    function executeActions($output, $params) {
 
       if (count($this->actions)) {

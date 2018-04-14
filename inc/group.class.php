@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  * Group class
-**/
+ */
 class Group extends CommonTreeDropdown {
 
    public $dohistory       = true;
@@ -55,7 +55,7 @@ class Group extends CommonTreeDropdown {
     * @see CommonGLPI::getAdditionalMenuOptions()
     *
     * @since 0.85
-   **/
+    */
    static function getAdditionalMenuOptions() {
 
       if (Session::haveRight('user', User::UPDATEAUTHENT)) {
@@ -71,7 +71,7 @@ class Group extends CommonTreeDropdown {
     * @see CommonGLPI::getMenuShorcut()
     *
     * @since 0.85
-   **/
+    */
    static function getMenuShorcut() {
       return 'g';
    }
@@ -233,7 +233,7 @@ class Group extends CommonTreeDropdown {
    *     - withtemplate boolean : template or basic item
    *
    * @return Nothing (display)
-   **/
+    */
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);
@@ -320,7 +320,7 @@ class Group extends CommonTreeDropdown {
     * Print a good title for group pages
     *
     *@return nothing (display)
-    **/
+    */
    function title() {
       global $CFG_GLPI;
 
@@ -343,7 +343,7 @@ class Group extends CommonTreeDropdown {
 
    /**
     * @see CommonDBTM::getSpecificMassiveActions()
-   **/
+    */
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -368,7 +368,7 @@ class Group extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
-   **/
+    */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
       $input = $ma->getInput();
@@ -400,7 +400,7 @@ class Group extends CommonTreeDropdown {
     * @since 0.85
     *
     * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
+    */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -564,7 +564,7 @@ class Group extends CommonTreeDropdown {
 
    /**
     * @param $ID
-   **/
+    */
    function showLDAPForm($ID) {
       $options = [];
       $this->initForm($ID, $options);
@@ -621,7 +621,7 @@ class Group extends CommonTreeDropdown {
     * @param $res    Array    result filled on ouput
     *
     * @return integer total of items
-   **/
+    */
    function getDataItems(array $types, $field, $tree, $user, $start, array &$res) {
       global $DB;
 
@@ -736,7 +736,7 @@ class Group extends CommonTreeDropdown {
     * Show items for the group
     *
     * @param $tech   boolean  false search groups_id, true, search groups_id_tech
-   **/
+    */
    function showItems($tech) {
       global $DB, $CFG_GLPI;
 

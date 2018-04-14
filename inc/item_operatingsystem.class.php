@@ -33,7 +33,7 @@ if (!defined('GLPI_ROOT')) {
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-**/
+ */
 class Item_OperatingSystem extends CommonDBRelation {
 
    static public $itemtype_1 = 'OperatingSystem';
@@ -74,7 +74,7 @@ class Item_OperatingSystem extends CommonDBRelation {
     * @param OperatingSystem $os Operating system object instance
     *
     * @return integer
-   **/
+    */
    static function countForOS(OperatingSystem $os) {
       return countElementsInTable('glpi_items_operatingsystems',
                                   ['operatingsystems_id' => $os->getID()]);
@@ -111,7 +111,7 @@ class Item_OperatingSystem extends CommonDBRelation {
     * @since 9.2
     *
     * @return Nothing (call to classes members)
-   **/
+    */
    static function showForItem(CommonDBTM $item, $withtemplate = 0) {
       global $DB, $CFG_GLPI;
 

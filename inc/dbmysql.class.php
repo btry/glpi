@@ -36,7 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 /**
  *  Database class for Mysql
-**/
+ */
 class DBmysql {
 
    //! Database Host - string or Array of string (round robin)
@@ -57,7 +57,7 @@ class DBmysql {
    /** Is it a first connection ?
     * Indicates if the first connection attempt is successful or not
     * if first attempt fail -> display a warning which indicates that glpi is in readonly
-   **/
+    */
    public $first_connection   = true;
    // Is connected to the DB ?
    public $connected          = false;
@@ -774,7 +774,7 @@ class DBmysql {
     * @param string $tablename Table name
     *
     * @return boolean
-    **/
+    */
    public function tableExists($tablename) {
       // Get a list of tables contained within the database.
       $result = $this->listTables("%$tablename%");
@@ -800,7 +800,7 @@ class DBmysql {
     * @param Boolean $usecache Use cache; @see DBmysql::list_fields(), defaults to true
     *
     * @return boolean
-    **/
+    */
    public function fieldExists($table, $field, $usecache = true) {
       if (!$this->tableExists($table)) {
          trigger_error("Table $table does not exists", E_USER_WARNING);

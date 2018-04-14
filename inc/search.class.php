@@ -38,7 +38,7 @@ if (!defined('GLPI_ROOT')) {
  * Search Class
  *
  * Generic class for Search Engine
-**/
+ */
 class Search {
 
    // Default number of items displayed in global search
@@ -68,7 +68,7 @@ class Search {
     * @param string  $itemtype Item type to manage
     *
     * @return void
-   **/
+    */
    static function show($itemtype) {
 
       $params = self::manageParams($itemtype, $_GET);
@@ -90,7 +90,7 @@ class Search {
     * @param $params search params passed to prepareDatasForSearch function
     *
     * @return nothing
-   **/
+    */
    static function showList($itemtype, $params) {
 
       $data = self::prepareDatasForSearch($itemtype, $params);
@@ -106,7 +106,7 @@ class Search {
     * @param array  $params   search params passed to prepareDatasForSearch function
     *
     * @return void
-   **/
+    */
    static function showMap($itemtype, $params) {
       global $CFG_GLPI;
 
@@ -306,7 +306,7 @@ class Search {
     * @param $forcedisplay  array of columns to display (default empty = empty use display pref and search criterias)
     *
     * @return data array
-   **/
+    */
    static function getDatas($itemtype, $params, array $forcedisplay = []) {
 
       $data = self::prepareDatasForSearch($itemtype, $params, $forcedisplay);
@@ -328,7 +328,7 @@ class Search {
     * @param $forcedisplay  array of columns to display (default empty = empty use display pref and search criterias)
     *
     * @return array prepare to be used for a search (include criterias and others needed informations)
-   **/
+    */
    static function prepareDatasForSearch($itemtype, array $params, array $forcedisplay = []) {
       global $CFG_GLPI;
 
@@ -507,7 +507,7 @@ class Search {
     * @param $data    array of search datas prepared to generate SQL
     *
     * @return nothing
-   **/
+    */
    static function constructSQL(array &$data) {
       global $CFG_GLPI;
 
@@ -1103,7 +1103,7 @@ class Search {
     * @deprecated 9.3 @see Search::constructData()
     *
     * @return nothing
-   **/
+    */
    static function constructDatas(array &$data, $onlycount = false) {
       Toolbox::deprecated('constructDatas is deprecated');
       return self::constructData($data, $onlycount);
@@ -1122,7 +1122,7 @@ class Search {
     * @param boolean $onlycount If we just want to count results
     *
     * @return nothing
-   **/
+    */
    static function constructData(array &$data, $onlycount = false) {
       global $CFG_GLPI;
 
@@ -1406,7 +1406,7 @@ class Search {
     * @deprecated 9.3 @see Search::displayData()
     *
     * @return nothing
-   **/
+    */
    static function displayDatas(array &$data) {
       Toolbox::deprecated('displayDatas is deprecated');
       return self::displayData($data);
@@ -1418,7 +1418,7 @@ class Search {
     * @param $data array of search datas prepared to get datas
     *
     * @return nothing
-   **/
+    */
    static function displayData(array &$data) {
       global $CFG_GLPI;
 
@@ -1845,7 +1845,7 @@ class Search {
     * @param $data array data of search
     *
     * @return string title
-   **/
+    */
    static function computeTitle($data) {
       $title = "";
 
@@ -2029,7 +2029,7 @@ class Search {
     * @param $itemtype type to display the form
     *
     * @return Array of available itemtype
-   **/
+    */
    static function getMetaItemtypeAvailable ($itemtype) {
 
       // Display meta search items
@@ -2070,7 +2070,7 @@ class Search {
     * @since 0.85
     *
     * @param $itemtype
-   **/
+    */
    static function getMetaReferenceItemtype ($itemtype) {
 
       $types = ['Computer', 'Problem', 'Ticket', 'Printer', 'Monitor', 'Peripheral',
@@ -2086,7 +2086,7 @@ class Search {
 
    /**
     * @since 0.85
-   **/
+    */
    static function getLogicalOperators() {
 
       return ['AND'     => __('AND'),
@@ -2105,7 +2105,7 @@ class Search {
     * @param $params    array of parameters may include sort, is_deleted, criteria, metacriteria
     *
     * @return nothing (displays)
-   **/
+    */
    static function showGenericSearch($itemtype, array $params) {
       global $CFG_GLPI;
 
@@ -2244,7 +2244,7 @@ class Search {
     * @param $num            item number
     *
     * @return select string
-   **/
+    */
    static function addHaving($LINK, $NOT, $itemtype, $ID, $searchtype, $val, $meta, $num) {
 
       $searchopt  = &self::getOptions($itemtype);
@@ -2350,7 +2350,7 @@ class Search {
     *
     * @return select string
     *
-   **/
+    */
    static function addOrderBy($itemtype, $ID, $order, $key = 0) {
       global $CFG_GLPI;
 
@@ -2473,7 +2473,7 @@ class Search {
     * @param array  $params   array of parameters
     *
     * @return select string
-   **/
+    */
    static function addDefaultToView($itemtype, $params) {
       global $CFG_GLPI;
 
@@ -2507,7 +2507,7 @@ class Search {
     * @param $itemtype device type
     *
     * @return select string
-   **/
+    */
    static function addDefaultSelect($itemtype) {
 
       $itemtable = getTableForItemType($itemtype);
@@ -2552,7 +2552,7 @@ class Search {
     * @param $meta_type    meta type table ID (default 0)
     *
     * @return select string
-   **/
+    */
    static function addSelect($itemtype, $ID, $num, $meta = 0, $meta_type = 0) {
       global $CFG_GLPI;
 
@@ -2884,7 +2884,7 @@ class Search {
     * @param $itemtype device type
     *
     * @return select string
-   **/
+    */
    static function addDefaultWhere($itemtype) {
       global $CFG_GLPI;
 
@@ -3117,7 +3117,7 @@ class Search {
     * @param $meta         is a meta search (meta=2 in search.class.php) (default 0)
     *
     * @return select string
-   **/
+    */
    static function addWhere($link, $nott, $itemtype, $ID, $searchtype, $val, $meta = 0) {
 
       $searchopt = &self::getOptions($itemtype);
@@ -3690,7 +3690,7 @@ class Search {
     * @param &$already_link_tables  array of tables already joined
     *
     * @return Left join string
-   **/
+    */
    static function addDefaultJoin($itemtype, $ref_table, array &$already_link_tables) {
 
       switch ($itemtype) {
@@ -3868,7 +3868,7 @@ class Search {
     * @param $field                string field to display (needed for translation join) (default '')
     *
     * @return Left join string
-   **/
+    */
    static function addLeftJoin($itemtype, $ref_table, array &$already_link_tables, $new_table,
                                $linkfield, $meta = 0, $meta_type = 0, $joinparams = [], $field = '') {
 
@@ -4133,7 +4133,7 @@ class Search {
     *                                     or INNER JOIN for strict join
     *
     * @return Meta Left join string
-   **/
+    */
    static function addMetaLeftJoin($from_type, $to_type, array &$already_link_tables2,
                                    $nullornott, $joinparams = []) {
 
@@ -4349,7 +4349,7 @@ class Search {
     * @param $num                number of the displayed item (default 0)
     *
     * @return string to print
-   **/
+    */
    static function displayConfigItem($itemtype, $ID, $data = [], $num = 0) {
 
       $searchopt  = &self::getOptions($itemtype);
@@ -4410,7 +4410,7 @@ class Search {
     * @param $addobjectparams array added parameters for union search
     *
     * @return string to print
-   **/
+    */
    static function giveItem($itemtype, $ID, array $data, $num, $meta = 0,
                             array $addobjectparams = []) {
       global $CFG_GLPI, $DB;
@@ -5355,7 +5355,7 @@ class Search {
     * Reset save searches
     *
     * @return nothing
-   **/
+    */
    static function resetSaveSearch() {
 
       unset($_SESSION['glpisearch']);
@@ -5373,7 +5373,7 @@ class Search {
     *                                  used for global search (false by default)
     *
     * @return parsed params array
-   **/
+    */
    static function manageParams($itemtype, $params = [], $usesession = true,
                                 $forcebookmark = false) {
       global $CFG_GLPI, $DB;
@@ -5535,7 +5535,7 @@ class Search {
     * @param $withplugins  boolean  get plugins options (true by default)
     *
     * @return clean $SEARCH_OPTION array
-   **/
+    */
    static function getCleanedOptions($itemtype, $action = READ, $withplugins = true) {
       global $CFG_GLPI;
 
@@ -5597,7 +5597,7 @@ class Search {
     * @param $field     name
     *
     * @return integer
-   **/
+    */
    static function getOptionNumber($itemtype, $field) {
 
       $table = getTableForItemType($itemtype);
@@ -5621,7 +5621,7 @@ class Search {
     * @param $withplugins boolean get search options from plugins (true by default)
     *
     * @return the reference to  array of search options for the given item type
-   **/
+    */
    static function &getOptions($itemtype, $withplugins = true) {
       global $CFG_GLPI;
 
@@ -5857,7 +5857,7 @@ class Search {
     * @param $searchID  ID of the element in $SEARCHOPTION
     *
     * @return boolean
-   **/
+    */
    static function isInfocomOption($itemtype, $searchID) {
       global $CFG_GLPI;
 
@@ -5873,7 +5873,7 @@ class Search {
    /**
     * @param $itemtype
     * @param $field_num
-   **/
+    */
    static function getActionsFor($itemtype, $field_num) {
 
       $searchopt = &self::getOptions($itemtype);
@@ -6016,7 +6016,7 @@ class Search {
     * @param $options  string options to add (default '')
     *
     * @return string to display
-   **/
+    */
    static function showHeaderItem($type, $value, &$num, $linkto = "", $issort = 0, $order = "",
                                   $options = "") {
       global $CFG_GLPI;
@@ -6072,7 +6072,7 @@ class Search {
     * @param $extraparam   extra parameters for display (default '')
     *
     *@return string to display
-   **/
+    */
    static function showItem($type, $value, &$num, $row, $extraparam = '') {
 
       $out = "";
@@ -6146,7 +6146,7 @@ class Search {
     * @param $message message to display, if empty "no item found" will be displayed
     *
     * @return string to display
-   **/
+    */
    static function showError($type, $message = "") {
       if (strlen($message) == 0) {
          $message = __('No item found');
@@ -6175,7 +6175,7 @@ class Search {
     * @param integer $count Total number of results
     *
     * @return string to display
-   **/
+    */
    static function showFooter($type, $title = "", $count = null) {
 
       $out = "";
@@ -6265,7 +6265,7 @@ class Search {
     * @param $fixed  used tab_cadre_fixe table for HTML export ? (default 0)
     *
     * @return string to display
-   **/
+    */
    static function showHeader($type, $rows, $cols, $fixed = 0) {
 
       $out = "";
@@ -6337,7 +6337,7 @@ class Search {
     * @since 0.85
     *
     * @return string to display
-   **/
+    */
    static function showBeginHeader($type) {
 
       $out = "";
@@ -6367,7 +6367,7 @@ class Search {
     * @since 0.85
     *
     * @return string to display
-   **/
+    */
    static function showEndHeader($type) {
 
       $out = "";
@@ -6397,7 +6397,7 @@ class Search {
     * @param $is_deleted   is it a deleted search ? (false by default)
     *
     * @return string to display
-   **/
+    */
    static function showNewLine($type, $odd = false, $is_deleted = false) {
 
       $out = "";
@@ -6433,7 +6433,7 @@ class Search {
     * @param $type display type (0=HTML, 1=Sylk,2=PDF,3=CSV)
     *
     * @return string to display
-   **/
+    */
    static function showEndLine($type) {
 
       $out = "";
@@ -6502,7 +6502,7 @@ class Search {
     * @param $value string value
     *
     * @return clean value
-   **/
+    */
    static function csv_clean($value) {
 
       $value = str_replace("\"", "''", $value);
@@ -6520,7 +6520,7 @@ class Search {
     * @param $value string value
     *
     * @return clean value
-   **/
+    */
    static function sylk_clean($value) {
 
       $value = preg_replace('/\x0A/', ' ', $value);
@@ -6543,7 +6543,7 @@ class Search {
     * @param $link            with previous criteria (default 'AND')
     *
     * @return search SQL string
-   **/
+    */
    static function makeTextCriteria ($field, $val, $not = false, $link = 'AND') {
 
       $sql = $field . self::makeTextSearch($val, $not);
@@ -6568,7 +6568,7 @@ class Search {
     * @param $not boolean  is a negative search ? (false by default)
     *
     * @return search string
-   **/
+    */
    static function makeTextSearch($val, $not = false) {
 
       $NOT = "";
@@ -6614,7 +6614,7 @@ class Search {
     *
     * @param $pattern
     * @param $subject
-   **/
+    */
    static function explodeWithID($pattern, $subject) {
 
       $tab = explode($pattern, $subject);
