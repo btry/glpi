@@ -50,6 +50,7 @@ class Ticket extends CommonITILObject {
    public $grouplinkclass              = 'Group_Ticket';
    public $supplierlinkclass           = 'Supplier_Ticket';
 
+   static $universe                    = 'helpdesk';
    static $rightname                   = 'ticket';
 
    protected $userentity_oncreate      = true;

@@ -43,6 +43,7 @@ class ChangeValidation  extends CommonITILValidation {
    static public $itemtype           = 'Change';
    static public $items_id           = 'changes_id';
 
+   static $universe                  = 'helpdesk';
    static $rightname                 = 'changevalidation';
 
 }

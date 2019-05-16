@@ -37,6 +37,8 @@ if (!defined('GLPI_ROOT')) {
 /// Class RackType
 class RackType extends CommonDropdown {
 
+   static $universe = 'datacenter';
+
    static function getTypeName($nb = 0) {
       return _n('Rack type', 'Rack types', $nb);
    }

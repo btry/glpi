@@ -37,6 +37,8 @@ if (!defined('GLPI_ROOT')) {
 /// Class RackModel
 class RackModel extends CommonDropdown {
 
+   static $universe = 'datacenter';
+
    public $additional_fields_for_dictionnary = ['manufacturer'];
 
    static function getTypeName($nb = 0) {

@@ -48,6 +48,7 @@ class Change extends CommonITILObject {
    public $grouplinkclass              = 'Change_Group';
    public $supplierlinkclass           = 'Change_Supplier';
 
+   static $universe                    = 'helpdesk';
    static $rightname                   = 'change';
    protected $usenotepad               = true;
 

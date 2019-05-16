@@ -43,6 +43,7 @@ class DCRoom extends CommonDBTM {
    // From CommonDBTM
    public $dohistory                   = true;
    protected $usenotepad               = true;
+   static $universe                    = 'datacenter';
    static $rightname                   = 'datacenter';
 
    static function getTypeName($nb = 0) {

@@ -70,6 +70,7 @@ class RSSFeed extends CommonDBVisible {
    protected $profiles  = [];
    protected $entities  = [];
 
+   static $universe     = 'helpdesk';
    static $rightname    = 'rssfeed_public';
 
 

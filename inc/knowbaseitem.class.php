@@ -57,6 +57,7 @@ class KnowbaseItem extends CommonDBVisible {
    const PUBLISHFAQ    = 4096;
    const COMMENTS      = 8192;
 
+   static $universe    = 'knowbase';
    static $rightname   = 'knowbase';
 
 

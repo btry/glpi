@@ -41,6 +41,7 @@ if (!defined('GLPI_ROOT')) {
 **/
 class ProjectType extends CommonDropdown {
 
+   static $universe = 'management';
 
    static function getTypeName($nb = 0) {
       return _n('Project type', 'Project types', $nb);

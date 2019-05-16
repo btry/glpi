@@ -49,6 +49,7 @@ class Reminder extends CommonDBVisible {
    protected $profiles  = [];
    protected $entities  = [];
 
+   static $universe     = 'helpdesk';
    static $rightname    = 'reminder_public';
 
 

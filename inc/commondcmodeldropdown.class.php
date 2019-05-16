@@ -37,6 +37,8 @@ if (!defined('GLPI_ROOT')) {
 /// CommonDCModelDropdown class - dropdown for datacenter items models
 abstract class CommonDCModelDropdown extends CommonDropdown {
 
+   static $universe = 'datacenter';
+
    public $additional_fields_for_dictionnary = ['manufacturer'];
 
    /**

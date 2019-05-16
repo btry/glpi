@@ -36,6 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 class ChangeTask extends CommonITILTask {
 
+   static $universe  = 'helpdesk';
    static $rightname = 'task';
 
 

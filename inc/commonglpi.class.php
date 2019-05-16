@@ -56,6 +56,13 @@ class CommonGLPI {
    public $taborientation          = 'horizontal';
 
    /**
+   * Universe of the itemtype. If an universe is disabled then all rights of the itemtype are denied
+   *
+   * @var string
+   */
+   public static $universe = '';
+
+   /**
     * Rightname used to check rights to do actions on item.
     *
     * @var string
@@ -95,12 +102,35 @@ class CommonGLPI {
 
 
    /**
+    * Is the universe of the itemtype enabled ?
+    *
+    * @return boolean
+    * @since 9.5
+    */
+    public static function isUniverseEnabled($universe = '') {
+      global $CFG_GLPI;
+
+      if ($universe === '') {
+         $universe = static::$universe;
+      }
+      if ($universe && $CFG_GLPI['universe_'.$universe] === '0') {
+         return false;
+      }
+
+      return true;
+   }
+
+
+   /**
     * Have I the global right to "create" the Object
     * May be overloaded if needed (ex KnowbaseItem)
     *
     * @return boolean
    **/
    static function canCreate() {
+      if (!static::isUniverseEnabled()) {
+         return false;
+      }
       if (static::$rightname) {
          return Session::haveRight(static::$rightname, CREATE);
       }
@@ -118,6 +148,9 @@ class CommonGLPI {
     * @return boolean
    **/
    static function canView() {
+      if (!static::isUniverseEnabled()) {
+         return false;
+      }
       if (static::$rightname) {
          return Session::haveRight(static::$rightname, READ);
       }
@@ -134,6 +167,9 @@ class CommonGLPI {
     * @return boolean
    **/
    static function canUpdate() {
+      if (!static::isUniverseEnabled()) {
+         return false;
+      }
       if (static::$rightname) {
          return Session::haveRight(static::$rightname, UPDATE);
       }
@@ -148,6 +184,9 @@ class CommonGLPI {
     * @return boolean
    **/
    static function canDelete() {
+      if (!static::isUniverseEnabled()) {
+         return false;
+      }
       if (static::$rightname) {
          return Session::haveRight(static::$rightname, DELETE);
       }
@@ -163,6 +202,9 @@ class CommonGLPI {
     * @return boolean
    **/
    static function canPurge() {
+      if (!static::isUniverseEnabled()) {
+         return false;
+      }
       if (static::$rightname) {
          return Session::haveRight(static::$rightname, PURGE);
       }

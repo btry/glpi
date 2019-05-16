@@ -788,6 +788,17 @@ class Session {
       }
    }
 
+   /**
+    * Check if the universe $universe is enabled
+    */
+   public static function checkUniverse($universe)  {
+      global $CFG_GLPI;
+
+      if ($universe && $CFG_GLPI['universe_'.$universe] === '0') {
+         self::redirectIfNotLoggedIn();
+         Html::displayRightError();
+      }
+   }
 
    /**
     * Check if I have the right $right to module $module (conpare to session variable)

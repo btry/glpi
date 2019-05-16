@@ -36,6 +36,7 @@ if (!defined('GLPI_ROOT')) {
 
 class TicketSatisfaction extends CommonDBTM {
 
+   static $universe  = 'helpdesk';
    static $rightname = 'ticket';
 
    public $dohistory         = true;

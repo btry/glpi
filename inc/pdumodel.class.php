@@ -37,6 +37,8 @@ if (!defined('GLPI_ROOT')) {
 /// Class PDUModel
 class PDUModel extends CommonDCModelDropdown {
 
+   static $universe = 'datacenter';
+
    static function getTypeName($nb = 0) {
       return _n('PDU model', 'PDU models', $nb);
    }

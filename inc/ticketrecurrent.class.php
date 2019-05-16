@@ -50,6 +50,7 @@ class TicketRecurrent extends CommonDropdown {
 
    public $display_dropdowntitle  = false;
 
+   static $universe               = 'helpdesk';
    static $rightname              = 'ticketrecurrent';
 
    public $can_be_translated      = false;

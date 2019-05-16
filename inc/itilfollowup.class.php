@@ -41,6 +41,7 @@ class ITILFollowup  extends CommonDBChild {
 
    // From CommonDBTM
    public $auto_message_on_action = false;
+   static $universe               = 'helpdesk';
    static $rightname              = 'followup';
    private $item                  = null;
 

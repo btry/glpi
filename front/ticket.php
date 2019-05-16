@@ -33,6 +33,7 @@
 include ('../inc/includes.php');
 
 Session::checkLoginUser();
+Session::checkUniverse('helpdesk');
 
 if (Session::getCurrentInterface() == "helpdesk") {
    Html::helpHeader(Ticket::getTypeName(Session::getPluralNumber()), '', $_SESSION["glpiname"]);

@@ -42,6 +42,8 @@ if (!defined('GLPI_ROOT')) {
 **/
 class ProjectTask extends CommonDBChild {
 
+   static $universe = 'management';
+
    // From CommonDBTM
    public $dohistory = true;
 

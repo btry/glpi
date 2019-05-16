@@ -39,6 +39,7 @@ if (!defined('GLPI_ROOT')) {
 **/
 class Stat extends CommonGLPI {
 
+   static $universe  = 'helpdesk';
    static $rightname = 'statistic';
 
 

@@ -90,14 +90,18 @@ class Profile extends CommonDBTM {
          switch ($item->getType()) {
             case __CLASS__ :
                if ($item->fields['interface'] == 'helpdesk') {
-                  $ong[3] = __('Assistance'); // Helpdesk
-                  $ong[4] = __('Life cycles');
+                  if (static::isUniverseEnabled('helpdesk')) {
+                     $ong[3] = __('Assistance'); // Helpdesk
+                     $ong[4] = __('Life cycles');
+                  }
                   $ong[6] = __('Tools');
                   $ong[8] = __('Setup');
                } else {
                   $ong[2] = __('Assets');
-                  $ong[3] = __('Assistance');
-                  $ong[4] = __('Life cycles');
+                  if (static::isUniverseEnabled('helpdesk')) {
+                     $ong[3] = __('Assistance');
+                     $ong[4] = __('Life cycles');
+                  }
                   $ong[5] = __('Management');
                   $ong[6] = __('Tools');
                   $ong[7] = __('Administration');
@@ -2841,9 +2845,13 @@ class Profile extends CommonDBTM {
 
       if (class_exists($itemtype)) {
          $item = new $itemtype();
+         if (!$itemtype::isUniverseEnabled()) {
+            return [];
+         }
          return $item->getRights($interface);
       }
 
+      return [];
    }
 
 
@@ -2918,6 +2926,10 @@ class Profile extends CommonDBTM {
             } else {
                $itemRights = self::getRightsFor($info['itemtype']);
             }
+            if (count($itemRights) < 1) {
+               continue;
+            }
+
             foreach ($itemRights as $right => $label) {
                if (!isset($column_labels[$right])) {
                   $column_labels[$right] = [];

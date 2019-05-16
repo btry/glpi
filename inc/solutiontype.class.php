@@ -37,6 +37,7 @@ if (!defined('GLPI_ROOT')) {
 /// SolutionType class
 class SolutionType extends CommonDropdown {
 
+   static $universe = 'helpdesk';
 
    static function getTypeName($nb = 0) {
       return _n('Solution type', 'Solution types', $nb);

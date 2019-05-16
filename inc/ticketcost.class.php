@@ -45,6 +45,7 @@ class TicketCost extends CommonITILCost {
    static public $itemtype  = 'Ticket';
    static public $items_id  = 'tickets_id';
 
+   static $universe         = 'helpdesk';
    static $rightname        = 'ticketcost';
 
 }

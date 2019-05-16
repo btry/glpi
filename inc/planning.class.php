@@ -41,6 +41,7 @@ use Sabre\VObject;
 **/
 class Planning extends CommonGLPI {
 
+   static $universe  = 'helpdesk';
    static $rightname = 'planning';
 
    static $palette_bg = ['#FFEEC4', '#D4EDFB', '#E1D0E1', '#CDD7A9', '#F8C8D2',

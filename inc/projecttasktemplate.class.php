@@ -44,6 +44,7 @@ class ProjectTaskTemplate extends CommonDropdown {
    public $dohistory          = true;
    public $can_be_translated  = true;
 
+   static $universe           = 'management';
    static $rightname          = 'project';
 
    static function getTypeName($nb = 0) {

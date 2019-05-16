@@ -42,6 +42,7 @@ if (!defined('GLPI_ROOT')) {
 abstract class LevelAgreement extends CommonDBChild {
    // From CommonDBTM
    var $dohistory          = true;
+   static $universe        = 'helpdesk';
    static $rightname       = 'slm';
 
    // From CommonDBChild

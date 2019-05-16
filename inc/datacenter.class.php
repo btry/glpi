@@ -41,6 +41,7 @@ class Datacenter extends CommonDBTM {
 
    // From CommonDBTM
    public $dohistory                   = true;
+   static $universe                    = 'datacenter';
    static $rightname                   = 'datacenter';
 
    static function getTypeName($nb = 0) {

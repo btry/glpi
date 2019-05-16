@@ -44,6 +44,7 @@ class TaskTemplate extends CommonDropdown {
    public $dohistory          = true;
    public $can_be_translated  = true;
 
+   static $universe           = 'helpdesk';
    static $rightname          = 'taskcategory';
 
 

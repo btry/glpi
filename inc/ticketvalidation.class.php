@@ -43,6 +43,7 @@ class TicketValidation  extends CommonITILValidation {
    static public $itemtype           = 'Ticket';
    static public $items_id           = 'tickets_id';
 
+   static $universe                  = 'helpdesk';
    static $rightname                 = 'ticketvalidation';
 
    const CREATEREQUEST               = 1024;

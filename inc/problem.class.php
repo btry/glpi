@@ -47,6 +47,7 @@ class Problem extends CommonITILObject {
    public $grouplinkclass       = 'Group_Problem';
    public $supplierlinkclass    = 'Problem_Supplier';
 
+   static $universe             = 'helpdesk';
    static $rightname            = 'problem';
    protected $usenotepad        = true;
 

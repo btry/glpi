@@ -45,6 +45,7 @@ class Calendar extends CommonDropdown {
 
    static protected $forward_entity_to = ['CalendarSegment'];
 
+   static $universe  = 'helpdesk';
    static $rightname = 'calendar';
 
 

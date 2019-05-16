@@ -48,6 +48,7 @@ class SLM extends CommonDBTM {
 
    static protected $forward_entity_to = ['SLA', 'OLA'];
 
+   static $universe                    = 'helpdesk';
    static $rightname                   = 'slm';
 
    const TTR = 0; // Time to resolve

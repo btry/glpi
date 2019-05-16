@@ -42,6 +42,7 @@ class SolutionTemplate extends CommonDropdown {
    // From CommonDBTM
    public $dohistory = true;
 
+   static $universe  = 'helpdesk';
    static $rightname = 'solutiontemplate';
 
    public $can_be_translated = false;

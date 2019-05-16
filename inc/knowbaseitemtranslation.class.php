@@ -49,6 +49,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
    public $dohistory       = true;
    static public $logs_for_parent = false;
 
+   static $universe        = 'knowbase';
    static $rightname       = 'knowbase';
 
 

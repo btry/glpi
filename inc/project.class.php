@@ -44,6 +44,7 @@ class Project extends CommonDBTM {
    // From CommonDBTM
    public $dohistory                   = true;
    static protected $forward_entity_to = ['ProjectCost', 'ProjectTask'];
+   static $universe                    = 'management';
    static $rightname                   = 'project';
    protected $usenotepad               = true;
 

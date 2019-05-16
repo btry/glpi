@@ -1442,7 +1442,7 @@ class Html {
          foreach ($menu as $category => $datas) {
             if (isset($datas['types']) && count($datas['types'])) {
                foreach ($datas['types'] as $type) {
-                  if ($data = $type::getMenuContent()) {
+                  if ($type::isUniverseEnabled() && $data = $type::getMenuContent()) {
                      // Multi menu entries management
                      if (isset($data['is_multi_entries']) && $data['is_multi_entries']) {
                         if (!isset($menu[$category]['content'])) {

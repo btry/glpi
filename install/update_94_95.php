@@ -113,6 +113,12 @@ function update94to95() {
       'number'
    ], 'softwares_id_expire_number');
 
+   // Add universes
+   $universes = ['helpdesk', 'knowbase', 'datacenter', 'management'];
+   foreach($universes as $universe) {
+      $migration->addConfig(["universe_$universe"  => '1']);
+   }
+
    // ************ Keep it at the end **************
    $migration->executeMigration();
 
