@@ -1419,7 +1419,7 @@ class ProjectTask extends CommonDBChild implements CalDAVCompatibleItemInterface
                                                            $task->fields['entities_id'])
                                                : $task->fields['entities_id']),
                          'checkright'      => true];
-         $addrand = Dropdown::showSelectItemFromItemtypes($params);
+         Dropdown::showSelectItemFromItemtypes($params);
 
          echo "</td>";
          echo "<td width='20%'>";

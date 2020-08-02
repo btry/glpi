@@ -150,16 +150,19 @@ class KnowbaseItem_Item extends CommonDBRelation {
          }
          echo "</th><tr>";
          echo "<tr class='tab_bg_2'><td>";
+         $rand = mt_rand();
          if ($item_type == KnowbaseItem::getType()) {
             //TODO: pass used array to restrict visible items in list
-            $rand = self::dropdownAllTypes($item, 'items_id');
+            echo self::dropdownAllTypes($item, 'items_id', ['rand' => $rand, 'display' => false]);
          } else {
             $visibility = KnowbaseItem::getVisibilityCriteria();
             $condition = (isset($visibility['WHERE']) && count($visibility['WHERE'])) ? $visibility['WHERE'] : [];
-            $rand = KnowbaseItem::dropdown([
+            echo KnowbaseItem::dropdown([
                'entity'    => $item->getEntityID(),
                'used'      => self::getItems($item, 0, 0, true),
-               'condition' => $condition
+               'condition' => $condition,
+               'display'   => false,
+               'rand'      => $rand,
             ]);
          }
          echo "</td><td>";
@@ -282,22 +285,38 @@ class KnowbaseItem_Item extends CommonDBRelation {
     *
     * @return string
     */
-   static function dropdownAllTypes(CommonDBTM $item, $name) {
+   static function dropdownAllTypes(CommonDBTM $item, $name, $options = []) {
       global $CFG_GLPI;
+
+      $params = [];
+      $params['rand']                = mt_rand();
+      $params['display']             = true;
+
+      if (is_array($options) && count($options)) {
+         foreach ($options as $key => $val) {
+            $params[$key] = $val;
+         }
+      }
 
       $onlyglobal = 0;
       $entity_restrict = -1;
       $checkright = true;
 
-      $rand = Dropdown::showSelectItemFromItemtypes([
+      $output = Dropdown::showSelectItemFromItemtypes([
          'items_id_name'   => $name,
          'entity_restrict' => $entity_restrict,
          'itemtypes'       => $CFG_GLPI['kb_types'],
          'onlyglobal'      => $onlyglobal,
-         'checkright'      => $checkright
+         'checkright'      => $checkright,
+         'display'         => false,
+         'rand'            => $params['rand'],
       ]);
 
-      return $rand;
+      if ($params['display']) {
+         echo $output;
+         return $params['rand'];
+      }
+      return $output;
    }
 
    /**

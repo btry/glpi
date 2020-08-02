@@ -554,7 +554,7 @@ class Dropdown {
       $params['display']             = true;
       $params['width']               = '80%';
       $params['display_emptychoice'] = true;
-      $params['rand']         = mt_rand();
+      $params['rand']                = mt_rand();
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {
@@ -571,8 +571,16 @@ class Dropdown {
          }
       }
       asort($values);
-      return self::showFromArray($name, $values,
-                                 $params);
+      $p = $params;
+      $p['display'] = false;
+      $output = self::showFromArray($name, $values,
+                                 $p);
+
+      if ($params['display']) {
+         echo $output;
+         return $params['rand'];
+      }
+      return $params['rand'];
    }
 
 
@@ -1388,6 +1396,7 @@ class Dropdown {
       $params['display_emptychoice'] = true;
       $params['checkright']          = false;
       $params['toupdate']            = '';
+      $params['display']             = true;
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {
@@ -1411,14 +1420,24 @@ class Dropdown {
       asort($options);
 
       if (count($options)) {
-         return Dropdown::showFromArray($params['name'], $options,
+         $output = Dropdown::showFromArray($params['name'], $options,
                                         ['value'               => $params['value'],
-                                              'on_change'           => $params['on_change'],
-                                              'toupdate'            => $params['toupdate'],
-                                              'display_emptychoice' => $params['display_emptychoice'],
-                                              'emptylabel'          => $params['emptylabel']]);
+                                          'on_change'           => $params['on_change'],
+                                          'toupdate'            => $params['toupdate'],
+                                          'display_emptychoice' => $params['display_emptychoice'],
+                                          'emptylabel'          => $params['emptylabel'],
+                                          'display'             => false,
+                                          'rand'                => $params['rand']]);
+      } else {
+         $output = '';
+         $rand = 0;
       }
-      return 0;
+
+      if ($params['display']) {
+         echo $output;
+         return $params['rand'];
+      }
+      return $output;
    }
 
 
@@ -1458,6 +1477,8 @@ class Dropdown {
       $params['showItemSpecificity'] = '';
       $params['emptylabel']          = self::EMPTY_VALUE;
       $params['used']                = [];
+      $params['rand']                = mt_rand();
+      $params['display']             = true;
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {
@@ -1465,16 +1486,18 @@ class Dropdown {
          }
       }
 
-      $rand = self::showItemType($params['itemtypes'],
+      $output = self::showItemType($params['itemtypes'],
                                  ['checkright' => $params['checkright'],
-                                       'name'       => $params['itemtype_name'],
-                                       'emptylabel' => $params['emptylabel']]);
+                                  'name'       => $params['itemtype_name'],
+                                  'emptylabel' => $params['emptylabel'],
+                                  'rand'       => $params['rand'],
+                                  'display'    => false]);
 
-      if ($rand) {
+      if ($output != '') {
          $p = ['idtable'             => '__VALUE__',
-                    'name'                => $params['items_id_name'],
-                    'entity_restrict'     => $params['entity_restrict'],
-                    'showItemSpecificity' => $params['showItemSpecificity']];
+               'name'                => $params['items_id_name'],
+               'entity_restrict'     => $params['entity_restrict'],
+               'showItemSpecificity' => $params['showItemSpecificity']];
 
          // manage condition
          if ($params['onlyglobal']) {
@@ -1484,27 +1507,32 @@ class Dropdown {
             $p['used'] = $params['used'];
          }
 
-         $field_id = Html::cleanId("dropdown_".$params['itemtype_name'].$rand);
-         $show_id  = Html::cleanId("show_".$params['items_id_name'].$rand);
+         $field_id = Html::cleanId("dropdown_".$params['itemtype_name'].$params['rand']);
+         $show_id  = Html::cleanId("show_".$params['items_id_name'].$params['rand']);
 
-         Ajax::updateItemOnSelectEvent($field_id, $show_id,
-                                       $CFG_GLPI["root_doc"]."/ajax/dropdownAllItems.php", $p);
+         $output .= Ajax::updateItemOnSelectEvent($field_id, $show_id,
+                                       $CFG_GLPI["root_doc"]."/ajax/dropdownAllItems.php", $p, false);
 
-         echo "<br><span id='$show_id'>&nbsp;</span>\n";
+                                       $output .=  "<br><span id='$show_id'>&nbsp;</span>\n";
 
          // We check $options as the caller will set $options['default_itemtype'] only if it needs a
          // default itemtype and the default value can be '' thus empty won't be valid !
          if (array_key_exists ('default_itemtype', $options)) {
-            echo "<script type='text/javascript' >\n";
-            echo "$(function() {";
-            echo Html::jsSetDropdownValue($field_id, $params['default_itemtype']);
-            echo "});</script>\n";
+            $output .=  "<script type='text/javascript' >\n";
+            $output .=  "$(function() {";
+            $output .=  Html::jsSetDropdownValue($field_id, $params['default_itemtype']);
+            $output .=  "});</script>\n";
 
             $p["idtable"] = $params['default_itemtype'];
-            Ajax::updateItem($show_id, $CFG_GLPI["root_doc"]. "/ajax/dropdownAllItems.php", $p);
+            $output .= Ajax::updateItem($show_id, $CFG_GLPI["root_doc"]. "/ajax/dropdownAllItems.php", $p, false);
          }
       }
-      return $rand;
+
+      if ($params['display']) {
+         echo $output;
+         return $params['rand'];
+      }
+      return $output;
    }
 
 
