@@ -396,9 +396,10 @@ var Dashboard = {
          filter.remove();
 
          // remove filter from storage and refresh cards
-         var filters = Dashboard.getFiltersFromStorage();
+         var filters = Dashboard.getFiltersFromDB();
          delete filters[filter_id];
-         Dashboard.setFiltersInStorage(filters);
+         Dashboard.setFiltersInDB(filters);
+         //Dashboard.setFiltersInStorage(filters);
          Dashboard.refreshCardsImpactedByFilter(filter_id);
       });
 
@@ -659,9 +660,10 @@ var Dashboard = {
 
    saveFilter: function(filter_id, value) {
       // store current filter in localStorage
-      var filters = Dashboard.getFiltersFromStorage();
+      var filters = Dashboard.getFiltersFromDB();
       filters[filter_id] = value;
-      Dashboard.setFiltersInStorage(filters);
+      Dashboard.setFiltersInDB(filters);
+      //Dashboard.setFiltersInStorage(filters);
 
       // refresh all card impacted by the changed filter
       Dashboard.refreshCardsImpactedByFilter(filter_id);
@@ -921,7 +923,7 @@ var Dashboard = {
          }
 
          // append filters
-         var filters = Dashboard.getFiltersFromStorage();
+         var filters = Dashboard.getFiltersFromDB();
          card_opt.apply_filters = filters;
 
          promises.push($.get(CFG_GLPI.root_doc+"/ajax/dashboard.php", {
@@ -1013,7 +1015,7 @@ var Dashboard = {
          return;
       }
 
-      var filters = Dashboard.getFiltersFromStorage();
+      var filters = Dashboard.getFiltersFromDB();
 
       // replace empty array by empty string to avoid jquery remove the corresponding key
       // when sending ajax query
@@ -1043,14 +1045,15 @@ var Dashboard = {
          })[0].addEventListener('sortupdate', function(e) {
             // after drag, save the order of filters in storage
             var items_after = $(e.detail.destination.items).filter('.filter');
-            var filters     = Dashboard.getFiltersFromStorage();
+            var filters     = Dashboard.getFiltersFromDB();
             var new_filters = {};
             $.each(items_after, function() {
                var filter_id = $(this).data('filter-id');
                new_filters[filter_id] = filters[filter_id];
             });
 
-            Dashboard.setFiltersInStorage(new_filters);
+            Dashboard.setFiltersInDB(new_filters);
+            //Dashboard.setFiltersInStorage(new_filters);
          });
          sortable('.filters', 'disable');
       });
@@ -1091,6 +1094,29 @@ var Dashboard = {
    },
 
    /**
+    * Return saved filter from server side database
+    */
+   getFiltersFromDB: function() {
+      var filters;
+      $.ajax({
+         method: 'GET',
+         url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
+         async: false,
+         data: {
+            action:    'get_filter_data',
+            dashboard: Dashboard.current_name,
+         }
+      }).done(function(response) {
+         try {
+            filters = JSON.parse(response);
+         } catch (e) {
+            filters = JSON.parse('{}');
+         }
+      });
+      return filters;
+   },
+
+   /**
     * Save an object of filters for the current dashboard into LocalStorage
     *
     * @param {Object} sub_filters
@@ -1101,6 +1127,28 @@ var Dashboard = {
          filters[Dashboard.current_name] = sub_filters;
       }
       return localStorage.setItem('glpi_dashboard_filters', JSON.stringify(filters));
+   },
+
+   /**
+    * Save an object of filters for the current dashboard into serverside database
+    *
+    * @param {Object} sub_filters
+    */
+    setFiltersInDB: function(sub_filters) {
+      var filters = [];
+      if (Dashboard.current_name.length > 0) {
+         filters[Dashboard.current_name] = sub_filters;
+      }
+      $.ajax({
+         method: 'POST',
+         url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
+         data: {
+            action:    'save_filter_data',
+            dashboard: Dashboard.current_name,
+            filters:   JSON.stringify(filters[Dashboard.current_name]),
+         }
+      });
+
    },
 
 };

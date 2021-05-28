@@ -45,6 +45,7 @@ class Dashboard extends \CommonDBTM {
    protected $embed   = false;
    protected $items   = null;
    protected $rights  = null;
+   protected $filter  = "";
 
    static $all_dashboards = [];
    static $rightname = 'dashboard';
@@ -285,6 +286,32 @@ class Dashboard extends \CommonDBTM {
       Right::addForDashboard($this->fields['id'], $rights);
    }
 
+   /**
+    * Save filter in DB for the  curent dashboard
+    *
+    * @param string $filter filter parameters in JSON format
+    *
+    * @return void
+    */
+   public function saveFilter(string $filter = ''): void {
+      $this->load();
+      $this->filter = $filter;
+
+      Filter::addForDashboard($this->fields['id'], $filter);
+   }
+
+   /**
+    * Save filter in DB for the  curent dashboard
+    *
+    * @param string $filter filter parameters in JSON format
+    *
+    * @return string
+    */
+    public function getFilter(): string {
+      $this->load();
+      $this->filter = Filter::getForDashboard($this->fields['id']);
+      return $this->filter;
+   }
 
    /**
     * Clone current Dashboard.

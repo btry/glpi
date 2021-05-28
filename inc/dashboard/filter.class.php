@@ -49,7 +49,10 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Filter class
 **/
-class Filter {
+class Filter extends \CommonDBChild {
+
+   static public $itemtype = "Glpi\\Dashboard\\Dashboard";
+   static public $items_id = 'dashboards_dashboards_id';
 
    /**
     * Return all available filters
@@ -133,30 +136,30 @@ JAVASCRIPT;
 
 
    static function itilcategory(string $value = ""): string {
-      return self::dropdown($value, 'itilcategory', ITILCategory::class);
+      return self::itemDropdown($value, 'itilcategory', ITILCategory::class);
    }
 
    static function requesttype(string $value = ""): string {
-      return self::dropdown($value, 'requesttype', RequestType::class);
+      return self::itemDropdown($value, 'requesttype', RequestType::class);
    }
 
    static function location(string $value = ""): string {
-      return self::dropdown($value, 'location', Location::class);
+      return self::itemDropdown($value, 'location', Location::class);
    }
 
    static function manufacturer(string $value = ""): string {
-      return self::dropdown($value, 'manufacturer', Manufacturer::class);
+      return self::itemDropdown($value, 'manufacturer', Manufacturer::class);
    }
 
    static function group_tech(string $value = ""): string {
-      return self::dropdown($value, 'group_tech', Group::class, ['toadd' => [-1 => __("My groups")]]);
+      return self::itemDropdown($value, 'group_tech', Group::class, ['toadd' => [-1 => __("My groups")]]);
    }
 
    static function user_tech(string $value = ""): string {
-      return self::dropdown($value, 'user_tech', User::class, ['right' => 'own_ticket']);
+      return self::itemDropdown($value, 'user_tech', User::class, ['right' => 'own_ticket']);
    }
 
-   static function dropdown(
+   static function itemDropdown(
       string $value = "",
       string $fieldname = "",
       string $itemtype = "",
@@ -246,5 +249,50 @@ JAVASCRIPT;
       $js = Html::scriptBlock($js);
 
       return $html.$js;
+   }
+
+   /**
+    * Return rights for the provided dashboard
+    *
+    * @param int $dashboards_id
+    *
+    * @return array the JSON representation of the filter data
+    */
+    static function getForDashboard(int $dashboards_id = 0): string {
+      global $DB;
+
+      $dr_iterator = $DB->request([
+         'FROM'  => self::getTable(),
+         'WHERE' => [
+            'dashboards_dashboards_id' => $dashboards_id,
+            'users_id'                 => '0',
+         ]
+      ]);
+
+      $settings = $dr_iterator->next()['filter'];
+
+      return is_string($settings) ? $settings : '{}';
+   }
+
+   /**
+    * Save filter in DB for the provided dashboard
+    *
+    * @param int $dashboards_id id (not key) of the dashboard
+    * @param array $settings contains a JSON representation of the filter data
+    *
+    * @return void
+    */
+   public static function addForDashboard(int $dashboards_id = 0, string $settings = '') {
+      global $DB;
+
+      $DB->updateOrInsert(
+         self::getTable(),
+         [
+            'filter'                   => $settings,
+         ], [
+            'dashboards_dashboards_id' => $dashboards_id,
+            'users_id'                 => '0',
+         ]
+      );
    }
 }
