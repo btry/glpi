@@ -88,6 +88,17 @@ switch ($_REQUEST['action']) {
       $new_dashboard = $dashboard->cloneCurrent();
       echo json_encode($new_dashboard);
       exit;
+
+   case 'set_private_dashboard':
+      if (!$dashboard->canUpdateItem()) {
+         exit;
+      }
+      $dashboard->setPrivate($_REQUEST['is_private'] != '0');
+      exit;
+
+   case 'get_private_dashboard':
+      echo $dashboard->getPrivate();
+      exit;
 }
 
 $grid = new Grid($_REQUEST['dashboard'] ?? "");

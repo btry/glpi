@@ -218,6 +218,7 @@ class Dashboard extends \CommonDBTM {
       $this->deleteChildrenAndRelationsFromDb([
          Item::class,
          Right::class,
+         Filter::class,
       ]);
    }
 
@@ -379,11 +380,15 @@ class Dashboard extends \CommonDBTM {
       foreach ($dashboards as $dashboard) {
          $key = $dashboard['key'];
          $id  = $dashboard['id'];
+         $owner = $dashboard['users_id'];
 
          $d_rights = array_filter($rights, function($right_line) use($id) {
             return $right_line['dashboards_dashboards_id'] == $id;
          });
          if ($check_rights && !self::checkRights(self::convertRights($d_rights))) {
+            continue;
+         }
+         if ($check_rights && $owner != '0' && \Session::getLoginUserID() != $owner) {
             continue;
          }
          $dashboard['rights'] = self::convertRights($d_rights);
@@ -513,5 +518,23 @@ class Dashboard extends \CommonDBTM {
       }
 
       return true;
+   }
+
+   public function setPrivate($is_private) {
+      $this->load();
+
+      return $this->update([
+         'id'       => $this->fields['id'],
+         'key'     => $this->fields['key'],
+         'users_id' => ($is_private ? \Session::getLoginUserID() : 0)
+      ]);
+   }
+
+   public function getPrivate() {
+      $this->load();
+      if (!isset($this->fields['users_id'])) {
+         return '0';
+      }
+      return $this->fields['users_id'] != '0' ? '1' : '0';
    }
 }

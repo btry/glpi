@@ -43,6 +43,7 @@ var Dashboard = {
    all_cards: [],
    all_widgets: [],
    edit_mode: false,
+   private_mode: false,
    embed: false,
    ajax_cards: false,
    context: "core",
@@ -51,6 +52,7 @@ var Dashboard = {
    cell_margin: 3,
    cols: 26,
    cache_key: "",
+   filters: "{}",
 
    display: function(params) {
 
@@ -360,7 +362,7 @@ var Dashboard = {
       $(document).on("click", "#dashboard-"+options.rand+" .filters_toolbar .add-filter", function() {
          $(".ui-dialog-content").dialog("close");
 
-         var filters = Dashboard.getFiltersFromStorage();
+         var filters = Dashboard.getFiltersFromDB();
          var filter_names    = Object.keys(filters);
 
          $('<div title="'+__("Add a filter")+'"></div>')
@@ -415,6 +417,12 @@ var Dashboard = {
             .addClass('success')
             .text(__("Saved"))
             .show('fade').delay(2000).hide('fade');
+      });
+
+      // toggle private mode
+      $(document).on('click', '.private-item', function(event) {
+         var activate = !$(this).hasClass('active');
+         Dashboard.setPrivateMode(activate);
       });
 
       // display widget types after selecting a card
@@ -643,6 +651,18 @@ var Dashboard = {
             Dashboard.getCardsAjax();
          }
       });
+      $.get({
+         url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
+         data: {
+            dashboard: Dashboard.current_name,
+            action: 'get_private_dashboard',
+         }
+      }).done(function(response) {
+         Dashboard.is_private = (response != '0');
+         var private_ctrl = $(Dashboard.elem_id+" .toolbar .fa-user-lock");
+         private_ctrl.toggleClass('active', Dashboard.is_private);
+         Dashboard.element.toggleClass('private-mode', Dashboard.is_private);
+      });
    },
 
    setLastDashboard: function() {
@@ -791,6 +811,24 @@ var Dashboard = {
             Dashboard.saveDashboard(true);
          }
       }
+   },
+
+   setPrivateMode: function(activate) {
+      Dashboard.private_mode = typeof activate == "undefined" ? true : activate;
+
+      var private_ctrl = $(Dashboard.elem_id+" .toolbar .fa-user-lock");
+      private_ctrl.toggleClass('active', activate);
+      Dashboard.element.toggleClass('private-mode', activate);
+
+      $.post({
+         url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
+         data: {
+            dashboard: Dashboard.current_name,
+            action: 'set_private_dashboard',
+            is_private: Dashboard.private_mode ? '1' : '0'
+         },
+         dataType: 'json'
+      });
    },
 
    toggleFullscreenMode: function(fs_ctrl) {
@@ -1065,33 +1103,33 @@ var Dashboard = {
     * @param {boolean} all_filters: do we return all filters
     *    or only those for the current dashboard (default)
     */
-   getFiltersFromStorage: function(all_filters) {
-      all_filters = all_filters || false;
+   // getFiltersFromStorage_deprecated: function(all_filters) {
+   //    all_filters = all_filters || false;
 
-      var filters = JSON.parse(localStorage.getItem('glpi_dashboard_filters'));
-      var save    = false;
-      if (filters == null) {
-         filters = {};
-         save = true;
-      }
+   //    var filters = JSON.parse(localStorage.getItem('glpi_dashboard_filters'));
+   //    var save    = false;
+   //    if (filters == null) {
+   //       filters = {};
+   //       save = true;
+   //    }
 
-      if ('current_name' in Dashboard
-          && Dashboard.current_name != null
-          && !(Dashboard.current_name in filters)) {
-         filters[Dashboard.current_name] = {};
-         save = true;
-      }
+   //    if ('current_name' in Dashboard
+   //        && Dashboard.current_name != null
+   //        && !(Dashboard.current_name in filters)) {
+   //       filters[Dashboard.current_name] = {};
+   //       save = true;
+   //    }
 
-      if (save) {
-         localStorage.setItem('glpi_dashboard_filters', JSON.stringify(filters));
-      }
+   //    if (save) {
+   //       localStorage.setItem('glpi_dashboard_filters', JSON.stringify(filters));
+   //    }
 
-      if (all_filters) {
-         return filters;
-      }
+   //    if (all_filters) {
+   //       return filters;
+   //    }
 
-      return filters[Dashboard.current_name];
-   },
+   //    return filters[Dashboard.current_name];
+   // },
 
    /**
     * Return saved filter from server side database
@@ -1121,13 +1159,13 @@ var Dashboard = {
     *
     * @param {Object} sub_filters
     */
-   setFiltersInStorage: function(sub_filters) {
-      var filters = Dashboard.getFiltersFromStorage(true);
-      if (Dashboard.current_name.length > 0) {
-         filters[Dashboard.current_name] = sub_filters;
-      }
-      return localStorage.setItem('glpi_dashboard_filters', JSON.stringify(filters));
-   },
+   // setFiltersInStorage_deprecated: function(sub_filters) {
+   //    var filters = Dashboard.getFiltersFromStorage(true);
+   //    if (Dashboard.current_name.length > 0) {
+   //       filters[Dashboard.current_name] = sub_filters;
+   //    }
+   //    return localStorage.setItem('glpi_dashboard_filters', JSON.stringify(filters));
+   // },
 
    /**
     * Save an object of filters for the current dashboard into serverside database

@@ -273,6 +273,7 @@ HTML;
       $add_filter_lbl   = __("Add filter");
       $add_dash_label   = __("Add a new dashboard");
       $save_label       = _x('button', "Save");
+      $private_label    = __("Toggle private");
 
       $gridstack_items = $this->getGridItemsHtml();
 
@@ -309,6 +310,8 @@ HTML;
                <i class='fas fa-save save-dashboard-name' title='{$save_label}'></i>
                <span class='display-message'></span>
             </div>";
+            $active = $this->dashboard->fields['users_id'] != '0' ? 'active' : '';
+            $r_tb_icons.= "<i class='private-item fas fa-user-lock $active' title='{$private_label}'></i>";
          }
          if (!$mini && $can_purge) {
             $r_tb_icons.= "<i class='fas fa-trash fs-toggle delete-dashboard' title='$delete_label'></i>";
