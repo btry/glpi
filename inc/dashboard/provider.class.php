@@ -38,6 +38,7 @@ use CommonITILActor;
 use CommonITILObject;
 use CommonITILValidation;
 use CommonTreeDropdown;
+use Config;
 use DBConnection;
 use Group;
 use Group_Ticket;
@@ -51,6 +52,8 @@ use Ticket;
 use Ticket_User;
 use Toolbox;
 use User;
+use Sla;
+use Ola;
 
 if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access this file directly");
@@ -398,6 +401,145 @@ class Provider {
          'icon'       => $params['icon'],
          's_criteria' => $search_criteria,
          'itemtype'   => 'Ticket',
+      ];
+   }
+
+
+   public static function nbTicketsByAgreement(
+      string $case = "",
+      array $params = []
+   ):array {
+      $DBread = DBConnection::getReadConnection();
+
+      $default_params = [
+         'label'         => "",
+         'icon'          => Ticket::getIcon(),
+         'apply_filters' => [],
+      ];
+      $params = array_merge($default_params, $params);
+
+      $query_criteria  = [];
+      $search_criteria = [];
+
+      $laTable = Sla::getTable();
+      $laFk    = Sla::getForeignKeyField();
+      if ($case == 'Ola') {
+         $laTable = Ola::getTable();
+         $laFk    = Ola::getForeignKeyField();
+      }
+      $table = Ticket::getTable();
+      $laFk .=  '_ttr';
+      $ticketUserTable = Ticket_USer::getTable();
+      $userTable = User::getTable();
+
+      $search_criteria = [
+
+      ];
+
+      $exceeded = Ticket::generateSLAOLAComputation('time_to_resolve', $table);
+      $config = Config::getConfigurationValues('core');
+      if ($config['names_format'] == User::FIRSTNAME_BEFORE) {
+         $first = "firstname";
+         $second = "realname";
+      } else {
+         $first = "realname";
+         $second = "firstname";
+      }
+
+      $friendlyName = "CONCAT(`$userTable`.$first, ' ', `$userTable`.$second)";
+      $query_criteria = [
+         'COUNT' => 'cpt',
+         'SELECT'    => [
+            new QueryExpression("$friendlyName as `username`"),
+            "$userTable.name",
+            new QueryExpression("$exceeded as `is_late`"),
+         ],
+         'FROM'   => $table,
+         'INNER JOIN' => [
+            $laTable => [
+               'FKEY' => [
+                  $laTable => 'id',
+                  $table   =>  $laFk,
+               ],
+            ],
+            $ticketUserTable => [
+               'FKEY' => [
+                  $ticketUserTable => 'tickets_id',
+                  $table => 'id',
+                  [
+                     'AND' => [
+                        "$ticketUserTable.type" => Ticket_User::ASSIGN
+                     ]
+                  ]
+               ],
+            ],
+            $userTable => [
+               'FKEY' => [
+                  $userTable => 'id',
+                  $ticketUserTable => 'users_id',
+               ],
+            ],
+         ],
+         'WHERE'  => [
+            "$table.is_deleted" => 0,
+         ] + getEntitiesRestrictCriteria($table),
+         'GROUPBY' => [
+            'is_late',
+            "$userTable.id",
+         ],
+         'ORDER' => [
+            'is_late ASC',
+            'cpt ASC',
+            "$userTable.id",
+         ]
+      ];
+
+      $query_criteria = array_merge_recursive(
+         $query_criteria,
+         Ticket::getCriteriaFromProfile(),
+         self::getFiltersCriteria($table, $params['apply_filters'])
+      );
+
+      $search_criteria['criteria'] = self::getSearchFiltersCriteria($table, $params['apply_filters']);
+
+      $late = [];
+      $onTime = [];
+      $names = [];
+      $data = [];
+      // Get data and sort by is_late status
+      $iterator   = $DBread->request($query_criteria);
+      foreach ($iterator as $row) {
+         if ($row['is_late'] != '0') {
+            $late[$row['name']] = $row['cpt'];
+         } else {
+            $onTime[$row['name']] = $row['cpt'];
+         }
+         $names[$row['name']] = $row['username'];
+      }
+
+      // set legend for each serie
+      $data['series'][0]['name'] = __('Late');
+      $data['series'][1]['name'] = __('On time');
+      // ensure thare are 2 values per user (late and in time)
+      foreach ($names as $name => $username) {
+         if (!isset($late[$name])) {
+            $late[$name] = 0;
+         }
+         if (!isset($onTime[$name])) {
+            $onTime[$name] = 0;
+         }
+         $label = $username ?? $name;
+         $data['labels'][] = $label;
+         $data['series'][0]['data'][] = $late[$name];
+         $data['series'][1]['data'][] = $onTime[$name];
+      }
+
+      if (count($data) < 1) {
+         $data = [];
+      }
+
+      return [
+         'data' => $data
       ];
    }
 

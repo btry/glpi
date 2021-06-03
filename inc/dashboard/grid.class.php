@@ -1371,6 +1371,23 @@ HTML;
          ]
       ];
 
+
+      $case = '';
+      $cards["bn_count_tickets_expired"] = [
+         'widgettype' => ['bars'],
+         'itemtype'   => "\\Ticket",
+         'group'      => __('Assistance'),
+         'label'      => sprintf(__("Number of tickets by SLA and technician")),
+         'provider'   => "Glpi\\Dashboard\\Provider::nbTicketsByAgreement",
+         'args'       => [
+            'case' => $case,
+         ],
+         'filters'    => [
+            'dates', 'dates_mod', 'itilcategory',
+            'group_tech', 'user_tech', 'requesttype', 'location'
+         ]
+      ];
+
       foreach ([
          'ITILCategory' => __("Top ticket's categories"),
          'Entity'       => __("Top ticket's entities"),
@@ -1553,4 +1570,16 @@ HTML;
 
       return Dropdown::showFromArray($name, $options_dashboards, $params);
    }
+
+         /**
+          * Set the value of html
+          *
+          * @return  self
+          */
+         public function setHtml($html)
+         {
+                  $this->html = $html;
+
+                  return $this;
+         }
 }
