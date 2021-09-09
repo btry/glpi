@@ -32,6 +32,7 @@
 
 namespace Glpi\Dashboard;
 
+use Dropdown;
 use Group;
 use Html;
 use ITILCategory;
@@ -53,6 +54,18 @@ class Filter extends \CommonDBChild {
 
    static public $itemtype = "Glpi\\Dashboard\\Dashboard";
    static public $items_id = 'dashboards_dashboards_id';
+
+   const FILTER_CHANGEABLE = 0;
+   const FILTER_LOCKED     = 1;
+   const FILTER_HIDDEN     = 2;
+
+   public static function getEnumDisplayMode() {
+      return [
+         self::FILTER_CHANGEABLE => __('Changeable'),
+         self::FILTER_LOCKED     => __('Locked'),
+         self::FILTER_HIDDEN     => __('Hidden'),
+      ];
+   }
 
    /**
     * Return all available filters
@@ -228,7 +241,7 @@ JAVASCRIPT;
       <fieldset id='filter-{$rand}' class='filter $class' data-filter-id='{$id}'>
          $field
          <legend>$label</legend>
-         <i class='btn btn-sm btn-icon btn-ghost-secondary fas fa-trash delete-filter'></i>
+         <i class='btn btn-sm btn-icon btn-ghost-secondary fas fa-edit edit-filter'></i>
       </fieldset>
 HTML;
 
@@ -301,6 +314,16 @@ JAVASCRIPT;
             'dashboards_dashboards_id' => $dashboards_id,
             'users_id'                 => Session::getLoginUserID(),
          ]
+      );
+   }
+
+   public static function dropdownDisplayMode(string $name, array $options = []): string {
+      $options['display'] = false;
+
+      return Dropdown::showFromArray(
+         $name,
+         self::getEnumDisplayMode(),
+         $options
       );
    }
 }

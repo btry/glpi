@@ -351,38 +351,62 @@ var Dashboard = {
          var filters = Dashboard.getFiltersFromDB();
          var filter_names    = Object.keys(filters);
 
-         glpi_ajax_dialog({
+         var add_action = function(event) {
+            event.preventDefault();
+
+            var form = $(this);
+
+            Dashboard.setFilterFromForm(form);
+         };
+
+         var dialog_id = glpi_ajax_dialog({
             title: __("Add a filter"),
             url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
             params: {
                action: 'display_add_filter',
                used: filter_names
             },
+            done: function() {
+               $(document).on("click", "#" + dialog_id + " .add-button", add_action);
+            }
          });
       });
 
-      // save new filter (submit form)
-      $(document).on('submit', '.display-filter-form ', function(event) {
-         event.preventDefault();
-
-         var form = $(this);
-
-         Dashboard.setFilterFromForm(form);
-      });
-
-      // delete existing filter
-      $(document).on("click", "#dashboard-"+options.rand+" .filters_toolbar .delete-filter", function() {
+      // edit or delete an existing filter
+      $(document).on("click", "#dashboard-"+options.rand+" .filters_toolbar .edit-filter", function() {
          var filter = $(this).closest('.filter');
          var filter_id = filter.data('filter-id');
 
-         // remove filter from dom
-         filter.remove();
+         var delete_action = function(event) {
+            event.preventDefault();
 
-         // remove filter from storage and refresh cards
-         var filters = Dashboard.getFiltersFromDB();
-         delete filters[filter_id];
-         Dashboard.setFiltersInDB(filters);
-         Dashboard.refreshCardsImpactedByFilter(filter_id);
+            // remove filter from dom
+            filter.remove();
+
+            // remove filter from storage and refresh cards
+            var filters = Dashboard.getFiltersFromDB();
+            delete filters[filter_id];
+            Dashboard.setFiltersInDB(filters);
+            Dashboard.refreshCardsImpactedByFilter(filter_id);
+         }
+
+         var edit_action = function(event) {
+            event.preventDefault();
+         }
+         var dialog_id = glpi_ajax_dialog({
+            title: __("Edit a filter"),
+            url: CFG_GLPI.root_doc+"/ajax/dashboard.php",
+            params: {
+               action: 'display_add_filter',
+               key:    filter_id
+            },
+            done: function() {
+               $(document).on("click", "#" + dialog_id + " .delete-buton", delete_action);
+               $(document).on("click", "#" + dialog_id + " .edit-button", edit_action);
+            }
+         });
+
+         return;
       });
 
       // rename dashboard

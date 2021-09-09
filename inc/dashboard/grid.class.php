@@ -722,11 +722,13 @@ HTML;
    public function displayFilterForm(array $params = []) {
       $default_params = [
          'used'  => [],
+         'key'   => '',
       ];
       $params = array_merge($default_params, $params);
 
       $used         = array_flip($params['used']);
-      $list_filters = array_diff_key(Filter::getAll(), $used);
+      $all          = Filter::getAll();
+      $list_filters = array_diff_key($all, $used);
 
       $rand = mt_rand();
       echo "<form class='display-filter-form'>";
@@ -737,13 +739,31 @@ HTML;
       Dropdown::showFromArray('filter_id', $list_filters, [
          'display_emptychoice' => true,
          'rand'                => $rand,
+         'disabled'            => array_key_exists($params['key'], $all),
+         'value'               => $params['key'],
       ]);
       echo "</div>";
       echo "</div>"; // .field
 
-      echo Html::submit("<i class='fas fa-plus'></i>&nbsp;"._x('button', "Add"), [
-         'class' => 'btn btn-primary mt-2'
-      ]);
+      echo "<div class='field-properties'>";
+      echo "<label for='dropdown_card_id$rand'>".__("Display mode")."</label>";
+      echo "<div>";
+      echo Filter::dropdownDisplayMode($params['key'] . 'mode');
+      echo "</div>";
+      echo "</div>"; // .field-properties
+
+      if (array_key_exists($params['key'], $all)) {
+         echo Html::submit("<i class='fas fa-trash'></i>&nbsp;"._x('button', "Delete"), [
+            'class' => 'btn btn-primary mt-2 delete-button'
+         ]);
+         echo Html::submit("<i class='fas fa-save'></i>&nbsp;"._x('button', "Save"), [
+            'class' => 'btn btn-primary mt-2 edit-button'
+         ]);
+      } else {
+         echo Html::submit("<i class='fas fa-plus'></i>&nbsp;"._x('button', "Add"), [
+            'class' => 'btn btn-primary mt-2 add-button'
+         ]);
+      }
       echo "</form>"; // form.card.display-filter-form
    }
 
