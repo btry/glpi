@@ -1691,4 +1691,30 @@ HTML;
     {
         return [self::NONE, self::WAITING, self::REFUSED, self::ACCEPTED];
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $input
+     * @return bool|int
+     */
+    public function addRequesterResponsible($input) {
+        global $DB;
+
+        $itemtype = $input['itemtype'];
+        if (!is_subclass_of($itemtype, CommonItilObject::class)) {
+            return false;
+        }
+        $itemUserClass = (new $itemtype)->userlinkclass;
+        $itemUserTable = (new DbUtils())->getTableForItemType($itemUserClass);
+        $fk = $itemtype::getForeignKeyField();
+        $DB->request([
+            'FROM' => $itemUserTable,
+            'WHERE' => [
+                $fk => $input[$fk],
+                'users_id' => ['>', 0],
+                'type' => CommonITILActor::REQUESTER,
+            ]
+        ]);
+    }
 }
