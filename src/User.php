@@ -271,10 +271,11 @@ class User extends CommonDBTM
 
         switch ($item->getType()) {
             case __CLASS__:
+                /** @var User $item */
                 $item->showItems($tabnum == 2);
                 return true;
 
-            case 'Preference':
+            case Preference::class:
                 $user = new self();
                 $user->showMyForm(
                     $CFG_GLPI['root_doc'] . "/front/preference.php",

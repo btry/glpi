@@ -197,9 +197,30 @@ abstract class CommonITILValidation extends CommonDBChild
         $iterator = $DB->request([
             'SELECT' => ['users_id_validate'],
             'FROM'   => static::getTable(),
+            'LEFT JOIN' => [
+                ValidatorSubstitute::getTable() => [
+                    'FKEY' => [
+                        ValidatorSubstitute::getTable() => 'users_id',
+                        static::getTable() => 'users_id_validate',
+                    ],
+                ],
+                User::getTable() => [
+                    'FKEY' => [
+                        ValidatorSubstitute::getTable() => 'users_id',
+                        User::getTable() => 'id',
+                    ],
+                ],
+            ],
             'WHERE'  => [
                 static::$items_id    => $items_id,
-                'users_id_validate'  => Session::getLoginUserID()
+                'OR' => [
+                    'users_id_validate'  => Session::getLoginUserID(),
+                    'AND' => [
+                        User::getTable() . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                        User::getTable() . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                        ValidatorSubstitute::getTable() . '.users_id_substitute' => Session::getLoginUserID(),
+                    ],
+                ]
             ],
             'START'  => 0,
             'LIMIT'  => 1
@@ -916,7 +937,7 @@ abstract class CommonITILValidation extends CommonDBChild
 
         $colonnes = ['', _x('item', 'State'), __('Request date'), __('Approval requester'),
             __('Request comments'), __('Approval status'),
-            __('Approver'), __('Approval comments'), __('Documents')
+            __('Approver'), __('Actual approver'), __('Approval comments'), __('Documents')
         ];
         $nb_colonnes = count($colonnes);
 
@@ -992,6 +1013,7 @@ abstract class CommonITILValidation extends CommonDBChild
                 echo "<td><div class='rich_text_container'>" . $comment_submission . "</div></td>";
                 echo "<td>" . Html::convDateTime($row["validation_date"]) . "</td>";
                 echo "<td>" . getUserName($row["users_id_validate"]) . "</td>";
+                echo "<td>" . getUserName($row["users_id_actual_validate"]) . "</td>";
                 $comment_validation = RichText::getEnhancedHtml($this->fields['comment_validation'] ?? '', ['images_gallery' => true]);
                 echo "<td><div class='rich_text_container'>" . $comment_validation . "</div></td>";
 
@@ -1143,6 +1165,19 @@ abstract class CommonITILValidation extends CommonDBChild
             ]
         ];
 
+        $tab[] = [
+            'id'                 => '8',
+            'table'              => 'glpi_users',
+            'field'              => 'name',
+            'linkfield'          => 'users_id_actual_validate',
+            'name'               => __('Actual approver'),
+            'datatype'           => 'itemlink',
+            'right'              => [
+                'validate_request',
+                'validate_incident'
+            ]
+        ];
+
         return $tab;
     }
 
@@ -1284,6 +1319,45 @@ abstract class CommonITILValidation extends CommonDBChild
                         'jointype'           => 'child'
                     ]
                 ]
+            ]
+        ];
+
+        $tab[] = [
+            'id'                 => '195',
+            'table'              => User::getTable(),
+            'field'              => 'name',
+            'linkfield'          => 'users_id_substitute',
+            'name'               => __('Approver substitute'),
+            'datatype'           => 'itemlink',
+            'right'              => (static::$itemtype == 'Ticket' ?
+                ['validate_request', 'validate_incident'] :
+                'validate'
+            ),
+            'forcegroupby'       => true,
+            'massiveaction'      => false,
+            'joinparams' => [
+                'beforejoin'         => [
+                    'table'          => ValidatorSubstitute::getTable(),
+                    'joinparams'         => [
+                        'jointype'           => 'child',
+                        'condition'          => [
+                            'REFTABLE.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                            'REFTABLE.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                        ],
+                        'beforejoin'         => [
+                            'table'              => User::getTable(),
+                            'linkfield'          => 'users_id_validate',
+                            'joinparams'             => [
+                                'beforejoin'             => [
+                                    'table'                  => static::getTable(),
+                                    'joinparams'                 => [
+                                        'jointype'                   => 'child',
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
             ]
         ];
 
@@ -1690,31 +1764,5 @@ HTML;
     public static function getAllValidationStatusArray()
     {
         return [self::NONE, self::WAITING, self::REFUSED, self::ACCEPTED];
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param [type] $input
-     * @return bool|int
-     */
-    public function addRequesterResponsible($input) {
-        global $DB;
-
-        $itemtype = $input['itemtype'];
-        if (!is_subclass_of($itemtype, CommonItilObject::class)) {
-            return false;
-        }
-        $itemUserClass = (new $itemtype)->userlinkclass;
-        $itemUserTable = (new DbUtils())->getTableForItemType($itemUserClass);
-        $fk = $itemtype::getForeignKeyField();
-        $DB->request([
-            'FROM' => $itemUserTable,
-            'WHERE' => [
-                $fk => $input[$fk],
-                'users_id' => ['>', 0],
-                'type' => CommonITILActor::REQUESTER,
-            ]
-        ]);
     }
 }
