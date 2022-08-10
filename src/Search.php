@@ -5751,6 +5751,9 @@ JAVASCRIPT;
                     if (!isset($tab['joinparams']['nolink']) || !$tab['joinparams']['nolink']) {
                         $cleanrt     = $intertable;
                         $complexjoin = self::computeComplexJoinID($interjoinparams);
+                        if (!empty($interlinkfield) && ($interlinkfield != getForeignKeyFieldForTable($intertable))) {
+                            $intertable .= "_" . $interlinkfield;
+                        }
                         if (!empty($complexjoin)) {
                             $intertable .= "_" . $complexjoin;
                         }
