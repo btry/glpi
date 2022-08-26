@@ -149,6 +149,8 @@ class ValidatorSubstitute extends CommonDBTM
         }
 
         // Update begin and end date to apply substitutes
+        $input['substitution_start_date'] == '' ? null : $input['substitution_start_date'];
+        $input['substitution_end_date'] == '' ? null : $input['substitution_end_date'];
         $success = $success && (new User())->update([
             'id'                      => $input['users_id'],
             'substitution_start_date' => $input['substitution_start_date'],
