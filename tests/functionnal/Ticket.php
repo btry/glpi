@@ -5520,9 +5520,9 @@ HTML
             '_actors'           => [
                 'requester'       => [
                     [
-                        'itemtype'        => \User::class,
-                        'items_id'        => $_SESSION['glpiID'],
-                        'use_notification'=> 0,
+                        'itemtype'          => \User::class,
+                        'items_id'          => $_SESSION['glpiID'],
+                        'use_notification'  => 0,
                         'alternative_email' => '',
                     ]
                 ],
@@ -5545,14 +5545,14 @@ HTML
             '_actors'           => [
                 'requester'       => [
                     [
-                        'itemtype'        => \User::class,
-                        'items_id'        => $normal_user->getID(),
-                        'use_notification'=> 0,
+                        'itemtype'          => \User::class,
+                        'items_id'          => $normal_user->getID(),
+                        'use_notification'  => 0,
                         'alternative_email' => '',
                     ], [
-                        'itemtype'        => \User::class,
-                        'items_id'        => $glpi_user->getID(),
-                        'use_notification'=> 0,
+                        'itemtype'          => \User::class,
+                        'items_id'          => $glpi_user->getID(),
+                        'use_notification'  => 0,
                         'alternative_email' => '',
                     ],
                 ],

@@ -32,6 +32,7 @@
  *
  * ---------------------------------------------------------------------
  */
+
 use Glpi\Application\View\TemplateRenderer;
 
 class ValidatorSubstitute extends CommonDBTM
@@ -57,7 +58,8 @@ class ValidatorSubstitute extends CommonDBTM
         }
     }
 
-    public function canEdit($ID) {
+    public function canEdit($ID)
+    {
         if ($ID == Session::getLoginUserID()) {
             return true;
         }
@@ -70,7 +72,8 @@ class ValidatorSubstitute extends CommonDBTM
         return false;
     }
 
-    public function showForUser(CommonDBTM $item) {
+    public function showForUser(CommonDBTM $item)
+    {
         if ($item->isNewItem()) {
             return false;
         }
@@ -103,7 +106,8 @@ class ValidatorSubstitute extends CommonDBTM
      * @param array $input
      * @return boolean
      */
-    public function updateSubstitutes($input): bool {
+    public function updateSubstitutes($input): bool
+    {
         $validator_substitute = new self();
 
         // The user to be substituted

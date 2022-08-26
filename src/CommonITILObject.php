@@ -9221,16 +9221,19 @@ abstract class CommonITILObject extends CommonDBTM
      *
      * @return User the first user added as a requester or 0 if no requester found
      */
-    public function getPrimaryRequesterUser(): User {
+    public function getPrimaryRequesterUser(): User
+    {
         if (!isset($this->fields['id']) || $this->isNewID($this->fields['id'])) {
             return null;
         }
 
         $user_link = new $this->userlinkclass();
-        $rows = $user_link->find([
+        $rows = $user_link->find(
+            [
                 static::getForeignKeyField() => $this->fields['id'],
                 'type' => CommonITILActor::REQUESTER,
-            ], [
+            ],
+            [
                 'id ASC'
             ],
             1

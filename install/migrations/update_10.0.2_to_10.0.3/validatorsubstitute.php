@@ -54,35 +54,35 @@ if (!$DB->tableExists('glpi_validatorsubstitutes')) {
 }
 
 $migration->addfield(
-	'glpi_ticketvalidations',
-	'users_id_actual_validate',
-	"int {$default_key_sign} NOT NULL DEFAULT '0'",
-	[
-		'after' => 'timeline_position',
-		'comment' => 'User who did the validation',
-	]
+    'glpi_ticketvalidations',
+    'users_id_actual_validate',
+    "int {$default_key_sign} NOT NULL DEFAULT '0'",
+    [
+        'after' => 'timeline_position',
+        'comment' => 'User who did the validation',
+    ]
 );
 $migration->addKey('glpi_ticketvalidations', 'users_id_actual_validate');
 
 $migration->addfield(
-	'glpi_changevalidations',
-	'users_id_actual_validate',
-	"int {$default_key_sign} NOT NULL DEFAULT '0'",
-	[
-		'after' => 'timeline_position',
-		'comment' => 'User who did the validation',
-	]
+    'glpi_changevalidations',
+    'users_id_actual_validate',
+    "int {$default_key_sign} NOT NULL DEFAULT '0'",
+    [
+        'after' => 'timeline_position',
+        'comment' => 'User who did the validation',
+    ]
 );
 $migration->addKey('glpi_changevalidations', 'users_id_actual_validate');
 
 $migration->changeField(
-	'glpi_ticketvalidations',
-	'users_id_validate',
-	'users_id_validate',
-	"int {$default_key_sign} NOT NULL DEFAULT '0'",
-	[
-		'comment' => 'User in charge of the validation',
-	]
+    'glpi_ticketvalidations',
+    'users_id_validate',
+    'users_id_validate',
+    "int {$default_key_sign} NOT NULL DEFAULT '0'",
+    [
+        'comment' => 'User in charge of the validation',
+    ]
 );
 
 $table = 'glpi_users';

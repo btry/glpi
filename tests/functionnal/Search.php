@@ -1035,7 +1035,8 @@ class Search extends DbTestCase
                         ON (`glpi_contacts_id_d36f89b191ea44cf6f7c8414b12e1e50`.`id` = `glpi_projectteams`.`items_id`
                         AND `glpi_projectteams`.`itemtype` = 'Contact'
                          )"
-            ]],
+            ]
+            ],
             'special_fk' => [[
                 'itemtype'           => 'Computer',
                 'table'              => \User::getTable(),
@@ -1045,7 +1046,8 @@ class Search extends DbTestCase
                 'meta_type'          => null,
                 'joinparams'         => [],
                 'sql' => "LEFT JOIN `glpi_users` AS `glpi_users_users_id_tech` ON (`glpi_computers`.`users_id_tech` = `glpi_users_users_id_tech`.`id` )"
-            ]],
+            ]
+            ],
             'regular_fk' => [[
                 'itemtype'           => 'Computer',
                 'table'              => \User::getTable(),
@@ -1057,7 +1059,6 @@ class Search extends DbTestCase
                 'sql' => "LEFT JOIN `glpi_users` ON (`glpi_computers`.`users_id` = `glpi_users`.`id` )"
             ]
             ],
-
             'linkfield in beforejoin' => [[
                 'itemtype'           => 'Ticket',
                 'table'              => 'glpi_validatorsubstitutes',

@@ -95,7 +95,7 @@ if (isset($_POST["add"])) {
             Html::back();
         }
         $primaryRequester = $itilObject->getPrimaryRequesterUser();
-        if ($primaryRequester === null ) {
+        if ($primaryRequester === null) {
             Html::back();
         }
         if ($primaryRequester->fields['users_id_supervisor'] == 0) {
