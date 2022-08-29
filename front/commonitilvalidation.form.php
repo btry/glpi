@@ -100,7 +100,7 @@ if (isset($_POST["add"])) {
         }
         if ($primaryRequester->fields['users_id_supervisor'] == 0) {
             // TRANS: $1%s us the friendly user name
-            Session::addMessageAfterRedirect(sprintf(__('%1$s does not have a supervisor'), $primaryRequester->getFriendlyName()));
+            Session::addMessageAfterRedirect(sprintf(__('%1$s does not have a responsible'), $primaryRequester->getFriendlyName()));
             Html::back();
         }
         $_POST['users_id_validate'] = $primaryRequester->fields['users_id_supervisor'];
