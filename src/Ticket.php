@@ -4457,9 +4457,20 @@ JAVASCRIPT;
                         'OR' => [
                             'users_id_validate' => Session::getLoginUserID(),
                             'AND' => [
-                                'glpi_users' . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
-                                'glpi_users' . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
-                                'glpi_validatorsubstitutes' . '.users_id_substitute' => Session::getLoginUserID(),
+                                'OR' => [
+                                    [
+                                        'glpi_users' . '.substitution_start_date' => null,
+                                    ], [
+                                        'glpi_users' . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                                    ],
+                                ],
+                                'OR' => [
+                                    [
+                                    'glpi_users' . '.substitution_end_date' => null,
+                                    ], [
+                                        'glpi_users' . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                                    ],
+                                ],
                             ],
                         ],
                         'glpi_ticketvalidations.status'  => CommonITILValidation::WAITING,

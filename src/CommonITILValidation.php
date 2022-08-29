@@ -216,8 +216,22 @@ abstract class CommonITILValidation extends CommonDBChild
                 'OR' => [
                     'users_id_validate'  => Session::getLoginUserID(),
                     'AND' => [
-                        User::getTable() . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
-                        User::getTable() . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                        'OR' =>[
+                            [
+                                User::getTable() . '.substitution_start_date' => null,
+                            ],
+                            [
+                                User::getTable() . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                            ],
+                        ],
+                        'OR' => [
+                            [
+                                User::getTable() . '.substitution_end_date' => null,
+                            ],
+                            [
+                                User::getTable() . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                            ],
+                        ],
                         ValidatorSubstitute::getTable() . '.users_id_substitute' => Session::getLoginUserID(),
                     ],
                 ]
@@ -1341,8 +1355,20 @@ abstract class CommonITILValidation extends CommonDBChild
                     'joinparams'         => [
                         'jointype'           => 'child',
                         'condition'          => [
-                            'REFTABLE.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
-                            'REFTABLE.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                            'OR' => [
+                                [
+                                    'REFTABLE.substitution_start_date' => null,
+                                ], [
+                                    'REFTABLE.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                                ],
+                            ],
+                            'OR' => [
+                                [
+                                    'REFTABLE.substitution_end_date' => null,
+                                ], [
+                                    'REFTABLE.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                                ],
+                            ],
                         ],
                         'beforejoin'         => [
                             'table'              => User::getTable(),
