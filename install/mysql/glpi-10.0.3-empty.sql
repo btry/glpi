@@ -7622,8 +7622,8 @@ CREATE TABLE `glpi_users` (
   `default_dashboard_mini_ticket` varchar(100) DEFAULT NULL,
   `default_central_tab` tinyint DEFAULT '0',
   `nickname` varchar(255) DEFAULT NULL,
-  `substitution_end_date` datetime,
-  `substitution_start_date` datetime,
+  `substitution_end_date` timestamp,
+  `substitution_start_date` timestamp,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unicityloginauth` (`name`,`authtype`,`auths_id`),
   KEY `firstname` (`firstname`),
@@ -9213,7 +9213,8 @@ CREATE TABLE `glpi_validatorsubstitutes` (
 	`users_id` int unsigned  NOT NULL DEFAULT '0' COMMENT 'Delegator user',
 	`users_id_substitute` int unsigned  NOT NULL DEFAULT '0' COMMENT 'Substitute user',
 	PRIMARY KEY (`id`),
-	UNIQUE INDEX `users_id_users_id_substitute` (`users_id`, `users_id_substitute`)
+	UNIQUE KEY `users_id_users_id_substitute` (`users_id`, `users_id_substitute`),
+  KEY `users_id_substitute` (`users_id_substitute`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS=1;
