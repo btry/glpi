@@ -4466,7 +4466,7 @@ JAVASCRIPT;
                                 ],
                                 'OR' => [
                                     [
-                                    'glpi_users' . '.substitution_end_date' => null,
+                                        'glpi_users' . '.substitution_end_date' => null,
                                     ], [
                                         'glpi_users' . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
                                     ],

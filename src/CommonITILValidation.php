@@ -216,7 +216,7 @@ abstract class CommonITILValidation extends CommonDBChild
                 'OR' => [
                     'users_id_validate'  => Session::getLoginUserID(),
                     'AND' => [
-                        'OR' =>[
+                        'OR' => [
                             [
                                 User::getTable() . '.substitution_start_date' => null,
                             ],
