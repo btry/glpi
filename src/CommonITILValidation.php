@@ -195,46 +195,11 @@ abstract class CommonITILValidation extends CommonDBChild
         global $DB;
 
         $iterator = $DB->request([
-            'SELECT' => ['users_id_validate'],
+            'SELECT' => [static::getTable() . '.id'],
             'FROM'   => static::getTable(),
-            'LEFT JOIN' => [
-                ValidatorSubstitute::getTable() => [
-                    'FKEY' => [
-                        ValidatorSubstitute::getTable() => 'users_id',
-                        static::getTable() => 'users_id_validate',
-                    ],
-                ],
-                User::getTable() => [
-                    'FKEY' => [
-                        ValidatorSubstitute::getTable() => 'users_id',
-                        User::getTable() => 'id',
-                    ],
-                ],
-            ],
             'WHERE'  => [
-                static::$items_id    => $items_id,
-                'OR' => [
-                    'users_id_validate'  => Session::getLoginUserID(),
-                    'AND' => [
-                        'OR' => [
-                            [
-                                User::getTable() . '.substitution_start_date' => null,
-                            ],
-                            [
-                                User::getTable() . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
-                            ],
-                        ],
-                        'OR' => [
-                            [
-                                User::getTable() . '.substitution_end_date' => null,
-                            ],
-                            [
-                                User::getTable() . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
-                            ],
-                        ],
-                        ValidatorSubstitute::getTable() . '.users_id_substitute' => Session::getLoginUserID(),
-                    ],
-                ]
+                static::$items_id => $items_id,
+                static::getTargetCriteriaForUser(Session::getLoginUserID()),
             ],
             'START'  => 0,
             'LIMIT'  => 1
