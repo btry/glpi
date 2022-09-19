@@ -672,6 +672,65 @@ abstract class CommonITILValidation extends CommonDBChild
 
 
     /**
+     * Return criteria to apply to get only validations on which given user is targetted.
+     *
+     * @see self::getNumberToValidate()
+     *
+     * @param int $users_id
+     * @param bool $search_in_groups
+     *
+     * @return array
+     */
+    final public static function getTargetCriteriaForUser(int $users_id, bool $search_in_groups = true): array
+    {
+        $target_criteria = [
+            'OR' => [
+                [
+                    static::getTableField('users_id_validate') => $users_id,
+                ],
+                'AND' => [
+                    'users_id_validate' => new QuerySubQuery([
+                        'SELECT'     => 'validator_users.id',
+                        'FROM'       => User::getTable() . ' as validator_users',
+                        'INNER JOIN' => [
+                            ValidatorSubstitute::getTable() => [
+                                'ON' => [
+                                    'validator_users' => 'id',
+                                    ValidatorSubstitute::getTable() => User::getForeignKeyField(),
+                                ],
+                            ],
+                        ],
+                        'WHERE' => [
+                            [
+                                'OR' => [
+                                    [
+                                        'validator_users.substitution_start_date'  => null,
+                                    ],
+                                    [
+                                        'validator_users.substitution_start_date'  => ['<=', new QueryExpression('NOW()')],
+                                    ],
+                                ],
+                            ], [
+                                'OR' => [
+                                    [
+                                        'validator_users.substitution_end_date' => null,
+                                    ],
+                                    [
+                                        'validator_users.substitution_end_date' => ['>=', new QueryExpression('NOW()')],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ]),
+                ],
+            ],
+        ];
+
+        return $target_criteria;
+    }
+
+
+    /**
      * Get the number of validations attached to an item having a specified status
      *
      * @param integer $items_id item ID
