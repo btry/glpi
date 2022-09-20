@@ -4365,7 +4365,7 @@ JAVASCRIPT;
 
         $JOINS = [];
         $WHERE = [
-            'is_deleted' => 0
+            'glpi_tickets.is_deleted' => 0
         ];
         $search_users_id = [
             'glpi_tickets_users.users_id' => Session::getLoginUserID(),
@@ -4437,12 +4437,42 @@ JAVASCRIPT;
                             'glpi_ticketvalidations'   => 'tickets_id',
                             'glpi_tickets'             => 'id'
                         ]
-                    ]
+                    ],
+                    'glpi_validatorsubstitutes' => [
+                        'FKEY' => [
+                            'glpi_validatorsubstitutes' => 'users_id',
+                            'glpi_ticketvalidations' => 'users_id_validate',
+                        ],
+                    ],
+                    'glpi_users' => [
+                        'FKEY' => [
+                            'glpi_validatorsubstitutes' => 'users_id',
+                            'glpi_users' => 'id',
+                        ],
+                    ],
                 ];
                 $WHERE = array_merge(
                     $WHERE,
                     [
-                        'users_id_validate'              => Session::getLoginUserID(),
+                        'OR' => [
+                            'users_id_validate' => Session::getLoginUserID(),
+                            'AND' => [
+                                'OR' => [
+                                    [
+                                        'glpi_users' . '.substitution_start_date' => null,
+                                    ], [
+                                        'glpi_users' . '.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                                    ],
+                                ],
+                                'OR' => [
+                                    [
+                                        'glpi_users' . '.substitution_end_date' => null,
+                                    ], [
+                                        'glpi_users' . '.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                                    ],
+                                ],
+                            ],
+                        ],
                         'glpi_ticketvalidations.status'  => CommonITILValidation::WAITING,
                         'glpi_tickets.global_validation' => CommonITILValidation::WAITING,
                         'NOT'                            => [
@@ -4746,9 +4776,14 @@ JAVASCRIPT;
                         $options['criteria'][0]['value']      = CommonITILValidation::WAITING;
                         $options['criteria'][0]['link']       = 'AND';
 
-                        $options['criteria'][1]['field']      = 59; // validation aprobator
-                        $options['criteria'][1]['searchtype'] = 'equals';
-                        $options['criteria'][1]['value']      = Session::getLoginUserID();
+                        $options['criteria'][1]['criteria'][0]['field']      = 59; // validation aprobator
+                        $options['criteria'][1]['criteria'][0]['searchtype'] = 'equals';
+                        $options['criteria'][1]['criteria'][0]['value']      = Session::getLoginUserID();
+                        $options['criteria'][1]['criteria'][0]['link']       = 'AND';
+                        $options['criteria'][1]['criteria'][1]['field']      = 195; // validation aprobator substitute
+                        $options['criteria'][1]['criteria'][1]['searchtype'] = 'equals';
+                        $options['criteria'][1]['criteria'][1]['value']      = Session::getLoginUserID();
+                        $options['criteria'][1]['criteria'][1]['link']       = 'OR';
                         $options['criteria'][1]['link']       = 'AND';
 
                         $options['criteria'][2]['field']      = 12; // validation aprobator

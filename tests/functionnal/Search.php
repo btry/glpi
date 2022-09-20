@@ -1059,7 +1059,6 @@ class Search extends DbTestCase
                 'sql' => "LEFT JOIN `glpi_users` ON (`glpi_computers`.`users_id` = `glpi_users`.`id` )"
             ]
             ],
-
             'linkfield in beforejoin' => [[
                 'itemtype'           => 'Ticket',
                 'table'              => 'glpi_validatorsubstitutes',

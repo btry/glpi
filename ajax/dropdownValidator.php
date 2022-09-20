@@ -47,6 +47,10 @@ Html::header_nocache();
 
 if (isset($_POST["validatortype"])) {
     switch ($_POST["validatortype"]) {
+        case 'requester_responsible':
+            // Nothing to send
+            break;
+
         case 'user':
         case 'User':
             if (isset($_POST['users_id_validate']['groups_id'])) {

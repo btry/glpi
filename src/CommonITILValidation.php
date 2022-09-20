@@ -195,11 +195,11 @@ abstract class CommonITILValidation extends CommonDBChild
         global $DB;
 
         $iterator = $DB->request([
-            'SELECT' => ['users_id_validate'],
+            'SELECT' => [static::getTable() . '.id'],
             'FROM'   => static::getTable(),
             'WHERE'  => [
-                static::$items_id    => $items_id,
-                'users_id_validate'  => Session::getLoginUserID()
+                static::$items_id => $items_id,
+                static::getTargetCriteriaForUser(Session::getLoginUserID()),
             ],
             'START'  => 0,
             'LIMIT'  => 1
@@ -672,6 +672,65 @@ abstract class CommonITILValidation extends CommonDBChild
 
 
     /**
+     * Return criteria to apply to get only validations on which given user is targetted.
+     *
+     * @see self::getNumberToValidate()
+     *
+     * @param int $users_id
+     * @param bool $search_in_groups
+     *
+     * @return array
+     */
+    final public static function getTargetCriteriaForUser(int $users_id, bool $search_in_groups = true): array
+    {
+        $target_criteria = [
+            'OR' => [
+                [
+                    static::getTableField('users_id_validate') => $users_id,
+                ],
+                'AND' => [
+                    'users_id_validate' => new QuerySubQuery([
+                        'SELECT'     => 'validator_users.id',
+                        'FROM'       => User::getTable() . ' as validator_users',
+                        'INNER JOIN' => [
+                            ValidatorSubstitute::getTable() => [
+                                'ON' => [
+                                    'validator_users' => 'id',
+                                    ValidatorSubstitute::getTable() => User::getForeignKeyField(),
+                                ],
+                            ],
+                        ],
+                        'WHERE' => [
+                            [
+                                'OR' => [
+                                    [
+                                        'validator_users.substitution_start_date'  => null,
+                                    ],
+                                    [
+                                        'validator_users.substitution_start_date'  => ['<=', new QueryExpression('NOW()')],
+                                    ],
+                                ],
+                            ], [
+                                'OR' => [
+                                    [
+                                        'validator_users.substitution_end_date' => null,
+                                    ],
+                                    [
+                                        'validator_users.substitution_end_date' => ['>=', new QueryExpression('NOW()')],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ]),
+                ],
+            ],
+        ];
+
+        return $target_criteria;
+    }
+
+
+    /**
      * Get the number of validations attached to an item having a specified status
      *
      * @param integer $items_id item ID
@@ -916,7 +975,7 @@ abstract class CommonITILValidation extends CommonDBChild
 
         $colonnes = ['', _x('item', 'State'), __('Request date'), __('Approval requester'),
             __('Request comments'), __('Approval status'),
-            __('Approver'), __('Approval comments'), __('Documents')
+            __('Approver'), __('Actual approver'), __('Approval comments'), __('Documents')
         ];
         $nb_colonnes = count($colonnes);
 
@@ -992,6 +1051,7 @@ abstract class CommonITILValidation extends CommonDBChild
                 echo "<td><div class='rich_text_container'>" . $comment_submission . "</div></td>";
                 echo "<td>" . Html::convDateTime($row["validation_date"]) . "</td>";
                 echo "<td>" . getUserName($row["users_id_validate"]) . "</td>";
+                echo "<td>" . getUserName($row["users_id_actual_validate"]) . "</td>";
                 $comment_validation = RichText::getEnhancedHtml($this->fields['comment_validation'] ?? '', ['images_gallery' => true]);
                 echo "<td><div class='rich_text_container'>" . $comment_validation . "</div></td>";
 
@@ -1143,6 +1203,19 @@ abstract class CommonITILValidation extends CommonDBChild
             ]
         ];
 
+        $tab[] = [
+            'id'                 => '8',
+            'table'              => 'glpi_users',
+            'field'              => 'name',
+            'linkfield'          => 'users_id_actual_validate',
+            'name'               => __('Actual approver'),
+            'datatype'           => 'itemlink',
+            'right'              => [
+                'validate_request',
+                'validate_incident'
+            ]
+        ];
+
         return $tab;
     }
 
@@ -1284,6 +1357,57 @@ abstract class CommonITILValidation extends CommonDBChild
                         'jointype'           => 'child'
                     ]
                 ]
+            ]
+        ];
+
+        $tab[] = [
+            'id'                 => '195',
+            'table'              => User::getTable(),
+            'field'              => 'name',
+            'linkfield'          => 'users_id_substitute',
+            'name'               => __('Approver substitute'),
+            'datatype'           => 'itemlink',
+            'right'              => (static::$itemtype == 'Ticket' ?
+                ['validate_request', 'validate_incident'] :
+                'validate'
+            ),
+            'forcegroupby'       => true,
+            'massiveaction'      => false,
+            'joinparams' => [
+                'beforejoin'         => [
+                    'table'          => ValidatorSubstitute::getTable(),
+                    'joinparams'         => [
+                        'jointype'           => 'child',
+                        'condition'          => [
+                            'OR' => [
+                                [
+                                    'REFTABLE.substitution_start_date' => null,
+                                ], [
+                                    'REFTABLE.substitution_start_date' => ['<=', $_SESSION['glpi_currenttime']],
+                                ],
+                            ],
+                            'OR' => [
+                                [
+                                    'REFTABLE.substitution_end_date' => null,
+                                ], [
+                                    'REFTABLE.substitution_end_date' => ['>=', $_SESSION['glpi_currenttime']],
+                                ],
+                            ],
+                        ],
+                        'beforejoin'         => [
+                            'table'              => User::getTable(),
+                            'linkfield'          => 'users_id_validate',
+                            'joinparams'             => [
+                                'beforejoin'             => [
+                                    'table'                  => static::getTable(),
+                                    'joinparams'                 => [
+                                        'jointype'                   => 'child',
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
             ]
         ];
 

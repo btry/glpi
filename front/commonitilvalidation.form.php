@@ -80,6 +80,39 @@ if (isset($_POST["add"])) {
                 sprintf(__('%s adds an approval'), $_SESSION["glpiname"])
             );
         }
+    } else if ($_POST['validatortype'] == 'requester_responsible') {
+        if (!isset($_POST['itemtype'])) {
+            Html::back();
+        }
+        $itemtype = $_POST['itemtype'];
+        $itemtypeFk = $itemtype::getForeignKeyField();
+        if (!isset($_POST[$itemtypeFk])) {
+            Html::back();
+        }
+
+        $itilObject = new $itemtype();
+        if (!$itilObject->getFromDB($_POST[$itemtypeFk])) {
+            Html::back();
+        }
+        $primaryRequester = $itilObject->getPrimaryRequesterUser();
+        if ($primaryRequester === null) {
+            Html::back();
+        }
+        if ($primaryRequester->fields['users_id_supervisor'] == 0) {
+            // TRANS: $1%s us the friendly user name
+            Session::addMessageAfterRedirect(sprintf(__('%1$s does not have a responsible'), $primaryRequester->getFriendlyName()));
+            Html::back();
+        }
+        $_POST['users_id_validate'] = $primaryRequester->fields['users_id_supervisor'];
+        $validation->add($_POST);
+        Event::log(
+            $validation->getField($fk),
+            strtolower($itemtype),
+            4,
+            "tracking",
+            //TRANS: %s is the user login
+            sprintf(__('%s adds an approval'), $_SESSION["glpiname"])
+        );
     }
     Html::back();
 } else if (isset($_POST["update"])) {
@@ -108,9 +141,11 @@ if (isset($_POST["add"])) {
     );
     Html::back();
 } else if (isset($_POST['approval_action'])) {
-    if ($_POST['users_id_validate'] == Session::getLoginUserID()) {
+    $validation->getFromDB($_POST['id']);
+    if ($validation->canValidate($validation->fields[$validation::$items_id])) {
         $validation->update($_POST + [
-            'status' => ($_POST['approval_action'] === 'approve') ? CommonITILValidation::ACCEPTED : CommonITILValidation::REFUSED
+            'status' => ($_POST['approval_action'] === 'approve') ? CommonITILValidation::ACCEPTED : CommonITILValidation::REFUSED,
+            'users_id_actual_validate' => Session::getLoginUserID(),
         ]);
         Html::back();
     }
