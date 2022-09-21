@@ -321,7 +321,7 @@ class ValidatorSubstitute extends DbTestCase
             'expected' => [
                 'return' => false,
                 'range' => [],
-                'messages' => ['You cannot change substitutes for this user'],
+                'messages' => ['You cannot change substitutes for this user.'],
             ],
         ];
 
