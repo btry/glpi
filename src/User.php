@@ -6734,7 +6734,7 @@ JAVASCRIPT;
         }
 
         $request = [
-            'FROM' => self::getTable(),
+            'FROM' => ValidatorSubstitute::getTable(),
             'WHERE' => [
                 ValidatorSubstitute::getTableField('users_id')            => $users_id_delegator,
                 ValidatorSubstitute::getTableField('users_id_substitute') => $this->fields['id'],
