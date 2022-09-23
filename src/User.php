@@ -6677,7 +6677,7 @@ JAVASCRIPT;
     /**
      * Get all validation substitutes
      *
-     * @return array
+     * @return int[]
      */
     final public function getSubstitutes(): array
     {
@@ -6699,7 +6699,7 @@ JAVASCRIPT;
     /**
      * Get all delegators
      *
-     * @return array
+     * @return int[]
      */
     final public function getDelegators(): array
     {
@@ -6723,7 +6723,8 @@ JAVASCRIPT;
      *
      * @param integer $users_id_delegator
      * @param bool    $use_date_range
-     * @return boolean
+     *
+     * @return bool
      */
     final public function isSubstituteOf(int $users_id_delegator, bool $use_date_range = true): bool
     {
