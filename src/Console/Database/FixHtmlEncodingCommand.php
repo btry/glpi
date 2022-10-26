@@ -371,7 +371,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
      * Fix &quot; HTML entity without its final semicolon
      * @see https://github.com/glpi-project/glpi/pull/6084
      *
-     * The pattern searches for &quot (without semicolon) found only between encoded < and >
+     * The pattern searches for &quot (without semicolon)
      * Therefore any ocurence found between HTML tabs are ignored
      *
      * @param string $input
