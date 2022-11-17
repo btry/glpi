@@ -52,8 +52,6 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  * When migrating from GLPI 9.5 to 10.0, some HTML entities were not properly encoded.
  *
  * This CLI tool helps to fix items one by one or in small batches
- *
- * If new cases must be added the other class FindBadHtmlEncodingCommand must be updated too.
  */
 class FixHtmlEncodingCommand extends AbstractCommand
 {
@@ -127,6 +125,11 @@ class FixHtmlEncodingCommand extends AbstractCommand
      */
     private bool $confirm = true;
 
+    /**
+     * Base URL to compute URLs of items being changed
+     *
+     * @var string
+     */
     private string $root_doc = '';
 
     protected function configure()
@@ -147,13 +150,18 @@ class FixHtmlEncodingCommand extends AbstractCommand
         $this->addOption(
             'dump',
             null,
-            InputOption::VALUE_REQUIRED,
+            InputOption::VALUE_OPTIONAL,
             __('Path of file containing dump of existing values.')
         );
 
-        $this->addUsage('--itemtype=ITILFollowup --id=42 --field=content [--dump=file_path.sql]');
+        $this->addUsage('--itemtype=ITILFollowup [--dump=file_path.sql]');
     }
 
+    /**
+     * Check the version of the code against the version of the DB
+     *
+     * @return void
+     */
     private function checkVersion()
     {
         $database_version = Config::getConfigurationValue('core', 'version');
@@ -164,7 +172,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
         );
         if (!$match) {
             throw new \Glpi\Console\Exception\EarlyExitException(
-                '<error>' . sprintf(__('GLPI files and database are not the same. Please upgrade first')) . '</error>',
+                '<error>' . sprintf(__('GLPI files and database are not the same. Please upgrade first.')) . '</error>',
                 self::ERROR_ITEMTYPE_NOT_FOUND
             );
         }
@@ -173,6 +181,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         global $CFG_GLPI;
+
         $this->root_doc = Config::getConfigurationValue('core', 'url_base');
         $CFG_GLPI['root_doc'] = $this->root_doc;
 
@@ -320,7 +329,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
      * @param CommonDBTM $item
      * @return string
      */
-    private function getItemUrl(CommonDBTM $item): string {
+    private function getItemUrl(CommonDBTM $item): string
+    {
         if ($item::getType() == ITILFollowup::getType()) {
             $parent_itemtype = $item->fields['itemtype'];
             $url = $parent_itemtype::getFormURLWithID($item->fields['items_id']);
