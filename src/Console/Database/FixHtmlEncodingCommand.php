@@ -551,7 +551,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
     {
         $count = 0;
 
-        if (count($items_array) < 1) {
+        if (count($items_array) === 0) {
             return 0;
         }
 
