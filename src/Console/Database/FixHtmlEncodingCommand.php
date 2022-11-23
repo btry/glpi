@@ -524,9 +524,10 @@ class FixHtmlEncodingCommand extends AbstractCommand
             [$field => ['LIKE', '%&quot(?!;)/%']],
         ];
 
+        $regex_operator = 'RLIKE';
         if (in_array($itemtype, [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
-            $searches[] = [new QueryExpression("REGEXP({$field}, '(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)')")];
-            $searches[] = [new QueryExpression("REGEXP({$field}, '(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)')")];
+            $searches[] = [new QueryExpression("`{$field}` ${regex_operator} '(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)'")];
+            $searches[] = [new QueryExpression("`{$field}` ${regex_operator} '(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)'")];
         }
 
         $iterator = $DB->request([
@@ -537,7 +538,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
             ],
         ]);
 
-        foreach ($iterator as $data = $iterator) {
+        foreach ($iterator as $data => $iterator) {
             $this->invalid_items[$itemtype][$data['id']][] = $field;
         }
     }
