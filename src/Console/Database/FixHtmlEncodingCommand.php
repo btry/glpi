@@ -537,9 +537,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
             ],
         ]);
 
-        while ($data = $iterator->current()) {
+        foreach ($iterator as $data = $iterator) {
             $this->invalid_items[$itemtype][$data['id']][] = $field;
-            $iterator->next();
         }
     }
 
