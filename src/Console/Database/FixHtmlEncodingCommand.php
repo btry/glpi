@@ -525,8 +525,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
         ];
 
         if (in_array($itemtype, [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
-            $searches[] = [new QueryExpression("REGEXP_LIKE({$field}, '(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)')")];
-            $searches[] = [new QueryExpression("REGEXP_LIKE({$field}, '(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)')")];
+            $searches[] = [new QueryExpression("REGEXP({$field}, '(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)')")];
+            $searches[] = [new QueryExpression("REGEXP({$field}, '(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)')")];
         }
 
         $iterator = $DB->request([
