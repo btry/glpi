@@ -562,7 +562,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
         return $count;
     }
 
-    protected function askForItemConfirmation(bool $default_to_yes = true): bool
+    protected function askForItemConfirmation(): bool
     {
         $confirm = false;
         if (!$this->input->getOption('no-interaction')) {
@@ -582,7 +582,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
         return $confirm;
     }
 
-    protected function askForItemFix(bool $default_to_yes = true): bool
+    protected function askForItemFix(): bool
     {
         $fix = false;
         if (!$this->input->getOption('no-interaction')) {
