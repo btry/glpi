@@ -157,27 +157,6 @@ class FixHtmlEncodingCommand extends AbstractCommand
         $this->addUsage('--itemtype=ITILFollowup [--dump=file_path.sql]');
     }
 
-    /**
-     * Check the version of the code against the version of the DB
-     *
-     * @return void
-     */
-    private function checkVersion()
-    {
-        $database_version = Config::getConfigurationValue('core', 'version');
-        $match = version_compare(
-            VersionParser::getNormalizedVersion($database_version),
-            VersionParser::getNormalizedVersion(GLPI_VERSION),
-            '='
-        );
-        if (!$match) {
-            throw new \Glpi\Console\Exception\EarlyExitException(
-                '<error>' . sprintf(__('GLPI files and database are not the same. Please upgrade first.')) . '</error>',
-                self::ERROR_ITEMTYPE_NOT_FOUND
-            );
-        }
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         global $CFG_GLPI;
@@ -185,7 +164,6 @@ class FixHtmlEncodingCommand extends AbstractCommand
         $this->root_doc = Config::getConfigurationValue('core', 'url_base');
         $CFG_GLPI['root_doc'] = $this->root_doc;
 
-        $this->checkVersion();
         $this->checkArguments();
         $this->findTextFields();
         $this->scanItems();
