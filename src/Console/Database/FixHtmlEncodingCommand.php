@@ -538,8 +538,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
             ],
         ]);
 
-        foreach ($iterator as $data => $iterator) {
-            $this->invalid_items[$itemtype][$data['id']][] = $field;
+        foreach ($iterator as $row) {
+            $this->invalid_items[$itemtype][$row['id']][] = $field;
         }
     }
 
@@ -565,6 +565,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
 
     protected function askForItemConfirmation(): bool
     {
+        $default_to_yes = false;
         $confirm = false;
         if (!$this->input->getOption('no-interaction')) {
             $question_helper = $this->getHelper('question');
@@ -585,6 +586,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
 
     protected function askForItemFix(): bool
     {
+        $default_to_yes = false;
         $fix = false;
         if (!$this->input->getOption('no-interaction')) {
             $question_helper = $this->getHelper('question');
