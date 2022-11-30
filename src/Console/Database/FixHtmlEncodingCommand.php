@@ -35,21 +35,18 @@
 
 namespace Glpi\Console\Database;
 
-use Config;
 use CommonDBTM;
 use ITILFollowup;
-use QueryExpression;
 use Search;
 use Ticket;
 use Glpi\Console\AbstractCommand;
-use Glpi\Toolbox\VersionParser;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
- * When migrating from GLPI 9.5 to 10.0, some HTML entities were not properly encoded.
+ * Prior from GLPI 10.0, some HTML entities were not properly encoded.
  *
  * This CLI tool helps to fix items one by one or in small batches
  */
@@ -159,17 +156,12 @@ class FixHtmlEncodingCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        global $CFG_GLPI;
-
-        $this->root_doc = Config::getConfigurationValue('core', 'url_base');
-        $CFG_GLPI['root_doc'] = $this->root_doc;
-
         $this->checkArguments();
         $this->findTextFields();
         $this->scanItems();
 
         $count = $this->countItems($this->invalid_items);
-        if ($count < 1) {
+        if ($count === 0) {
             $output->writeln('<info>' . __('No invalid item found.') . '</info>');
             return 0;
         }
@@ -281,6 +273,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
 
     private function fixItems()
     {
+        global $CFG_GLPI;
+
         foreach ($this->invalid_items as $itemtype => $items) {
             foreach ($items as $item_id => $fields) {
                 $item = new $itemtype();
@@ -288,12 +282,13 @@ class FixHtmlEncodingCommand extends AbstractCommand
                     $this->failed_items[$itemtype][$item_id] = $item;
                     continue;
                 }
-                $url = $this->getItemUrl($item);
-                $this->output->writeln(
-                    '<comment>' . sprintf(__('About to fix itemtype %s ID %s - %s'), $itemtype, $item_id, $url) . '</comment>',
-                    OutputInterface::VERBOSITY_QUIET
-                );
-                if ($this->confirm) {
+                $url = $CFG_GLPI['url_base'] . $this->getItemUrl($item);
+                if (!$this->confirm) {
+                    $this->output->writeln(
+                        '<comment>' . sprintf(__('About to fix itemtype %s ID %s - %s'), $itemtype, $item_id, $url) . '</comment>',
+                        OutputInterface::VERBOSITY_QUIET
+                    );
+                } else {
                     $this->askForItemFix(false);
                 }
                 $this->fixOneItem($item, $fields);
@@ -502,10 +497,13 @@ class FixHtmlEncodingCommand extends AbstractCommand
             [$field => ['LIKE', '%&quot(?!;)/%']],
         ];
 
-        $regex_operator = 'RLIKE';
         if (in_array($itemtype, [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
-            $searches[] = [new QueryExpression("`{$field}` ${regex_operator} '(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)'")];
-            $searches[] = [new QueryExpression("`{$field}` ${regex_operator} '(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)'")];
+            $searches[] = [
+                $field => ['REGEXP', $DB->escape('(&#38;amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&#38;amp;gt;)')]
+            ];
+            $searches[] = [
+                $field => ['REGEXP', $DB->escape('(&amp;lt;)(?<email>[^@]*?@[a-zA-Z0-9\-.]*?)(&amp;gt;)')]
+            ];
         }
 
         $iterator = $DB->request([
