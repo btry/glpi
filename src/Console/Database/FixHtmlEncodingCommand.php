@@ -286,7 +286,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
                 if (!$this->confirm) {
                     $this->output->writeln(
                         '<comment>' . sprintf(__('About to fix itemtype %s ID %s - %s'), $itemtype, $item_id, $url) . '</comment>',
-                        OutputInterface::VERBOSITY_QUIET
+                        OutputInterface::VERBOSITY_VERBOSE
                     );
                 } else {
                     $this->askForItemFix(false);
