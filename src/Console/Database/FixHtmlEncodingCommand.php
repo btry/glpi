@@ -50,49 +50,35 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  *
  * This CLI tool helps to fix items one by one or in small batches
  */
-class FixHtmlEncodingCommand extends AbstractCommand
+final class FixHtmlEncodingCommand extends AbstractCommand
 {
     /**
      * Error code returned when a specified itemtype does not exists
      *
      * @var integer
      */
-    const ERROR_ITEMTYPE_NOT_FOUND = 1;
-
-    /**
-     * Error code returned when at least one item id is not found
-     *
-     * @var integer
-     */
-    const ERROR_ITEM_ID_NOT_FOUND = 2;
-
-    /**
-     * Error code returned when at least one field is not found
-     *
-     * @var integer
-     */
-    const ERROR_FIELD_NOT_FOUND = 3;
+    public const ERROR_ITEMTYPE_NOT_FOUND = 1;
 
     /**
      * Error code returned when update of an item failed
      *
      * @var integer
      */
-    const ERROR_UPDATE_FAILED = 4;
+    public const ERROR_UPDATE_FAILED = 2;
 
     /**
      * Error code returned when rollback file cound not be created
      *
      * @var integer
      */
-    const ERROR_ROLLBACK_FILE_FAILED = 5;
+    public const ERROR_ROLLBACK_FILE_FAILED = 3;
 
     /**
      * Error code returned when rollback file cound not be created
      *
      * @var integer
      */
-    const ERROR_ROLLBACK_FILE_REQUIRED = 6;
+    public const ERROR_ROLLBACK_FILE_REQUIRED = 4;
 
     /**
      * Items with invalid HTML
@@ -122,20 +108,13 @@ class FixHtmlEncodingCommand extends AbstractCommand
      */
     private bool $confirm = true;
 
-    /**
-     * Base URL to compute URLs of items being changed
-     *
-     * @var string
-     */
-    private string $root_doc = '';
-
     protected function configure()
     {
         parent::configure();
 
         $this->setName('glpi:database:fix_html_encoding');
         $this->setAliases(['db:fix_html']);
-        $this->setDescription(__('Fix HTML encoding in database.'));
+        $this->setDescription(__('Fix HTML encoding issues in database.'));
 
         $this->addOption(
             'itemtype',
@@ -198,15 +177,15 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Check that the arguments are correct
+     * Check that the arguments are correct.
      *
      * @return void
      */
-    private function checkArguments()
+    private function checkArguments(): void
     {
         // Check itemtype exists
         $itemtype = $this->input->getOption('itemtype');
-        if (empty($itemtype) || !class_exists($itemtype) || !is_a($itemtype, CommonDBTM::class, true)) {
+        if (empty($itemtype) || !is_a($itemtype, CommonDBTM::class, true)) {
             throw new \Glpi\Console\Exception\EarlyExitException(
                 '<error>' . sprintf(__('Itemtype %s not found'), $itemtype) . '</error>',
                 self::ERROR_ITEMTYPE_NOT_FOUND
@@ -214,13 +193,11 @@ class FixHtmlEncodingCommand extends AbstractCommand
         }
 
         // Dump mandatory if not in interactive mode
-        if ($this->input->getOption('no-interaction')) {
-            if (!$this->input->getOption('dump')) {
-                throw new \Glpi\Console\Exception\EarlyExitException(
-                    '<error>' . __('You must specify a dump file when using --no-interaction') . '</error>',
-                    self::ERROR_ROLLBACK_FILE_REQUIRED
-                );
-            }
+        if ($this->input->getOption('no-interaction') && !$this->input->getOption('dump')) {
+            throw new \Glpi\Console\Exception\EarlyExitException(
+                '<error>' . __('You must specify a dump file when using --no-interaction') . '</error>',
+                self::ERROR_ROLLBACK_FILE_REQUIRED
+            );
         }
     }
 
@@ -229,7 +206,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
      *
      * @return void
      */
-    private function dumpObjects()
+    private function dumpObjects(): void
     {
         global $DB;
 
@@ -271,7 +248,12 @@ class FixHtmlEncodingCommand extends AbstractCommand
         }
     }
 
-    private function fixItems()
+    /**
+     * Fix encoding issues.
+     *
+     * @return void
+     */
+    private function fixItems(): void
     {
         global $CFG_GLPI;
 
@@ -297,7 +279,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Find the URL to view an item
+     * Find the URL to view an item.
      *
      * @param CommonDBTM $item
      * @return string
@@ -315,13 +297,13 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Fix a single item, on specified fields
+     * Fix a single item, on specified fields.
      *
      * @param CommonDBTM $item item to fix
      * @param array $fields fields names to fix
      * @return void
      */
-    private function fixOneItem(CommonDBTM $item, array $fields)
+    private function fixOneItem(CommonDBTM $item, array $fields): void
     {
         global $DB;
 
@@ -345,7 +327,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Fix a single field of an item
+     * Fix a single field of an item.
      *
      * @param CommonDBTM $item
      * @param string $field
@@ -367,11 +349,9 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Remove double encoding of HTML tags
-     * character < is encoded &#38;lt; but should be encoded &#60;
-     * character > is encoded &#38;gt; but should be encoded &#62;
-     *
-     * Does not take into account the content of < and > pair
+     * Remove double encoding of HTML tags:
+     * - character < is encoded &#38;lt; but should be encoded &#60;
+     * - character > is encoded &#38;gt; but should be encoded &#62;
      *
      * @param string $input
      * @return string
@@ -424,11 +404,8 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Fix &quot; HTML entity without its final semicolon
+     * Fix &quot; HTML entity without its final semicolon.
      * @see https://github.com/glpi-project/glpi/pull/6084
-     *
-     * The pattern searches for &quot (without semicolon) found only between encoded < and >
-     * Therefore any ocurence found between HTML tabs are ignored
      *
      * @param string $input
      * @return string
@@ -446,11 +423,11 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Find rich text fields for itemtypes given as CLI argument
+     * Find rich text fields for itemtypes given as CLI argument.
      *
      * @return void
      */
-    protected function findTextFields()
+    private function findTextFields(): void
     {
         $itemtype = $this->input->getOption('itemtype');
 
@@ -466,11 +443,11 @@ class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
-     * Search in all items of an itemtype for bad HTML
+     * Search in all items of an itemtype for bad HTML.
      *
      * @return void
      */
-    protected function scanItems()
+    private function scanItems(): void
     {
         $itemtype = $this->input->getOption('itemtype');
         $fields = $this->text_fields[$itemtype];
@@ -487,7 +464,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
      * @param string $field
      * @return void
      */
-    protected function scanField(string $itemtype, string $field)
+    private function scanField(string $itemtype, string $field): void
     {
         global $DB;
 
@@ -524,7 +501,7 @@ class FixHtmlEncodingCommand extends AbstractCommand
      *
      * @return integer
      */
-    protected function countItems(array $items_array): int
+    private function countItems(array $items_array): int
     {
         $count = 0;
 
@@ -539,9 +516,13 @@ class FixHtmlEncodingCommand extends AbstractCommand
         return $count;
     }
 
-    protected function askForItemConfirmation(): bool
+    /**
+     * Ask user if each item update should be confirmed.
+     *
+     * @return bool
+     */
+    private function askForItemConfirmation(): bool
     {
-        $default_to_yes = false;
         $confirm = false;
         if (!$this->input->getOption('no-interaction')) {
             $question_helper = $this->getHelper('question');
@@ -549,33 +530,33 @@ class FixHtmlEncodingCommand extends AbstractCommand
                 $this->input,
                 $this->output,
                 new ConfirmationQuestion(
-                    __('Do you want confirm each item?') . ($default_to_yes ? ' [Yes/no]' : ' [yes/No]'),
-                    $default_to_yes
+                    __('Do you want confirm each item?') . ' [yes/No]',
+                    false
                 )
             );
-        } else {
-            $confirm = !$default_to_yes;
         }
 
         return $confirm;
     }
 
-    protected function askForItemFix(): bool
+    /**
+     * Ask user to confirm fix of given item.
+     *
+     * @return bool
+     */
+    private function askForItemFix(): bool
     {
-        $default_to_yes = false;
-        $fix = false;
+        $fix = true;
         if (!$this->input->getOption('no-interaction')) {
             $question_helper = $this->getHelper('question');
             $fix = $question_helper->ask(
                 $this->input,
                 $this->output,
                 new ConfirmationQuestion(
-                    __('Do you want fix this item?') . ($default_to_yes ? ' [Yes/no]' : ' [yes/No]'),
-                    $default_to_yes
+                    __('Do you want fix this item?') . ' [Yes/no]',
+                    true
                 )
             );
-        } else {
-            $fix = !$default_to_yes;
         }
 
         return $fix;
