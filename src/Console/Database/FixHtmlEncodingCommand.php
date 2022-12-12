@@ -255,23 +255,21 @@ final class FixHtmlEncodingCommand extends AbstractCommand
      */
     private function fixItems(): void
     {
-        global $CFG_GLPI;
-
         foreach ($this->invalid_items as $itemtype => $items) {
             foreach ($items as $item_id => $fields) {
+                /* @var \CommonDBTM $item */
                 $item = new $itemtype();
                 if (!$item->getFromDB($item_id)) {
                     $this->failed_items[$itemtype][$item_id] = $item;
                     continue;
                 }
-                $url = $CFG_GLPI['url_base'] . $this->getItemUrl($item);
                 if (!$this->confirm) {
                     $this->output->writeln(
-                        '<comment>' . sprintf(__('About to fix itemtype %s ID %s - %s'), $itemtype, $item_id, $url) . '</comment>',
+                        '<comment>' . sprintf(__('Fixing %s with ID %s...'), $item->getTypeName(1), $item->getID()) . '</comment>',
                         OutputInterface::VERBOSITY_VERBOSE
                     );
-                } else {
-                    $this->askForItemFix(false);
+                } elseif (!$this->askForItemFix($item)) {
+                    continue;
                 }
                 $this->fixOneItem($item, $fields);
             }
@@ -286,6 +284,8 @@ final class FixHtmlEncodingCommand extends AbstractCommand
      */
     private function getItemUrl(CommonDBTM $item): string
     {
+        global $CFG_GLPI;
+
         if ($item::getType() == ITILFollowup::getType()) {
             $parent_itemtype = $item->fields['itemtype'];
             $url = $parent_itemtype::getFormURLWithID($item->fields['items_id']);
@@ -293,7 +293,7 @@ final class FixHtmlEncodingCommand extends AbstractCommand
             $url = $item::getFormURLWithID($item->fields['id']);
         }
 
-        return $url;
+        return $CFG_GLPI['url_base'] . $url;
     }
 
     /**
@@ -542,9 +542,10 @@ final class FixHtmlEncodingCommand extends AbstractCommand
     /**
      * Ask user to confirm fix of given item.
      *
+     * @param CommonDBTM $item
      * @return bool
      */
-    private function askForItemFix(): bool
+    private function askForItemFix(CommonDBTM $item): bool
     {
         $fix = true;
         if (!$this->input->getOption('no-interaction')) {
@@ -553,7 +554,12 @@ final class FixHtmlEncodingCommand extends AbstractCommand
                 $this->input,
                 $this->output,
                 new ConfirmationQuestion(
-                    __('Do you want fix this item?') . ' [Yes/no]',
+                    sprintf(
+                        __('Do you want fix %s with ID %s (%s)?') . ' [Yes/no]',
+                        $item->getTypeName(1),
+                        $item->getID(),
+                        $this->getItemUrl($item)
+                    ),
                     true
                 )
             );
