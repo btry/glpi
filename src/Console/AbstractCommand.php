@@ -114,15 +114,15 @@ abstract class AbstractCommand extends Command implements GlpiCommandInterface
     /**
      * Correctly write output messages when a progress bar is displayed.
      *
-     * @param string|array $messages
-     * @param ProgressBar  $progress_bar
-     * @param integer      $verbosity
+     * @param string|array      $messages
+     * @param ProgressBar|null  $progress_bar
+     * @param integer           $verbosity
      *
      * @return void
      */
     protected function writelnOutputWithProgressBar(
         $messages,
-        ProgressBar $progress_bar,
+        ?ProgressBar $progress_bar,
         $verbosity = OutputInterface::VERBOSITY_NORMAL
     ) {
 
@@ -130,12 +130,16 @@ abstract class AbstractCommand extends Command implements GlpiCommandInterface
             return; // Do nothing if message will not be output due to its too high verbosity
         }
 
-        $progress_bar->clear();
+        if ($progress_bar !== null) {
+            $progress_bar->clear();
+        }
         $this->output->writeln(
             $messages,
             $verbosity
         );
-        $progress_bar->display();
+        if ($progress_bar !== null) {
+            $progress_bar->display();
+        }
     }
 
     /**
@@ -314,7 +318,7 @@ abstract class AbstractCommand extends Command implements GlpiCommandInterface
         // Iterate on items
         foreach ($iterable as $key => $value) {
             if (is_callable($message_callback)) {
-                $this->progress_bar->setMessage($message_callback($value));
+                $this->progress_bar->setMessage($message_callback($value, $key));
                 $this->progress_bar->display();
             }
 
