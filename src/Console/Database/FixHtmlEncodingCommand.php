@@ -337,8 +337,6 @@ final class FixHtmlEncodingCommand extends AbstractCommand
     {
         $new_value = $item->fields[$field];
 
-        $new_value = $this->doubleEncoding($new_value);
-
         if (in_array($item::getType(), [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
             $new_value = $this->fixEmailHeadersEncoding($new_value);
         }
@@ -346,28 +344,6 @@ final class FixHtmlEncodingCommand extends AbstractCommand
         $new_value = $this->fixQuoteEntityWithoutSemicolon($new_value);
 
         return $new_value;
-    }
-
-    /**
-     * Remove double encoding of HTML tags:
-     * - character < is encoded &#38;lt; but should be encoded &#60;
-     * - character > is encoded &#38;gt; but should be encoded &#62;
-     *
-     * @param string $input
-     * @return string
-     */
-    private function doubleEncoding(string $input): string
-    {
-        // Prepare the double encoding fix of HTML tag
-        $pattern = [
-            '/&#38;lt;/', // Opening tag
-            '/&#38;gt;/', // closing tag
-        ];
-        $replace = [
-            '&#60;',
-            '&#62;',
-        ];
-        return preg_replace($pattern, $replace, $input);
     }
 
     /**
@@ -469,8 +445,6 @@ final class FixHtmlEncodingCommand extends AbstractCommand
         global $DB;
 
         $searches = [
-            [$field => ['LIKE', '%&#38;lt;%']],
-            [$field => ['LIKE', '%&#38;gt;%']],
             [$field => ['LIKE', '%&quot(?!;)/%']],
         ];
 
