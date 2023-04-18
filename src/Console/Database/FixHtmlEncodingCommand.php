@@ -280,6 +280,7 @@ final class FixHtmlEncodingCommand extends AbstractCommand
 
         $new_value = $this->fixQuoteEntityWithoutSemicolon($new_value);
         $new_value = $this->fixUnescapedLineBreak($new_value);
+        $new_value = $this->fixRawGreaterThanSign($new_value);
 
         return $new_value;
     }
@@ -341,6 +342,27 @@ final class FixHtmlEncodingCommand extends AbstractCommand
 
         $pattern = '#<br />#';
         $replace = '&lt;br /&gt;';
+        $output = preg_replace($pattern, $replace, $output);
+
+        return $output;
+    }
+
+    /**
+     * Fix raw < character. Caused by Formcreator plugin before GLPI 10.0
+     * Impacts Tickets, Problems and Changes, in the content field.
+     * May happen with glpi object questions.
+     * Those items were generated with GLPI 9.5's flavor of HTML escaping.
+     *
+     * @param string $input
+     * @return string
+     */
+    private function fixRawGreaterThanSign(string $input): string
+    {
+        $output = $input;
+
+        // Add the missing semicolon to &quot; HTML entity
+        $pattern = '# > #';
+        $replace = ' &gt; ';
         $output = preg_replace($pattern, $replace, $output);
 
         return $output;
@@ -416,6 +438,12 @@ final class FixHtmlEncodingCommand extends AbstractCommand
         $searches = [
             [$field => ['LIKE', '%&quot(?!;)/%']],
             [$field => ['LIKE', '%<br />%']],
+
+            // '>' is not allowed in encoded HTML
+            // May happen when using a select field with a value containing a '>'
+            // Known to happen with GLPI select questions, then the symbol is
+            // surrounded with ' '
+            [$field => ['LIKE', '% > %']],
         ];
 
         if (in_array($itemtype, [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
