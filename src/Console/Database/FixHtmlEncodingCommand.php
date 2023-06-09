@@ -116,6 +116,13 @@ final class FixHtmlEncodingCommand extends AbstractCommand
             InputOption::VALUE_REQUIRED,
             __('Path of file where will be stored SQL queries that can be used to rollback changes')
         );
+
+        $this->addOption(
+            'dump-only',
+            null,
+            InputOption::VALUE_NONE,
+            __('Dump SQL roolback to file and exit')
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -135,6 +142,9 @@ final class FixHtmlEncodingCommand extends AbstractCommand
 
         if ($input->getOption('dump')) {
             $this->dumpObjects();
+        }
+        if ($input->getOption('dump-only')) {
+            return 0;
         }
 
         $this->fixItems();
@@ -281,6 +291,7 @@ final class FixHtmlEncodingCommand extends AbstractCommand
         $new_value = $this->fixQuoteEntityWithoutSemicolon($new_value);
         $new_value = $this->fixUnescapedLineBreak($new_value);
         $new_value = $this->fixRawGreaterThanSign($new_value);
+        $new_value = $this->fixRawAmpersand($new_value);
 
         return $new_value;
     }
@@ -369,6 +380,21 @@ final class FixHtmlEncodingCommand extends AbstractCommand
     }
 
     /**
+     * Undocumented function
+     *
+     * @param string $input
+     * @return string
+     */
+    private function fixRawAmpersand(string $input): string
+    {
+        $pattern = '/&(?!#?[a-z0-9]+;)/i';
+        $replace = '#38;';
+        $output = preg_replace($pattern, $replace, $input);
+
+        return $output;
+    }
+
+    /**
      * Find rich text fields for itemtypes given as CLI argument.
      *
      * @return void
@@ -444,6 +470,7 @@ final class FixHtmlEncodingCommand extends AbstractCommand
             // Known to happen with GLPI select questions, then the symbol is
             // surrounded with ' '
             [$field => ['LIKE', '% > %']],
+            [$field => ['REGEXP', '&(?!#?[a-z0-9]+;)']],
         ];
 
         if (in_array($itemtype, [Ticket::getType(), ITILFollowup::getType()]) && $field == 'content') {
