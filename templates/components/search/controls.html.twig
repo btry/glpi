@@ -49,6 +49,19 @@
       </label>
    {% endif %}
 
+   {% if may_be_charted and (count > 0 or data['search']['as_chart'] == 1) %}
+      <label class="form-check form-switch btn btn-sm btn-ghost-info me-0 me-sm-1 px-1 mb-0 flex-column-reverse flex-sm-row"
+             data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Show as chart') }}">
+         <input type="checkbox" class="form-check-input ms-0 me-1 mt-0" role="button"
+                name="as_chart" value="1" autocomplete="off"
+                onclick="toogle('as_chart','','',''); document.forms['searchform{{ itemtype|lower }}'].submit();"
+                {{ data['search']['as_chart'] == 1 ? 'checked' : '' }} />
+         <span class="form-check-label mb-1 mb-sm-0">
+            <i class="ti fa-lg ti-chart-pie"></i>
+         </span >
+      </label>
+   {% endif %}
+
    {% if may_be_browsed %}
       <label class="form-check form-switch btn btn-sm btn-ghost-info me-0 me-sm-1 px-1 mb-0 flex-column-reverse flex-sm-row"
              data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Toggle browse') }}">

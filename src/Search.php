@@ -173,6 +173,8 @@ class Search
             self::showMap($itemtype, $params);
         } elseif ($params['browse'] == 1) {
             $itemtype::showBrowseView($itemtype, $params);
+        } elseif ($params['as_chart'] == 1 && Toolbox::hasTrait($itemtype, \Glpi\Features\Chartable::class)) {
+            $itemtype::showChartView($itemtype, $params);
         } else {
             self::showList($itemtype, $params);
         }
@@ -1845,6 +1847,7 @@ class Search
             'may_be_deleted'      => $item instanceof CommonDBTM && $item->maybeDeleted() && !$item->useDeletedToLockIfDynamic(),
             'may_be_located'      => $item instanceof CommonDBTM && $item->maybeLocated(),
             'may_be_browsed'      => $item !== null && Toolbox::hasTrait($item, \Glpi\Features\TreeBrowse::class),
+            'may_be_charted'      => $item !== null && Toolbox::hasTrait($item, \Glpi\Features\Chartable::class),
         ]);
 
         // Add items in item list
@@ -1880,6 +1883,7 @@ class Search
             || !isset($data['data']['totalcount'])
             || $data['data']['count'] <= 0
             || $data['search']['as_map'] != 0
+            || $data['search']['as_chart'] != 0
         ) {
             return false;
         }
@@ -2868,6 +2872,12 @@ JAVASCRIPT;
                     'value' => $p['browse'],
                     'id'    => 'browse'
                 ]);
+                if ($item && Toolbox::hasTrait($item, \Glpi\Features\Chartable::class)) {
+                    echo Html::hidden('as_chart', [
+                        'value' => $p['as_chart'],
+                        'id'    => 'as_chart'
+                    ]);
+                }
             }
             echo "<div class='col-auto'>";
             echo "<button class='btn btn-sm btn-icon btn-ghost-secondary remove-search-criteria' type='button' data-rowid='$rowid'
@@ -7927,6 +7937,7 @@ HTML;
         $default_values["sort"]        = 1;
         $default_values["is_deleted"]  = 0;
         $default_values["as_map"]      = 0;
+        $default_values["as_chart"]    = 0;
         $default_values["browse"]      = 0;
 
         if (isset($params['start'])) {
@@ -8050,7 +8061,7 @@ HTML;
             if (!isset($params[$key])) {
                 if (
                     $usesession
-                    && ($key == 'is_deleted' || $key == 'as_map' || $key == 'browse' || !isset($saved_params['criteria'])) // retrieve session only if not a new request
+                    && ($key == 'is_deleted' || $key == 'as_map' || $key == 'as_chart' || $key == 'browse' || !isset($saved_params['criteria'])) // retrieve session only if not a new request
                     && isset($_SESSION['glpisearch'][$itemtype][$key])
                 ) {
                     $params[$key] = $_SESSION['glpisearch'][$itemtype][$key];
